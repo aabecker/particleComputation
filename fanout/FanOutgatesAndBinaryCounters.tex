@@ -1,0 +1,567 @@
+% easy truth tables: http://www.kwi.dk/projects/php/truthtable/?
+\pdfobjcompresslevel=0  % I had adobe error 131, and this removed it: http://tex.stackexchange.com/questions/64448/how-to-overcome-acrobat-reader-error-131-with-a-pdflatex-doc
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\IEEEoverridecommandlockouts
+\usepackage{calc}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks =true,
+  urlcolor = black,
+  linkcolor = black
+}
+\usepackage{graphicx}
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{booktabs}
+
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{overpic}
+\graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
+\usepackage{breqn} %for breaking equations automatically
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+
+\usepackage{bm}   % boldface math type
+\usepackage{soul}  % for highlighting
+\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent \framebox{\begin{minipage}[c]{0.98 \columnwidth} \ttfamily\flushleft \textcolor{red}{#1}\end{minipage}}\vspace{5 mm}\par}
+% uncomment this to hide all red todos
+%\renewcommand{\todo}{}
+
+%% ABBREVIATIONS
+\newcommand{\qstart}{q_{\text{start}}}
+\newcommand{\qgoal}{q_{\text{goal}}}
+\newcommand{\pstart}{p_{\text{start}}}
+\newcommand{\pgoal}{p_{\text{goal}}}
+\newcommand{\xstart}{x_{\text{start}}}
+\newcommand{\xgoal}{x_{\text{goal}}}
+\newcommand{\ystart}{y_{\text{start}}}
+\newcommand{\ygoal}{y_{\text{goal}}}
+\newcommand{\gammastart}{\gamma_{\text{start}}}
+\newcommand{\gammagoal}{\gamma_{\text{goal}}}
+\providecommand{\proc}[1]{\textsc{#1}}
+
+
+\newcommand{\ARLfull}{Aero\-space Ro\-bot\-ics La\-bora\-tory }
+\newcommand{\ARL}{\textsc{arl}}
+\newcommand{\JPL}{\textsc{jpl}}
+\newcommand{\PRM}{\textsc{prm}}
+\newcommand{\CM}{\textsc{cm}}
+\newcommand{\SVM}{\textsc{svm}}
+\newcommand{\NN}{\textsc{nn}}
+\newcommand{\prm}{\textsc{prm}}
+\newcommand{\lemur}{\textsc{lemur}}
+\newcommand{\Lemur}{\textsc{Lemur}}
+\newcommand{\LP}{\textsc{lp}} 
+\newcommand{\SOCP}{\textsc{socp}}
+\newcommand{\SDP}{\textsc{sdp}}
+\newcommand{\NP}{\textsc{np}}
+\newcommand{\SAT}{\textsc{sat}}
+\newcommand{\LMI}{\textsc{lmi}}
+\newcommand{\hrp}{\textsc{hrp\nobreakdash-2}}
+\newcommand{\DOF}{\textsc{dof}}
+\newcommand{\UIUC}{\textsc{uiuc}}
+%% MACROS
+
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\normn}[2]{\left\lVert#1\right\rVert_#2}
+\providecommand{\dualnorm}[1]{\norm{#1}_\ast}
+\providecommand{\dualnormn}[2]{\norm{#1}_{#2\ast}}
+\providecommand{\set}[1]{\lbrace\,#1\,\rbrace}
+\providecommand{\cset}[2]{\lbrace\,{#1}\nobreak\mid\nobreak{#2}\,\rbrace}
+\providecommand{\lscal}{<}
+\providecommand{\gscal}{>}
+\providecommand{\lvect}{\prec}
+\providecommand{\gvect}{\succ}
+\providecommand{\leqscal}{\leq}
+\providecommand{\geqscal}{\geq}
+\providecommand{\leqvect}{\preceq}
+\providecommand{\geqvect}{\succeq}
+\providecommand{\onevect}{\mathbf{1}}
+\providecommand{\zerovect}{\mathbf{0}}
+\providecommand{\field}[1]{\mathbb{#1}}
+\providecommand{\C}{\field{C}}
+\providecommand{\R}{\field{R}}
+\newcommand{\Cspace}{\mathcal{Q}}
+\newcommand{\Uspace}{\mathcal{U}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\Hcal}{$\mathcal{H}$}
+\providecommand{\Vcal}{$\mathcal{V}$}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\homog}{homog}
+\DeclareMathOperator{\domain}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\sgn}{signum}
+\providecommand{\polar}{\triangle}
+\providecommand{\ainner}{\underline{a}}
+\providecommand{\aouter}{\overline{a}}
+\providecommand{\binner}{\underline{b}}
+\providecommand{\bouter}{\overline{b}}
+\newcommand{\D}{\nobreakdash-\textsc{d}}
+%\newcommand{\Fspace}{\mathcal{F}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\free}{\text{\{}\mathsf{free}\text{\}}}
+\providecommand{\iff}{\Leftrightarrow}
+\providecommand{\subinner}[1]{#1_{\text{inner}}}
+\providecommand{\subouter}[1]{#1_{\text{outer}}}
+\providecommand{\Ppoly}{\mathcal{X}}
+\providecommand{\Pproj}{\mathcal{Y}}
+\providecommand{\Pinner}{\subinner{\Pproj}}
+\providecommand{\Pouter}{\subouter{\Pproj}}
+\DeclareMathOperator{\argmax}{arg\,max}
+\providecommand{\Aineq}{B}
+\providecommand{\Aeq}{A}
+\providecommand{\bineq}{u}
+\providecommand{\beq}{t}
+\DeclareMathOperator{\area}{area}
+\newcommand{\contact}[1]{\Cspace_{#1}}
+\newcommand{\feasible}[1]{\Fspace_{#1}}
+\newcommand{\dd}{\; \mathrm{d}}
+\newcommand{\figwid}{0.22\columnwidth}
+
+\DeclareMathOperator{\atan2}{atan2}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\begin{document}
+
+%%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
+%    \tableofcontents
+%    \setcounter{tocdepth}{3}
+%\newpage
+%\mbox{}
+%\newpage
+%\mbox{}
+%\newpage
+
+%%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\LARGE \bf 
+Particle Computation:  Device Fan-out and Binary Memory 
+}
+\author{Aaron Becker,
+Rose Morris-Wright,
+Erik D. Demaine,
+S\'andor P. Fekete
+\thanks{{A. Becker is with the Department of Cardiovascular Surgery,  Boston Children's Hospital and Harvard Medical School, Boston, MA, 02115 USA {\tt\small \{first name.lastname\}@childrens.harvard.edu}, 
+R. Morris-Wright is with the   \protect\url{rmorriswright@gmail.com},
+E. Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT,
+     Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
+  % James McLurkin,  Department of Computer Science, Rice University, Houston, TX 77005, \protect\url{jm23@rice.edu}, 
+S. Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
+      \protect\url{s.fekete@tu-bs.de}.
+}
+} %\end thanks
+} % end author block
+\maketitle
+
+
+
+\begin{abstract}
+Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated particle computation in this world, designing obstacle configurations that implement {\sc and, or, not, nor, nand, xor, xnor} logic gates.  We could not implement a {\sc fan-out} gate because such a gate depends on particle priority, and our particles are indistinguishable. This prevented us from creating arbitrary digital circuits.  In this work we introduce $2\times 1$ robots.  We now can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
+   We also implement a data storage element.
+   %Flip-flops and latches are used as data storage elements.
+\end{abstract}
+
+\todo{Add section on optimal wiring schemes -- with our current CW clock cycle, we cannot have outputs at the same column as inputs -- they must be either 1 to the right, or 3 to the left.  Choosing one of these results in logic that shifts horizontally at each stage and spreads out the logic. A better wiring scheme would cycle through 3 layers that go right 1, followed by one layer that goes left 3.  We also want the wiring to be tight left-to-right.  What if our height is also limited? In such a case \emph{wire buses} would be a compact solution. }
+
+
+  \section{Introduction}
+    
+  
+  Currently, micro- and nanorobot systems with many robots are steered and directed by a common control signal\cite{lots}.  In this paper, we show how a common control signal, mobile particles, and unit-sized obstacles can implement a computer.  
+    We do not present particle logic as an alternative to electronic computing.
+  Frankly, this form of computation is impractical, being both slow, requiring large amounts of space, and being vulnerable to manufacturing defects. Rather, we want to quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
+  This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
+    \begin{enumerate}
+\item A planar  grid is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.
+\item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  The robots all move in the commanded direction until they hit an obstacle or a stationary robot.  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume we know the maximum dimension of the workspace and issue each command long enough for the robots to reach their maximum extent.
+\end{enumerate}
+  
+ After a brief overview of related work,  the contributions of this paper are as listed:
+  \begin{enumerate}
+  \item prove the necessity of dual-rail logic for Boolean logic (give section)
+  \item prove the insufficiency of unit-size particles for gate fan-out (give section)
+  \item design {\sc fan-out gates} (give section)
+  \item design memory latches (Section \ref{subsec:Storage})
+  \item present architecture for device integration, design a common clock sequence, and present a binary counter (Section \ref{sec:binaryCounter})
+    \end{enumerate}
+  
+  
+  \subsection{Fan-out}
+  
+  The \emph{fan-out} of a logic gate output is the number of gate inputs it can feed or connect to.  With particle logic, as demonstrated in  \cite{Becker2014}, each logic gate output could fan-out to only one gate.  This is sufficient for \emph{sum of products} and \emph{product of sums}  operations in CPLDs (complex programmable logic devices), but insufficient for more flexible architectures.
+  %  In digital electronics, the fan-out of a logic gate output is the number of gate inputs it can feed or connect to.
+%In most designs, logic gates are connected to form more complex circuits. While no more than one logic gate output is connected to any single input, it is common for one output to be connected to several inputs. The technology used to implement logic gates usually allows a certain number of gate inputs to be wired directly together without additional interfacing circuitry. The maximum fan-out of an output measures its load-driving capability: it is the greatest number of inputs of gates of the same type to which the output can be safely connected. http://en.wikipedia.org/wiki/fan-out
+%  
+    Consider the half-adder shown in Fig.~\ref{fig:HalfAdder}.  The inputs $\mathbf{A}$ and  $\mathbf{B}$ are needed to compute both the {\sc sum} and the {\sc carry} bits, so the fanout of $\mathbf{A}$ and  $\mathbf{B}$ is two.
+  
+  
+{\sc and} and {\sc or} can be implemented with particles, but other logic requires \emph{dual-rail logic}, where two lines for each input are supplied to explicitly represent the variable and its complement. Dual-rail logic is required because particle logic is \emph{conservative}---particles are neither created nor destroyed.  Unfortunately particle logic is not reversible.  The {\sc or} gate outputs a 1 if either input is asserted, but afterwards we cannot determine which input was high.  This makes implementing a {\sc fan-out} gate impossible with unit size particles and obstacles.
+
+   \begin{figure}
+   \centering
+\begin{overpic}[width =0.49\columnwidth]{HalfAdder}%\put(30,-7){ $m=1$, partition 1}
+\end{overpic}
+\caption{
+\label{fig:HalfAdder}
+The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}$.
+}
+\vspace{-1em}
+\end{figure}
+
+
+
+\subsection{Choosing a clock signal}
+
+The \emph{clock sequence} is the ordered set of moves that are simultaneously applied to every particle in our workspace. We call this the clock sequence because, as in digital computers, this sequence is universally applied and keeps all logic synchronized.
+
+A clock sequence determines the basic functionality of each gate. Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequence can be used to make {\sc and, or, xor}, any of their inverses.  This sequence can also be used for \emph{wiring} to connect arbitrary inputs and outputs, as long as the outputs are below the inputs.  Unfortunately, $\langle d,l,d,r \rangle$ cannot move any particles upwards. To connect outputs as inputs to higher level logic requires an additional reset sequence such as $\langle d,l,u,r \rangle$.
+  In the spirit of Reduced Instruction Set Computing (RISC), which uses a simplified set of instructions that run at the same rate, we want to use the same clock cycle for each gate and for \emph{all} wiring.  A clock sequence without orthogonal inputs, i.e. $\langle u,d,u,d \rangle$ can only implement assertions.  Using two orthogonal inputs, i.e.~$\langle d,l,d,l \rangle$  cannot implement {\sc fan-out} gates, and particles cannot be returned $u$ or $r$.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and prove that this 
+sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring.
+
+This clock sequence has the attractive property of being a clockwise rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating perpendicular to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
+
+
+
+
+\section{Related Work}
+Our efforts have similarities with \emph{mechanical computers},  computers constructed from mechanical, not electrical components. For a fascinating nontechnical review, see \cite{McCourtney1999}.  These devices have a rich history, from the \emph{Pascaline}, an adding machine invented in 1642 by a nineteen-year old Blaise Pascal; Herman Hollerith's punch card tabulator in 1890; to the mechanical devices of IBM culminating in the 1940s.  These devices used precision gears, pulleys, or electric motors to carry out calculations.  Though our {\sc Grid-World} implementations seem an anachronism, note that we require none of these precision elements---merely unit-size obstacles,  and $2\times1$ and $1\times1$ sliding particles.
+%Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the associated press when it was announced in the 1940s. 
+
+\subsection{Collision-based computing} \todo{ refers to....   For a survey of this area, so the collection .... } %todo: cite http://link.springer.com/book/10.1007/978-1-4471-0129-1
+One example is Conway's game of life (cite original)  these simple rules have been examined in depth and used  to build a Turing-complete computer \cite{Adamatzky2002}.  These scenarios are fascinating, but lack a physical implementation.  They require \emph{cells} that live or die based on the number of neighbors. 
+
+
+\subsection{Sliding-block puzzles}
+Sliding block puzzles use rectangular tiles that are constrained to move in a 2D environment. The objective is to move one or more tiles to desired locations. They have a long history.
+Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can be arranged to create logic gates, and used this technique to prove {\sc p-space} complexity for a variety of sliding block puzzles.  Hearn expressed the idea of building computers from the sliding blocks---many of the logic gates could be connected together, and the user could propagate a signal from one gate to the next by sliding intermediate tiles.  This requires the user to know precisely which sequence of gates to enable/disable.  In contrast to such a hands-on approach, with our architecture we can build circuits, store parameters in memory, and then actuate the entire system in parallel using a global control signal.
+
+
+
+\section{Theory}
+
+
+\begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation} % Is this the 'additivity property'?
+If given an environment $E$ and a command sequence $M$ that moves a robot initially at $s$ to a goal location $g$, then adding additional robots anywhere in $E$ at any stage of the command sequence cannot prevent $g$ from being occupied at the conclusion of sequence $M$.
+\end{theorem}
+
+\paragraph{Definition of hit}
+During command $m_i$, robot $a$ \emph{hits} robot $b$ if $a$'s movement is stopped by $b$.  A hit changes $a$'s location at the end of move step $m_i$ to be $b$-$m_i$.  
+
+Robots must hit in to change the outcome of a command sequence.
+If marbles do not hit, there is no change because the robots have not interacted.
+
+\begin{lemma}\label{lemma:AHitDoesntChangeOccupancyDuringMove}
+If two robots hit, one robot follows the original path \todo{need to specify path and original path.  Maybe: ``one robot follows the path either robot would have followed if the other did not exist"  or If robots $a$ and $b$ hit, a robot will still occupy $m$...}
+\end{lemma}
+\begin{proof}
+In any hit either $b$ hits $a$ or $a$ hits $b$.  If $b$ hits $a$,  there is no change to $a$'s path and $a$ will still end at $g$.  If $a$ hits $b$, $b$ is where $a$ would have been and $b$ follows $a$'s original path.   
+\end{proof}
+
+Robots can only interact via hits.  By lemma \ref{lemma:AHitDoesntChangeOccupancyDuringMove}, a hit cannot prevent an occupancy, therefore the proof of \ref{thm:AdditionalRobotsCannotPreventAnOccupation} follows.
+
+\begin{corollary}
+A  {\sc not} gate without dual-rail inputs cannot be constructed
+\end{corollary}
+\begin{proof}
+define a {\sc not} gate, \todo{explain how this follows} 
+\end{proof}
+
+
+
+\begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
+If given an environment $E$ and a command sequence $M$ that moves robots initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing either robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
+\end{theorem}
+
+\begin{proof}
+If robots $s_1$ and $s_2$ never hit when both exist, then the remaining robot continues to its goal location unchanged.
+
+If robots do hit when both exist \todo{show that this cannot lead to a goal location $g_3$, when only one robot is used, it goes to the goal location occupied by the last robot to be hit when there are two. }
+\end{proof}
+
+
+\begin{corollary}
+A  {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
+\end{corollary}
+\begin{proof} By contradiction.
+Consider a  {\sc fan-out} gate $E$ and an arbitrary sequence $M$ such that with input $s_{a}$ initially occupied and one or more supply robots, at the conclusion of  $M$, the output location $g_{a1}$ and $g_{a2}$ are occupied and the locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are vacant.  Also, under the same command sequence $M$, but with input $s_{a}$ initially vacant, $s_{\bar{a}}$ initially occupied and the same supply robots, at the conclusion of $M$, the output locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are occupied and the locations  $g_{a1}$ and $g_{a2}$  are vacant. 
+
+
+ If input $s_{a}$ is initially vacant, by Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} , either  $g_{a1}$ and $g_{a2}$ is occupied at the conclusion of $M$.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent one of $g_{a1}$ and $g_{a2}$ being filled, thus arriving at a contradiction.
+ \end{proof}
+
+
+
+
+\begin{table}
+\begin{displaymath}
+\begin{array}{cc|cccccc}
+\toprule
+   A
+ & B
+ & A\lor{}B
+ & AB
+ & \overline{A\lor{}B}
+ & \overline{AB}
+ & A\oplus B
+ & \overline{A\oplus B} \\
+\midrule
+0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+\bottomrule
+\end{array}
+\end{displaymath}
+  \caption{Possible Boolean operations in dual-rail particle logic.}
+  \label{tab:dualRailParticleLogic}
+\end{table}
+  
+  \section{Device and gate design}
+  
+  \subsection{A {\sc fan-out} gate}\label{sec:FanOut}
+A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{tab:Fanout}.  Our implementation is shown in Fig~\ref{fig:Fanout}.
+  
+  \begin{table}
+\begin{displaymath}
+\begin{array}{ccc|cccc}
+%\toprule
+\multicolumn{3}{c}{\emph{Inputs}} & \multicolumn{4}{c}{\emph{Outputs}} \\
+%\cmidrule(r){1-3}
+   A
+ & \overline{A}
+ & 1
+ & A
+ & A
+ &  \overline{A}
+ & \overline{A}\\
+\hline
+0 & 1 & 1 & 0 & 0 & 1 & 1  \\
+1 & 0 & 1 & 1 & 1 & 0 & 0  \\
+%\bottomrule
+\end{array}
+\end{displaymath}
+\caption{{\sc fan-out} operation. This cannot be implemented with 1$\times$1 particles and obstacles.   Our technique uses 2$\times$1 particles. }
+  \label{tab:Fanout}
+\end{table}
+ \begin{figure}
+\begin{overpic}[width =\columnwidth]{FanOutS1.png}
+\put(6.5,27){$A$} \put(13,27){$\overline{A}$} \put(23.5,27){$1$}
+\put(58,27){$A$} \put(64.5,27){$\overline{A}$} \put(75,27){$1$}
+
+\put(6.5,0){$A$}\put(23,0){$A$} \put(29.5,0){$\overline{A}$} \put(35.2,0){$\overline{A}$} 
+\put(58,0){$A$} \put(74.5,0){$A$} \put(80.5,0){$\overline{A}$} \put(87.5,0){$\overline{A}$} 
+\put(2,-5){ $\langle d \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+\vspace{.1em}\\
+
+\begin{overpic}[width =\columnwidth]{FanOutS2.png}\put(2,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+\vspace{.1em}\\
+
+\begin{overpic}[width =\columnwidth]{FanOutS4.png}\put(2,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
+\put(6.5,0){$A$}\put(23,0){$A$} \put(29.5,0){$\overline{A}$} \put(35.2,0){$\overline{A}$} 
+\put(58,0){$A$} \put(74.5,0){$A$} \put(80.5,0){$\overline{A}$} \put(87.5,0){$\overline{A}$} 
+\end{overpic}
+\todo{replace image with CW gate}
+\caption{
+\label{fig:Fanout}
+A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail input, a supply particle, and a $2\times 1$ slider.  The  \emph{clockwise} control sequence $\langle d,l,u,r \rangle$  duplicates the dual-rail input.
+}
+\vspace{-1em}
+\end{figure}
+
+% \begin{figure}
+%\begin{overpic}[width =\columnwidth]{FanOutS1.png}
+%\put(6.5,27){$A$} \put(13,27){$\overline{A}$} \put(23.5,27){$1$}
+%\put(58,27){$A$} \put(64.5,27){$\overline{A}$} \put(75,27){$1$}
+%
+%\put(6.5,0){$A$}\put(23,0){$A$} \put(29.5,0){$\overline{A}$} \put(35.2,0){$\overline{A}$} 
+%\put(58,0){$A$} \put(74.5,0){$A$} \put(80.5,0){$\overline{A}$} \put(87.5,0){$\overline{A}$} 
+%\put(2,-5){ $\langle d \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+%\vspace{.1em}\\
+%
+%\begin{overpic}[width =\columnwidth]{FanOutS2.png}\put(2,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+%\vspace{.1em}\\
+%
+%\begin{overpic}[width =\columnwidth]{FanOutS4.png}\put(2,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
+%\put(6.5,0){$A$}\put(23,0){$A$} \put(29.5,0){$\overline{A}$} \put(35.2,0){$\overline{A}$} 
+%\put(58,0){$A$} \put(74.5,0){$A$} \put(80.5,0){$\overline{A}$} \put(87.5,0){$\overline{A}$} 
+%\end{overpic}
+%\caption{
+%\label{fig:Fanout}
+%A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail input, a supply particle, and a $2\times 1$ slider.  The control sequence $\langle d,l,d,r \rangle$ duplicates the dual-rail input.
+%}
+%\vspace{-1em}
+%\end{figure}
+
+
+ \begin{figure}
+ 
+ \vspace{2em}
+ 
+\begin{overpic}[width =\columnwidth]{FanOutcw4step12.png}
+\put(2,-7){ $\langle d \rangle$}
+\put(20,-7){$A=0$ }\put(70,-7){ $A=1$ }
+\scriptsize
+\put(9,21){$1$~~$1$~~$1$~~$A$} \put(41,21){$\overline{A}$} 
+\put(61,21){$1$~~$1$~~$1$~~$A$} \put(94,21){$\overline{A}$} 
+
+\put(10,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\put(63,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+
+\end{overpic}\\
+\vspace{.5em}\\
+
+\begin{overpic}[width =\columnwidth]{FanOutcw4step34.png}
+\put(2,-7){ $\langle d,l,d,r \rangle$}
+\put(20,-7){$A=0$ }\put(70,-6){ $A=1$ }
+\scriptsize
+\put(9,21){$1$~~$1$~~$1$~~$A$} \put(41,21){$\overline{A}$} 
+\put(61,21){$1$~~$1$~~$1$~~$A$} \put(94,21){$\overline{A}$} 
+
+\put(10,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\put(63,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\end{overpic}
+\caption{
+\label{fig:Fanout4}
+The {\sc fan-out} gate can drive multiple outputs. Here a single input drives four-outputs.  This gate requires a dual-rail input, three supply particle, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
+}
+\vspace{-1em}
+\end{figure}
+
+
+\subsection{Data Storage\label{subsec:Storage}}
+
+A general-purpose computer must be able to store data.  A $2\times1$ particle enables us to construct a read/writable data storage for one bit. A single-bit data storage latch is shown in Fig.~\ref{fig:Memory} and implements the truth table in Table \ref{tab:memoryTruthTable}.     By combining an $n$-out {\sc fan-out} gate shown in Fig~\ref{fig:Fanout4} with $n$ data storage devices, we can implement an $n$ bit memory. To maintain \emph{conservative} properties of the computer, i.e. the same number of robots enter and leave each gate,  single-bit data storage latches must be used in pairs to record the state and its inverse.
+
+
+ \begin{figure*}
+\begin{overpic}[width =2\columnwidth]{MemoryElement.pdf}
+\end{overpic}
+\caption{
+\label{fig:Memory}
+A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emph{Clear}, a state variable (shown in blue), and a $2\times 1$ slider.  Depending on which input is active, the control sequence $\langle d,l,d,r \rangle$ will read, set, or clear the memory.
+}
+\vspace{-1em}
+\end{figure*}
+
+
+\begin{table}
+\begin{displaymath}
+\begin{array}{cccc|ccccc}
+\toprule
+   Q
+ & R
+ & S
+ & C
+ & Q
+ & Q_R
+ & W_1
+ & W_2
+ & \overline{Q}_R \\
+\midrule
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+1 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\
+1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0\\
+\bottomrule
+\end{array}
+\end{displaymath}
+  \caption{A single-bit data storage latch with state $Q$.  \label{tab:memoryTruthTable}}
+\end{table}
+  
+
+
+
+\subsection{A binary counter}\label{sec:binaryCounter}
+  Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate.  
+  
+We illustrate how many gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}.  Six logic gates are used to implement a 3-bit counter.  A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}, and Fig.~\label{fig:CounterShowingEachStage} shows the results of each computation stage. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
+
+\begin{figure}
+ \begin{overpic}[width =\columnwidth]{BinCounterCW000.png}\end{overpic}
+\vspace{.1em}\\
+\caption{
+\label{fig:Counter}
+A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. 
+}
+\vspace{-1em}
+\end{figure}
+
+
+ \begin{figure}
+ \begin{overpic}[width =\columnwidth]{counterSchem.pdf}\end{overpic}
+\caption{
+\label{fig:CounterBlockDiagram}
+Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor} gates, $n-2$ {\sc and} gates, and 1 {\sc not} gate.
+}
+\vspace{-1em}
+\end{figure}
+
+
+\subsection{Scaling issues}
+ Particle computation requires multiple clock cycles, workspace area for gates and interconnections, and many particles.  In this section we analyze how these scale with the size of the counter, using Fig.~\ref{fig:CounterBlockDiagram} as a reference.   
+
+\paragraph{gates}  an $n$-bit counter requires $n$ {\sc fan-out} gates, $n-1$ summers ({\sc xor}) gates, and $n-2$ carry ({\sc and}) gates. 
+\paragraph{particles} we require $n$ 1$\times$1 particles, one for each bit and $n$ 2$\times$1 particles, one for each {\sc fan-out} gate.
+\paragraph{ propagation delay} the counter requires $n$ stages of logic, and $n$ corresponding wiring stages.  Each stage requires a complete clock cycle $\langle d,l,u,r \rangle$ for a total of 8$n$ moves.
+
+
+\todo{These are comparable to a ripple-carry adder:  the delay for $n$ bits is  and requires $x=$ gates.
+Numerous other schemes exist to speed up the computation.  Instead of using discrete gates, we could engineer environment to directly compute each stage.  The advantage of gates is that they are easily reused and connected.}
+
+
+
+    
+%\section{Acknowledgements}
+%This work was supported by the National Science Foundation under
+%\href{http://nsf.gov/awardsearch/showAward?AWD_ID=1208509}{NRI-1208509}.  
+   
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,../../../svn/ensemble/bib/aaronrefs}%,../aaronrefs} %../../../../../../ensemble/bib/aaronrefs}
+
+\newpage    
+    
+     \begin{figure*}
+ \begin{overpic}[width =0.49\columnwidth]{BinCounterCW000.png}\put(20,-6){$b_2b_1b_0=000$}\end{overpic}
+  \begin{overpic}[width =0.49\columnwidth]{BinCounterCW001.png}\put(20,-6){$b_2b_1b_0=001$}\end{overpic}
+   \begin{overpic}[width =0.49\columnwidth]{BinCounterCW010.png}\put(20,-6){$b_2b_1b_0=010$}\end{overpic}
+    \begin{overpic}[width =0.49\columnwidth]{BinCounterCW011.png}\put(20,-6){$b_2b_1b_0=011$}\end{overpic}\\
+    \vspace{0.1em}\\
+     \begin{overpic}[width =0.49\columnwidth]{BinCounterCW100.png}\put(20,-6){$b_2b_1b_0=100$}\end{overpic}
+      \begin{overpic}[width =0.49\columnwidth]{BinCounterCW101.png}\put(20,-6){$b_2b_1b_0=101$}\end{overpic}
+       \begin{overpic}[width =0.49\columnwidth]{BinCounterCW110.png}\put(20,-6){$b_2b_1b_0=110$}\end{overpic}
+        \begin{overpic}[width =0.49\columnwidth]{BinCounterCW111.png}\put(20,-6){$b_2b_1b_0=111$}\end{overpic}
+\vspace{.1em}\\
+\caption{
+\label{fig:CounterShowingEachStage}
+Ending configuration for each stage of the computation.
+}
+\end{figure*}
+
+
+
+\end{document}
+
+
+
+
+
+
+

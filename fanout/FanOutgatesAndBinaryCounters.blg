@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: FanOutgatesAndBinaryCounters.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: IEEEabrv.bib
+Database file #2: ../../../svn/ensemble/bib/aaronrefs.bib
+Warning--I didn't find a database entry for "lots"
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 7 entries,
+            4039 wiz_defined-function locations,
+            1263 strings with 16666 characters,
+and the built_in function-call counts, 4996 in all, are:
+= -- 372
+> -- 127
+< -- 31
++ -- 66
+- -- 24
+* -- 260
+:= -- 769
+add.period$ -- 15
+call.type$ -- 7
+change.case$ -- 6
+chr.to.int$ -- 75
+cite$ -- 7
+duplicate$ -- 344
+empty$ -- 454
+format.name$ -- 30
+if$ -- 1139
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 65
+newline$ -- 50
+num.names$ -- 9
+pop$ -- 173
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 381
+stack$ -- 0
+substring$ -- 178
+swap$ -- 264
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 7
+warning$ -- 0
+while$ -- 22
+width$ -- 8
+write$ -- 92
+(There was 1 warning)

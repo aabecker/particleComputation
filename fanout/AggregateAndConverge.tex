@@ -1,0 +1,363 @@
+% easy truth tables: http://www.kwi.dk/projects/php/truthtable/?
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\IEEEoverridecommandlockouts
+\usepackage{calc}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks =true,
+  urlcolor = black,
+  linkcolor = black
+}
+\usepackage{graphicx}
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
+\usepackage{rotating}
+
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{overpic}
+\graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
+\usepackage{breqn} %for breaking equations automatically
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+
+\usepackage{bm}   % boldface math type
+\usepackage{soul}  % for highlighting
+\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent \framebox{\begin{minipage}[c]{0.98 \columnwidth} \ttfamily\flushleft \textcolor{red}{#1}\end{minipage}}\vspace{5 mm}\par}
+% uncomment this to hide all red todos
+%\renewcommand{\todo}{}
+
+%% ABBREVIATIONS
+\newcommand{\qstart}{q_{\text{start}}}
+\newcommand{\qgoal}{q_{\text{goal}}}
+\newcommand{\pstart}{p_{\text{start}}}
+\newcommand{\pgoal}{p_{\text{goal}}}
+\newcommand{\xstart}{x_{\text{start}}}
+\newcommand{\xgoal}{x_{\text{goal}}}
+\newcommand{\ystart}{y_{\text{start}}}
+\newcommand{\ygoal}{y_{\text{goal}}}
+\newcommand{\gammastart}{\gamma_{\text{start}}}
+\newcommand{\gammagoal}{\gamma_{\text{goal}}}
+\providecommand{\proc}[1]{\textsc{#1}}
+
+
+\newcommand{\ARLfull}{Aero\-space Ro\-bot\-ics La\-bora\-tory }
+\newcommand{\ARL}{\textsc{arl}}
+\newcommand{\JPL}{\textsc{jpl}}
+\newcommand{\PRM}{\textsc{prm}}
+\newcommand{\CM}{\textsc{cm}}
+\newcommand{\SVM}{\textsc{svm}}
+\newcommand{\NN}{\textsc{nn}}
+\newcommand{\prm}{\textsc{prm}}
+\newcommand{\lemur}{\textsc{lemur}}
+\newcommand{\Lemur}{\textsc{Lemur}}
+\newcommand{\LP}{\textsc{lp}} 
+\newcommand{\SOCP}{\textsc{socp}}
+\newcommand{\SDP}{\textsc{sdp}}
+\newcommand{\NP}{\textsc{np}}
+\newcommand{\SAT}{\textsc{sat}}
+\newcommand{\LMI}{\textsc{lmi}}
+\newcommand{\hrp}{\textsc{hrp\nobreakdash-2}}
+\newcommand{\DOF}{\textsc{dof}}
+\newcommand{\UIUC}{\textsc{uiuc}}
+%% MACROS
+
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\normn}[2]{\left\lVert#1\right\rVert_#2}
+\providecommand{\dualnorm}[1]{\norm{#1}_\ast}
+\providecommand{\dualnormn}[2]{\norm{#1}_{#2\ast}}
+\providecommand{\set}[1]{\lbrace\,#1\,\rbrace}
+\providecommand{\cset}[2]{\lbrace\,{#1}\nobreak\mid\nobreak{#2}\,\rbrace}
+\providecommand{\lscal}{<}
+\providecommand{\gscal}{>}
+\providecommand{\lvect}{\prec}
+\providecommand{\gvect}{\succ}
+\providecommand{\leqscal}{\leq}
+\providecommand{\geqscal}{\geq}
+\providecommand{\leqvect}{\preceq}
+\providecommand{\geqvect}{\succeq}
+\providecommand{\onevect}{\mathbf{1}}
+\providecommand{\zerovect}{\mathbf{0}}
+\providecommand{\field}[1]{\mathbb{#1}}
+\providecommand{\C}{\field{C}}
+\providecommand{\R}{\field{R}}
+\newcommand{\Cspace}{\mathcal{Q}}
+\newcommand{\Uspace}{\mathcal{U}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\Hcal}{$\mathcal{H}$}
+\providecommand{\Vcal}{$\mathcal{V}$}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\homog}{homog}
+\DeclareMathOperator{\domain}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\sgn}{signum}
+\providecommand{\polar}{\triangle}
+\providecommand{\ainner}{\underline{a}}
+\providecommand{\aouter}{\overline{a}}
+\providecommand{\binner}{\underline{b}}
+\providecommand{\bouter}{\overline{b}}
+\newcommand{\D}{\nobreakdash-\textsc{d}}
+%\newcommand{\Fspace}{\mathcal{F}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\free}{\text{\{}\mathsf{free}\text{\}}}
+\providecommand{\iff}{\Leftrightarrow}
+\providecommand{\subinner}[1]{#1_{\text{inner}}}
+\providecommand{\subouter}[1]{#1_{\text{outer}}}
+\providecommand{\Ppoly}{\mathcal{X}}
+\providecommand{\Pproj}{\mathcal{Y}}
+\providecommand{\Pinner}{\subinner{\Pproj}}
+\providecommand{\Pouter}{\subouter{\Pproj}}
+\DeclareMathOperator{\argmax}{arg\,max}
+\providecommand{\Aineq}{B}
+\providecommand{\Aeq}{A}
+\providecommand{\bineq}{u}
+\providecommand{\beq}{t}
+\DeclareMathOperator{\area}{area}
+\newcommand{\contact}[1]{\Cspace_{#1}}
+\newcommand{\feasible}[1]{\Fspace_{#1}}
+\newcommand{\dd}{\; \mathrm{d}}
+\newcommand{\figwid}{0.22\columnwidth}
+
+\DeclareMathOperator{\atan2}{atan2}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\begin{document}
+
+%%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
+%    \tableofcontents
+%    \setcounter{tocdepth}{3}
+%\newpage
+%\mbox{}
+%\newpage
+%\mbox{}
+%\newpage
+
+%%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\LARGE \bf 
+Aggregation and Coverage with Many Robots and Uniform Inputs
+}
+\author{Aaron Becker%, 
+\thanks{{A. Becker is with the Department of Cardiovascular Surgery,  Boston Children's Hospital and Harvard Medical School, Boston, MA, 02115 USA {\tt\small \{first name.lastname\}@childrens.harvard.edu}, 
+}
+} %\end thanks
+} % end author block
+\maketitle
+
+\begin{abstract}
+Medical interventions with large numbers of micro-scale robots has two primary control challenges: (1) aggregate the robots at a desired location and (2) ensure robots have covered the region of interest.  Both challenges might be trivial with perfect feedback and independent actuation for each robot, however current technology provides low time-resolution feedback and robots are typically actuated by a shared, global field.  To make progress, this paper analyzes each task in a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Uses MATLAB code at
+% https://svn.rice.edu/r/MRSL-Papers/Drafts-Current/2013-06-26-ALGOSENSORS-Tilt/code/matlab/investigateCoverage.m
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+  \section{Introduction}
+  
+  This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, and outlines new research problems.
+  
+  \subsection{Aggregation}\label{sec:Aggregation}
+For many therapeutic treatments it is important to concentrate a drug at a particular site.  The old adage \emph{toxicity is a function of concentration} explains that often we can flow a diluted drug through the body without ill-effect, and then kill cells at a targeted location by collecting drug particles.  Targeted drug therapy is a goal for treating cancers, delivering pain-killers, and stopping internal bleeding.
+  
+
+  
+  
+  \subsection{Coverage}\label{sec:Coverage}
+
+ 
+  
+  For biomedical imaging, we want to ensure our sensors pass over the entire scan region.  Similarly, for a drug treatment, we want to ensure our drug is released everywhere in our treatment region.  These are questions of \emph{coverage}.
+  
+  Traditional systemic drug delivery is wasteful because a uniform dosage is applied throughout the body, often with deleterious sideeffects on healthy tissue.
+   Case study:  metrologists (not weather - nanoscale measuring) can measuring blood vessels in real time (Think 4D MRT - instead of just 3D.) For this it is important to get magnetic particles everywhere - and in a controlled fashion. 
+  
+    
+  \subsection{Problem Definition}\label{subsec:GeneralProblemDefinition}
+We consider the following scenario, which we call {\sc GlobalControl-ManyRobots}:
+    \begin{enumerate}
+\item Initially, the planar square grid is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.
+\item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  The robots all move in the commanded direction until they hit an obstacle or another robot.  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We call these global commands \emph{force-field moves}. We assume we know the maximum dimension of the workspace and issue each command long enough for the robots to reach their maximum extent.
+\item The goal is to get
+each robot to its specified position.
+\end{enumerate}
+   The algorithmic decision problem {\sc GlobalControl-ManyRobots}  is to decide whether a given configuration is solvable.
+This problem is computationally difficult: we prove PSPACE-completeness in \cite{Becker2014}. While this result shows
+the richness of our model (despite the limited control over the individual parts), it also constitutes
+a major impediment for constructive algorithmic work.
+
+
+This makes developing algorithmic tools that enable global control by uniform commands important. In
+Sections~\ref{sec:aggregation} and \ref{sec:coverage}, we develop several positive results. The underlying idea is to construct artificial
+obstacles (such as walls) that allow arbitrary rearrangements of a given two-dimensional robot swarm.
+
+
+\section{Aggregation}\label{sec:aggregation}
+  In \emph{aggregation}, all robots are gathered to the same area.  In our grid world, we consider a collection of robots successfully aggregated if they form a single 4-neighbor connected component.  For \emph{specific aggregation}, the aggregation must contain one or more desired goal cells.  The number of goal cells must be no more than the number of robots $n$.
+
+\begin{figure}
+\begin{overpic}[width =0.49\columnwidth]{CovergeSimpleStart.png}\put(30,-7){Start}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CovergeSimpleEnd.png}\put(30,-7){End}\end{overpic}
+\caption{
+\label{fig:AggregateSimple}
+In an obstacle-free workspace, aggregating particles to a corner can be accomplished in just two moves.  The movement sequence $\langle l,d\rangle$ is robust to all initial particle configurations. In a workspace with obstacles, this sequence is insufficient.
+}
+\vspace{-1em}
+\end{figure}
+
+
+Aggregating particles can be as simple as collecting all particles into a single connected component in one corner of the freespace, as shown in Fig.~\ref{fig:AggregateSimple}.  In an obstacle-free rectangular workspace, moving particles from an arbitrary starting configuration to a corner requires only two moves.  
+
+A more challenging problem is shown in Fig.~\ref{fig:AggregateCenter}.  Here the particles must be end in a square arrangement in the center of the freespace.  One solution is shown, and requires many obstacles and a long movement sequence.  \hl{This solution  was hand designed---how can we automatically find these obstacle arrangements?  How can we design solutions optimal in terms of minimum movements and/or obstacles?}  Brute-force solutions are challenging, since for an $n\times n$ workspace with $k$ obstacles and $m$ particles, there are ${n^2 -k \choose m}$ starting configurations to check. \hl{ How can this search be simplified?}
+
+
+
+\begin{figure}
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterSt.png}\put(30,-7){Start}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep1.png}\put(30,-7){End}\end{overpic}\\
+\vspace{.1em}\\
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep2.png}\put(30,-7){Start}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep3.png}\put(30,-7){End}\end{overpic}
+\caption{
+\label{fig:AggregateCenter}
+Aggregating particles to a location other than a corner requires obstacles and additional moves.  The sequence $\langle  u,r,u,r,u,r, l,u,l,u,l,u,l,u, d,r,u \rangle$, and the eight obstacles (grey boxes) shown will move any starting configuration of four robots to end in a square shape at the center of the free space.  \hl{This arrangement was hand designed -- how can we automatically find these obstacle arrangements?  How can we design solutions optimal in terms of minimum movements and/or obstacles?}
+}
+\vspace{-1em}
+\end{figure}
+
+
+
+
+\section{Coverage}\label{sec:coverage} 
+	A region is \emph{covered} if a robot passes within a fixed distance of every point in the free space.  In our our grid world, the region is covered if at least one robot visits every free cell.
+	A more challenging version of coverage, often found in the literature for painting robots, is \emph{even coverage} that minimizes overlaps\cite{Choset2001}. \todo{check terminology} In our case, ideally every cell is visited the same number of times.
+  
+  A necessary condition is that every connected component of the area to be covered must contain at least one robot.
+  
+
+
+We consider a representative problem: Given a rectangular $n\times n$ workspace and $m$ robots, arranged initially in a horizontal line in an input port at the top right of the freespace, what is the fewest moves required to cover a region?
+
+
+
+\begin{figure}
+\begin{overpic}[width =0.49\columnwidth]{CoverageNsuccessStart.png}\put(30,-7){Start, $m=n$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageNsuccessSEnd.png}\put(30,-7){End, $m=n$}\end{overpic}\\
+\vspace{.1em}\\
+\begin{overpic}[width =0.49\columnwidth]{CoverageLessThanNstart.png}\put(30,-7){Start, $2m<n$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageLessThanNend.png}\put(30,-7){Impossible, $2m<n$}\end{overpic}\\
+\vspace{.1em}\\
+\rule{0.49\columnwidth}{0cm}
+\begin{overpic}[width =0.49\columnwidth]{CoverageLessThanNsuccess.png}\put(30,-7){Possible, $2m<n$}\end{overpic}
+\caption{
+\label{fig:CoverageNsuccess}
+Coverage can be trivial. If there are sufficient particles to span the region, and the particles are aligned correctly, coverage can require only one move.  Here, two moves are used $\langle l,d \rangle$.
+With too few particles ($2m<n$ complete coverage requires obstacles. 
+}
+\vspace{-1em}
+\end{figure}
+
+This problem can be trivial if given sufficient robots to span the workspace. Then it requires only a single pass, as shown in Fig.~\ref{fig:CoverageNsuccess}.  With $2m<n$ robots, obstacles are needed.  One possible coverage method uses obstacles placed to enable \emph{boustrophedon} coverage, following parallel paths in alternating directions. This method, shown in Fig.~\ref{fig:CoverageBoustrophedon}, is efficient in the number of moves $2\lceil 
+\frac{n}{m} \rceil $, but requires $O\left(\lceil 
+\frac{n}{m} \rceil^2\right) $ obstacles.  This results in large numbers of obstacles when $m$ is small.   In the worst case when $m=1$, almost half the workspace is obstacles.
+
+
+\begin{figure}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m10.png}\put(30,-7){ $m=10$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m5.png}\put(30,-7){$m=5$}\end{overpic}\\
+\vspace{.1em}\\
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m2.png}\put(30,-7){$m=2$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m1.png}\put(30,-7){$m=1$}\end{overpic}\\
+\vspace{.1em}\\
+\caption{
+\label{fig:CoverageBoustrophedon}
+Boustrophedon coverage $\langle l,d,l,u,\ldots \rangle$ is simple to implement, but requires $\frac{\lceil n/m \rceil \lceil n/m-1 \rceil}{2}$ obstacles.  In the worst case when $m=1$, almost half the workspace is obstacles.
+}
+\vspace{-1em}
+\end{figure}
+
+A competing method passes the robots in a spiral pattern, see Fig.~\ref{fig:CoverageSpiral}.  The obstacles required to turn the particles forces the particles to skip one row or column on each pass, and to miss corners.  These missed areas could be filled in with obstacles, but this solution requires $O\left(\lceil 
+\frac{n}{m} \rceil^2\right) $ obstacles.
+
+\begin{figure}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m20spiral.png}\put(30,-7){ $m=10$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m10spiral.png}\put(30,-7){$m=5$}\end{overpic}\\
+\vspace{.1em}\\
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m2spiral.png}\put(30,-7){$m=2$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50m1spiral.png}\put(30,-7){$m=1$}\end{overpic}\\
+\vspace{.1em}\\
+\caption{
+\label{fig:CoverageSpiral}
+Arranging obstacles for spiral coverage $\langle l,d,r,u,\ldots \rangle$ requires fewer obstacles, but produces incomplete coverage, leaving a empty path for every spiral path, and misses the corners.
+}
+\vspace{-1em}
+\end{figure}
+
+It may be possible to combine the spiral and boustrophedon approaches to generate worlds that can be covered with far fewer obstacles.
+For $m=1$ robots, arranging obstacles in an X pattern divides the workspace into four partitions, see Fig.~\ref{fig:CoverageX}.  Each partition can be covered by a boustrophedon path, and the particle can switch between partitions at the center of the X.  This movement requires $\approx$twice the moves of the boustrophedon path, but only $4n$ obstacles. \hl{ Is this the most efficient way to cover a rectangular area with one robot?}
+
+\begin{figure}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50xat1.png}\put(30,-7){ $m=1$, partition 1}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50xat2.png}\put(30,-7){partition 1 finished}\end{overpic}\\
+\vspace{.1em}\\
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50xat3.png}\put(30,-7){partition 2}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CoverageN50xat4.png}\put(30,-7){last partition}\end{overpic}\\
+\vspace{.1em}\\
+\caption{
+\label{fig:CoverageX}
+For $m=1$ robots, arranging obstacles in an `X' pattern divides the workspace into four partitions.  Each partition can be covered by a boustrophedon path, and the particle can switch between partitions at the center of the X.  This movement requires about twice the moves of the boustrophedon path, but only $4n$ obstacles.  \hl{ Is this the most efficient way to cover a rectangular area with one robot?}
+}
+\vspace{-1em}
+\end{figure}
+
+
+
+
+
+\section{Future Work}
+
+As defined in this paper, \emph{coverage} requires only that the robots pass over every square.  For a time-sensitive operation such as drug delivery or measurements, it may be necessary to guarantee a robot  remains in certain cells for minimum amount of time.  This is possible if there exists a sequence of moves such that a robot can be stopped in these cells.  Cell $i$ is \emph{reachable} if from any arbitrary starting configuration, there exists a sequence of moves such that the robot ends in $i$.
+
+A 2$\times$2 bounded free space is fully reachable with 1 robot.  A 2$\times$3 array is only partially reachable (66\%) with 1 robot, and only fully reachable with 2 robots if the robots start arranged with the long axis of the free space.
+
+Questions to consider:
+\begin{itemize}
+\item  Is it possible to build a workspace containing $N$ reachable cells with 1 moving robot?
+\item Is is possible to build a workspace with 100\% reachability with 1 moving robot and $N$ empty cells?
+\item how to design workspaces with maximum reachable cells?
+\item how do the above algorithms change by adding robots?
+\end{itemize}
+
+
+
+
+    
+    
+%\section{Acknowledgements}
+%This work was supported by the National Science Foundation under
+%\href{http://nsf.gov/awardsearch/showAward?AWD_ID=1208509}{NRI-1208509}.  
+   
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,../../../../../../ensemble/bib/aaronrefs}%,../aaronrefs}
+\end{document}
+
+
+
+
+
+
+
