@@ -171,19 +171,19 @@ S. Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpford
 
 
 
-\begin{abstract}
-Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated particle computation in this world, designing obstacle configurations that implement {\sc and, or, not, nor, nand, xor, xnor} logic gates.  We could not implement a {\sc fan-out} gate because such a gate depends on particle priority, and our particles are indistinguishable. This prevented us from creating arbitrary digital circuits.  In this work we introduce $2\times 1$ robots.  We now can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
+\begin{abstract} %because such a gate depends on particle priority, and our particles are indistinguishable.
+Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated \emph{particle computation} in this world, designing obstacle configurations that implement {\sc and, or, not, nor, nand, xor, xnor} logic gates.  We could not implement a {\sc fan-out} gate. This prevented us from creating arbitrary digital circuits.  In this work we prove unit-sized robots cannot generate a {\sc fan-out} gate.  We introduce $2\times 1$ robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
    We also implement a data storage element.
    %Flip-flops and latches are used as data storage elements.
 \end{abstract}
 
-\todo{Add section on optimal wiring schemes -- with our current CW clock cycle, we cannot have outputs at the same column as inputs -- they must be either 1 to the right, or 3 to the left.  Choosing one of these results in logic that shifts horizontally at each stage and spreads out the logic. A better wiring scheme would cycle through 3 layers that go right 1, followed by one layer that goes left 3.  We also want the wiring to be tight left-to-right.  What if our height is also limited? In such a case \emph{wire buses} would be a compact solution. }
+
 
 
   \section{Introduction}
     
   
-  Currently, micro- and nanorobot systems with many robots are steered and directed by a common control signal\cite{lots}.  In this paper, we show how a common control signal, mobile particles, and unit-sized obstacles can implement a computer.  
+  Currently, micro- and nanorobot systems with many robots are steered and directed by a common control signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}.  In this paper, we show how a common control signal, mobile particles, and unit-sized obstacles can implement a computer.  
     We do not present particle logic as an alternative to electronic computing.
   Frankly, this form of computation is impractical, being both slow, requiring large amounts of space, and being vulnerable to manufacturing defects. Rather, we want to quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
@@ -194,9 +194,9 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
   
  After a brief overview of related work,  the contributions of this paper are as listed:
   \begin{enumerate}
-  \item prove the necessity of dual-rail logic for Boolean logic (give section)
-  \item prove the insufficiency of unit-size particles for gate fan-out (give section)
-  \item design {\sc fan-out gates} (give section)
+  \item prove the necessity of dual-rail logic for Boolean logic (Section \ref{sec:theory})
+  \item prove the insufficiency of unit-size particles for gate fan-out (Section \ref{sec:theory})
+  \item design {\sc fan-out gates} (Section \ref{sec:FanOut})
   \item design memory latches (Section \ref{subsec:Storage})
   \item present architecture for device integration, design a common clock sequence, and present a binary counter (Section \ref{sec:binaryCounter})
     \end{enumerate}
@@ -243,8 +243,8 @@ This clock sequence has the attractive property of being a clockwise rotation th
 Our efforts have similarities with \emph{mechanical computers},  computers constructed from mechanical, not electrical components. For a fascinating nontechnical review, see \cite{McCourtney1999}.  These devices have a rich history, from the \emph{Pascaline}, an adding machine invented in 1642 by a nineteen-year old Blaise Pascal; Herman Hollerith's punch card tabulator in 1890; to the mechanical devices of IBM culminating in the 1940s.  These devices used precision gears, pulleys, or electric motors to carry out calculations.  Though our {\sc Grid-World} implementations seem an anachronism, note that we require none of these precision elements---merely unit-size obstacles,  and $2\times1$ and $1\times1$ sliding particles.
 %Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the associated press when it was announced in the 1940s. 
 
-\subsection{Collision-based computing} \todo{ refers to....   For a survey of this area, so the collection .... } %todo: cite http://link.springer.com/book/10.1007/978-1-4471-0129-1
-One example is Conway's game of life (cite original)  these simple rules have been examined in depth and used  to build a Turing-complete computer \cite{Adamatzky2002}.  These scenarios are fascinating, but lack a physical implementation.  They require \emph{cells} that live or die based on the number of neighbors. 
+\subsection{Collision-based computing} refers to implementations of logical circuits or other computing devices in homogeneous media with traveling mobile localizations. 
+ For a survey of this area, see the excellent collection~\cite{Adamatzky2012}.  One example is Conway's game of life~\cite{berlekamp2001winning}  these simple rules have been examined in depth and used  to build a Turing-complete computer \cite{Adamatzky2002}.  These scenarios are fascinating, but lack a physical implementation.  They require \emph{cells} that live or die based on the number of neighbors. 
 
 
 \subsection{Sliding-block puzzles}
@@ -253,7 +253,7 @@ Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can
 
 
 
-\section{Theory}
+\section{Theory}\label{sec:theory}
 
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation} % Is this the 'additivity property'?
@@ -295,7 +295,7 @@ If robots do hit when both exist \todo{show that this cannot lead to a goal loca
 \end{proof}
 
 
-\begin{corollary}
+\begin{corollary}\label{cor:No1x1FanOut}
 A  {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
 \end{corollary}
 \begin{proof} By contradiction.
@@ -335,7 +335,11 @@ Consider a  {\sc fan-out} gate $E$ and an arbitrary sequence $M$ such that with 
   \section{Device and gate design}
   
   \subsection{A {\sc fan-out} gate}\label{sec:FanOut}
-A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{tab:Fanout}.  Our implementation is shown in Fig~\ref{fig:Fanout}.
+A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{tab:Fanout}.  
+This cannot be implemented with 1$\times$1 particles and obstacles, by corollary \ref{cor:No1x1FanOut}.   Our technique uses 2$\times$1 particles.   A single input, two-output {\sc fan-out} gate is shown in Fig~\ref{fig:Fanout}.  This gate requires a dual-rail input, a supply particle, and a $2\times 1$ slider.  The  \emph{clockwise} control sequence $\langle d,l,u,r \rangle$  duplicates the dual-rail input.
+
+The {\sc fan-out} gate can drive multiple outputs. In Fig.~\ref{fig:Fanout4} a single input drives four-outputs.  This gate requires a dual-rail input, three supply particles, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
+In général, an $n$ output {\sc fan-out} gate with control sequence $\langle d,l,u,r \rangle$ requires a dual-rail input, $n-1$ supply particles, and one $2\times 1$ slider. It requires $4 (n+1) \times 2(n+1)$ area.
   
   \begin{table}
 \begin{displaymath}
@@ -360,23 +364,22 @@ A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{t
   \label{tab:Fanout}
 \end{table}
  \begin{figure}
-\begin{overpic}[width =\columnwidth]{FanOutS1.png}
-\put(6.5,27){$A$} \put(13,27){$\overline{A}$} \put(23.5,27){$1$}
-\put(58,27){$A$} \put(64.5,27){$\overline{A}$} \put(75,27){$1$}
+\begin{overpic}[width =\columnwidth]{FanOutS1cw.png}
+\put(6.75,25){$A$} \put(15,25){$1$} \put(35,25){$\overline{A}$}
+\put(62.5,25){$A$} \put(70,25){$1$} \put(90,25){$\overline{A}$}
 
-\put(6.5,0){$A$}\put(23,0){$A$} \put(29.5,0){$\overline{A}$} \put(35.2,0){$\overline{A}$} 
-\put(58,0){$A$} \put(74.5,0){$A$} \put(80.5,0){$\overline{A}$} \put(87.5,0){$\overline{A}$} 
+\put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
+\put(72.5,0){$A$} \put(79.5,0){$A$} \put(86.2,0){$\overline{A}$} \put(93,0){$\overline{A}$} 
 \put(2,-5){ $\langle d \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
 \vspace{.1em}\\
 
-\begin{overpic}[width =\columnwidth]{FanOutS2.png}\put(2,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+\begin{overpic}[width =\columnwidth]{FanOutS2cw.png}\put(2,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
 \vspace{.1em}\\
 
-\begin{overpic}[width =\columnwidth]{FanOutS4.png}\put(2,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
-\put(6.5,0){$A$}\put(23,0){$A$} \put(29.5,0){$\overline{A}$} \put(35.2,0){$\overline{A}$} 
-\put(58,0){$A$} \put(74.5,0){$A$} \put(80.5,0){$\overline{A}$} \put(87.5,0){$\overline{A}$} 
+\begin{overpic}[width =\columnwidth]{FanOutS4cw.png}\put(2,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
+\put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
+\put(72.5,0){$A$} \put(79.5,0){$A$} \put(86.2,0){$\overline{A}$} \put(93,0){$\overline{A}$} 
 \end{overpic}
-\todo{replace image with CW gate}
 \caption{
 \label{fig:Fanout}
 A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail input, a supply particle, and a $2\times 1$ slider.  The  \emph{clockwise} control sequence $\langle d,l,u,r \rangle$  duplicates the dual-rail input.
@@ -417,8 +420,8 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
 \put(2,-7){ $\langle d \rangle$}
 \put(20,-7){$A=0$ }\put(70,-7){ $A=1$ }
 \scriptsize
-\put(9,21){$1$~~$1$~~$1$~~$A$} \put(41,21){$\overline{A}$} 
-\put(61,21){$1$~~$1$~~$1$~~$A$} \put(94,21){$\overline{A}$} 
+\put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
+\put(61.2,21){$1$~~$1$~~$1$~~\,$A$} \put(93.5,21){$\overline{A}$} 
 
 \put(10,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
 \put(63,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
@@ -430,15 +433,14 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
 \put(2,-7){ $\langle d,l,d,r \rangle$}
 \put(20,-7){$A=0$ }\put(70,-6){ $A=1$ }
 \scriptsize
-\put(9,21){$1$~~$1$~~$1$~~$A$} \put(41,21){$\overline{A}$} 
-\put(61,21){$1$~~$1$~~$1$~~$A$} \put(94,21){$\overline{A}$} 
+\put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
+\put(61.2,21){$1$~~$1$~~$1$~~\,$A$} \put(93.5,21){$\overline{A}$} 
 
 \put(10,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
 \put(63,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
 \end{overpic}
-\caption{
-\label{fig:Fanout4}
-The {\sc fan-out} gate can drive multiple outputs. Here a single input drives four-outputs.  This gate requires a dual-rail input, three supply particle, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
+\caption{\label{fig:Fanout4}
+The {\sc fan-out} gate can drive multiple outputs. Here a single input drives four-outputs.  This gate requires a dual-rail input, three supply particles, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
 }
 \vspace{-1em}
 \end{figure}
@@ -526,7 +528,11 @@ Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor}
 \todo{These are comparable to a ripple-carry adder:  the delay for $n$ bits is  and requires $x=$ gates.
 Numerous other schemes exist to speed up the computation.  Instead of using discrete gates, we could engineer environment to directly compute each stage.  The advantage of gates is that they are easily reused and connected.}
 
+\subsection{Optimal Wiring schemes}\label{sec:wiring}
+With our current CW clock cycle, we cannot have outputs at the same column as inputs -- outputs must be either one to the right, or three to the left.  Choosing one of these results in shifts horizontally at each stage and thus spreads out the logic. A better wiring scheme would cycle through three layers that go right one, followed by one layer that goes left three.  We also want the wiring to be tight left-to-right.  If our height is also limited, \emph{wire buses} would be a compact solution. 
 
+\section{Conclusion}
+In this paper we...
 
     
 %\section{Acknowledgements}
