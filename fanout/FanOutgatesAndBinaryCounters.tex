@@ -172,7 +172,7 @@ S. Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpford
 
 
 \begin{abstract} %because such a gate depends on particle priority, and our particles are indistinguishable.
-Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated \emph{particle computation} in this world, designing obstacle configurations that implement {\sc and, or, not, nor, nand, xor, xnor} logic gates.  We could not implement a {\sc fan-out} gate. This prevented us from creating arbitrary digital circuits.  In this work we prove unit-sized robots cannot generate a {\sc fan-out} gate.  We introduce $2\times 1$ robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
+Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated \emph{particle computation} in this world, designing obstacle configurations that implement {\sc and} and {\sc or} logic gates.  By using dual-rail logic, we designed {\sc not, nor, nand, xor, xnor} logic gates.  However, we could not implement a {\sc fan-out} gate. This prevented us from creating arbitrary digital circuits.  In this work we prove unit-sized robots cannot generate a {\sc fan-out} gate.  We introduce $2\times 1$ robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
    We also implement a data storage element.
    %Flip-flops and latches are used as data storage elements.
 \end{abstract}
@@ -183,7 +183,7 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
   \section{Introduction}
     
   
-  Currently, micro- and nanorobot systems with many robots are steered and directed by a common control signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}.  In this paper, we show how a common control signal, mobile particles, and unit-sized obstacles can implement a computer.  
+  Currently, micro- and nanorobot systems with many robots are steered and directed by a common control signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}. These common control signals include global magnetic or electric fields, chemical gradients, and turning a light source on and off.  In this paper, we show how a common control signal, mobile particles, and unit-sized obstacles can implement a computer.  
     We do not present particle logic as an alternative to electronic computing.
   Frankly, this form of computation is impractical, being both slow, requiring large amounts of space, and being vulnerable to manufacturing defects. Rather, we want to quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
@@ -254,7 +254,7 @@ Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can
 
 
 \section{Theory}\label{sec:theory}
-
+%I want catchy names for these -- for now they are the 'unstoppable by more' and 'no novel results with less' properties
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation} % Is this the 'additivity property'?
 If given an environment $E$ and a command sequence $M$ that moves a robot initially at $s$ to a goal location $g$, then adding additional robots anywhere in $E$ at any stage of the command sequence cannot prevent $g$ from being occupied at the conclusion of sequence $M$.
@@ -285,7 +285,7 @@ define a {\sc not} gate, \todo{explain how this follows}
 
 
 \begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
-If given an environment $E$ and a command sequence $M$ that moves robots initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing either robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
+If given an environment $E$ and a command sequence $M$ that moves two robots initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing either robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
 \end{theorem}
 
 \begin{proof}
