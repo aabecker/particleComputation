@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  31 JUL 2014 17:08
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  2 AUG 2014 22:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -907,7 +907,7 @@ n/9 @childrens.harvard.edu\OT1/ptm/m/n/8 , R.
 File: ./pictures/pdf/HalfAdder.pdf Graphic file (type pdf)
 
 <use ./pictures/pdf/HalfAdder.pdf>
-Package pdftex.def Info: ./pictures/pdf/HalfAdder.pdf used on input line 218.
+Package pdftex.def Info: ./pictures/pdf/HalfAdder.pdf used on input line 223.
 (pdftex.def)             Requested size: 120.40321pt x 66.89035pt.
  [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -917,79 +917,66 @@ s been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.236 
-       <./pictures/pdf/HalfAdder.pdf>]
-Overfull \hbox (1.88457pt too wide) in paragraph at lines 270--270
+l.240 
+       <./pictures/pdf/HalfAdder.pdf>] [2]
+Overfull \hbox (1.88457pt too wide) in paragraph at lines 325--325
 [] 
  []
 
-
-Overfull \hbox (1.88457pt too wide) in paragraph at lines 282--282
-[] 
- []
-
-
-Overfull \hbox (1.88457pt too wide) in paragraph at lines 294--294
-[] 
- []
-
-[2]
-Missing character: There is no Ž in font ptmr7t!
-Missing character: There is no Ž in font ptmr7t!
- <./pictures/png/FanOutS1cw.png, id=126, 695.59875pt x 168.63pt>
+<./pictures/png/FanOutS1cw.png, id=128, 695.59875pt x 168.63pt>
 File: ./pictures/png/FanOutS1cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS1cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS1cw.png used on input line 367.
+Package pdftex.def Info: ./pictures/png/FanOutS1cw.png used on input line 423.
 (pdftex.def)             Requested size: 245.71811pt x 59.56686pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 373--375
-
- []
-
-<./pictures/png/FanOutS2cw.png, id=127, 695.59875pt x 167.12437pt>
-File: ./pictures/png/FanOutS2cw.png Graphic file (type png)
-
-<use ./pictures/png/FanOutS2cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS2cw.png used on input line 376.
-(pdftex.def)             Requested size: 245.71811pt x 59.03502pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 376--378
-
- []
-
-<./pictures/png/FanOutS4cw.png, id=128, 694.84593pt x 167.87718pt>
-File: ./pictures/png/FanOutS4cw.png Graphic file (type png)
-
-<use ./pictures/png/FanOutS4cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS4cw.png used on input line 379.
-(pdftex.def)             Requested size: 245.71811pt x 59.36499pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 382--386
-[][]
- []
-
-<./pictures/png/FanOutcw4step12.png, id=129, 462.22687pt x 94.10156pt>
-File: ./pictures/png/FanOutcw4step12.png Graphic file (type png)
-
-<use ./pictures/png/FanOutcw4step12.png>
-Package pdftex.def Info: ./pictures/png/FanOutcw4step12.png used on input line 
-419.
-(pdftex.def)             Requested size: 245.71811pt x 50.02434pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 429--431
 
  []
 
-<./pictures/png/FanOutcw4step34.png, id=131, 462.22687pt x 94.85437pt>
+<./pictures/png/FanOutS2cw.png, id=129, 695.59875pt x 167.12437pt>
+File: ./pictures/png/FanOutS2cw.png Graphic file (type png)
+
+<use ./pictures/png/FanOutS2cw.png>
+Package pdftex.def Info: ./pictures/png/FanOutS2cw.png used on input line 432.
+(pdftex.def)             Requested size: 245.71811pt x 59.03502pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 432--434
+
+ []
+
+<./pictures/png/FanOutS4cw.png, id=130, 694.84593pt x 167.87718pt>
+File: ./pictures/png/FanOutS4cw.png Graphic file (type png)
+
+<use ./pictures/png/FanOutS4cw.png>
+Package pdftex.def Info: ./pictures/png/FanOutS4cw.png used on input line 435.
+(pdftex.def)             Requested size: 245.71811pt x 59.36499pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--442
+[][]
+ []
+
+<./pictures/png/FanOutcw4step12.png, id=131, 462.22687pt x 94.10156pt>
+File: ./pictures/png/FanOutcw4step12.png Graphic file (type png)
+
+<use ./pictures/png/FanOutcw4step12.png>
+Package pdftex.def Info: ./pictures/png/FanOutcw4step12.png used on input line 
+475.
+(pdftex.def)             Requested size: 245.71811pt x 50.02434pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--487
+
+ []
+
+<./pictures/png/FanOutcw4step34.png, id=133, 462.22687pt x 94.85437pt>
 File: ./pictures/png/FanOutcw4step34.png Graphic file (type png)
 
 <use ./pictures/png/FanOutcw4step34.png>
 Package pdftex.def Info: ./pictures/png/FanOutcw4step34.png used on input line 
-432.
+488.
 (pdftex.def)             Requested size: 245.71811pt x 50.42453pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--444
+Underfull \hbox (badness 10000) in paragraph at lines 497--500
 [][]
  []
 
@@ -998,173 +985,175 @@ as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.452 
+l.508 
       pdfTeX warning (ext4): destination with the same identifier (name{table.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.452 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2}) has been already used, duplicate ignored
+l.508 
+      ] <./pictures/pdf/MemoryElement.pdf, id=152, 963.6pt x 542.025pt>
+File: ./pictures/pdf/MemoryElement.pdf Graphic file (type pdf)
+
+<use ./pictures/pdf/MemoryElement.pdf>
+Package pdftex.def Info: ./pictures/pdf/MemoryElement.pdf used on input line 51
+1.
+(pdftex.def)             Requested size: 491.43622pt x 276.4291pt.
+
+<./pictures/png/BinCounterCW000.png, id=158, 565.36218pt x 667.74469pt>
+File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
+
+<use ./pictures/png/BinCounterCW000.png>
+Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line 
+556.
+(pdftex.def)             Requested size: 245.71811pt x 290.21187pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--561
+[][]
+ []
+
+<./pictures/pdf/counterSchem.pdf, id=159, 2020.90004pt x 1640.85544pt>
+File: ./pictures/pdf/counterSchem.pdf Graphic file (type pdf)
+
+<use ./pictures/pdf/counterSchem.pdf>
+Package pdftex.def Info: ./pictures/pdf/counterSchem.pdf used on input line 567
+.
+(pdftex.def)             Requested size: 245.71811pt x 199.49805pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 567--571
+[][]
+ []
+
+
+Underfull \hbox (badness 2980) in paragraph at lines 577--578
+[]\OT1/ptm/m/n/10 Particle com-pu-ta-tion re-quires mul-ti-ple clock cy-cles,
+ []
+
+[4pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.452 
+l.582 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.452 
-       <./pictures/png/FanOutS1cw.png> <./pictures/png/FanOutS2cw.png> <./pictu
-res/png/FanOutS4cw.png> <./pictures/png/FanOutcw4step12.png> <./pictures/png/Fa
-nOutcw4step34.png>]
-<./pictures/pdf/MemoryElement.pdf, id=151, 963.6pt x 542.025pt>
-File: ./pictures/pdf/MemoryElement.pdf Graphic file (type pdf)
-
-<use ./pictures/pdf/MemoryElement.pdf>
-Package pdftex.def Info: ./pictures/pdf/MemoryElement.pdf used on input line 45
-5.
-(pdftex.def)             Requested size: 491.43622pt x 276.4291pt.
-
-<./pictures/png/BinCounterCW000.png, id=157, 565.36218pt x 667.74469pt>
-File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW000.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line 
-500.
-(pdftex.def)             Requested size: 245.71811pt x 290.21187pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 500--505
-[][]
- []
-
-<./pictures/pdf/counterSchem.pdf, id=158, 2020.90004pt x 1640.85544pt>
-File: ./pictures/pdf/counterSchem.pdf Graphic file (type pdf)
-
-<use ./pictures/pdf/counterSchem.pdf>
-Package pdftex.def Info: ./pictures/pdf/counterSchem.pdf used on input line 511
-.
-(pdftex.def)             Requested size: 245.71811pt x 199.49805pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 511--515
-[][]
- []
-
-
-Underfull \hbox (badness 2980) in paragraph at lines 521--522
-[]\OT1/ptm/m/n/10 Particle com-pu-ta-tion re-quires mul-ti-ple clock cy-cles,
- []
-
-
-Overfull \hbox (1.88457pt too wide) in paragraph at lines 529--529
-[] 
- []
-
-[4pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
-as been already used, duplicate ignored
+l.582 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.3
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.533 
+l.582 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.533 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-6}) has been already used, duplicate ignored
+l.582 
+       <./pictures/png/FanOutS1cw.png> <./pictures/png/FanOutS2cw.png> <./pictu
+res/png/FanOutS4cw.png> <./pictures/png/FanOutcw4step12.png> <./pictures/png/Fa
+nOutcw4step34.png> <./pictures/png/BinCounterCW000.png>]
+Overfull \hbox (1.88457pt too wide) in paragraph at lines 585--585
+[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+(./FanOutgatesAndBinaryCounters.bbl [5pdfTeX warning (ext4): destination with t
+he same identifier (name{figure.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.533 
-       <./pictures/png/BinCounterCW000.png> <./pictures/pdf/counterSchem.pdf>]
-(./FanOutgatesAndBinaryCounters.bbl
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `English'. Using the pattern for
-** the default language instead.
-
-Underfull \vbox (badness 2913) has occurred while \output is active []
-
- [5pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
- has been already used, duplicate ignored
+l.38 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.135 \end{thebibliography}
-                            <./pictures/pdf/MemoryElement.pdf>])
+l.38 
+      <./pictures/pdf/MemoryElement.pdf> <./pictures/pdf/counterSchem.pdf
+
+pdfTeX warning: /usr/texbin/pdflatex (file ./pictures/pdf/counterSchem.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+>]
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+)
 File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW000.png>
+ <use ./pictures/png/BinCounterCW000.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line 
-548.
+604.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-<./pictures/png/BinCounterCW001.png, id=253, 565.36218pt x 668.4975pt>
+<./pictures/png/BinCounterCW001.png, id=240, 565.36218pt x 668.4975pt>
 File: ./pictures/png/BinCounterCW001.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW001.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW001.png used on input line 
-549.
+605.
 (pdftex.def)             Requested size: 120.40321pt x 142.3675pt.
 
-<./pictures/png/BinCounterCW010.png, id=254, 565.36218pt x 667.74469pt>
+<./pictures/png/BinCounterCW010.png, id=241, 565.36218pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW010.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW010.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW010.png used on input line 
-550.
+606.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-<./pictures/png/BinCounterCW011.png, id=255, 565.36218pt x 667.74469pt>
+<./pictures/png/BinCounterCW011.png, id=242, 565.36218pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW011.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW011.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW011.png used on input line 
-551.
+607.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-<./pictures/png/BinCounterCW100.png, id=256, 564.60938pt x 667.74469pt>
+<./pictures/png/BinCounterCW100.png, id=243, 564.60938pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW100.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW100.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW100.png used on input line 
-553.
+609.
 (pdftex.def)             Requested size: 120.40321pt x 142.39058pt.
 
-<./pictures/png/BinCounterCW101.png, id=257, 564.60938pt x 666.99188pt>
+<./pictures/png/BinCounterCW101.png, id=244, 564.60938pt x 666.99188pt>
 File: ./pictures/png/BinCounterCW101.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW101.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW101.png used on input line 
-554.
+610.
 (pdftex.def)             Requested size: 120.40321pt x 142.23004pt.
 
-<./pictures/png/BinCounterCW110.png, id=258, 565.36218pt x 668.4975pt>
+<./pictures/png/BinCounterCW110.png, id=245, 565.36218pt x 668.4975pt>
 File: ./pictures/png/BinCounterCW110.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW110.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW110.png used on input line 
-555.
+611.
 (pdftex.def)             Requested size: 120.40321pt x 142.3675pt.
 
-<./pictures/png/BinCounterCW111.png, id=259, 565.36218pt x 667.74469pt>
+<./pictures/png/BinCounterCW111.png, id=246, 565.36218pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW111.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW111.png>
 Package pdftex.def Info: ./pictures/png/BinCounterCW111.png used on input line 
-556.
+612.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
 
@@ -1178,7 +1167,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 566.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 622.
 [6
 
 ] [7pdfTeX warning (ext4): destination with the same identifier (name{figure.7}
@@ -1186,54 +1175,56 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 566.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.566 \end{document}
+l.622 \end{document}
                      <./pictures/png/BinCounterCW001.png> <./pictures/png/BinCo
 unterCW010.png> <./pictures/png/BinCounterCW011.png> <./pictures/png/BinCounter
 CW100.png> <./pictures/png/BinCounterCW101.png> <./pictures/png/BinCounterCW110
 .png> <./pictures/png/BinCounterCW111.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 566.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 622.
  (./FanOutgatesAndBinaryCounters.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 566.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 566.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 622.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 622.
 Package rerunfilecheck Info: File `FanOutgatesAndBinaryCounters.out' has not ch
 anged.
-(rerunfilecheck)             Checksum: C22B799D49324E5BFED1A410656790E1;884.
+(rerunfilecheck)             Checksum: 14935E79D6DDB04420C65ADFCD8D54AC;884.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 566.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 622.
  ) 
 Here is how much of TeX's memory you used:
  14351 strings out of 493488
- 225139 string characters out of 3141326
- 325243 words of memory out of 3000000
- 17308 multiletter control sequences out of 15000+200000
+ 225121 string characters out of 3141326
+ 327213 words of memory out of 3000000
+ 17307 multiletter control sequences out of 15000+200000
  52934 words of font info for 120 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,10n,38p,888b,476s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,38p,1758b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/201
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2012/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-dist/fonts/
-type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/ur
-w/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/ut
-mbi8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FanOutgatesAndBinaryCounters.pdf (7 pages, 665857 bytes).
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/
+2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
+e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/t
+imes/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmbi
+8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FanOutgatesAndBinaryCounters.pdf (7 pages, 685430 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
+ 361 PDF objects out of 1000 (max. 8388607)
+ 66 named destinations out of 1000 (max. 500000)
  201 words of extra memory for PDF output out of 10000 (max. 10000000)
 

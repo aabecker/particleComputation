@@ -178,7 +178,7 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
 \end{abstract}
 
 
-
+\textcolor{red}{In general I would pay more attention to structuring each paragraph so that you guide your reader by telling them first what you will accomplish in that paragraph and then making sure you support all your assertions. Int he above paragraph it took me until the end of the paragrph to realize that you were trying to make a universal sequence that you could use in all situations. if you say that first, then the reader has some context for why you are talking about these other sequences and what your are trying to accomplish. }
 
   \section{Introduction}
     
@@ -188,8 +188,8 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
   Frankly, this form of computation is impractical, being both slow, requiring large amounts of space, and being vulnerable to manufacturing defects. Rather, we want to quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
     \begin{enumerate}
-\item A planar  grid is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.
-\item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  The robots all move in the commanded direction until they hit an obstacle or a stationary robot.  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume we know the maximum dimension of the workspace and issue each command long enough for the robots to reach their maximum extent.
+\item A planar  grid workspace $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.
+\item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  The robots all move in the commanded direction until they hit an obstacle or a stationary robot.  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is known and issue each command long enough for the robots to reach their maximum extent.
 \end{enumerate}
   
  After a brief overview of related work,  the contributions of this paper are as listed:
@@ -211,7 +211,12 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
     Consider the half-adder shown in Fig.~\ref{fig:HalfAdder}.  The inputs $\mathbf{A}$ and  $\mathbf{B}$ are needed to compute both the {\sc sum} and the {\sc carry} bits, so the fanout of $\mathbf{A}$ and  $\mathbf{B}$ is two.
   
   
-{\sc and} and {\sc or} can be implemented with particles, but other logic requires \emph{dual-rail logic}, where two lines for each input are supplied to explicitly represent the variable and its complement. Dual-rail logic is required because particle logic is \emph{conservative}---particles are neither created nor destroyed.  Unfortunately particle logic is not reversible.  The {\sc or} gate outputs a 1 if either input is asserted, but afterwards we cannot determine which input was high.  This makes implementing a {\sc fan-out} gate impossible with unit size particles and obstacles.
+{\sc and} and {\sc or} can be implemented with particles, as shown in \cite{Becker2013f}.  However, particle logic is \emph{conservative}---particles are neither created nor destroyed--and we were unable to implement a {\sc not} gate. To implement {\sc not} gates and other logic we used \emph{dual-rail logic}, where two lines for each input are supplied to explicitly represent the variable and its complemen~\cite{Becker2014a}. 
+
+
+%%%%%Unfounded Assertation... would be a cool proof later. Can we reverse particle logic? 
+%Unfortunately particle logic is not reversible.   The {\sc or} gate outputs a 1 if either input is asserted, but afterwards we cannot determine which input was high.  This makes implementing a {\sc fan-out} gate impossible with unit size particles and obstacles.
+%\textcolor{red}{This paragraph is confusing to me. You're making a lot of assertions and there are a lot of different ideas that aren't fully explained or backed up. Either split it into several paragraphs where you can explain each idea in more detail or save these ideas for later in the paper when you can support them more fully. This is a good place to define dual-real logic and conservative but perhaps we can find a way to do it and leave these assertions for later on.}
 
    \begin{figure}
    \centering
@@ -226,16 +231,6 @@ The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}
 
 
 
-\subsection{Choosing a clock signal}
-
-The \emph{clock sequence} is the ordered set of moves that are simultaneously applied to every particle in our workspace. We call this the clock sequence because, as in digital computers, this sequence is universally applied and keeps all logic synchronized.
-
-A clock sequence determines the basic functionality of each gate. Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequence can be used to make {\sc and, or, xor}, any of their inverses.  This sequence can also be used for \emph{wiring} to connect arbitrary inputs and outputs, as long as the outputs are below the inputs.  Unfortunately, $\langle d,l,d,r \rangle$ cannot move any particles upwards. To connect outputs as inputs to higher level logic requires an additional reset sequence such as $\langle d,l,u,r \rangle$.
-  In the spirit of Reduced Instruction Set Computing (RISC), which uses a simplified set of instructions that run at the same rate, we want to use the same clock cycle for each gate and for \emph{all} wiring.  A clock sequence without orthogonal inputs, i.e. $\langle u,d,u,d \rangle$ can only implement assertions.  Using two orthogonal inputs, i.e.~$\langle d,l,d,l \rangle$  cannot implement {\sc fan-out} gates, and particles cannot be returned $u$ or $r$.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and prove that this 
-sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring.
-
-This clock sequence has the attractive property of being a clockwise rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating perpendicular to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
-
 
 
 
@@ -243,49 +238,85 @@ This clock sequence has the attractive property of being a clockwise rotation th
 Our efforts have similarities with \emph{mechanical computers},  computers constructed from mechanical, not electrical components. For a fascinating nontechnical review, see \cite{McCourtney1999}.  These devices have a rich history, from the \emph{Pascaline}, an adding machine invented in 1642 by a nineteen-year old Blaise Pascal; Herman Hollerith's punch card tabulator in 1890; to the mechanical devices of IBM culminating in the 1940s.  These devices used precision gears, pulleys, or electric motors to carry out calculations.  Though our {\sc Grid-World} implementations seem an anachronism, note that we require none of these precision elements---merely unit-size obstacles,  and $2\times1$ and $1\times1$ sliding particles.
 %Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the associated press when it was announced in the 1940s. 
 
-\subsection{Collision-based computing} refers to implementations of logical circuits or other computing devices in homogeneous media with traveling mobile localizations. 
- For a survey of this area, see the excellent collection~\cite{Adamatzky2012}.  One example is Conway's game of life~\cite{berlekamp2001winning}  these simple rules have been examined in depth and used  to build a Turing-complete computer \cite{Adamatzky2002}.  These scenarios are fascinating, but lack a physical implementation.  They require \emph{cells} that live or die based on the number of neighbors. 
+\subsection{Collision-based computing}
+Collision-based computing refers to implementations of logical circuits or other computing devices in homogeneous media with traveling mobile localizations. \textcolor{red}{lousy preceding sentence}   For a survey of this area, see the excellent collection~\cite{Adamatzky2012}.  One example is Conway's game of life~\cite{berlekamp2001winning}  these simple rules have been examined in depth and used  to build a Turing-complete computer \cite{Adamatzky2002}.  Game of life scenarios are fascinating, but lack a physical implementation.  They require \emph{cells} that live or die based on the number of neighbors. In this paper we present a collision-based system for computation and provide a physical implementation.
+\textcolor{red}{Todo: this paragraph is incomplete}
 
 
 \subsection{Sliding-block puzzles}
-Sliding block puzzles use rectangular tiles that are constrained to move in a 2D environment. The objective is to move one or more tiles to desired locations. They have a long history.
+Sliding block puzzles use rectangular tiles that are constrained to move in a 2D workspace. The objective is to move one or more tiles to desired locations. They have a long history.
 Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can be arranged to create logic gates, and used this technique to prove {\sc p-space} complexity for a variety of sliding block puzzles.  Hearn expressed the idea of building computers from the sliding blocks---many of the logic gates could be connected together, and the user could propagate a signal from one gate to the next by sliding intermediate tiles.  This requires the user to know precisely which sequence of gates to enable/disable.  In contrast to such a hands-on approach, with our architecture we can build circuits, store parameters in memory, and then actuate the entire system in parallel using a global control signal.
 
 
 
 \section{Theory}\label{sec:theory}
-%I want catchy names for these -- for now they are the 'unstoppable by more' and 'no novel results with less' properties
+%I want catchy names for these -- for now they are the 'unstoppable by more' and 'no novel results with less' properties \textcolor{red}{I like the names!}
+
+First we provide terminology to define how robots interact with each other. 
+
+\paragraph{Define workspace} A \emph{workspace} is a 2-dimensional grid. Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $(x,y)$. %$x$ represents the positive or negative distance from the designated origin in the right or left directions, whereas $y$ represents the distance from the origin in the up or down directions.  %this is now defined thanks to Cartesian
+
+
+\paragraph {Define command sequence}A \emph{command sequence} $M$ consists of a ordered sequence of moves $M(k)$ where each $M(k)\in\{u,d,r,l\}$ 
+
+When each $M(k)$ is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for  move $M(k)$, the robot $a$ ends at location $(i,j)$. With the addition of more robots,  it is possible for one robot to hit another.
+\textcolor{blue}{Why $(x_i,y_j)$, and not $(x_i,y_i)$. -- what is $j$?  Could we instead just say location $(i,j)$?}
+\paragraph{Definition of hit}
+During move $M(k)$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $(i,j)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $M(k)$ will be $(i,j)$ and robot $a$'s location at the end of $M(k)$ can be calculated as follows:
+\begin{displaymath}
+    \left\{
+     \begin{array}{lr}
+       (i-1,j) & \text{if }M(k)=r\\
+       (i+1,j) &\text{if }M(k)=l\\
+       (i,j-1) &\text{if }M(k)=u\\
+       (i,j+1) & \text{if }M(k)=d\\
+     \end{array}
+   \right.
+\end{displaymath} 
+
+
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation} % Is this the 'additivity property'?
-If given an environment $E$ and a command sequence $M$ that moves a robot initially at $s$ to a goal location $g$, then adding additional robots anywhere in $E$ at any stage of the command sequence cannot prevent $g$ from being occupied at the conclusion of sequence $M$.
+If given an workspace $W$ and a command sequence $M$ that moves a robot initially at $s$ to a goal location $g$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $g$ from being occupied at the conclusion of sequence $M$.
 \end{theorem}
 
-\paragraph{Definition of hit}
-During command $m_i$, robot $a$ \emph{hits} robot $b$ if $a$'s movement is stopped by $b$.  A hit changes $a$'s location at the end of move step $m_i$ to be $b$-$m_i$.  
 
-Robots must hit in to change the outcome of a command sequence.
-If marbles do not hit, there is no change because the robots have not interacted.
+\begin{proof} 
+This theorem addresses how adding more robots can effect the final outcome. As robot $a$ travels from $s$ to $g$ it passes through a sequence of locations $\{(x_i,y_j)\}$.  We call this sequence of locations $a$'s \emph{path}.
 
-\begin{lemma}\label{lemma:AHitDoesntChangeOccupancyDuringMove}
-If two robots hit, one robot follows the original path \todo{need to specify path and original path.  Maybe: ``one robot follows the path either robot would have followed if the other did not exist"  or If robots $a$ and $b$ hit, a robot will still occupy $m$...}
-\end{lemma}
-\begin{proof}
-In any hit either $b$ hits $a$ or $a$ hits $b$.  If $b$ hits $a$,  there is no change to $a$'s path and $a$ will still end at $g$.  If $a$ hits $b$, $b$ is where $a$ would have been and $b$ follows $a$'s original path.   
+Consider the effect of adding robot $b$ to this existing workspace. If no hit occurs between $a$ and $b$, then $a$ follows the same path and at the conclusion of $M$ occupies $g$. The only way to change $a$'s path is to give it a new obstacle to hit, namely another robot. 
+
+Suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $(x,y)$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $g$. Thus by adding more robots, it is impossible to prevent some robot from occupying $g$ at the conclusion of $M$. 
 \end{proof}
 
-Robots can only interact via hits.  By lemma \ref{lemma:AHitDoesntChangeOccupancyDuringMove}, a hit cannot prevent an occupancy, therefore the proof of \ref{thm:AdditionalRobotsCannotPreventAnOccupation} follows.
+%\textcolor{red}{I'm not sure this needs to be defined as a separate lemma. It we plan to use it again in a later proof then that will be useful, but right now if follows pretty directly from the definition of a hit, and so we might not need to make a whole new lemma for it. We might just...}
+
+%\begin{lemma}\label{lemma:AHitDoesntChangeOccupancyDuringMove}
+%If two robots hit, one robot follows the original path \todo{need to specify path and original path.  Maybe: ``one robot follows the path either robot would have followed if the other did not exist"  or If robots $a$ and $b$ hit, a robot will still occupy $m$...}
+%\end{lemma}
+%\begin{proof}
+%In any hit either $b$ hits $a$ or $a$ hits $b$.  If $b$ hits $a$,  there is no change to $a$'s path and $a$ will still end at $g$.  If $a$ hits $b$, $b$ is where $a$ would have been and $b$ follows $a$'s original path.   
+%\end{proof}
+
+%Robots can only interact via hits.  By lemma \ref{lemma:AHitDoesntChangeOccupancyDuringMove}, a hit cannot prevent an occupancy, therefore the proof of Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation} follows.
 
 \begin{corollary}
 A  {\sc not} gate without dual-rail inputs cannot be constructed
 \end{corollary}
 \begin{proof}
-define a {\sc not} gate, \todo{explain how this follows} 
+By contradiction.
+A particle logic {\sc not} gate without dual-rail inputs has one input at $s$, one output at $g$, an arbitrary number of asserted inputs which are all initially occupied, and an arbitrary number of waste outputs.
+Given a command sequence $M$:  
+\begin{itemize}
+\item if $s$ is initially unoccupied, at the conclusion of $M$ $g$ must be occupied
+\item if $s$ is initially occupied, at the conclusion of $M$ $g$ must be unoccupied
+\end{itemize}
+By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $s$ initially unoccupied results in $g$ being occupied at the conclusion of $M$, the addition of a robot at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
 \end{proof}
 
 
-
 \begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
-If given an environment $E$ and a command sequence $M$ that moves two robots initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing either robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
+If given an workspace $W$ and a command sequence $M$ that moves two robots initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing one robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
 \end{theorem}
 
 \begin{proof}
@@ -298,11 +329,41 @@ If robots do hit when both exist \todo{show that this cannot lead to a goal loca
 \begin{corollary}\label{cor:No1x1FanOut}
 A  {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
 \end{corollary}
+
+  \begin{table}
+\begin{displaymath}
+\begin{array}{ccc|cccc}
+%\toprule
+\multicolumn{3}{c}{\emph{Inputs}} & \multicolumn{4}{c}{\emph{Outputs}} \\
+%\cmidrule(r){1-3}
+   A
+ & \overline{A}
+ & 1
+ & A
+ & A
+ &  \overline{A}
+ & \overline{A}\\
+\hline
+0 & 1 & 1 & 0 & 0 & 1 & 1  \\
+1 & 0 & 1 & 1 & 1 & 0 & 0  \\
+%\bottomrule
+\end{array}
+\end{displaymath}
+\caption{{\sc fan-out} operation. This cannot be implemented with 1$\times$1 particles and obstacles.   Our technique uses 2$\times$1 particles. }
+  \label{tab:Fanout}
+\end{table}
+
+
+\textcolor{red}{I think we have all the pieces here, but we need to say something about it being conservative. That is a key piece of our argument here. }
+
 \begin{proof} By contradiction.
-Consider a  {\sc fan-out} gate $E$ and an arbitrary sequence $M$ such that with input $s_{a}$ initially occupied and one or more supply robots, at the conclusion of  $M$, the output location $g_{a1}$ and $g_{a2}$ are occupied and the locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are vacant.  Also, under the same command sequence $M$, but with input $s_{a}$ initially vacant, $s_{\bar{a}}$ initially occupied and the same supply robots, at the conclusion of $M$, the output locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are occupied and the locations  $g_{a1}$ and $g_{a2}$  are vacant. 
+Consider a  {\sc fan-out} gate $W$,  dual-rail inputs  $s_{a}$, $s_{\bar{a}}$, dual rail outputs  $\{g_{a1}, g_{a2},g_{\bar{a}1},g_{\bar{a}2}\}$, and one or more supply locations initially occupied. A   {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $M$:  
+\begin{itemize}
+\item if $s_{a}$ is initially occupied and $s_{\bar{a}}$ vacant, at the conclusion of $M$ $g_{a1}$ and $g_{a2}$ are occupied and the locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are vacant.
+\item if $s_{a}$ is initially vacant and $s_{\bar{a}}$ occupied, at the conclusion of $M$ $g_{a1}$ and $g_{a2}$ are vacant and the locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are occupied.
+\end{itemize}
 
-
- If input $s_{a}$ is initially vacant, by Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} , either  $g_{a1}$ and $g_{a2}$ is occupied at the conclusion of $M$.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent one of $g_{a1}$ and $g_{a2}$ being filled, thus arriving at a contradiction.
+However, if input $s_{a}$ is initially vacant, by Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $g_{a1}$ or $g_{a2}$ must be occupied at the conclusion of $M$.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent one of $g_{a1}$ and $g_{a2}$ being filled, thus arriving at a contradiction.
  \end{proof}
 
 
@@ -334,35 +395,30 @@ Consider a  {\sc fan-out} gate $E$ and an arbitrary sequence $M$ such that with 
   
   \section{Device and gate design}
   
+  \subsection{Choosing a clock signal}
+
+The \emph{clock sequence} is the ordered set of moves that are simultaneously applied to every particle in our workspace. We call this the clock sequence because, as in digital computers, this sequence is universally applied and keeps all logic synchronized.
+
+A clock sequence determines the basic functionality of each gate.  To simplify implementation in the spirit of Reduced Instruction Set Computing (RISC), which uses a simplified set of instructions that run at the same rate, we want to use the same clock cycle for each gate and for \emph{all} wiring. 
+Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequence can be used to make {\sc and, or, xor}, and any of their inverses.  This sequence can also be used for \emph{wiring} to connect arbitrary inputs and outputs, as long as the outputs are below the inputs.  Unfortunately, $\langle d,l,d,r \rangle$ cannot move any particles upwards. To connect outputs as inputs to higher level logic requires an additional reset sequence that contains an $\langle u \rangle$ command.  Including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and by designing examples prove that this sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring.
+
+  
+%  A clock sequence without orthogonal inputs, i.e. $\langle u,d,u,d \rangle$ can only implement assertions.  \textcolor{red}{This is an assertion. You need to support it} Using two orthogonal inputs, i.e.~$\langle d,l,d,l \rangle$  cannot implement {\sc fan-out} gates,\textcolor{red}{another assertion} and particles cannot be returned $u$ or $r$.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and prove that this  sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring. \textcolor{red}{Here's what I got out of this paragraph: In order to simplify our system and according the principles of RISC we would like to use the same clock sequence for all gates. This sequence should also be used for all wiring, that is for all connections between inputs and outputs. It is insufficient to use a clock sequence with only two directions. If these two directions are orthogonal (i.e. d,l,d,l) it is insufficient because (need more explanation here). If these two directions are not orthogonal (i.e. d,u,d,u) it is insufficient because (need more explanation here). Using only three directions, we were able to implement AND, OR, and  XOR gates, as well as their inverses. Specifically, in our previous work we used the sequence d,l,d,r. However this sequence makes it impossible to wire outputs of gates to inputs of gates that are higher up in the workspace. As clock sequences with two and three directions are insufficient for our purposes we have chosen to the simplest sequence d,l,u,r and will proceed to prove that this sequence is sufficient for logic gates, fan-out gates, and wiring.  }
+
+
+This clock sequence has the attractive property of being a clockwise rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating perpendicular to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
+
+
+  
+  
   \subsection{A {\sc fan-out} gate}\label{sec:FanOut}
 A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{tab:Fanout}.  
 This cannot be implemented with 1$\times$1 particles and obstacles, by corollary \ref{cor:No1x1FanOut}.   Our technique uses 2$\times$1 particles.   A single input, two-output {\sc fan-out} gate is shown in Fig~\ref{fig:Fanout}.  This gate requires a dual-rail input, a supply particle, and a $2\times 1$ slider.  The  \emph{clockwise} control sequence $\langle d,l,u,r \rangle$  duplicates the dual-rail input.
 
 The {\sc fan-out} gate can drive multiple outputs. In Fig.~\ref{fig:Fanout4} a single input drives four-outputs.  This gate requires a dual-rail input, three supply particles, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
-In général, an $n$ output {\sc fan-out} gate with control sequence $\langle d,l,u,r \rangle$ requires a dual-rail input, $n-1$ supply particles, and one $2\times 1$ slider. It requires $4 (n+1) \times 2(n+1)$ area.
+In general, an $n$ output {\sc fan-out} gate with control sequence $\langle d,l,u,r \rangle$ requires a dual-rail input, $n-1$ supply particles, and one $2\times 1$ slider. It requires $4 (n+1) \times 2(n+1)$ area.
   
-  \begin{table}
-\begin{displaymath}
-\begin{array}{ccc|cccc}
-%\toprule
-\multicolumn{3}{c}{\emph{Inputs}} & \multicolumn{4}{c}{\emph{Outputs}} \\
-%\cmidrule(r){1-3}
-   A
- & \overline{A}
- & 1
- & A
- & A
- &  \overline{A}
- & \overline{A}\\
-\hline
-0 & 1 & 1 & 0 & 0 & 1 & 1  \\
-1 & 0 & 1 & 1 & 1 & 0 & 0  \\
-%\bottomrule
-\end{array}
-\end{displaymath}
-\caption{{\sc fan-out} operation. This cannot be implemented with 1$\times$1 particles and obstacles.   Our technique uses 2$\times$1 particles. }
-  \label{tab:Fanout}
-\end{table}
+
  \begin{figure}
 \begin{overpic}[width =\columnwidth]{FanOutS1cw.png}
 \put(6.75,25){$A$} \put(15,25){$1$} \put(35,25){$\overline{A}$}
@@ -526,7 +582,7 @@ Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor}
 
 
 \todo{These are comparable to a ripple-carry adder:  the delay for $n$ bits is  and requires $x=$ gates.
-Numerous other schemes exist to speed up the computation.  Instead of using discrete gates, we could engineer environment to directly compute each stage.  The advantage of gates is that they are easily reused and connected.}
+Numerous other schemes exist to speed up the computation.  The advantage of gates is that they are easily reused and connected.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute logic.  }
 
 \subsection{Optimal Wiring schemes}\label{sec:wiring}
 With our current CW clock cycle, we cannot have outputs at the same column as inputs -- outputs must be either one to the right, or three to the left.  Choosing one of these results in shifts horizontally at each stage and thus spreads out the logic. A better wiring scheme would cycle through three layers that go right one, followed by one layer that goes left three.  We also want the wiring to be tight left-to-right.  If our height is also limited, \emph{wire buses} would be a compact solution. 
