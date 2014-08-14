@@ -1,6 +1,8 @@
 % easy truth tables: http://www.kwi.dk/projects/php/truthtable/?
 %  177199 Hamed Mohtasham shad
 % 177228 Rose Morris-Wright
+
+
 \pdfobjcompresslevel=0  % I had adobe error 131, and this removed it: http://tex.stackexchange.com/questions/64448/how-to-overcome-acrobat-reader-error-131-with-a-pdflatex-doc
 
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}
@@ -190,9 +192,8 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
   Frankly, this form of computation is impractical, being both slow, requiring large amounts of space, and being vulnerable to manufacturing defects. Rather, we want to quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
     \begin{enumerate}
-\item A planar  grid \emph{workspace} $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $(x,y)$.
-
-\item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  The robots all move in the commanded direction until they hit an obstacle or a stationary robot. A \emph{command sequence} $M$ consists of a ordered sequence of moves $M(k)$ where each $M(k)\in\{u,d,r,l\}$  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is known to be finite and issue each command long enough for the robots to reach their maximum extent.
+\item A planar  grid workspace $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.
+\item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  The robots all move in the commanded direction until they hit an obstacle or a stationary robot.  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is known and issue each command long enough for the robots to reach their maximum extent.
 \end{enumerate}
   
  After a brief overview of related work,  the contributions of this paper are as listed:
@@ -257,8 +258,13 @@ Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can
 
 First we provide terminology to define how robots interact with each other. 
 
-When each $M(k)$, in a particular command sequence $M$, is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for  move $M(k)$, the robot $a$ ends at location $(i,j)$. With the addition of more robots,  it is possible for one robot to hit another.
-\textcolor{blue}{Why $(x_i,y_j)$, and not $(x_i,y_i)$. -- what is $j$? \textcolor{red}{It can't be $(x_i,y_i)$ because that would imply that to two coordinates have equal indexes. If the workspace was denoted this way, all the coordiantes would have location such as $(3,3)$ would essentially be a one dimensional space. $(i,j)$ feels less conventional to me, but should work just fine.} Could we instead just say location $(i,j)$?}
+\paragraph{Define workspace} A \emph{workspace} is a 2-dimensional grid. Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $(x,y)$. %$x$ represents the positive or negative distance from the designated origin in the right or left directions, whereas $y$ represents the distance from the origin in the up or down directions.  %this is now defined thanks to Cartesian
+
+
+\paragraph {Define command sequence}A \emph{command sequence} $M$ consists of a ordered sequence of moves $M(k)$ where each $M(k)\in\{u,d,r,l\}$ 
+
+When each $M(k)$ is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for  move $M(k)$, the robot $a$ ends at location $(i,j)$. With the addition of more robots,  it is possible for one robot to hit another.
+\textcolor{blue}{Why $(x_i,y_j)$, and not $(x_i,y_i)$. -- what is $j$?  Could we instead just say location $(i,j)$?}
 \paragraph{Definition of hit}
 During move $M(k)$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $(i,j)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $M(k)$ will be $(i,j)$ and robot $a$'s location at the end of $M(k)$ can be calculated as follows:
 \begin{displaymath}
@@ -272,18 +278,6 @@ During move $M(k)$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from rea
    \right.
 \end{displaymath} 
 
-\paragraph{Definition of path}
-As robot $r$ travels from $s$ to $g$ it passes through a sequence of locations $\{(x_i,y_j)\}$.  We call this sequence of locations $r$'s \emph{path}. 
-
-\begin{lemma}
-Given a workspace $W$ and a command sequence $M$, and a robot $r$ traveling along a path begining at location $s$, this path can only be changed if $r$ hist robots it did not hit before, or if $r$ fails to hit robots it did hit before.
-\end{lemma}
-
-\begin{proof}
-By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by three factors, the starting location of the robot, the command sequence and the obstacles the robot encounters. These obstacles can be either locations in the workspace where the robot cannot go, or they can be other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, recieve the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  
-\end{proof}
-
-
 
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation} % Is this the 'additivity property'?
@@ -292,9 +286,9 @@ If given an workspace $W$ and a command sequence $M$ that moves a robot initiall
 
 
 \begin{proof} 
-This theorem addresses how adding more robots can effect the final outcome. 
+This theorem addresses how adding more robots can effect the final outcome. As robot $a$ travels from $s$ to $g$ it passes through a sequence of locations $\{(x_i,y_j)\}$.  We call this sequence of locations $a$'s \emph{path}.
 
-Consider the effect of adding robot $b$ to this existing workspace. If no hit occurs between $a$ and $b$, then $a$ follows by the same path, then the determinates of the path are the same and by Lemma, the path remains the same. Therefore, at the conclusion of $M$, $a$ occupies $g$. 
+Consider the effect of adding robot $b$ to this existing workspace. If no hit occurs between $a$ and $b$, then $a$ follows the same path and at the conclusion of $M$ occupies $g$. The only way to change $a$'s path is to give it a new obstacle to hit, namely another robot. 
 
 Suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $(x,y)$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $g$. Thus by adding more robots, it is impossible to prevent some robot from occupying $g$ at the conclusion of $M$. 
 \end{proof}
@@ -326,16 +320,13 @@ By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $s$ initially
 
 
 \begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
-If given an workspace $W$ and a command sequence $M$ that moves two robots, $r_1$ and $r_2$, initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing one robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
+If given an workspace $W$ and a command sequence $M$ that moves two robots initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing one robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
 \end{theorem}
 
-\begin{proof} 
-Without loss of generality suppose we remove robot $r_1$. 
+\begin{proof}
+If robots $s_1$ and $s_2$ never hit when both exist, then the remaining robot continues to its goal location unchanged.
 
-First suppose $r_2$ never hits $r_1$. Then the removal on $r_1$ will not effect the path of $r_2$. $r_2$ has the same hits or lack of hits that it had before the removal of $r_1$ and so by Lemma , $r_2$ will follow the same path and occupy $g_2$ at the cconclusion. 
-
-
-Now suppose $r_2$ hit $r_1$ in the original scenario. Originally, $r_1$ was occupying a location $(x,y)$, that it no longer occupies during this hit. $r_2$ is no longer prevented from occupying $(x,y)$ so that is $r_2$'s new location. $r_2$ now proceeds along the path previously traveled by $r_1$. That is $r_2$ has effectively replaced $r_1$. \todo{show that this cannot lead to a goal location $g_3$, when only one robot is used, it goes to the goal location occupied by the last robot to be hit when there are two. }
+If robots do hit when both exist \todo{show that this cannot lead to a goal location $g_3$, when only one robot is used, it goes to the goal location occupied by the last robot to be hit when there are two. }
 \end{proof}
 
 
