@@ -265,30 +265,31 @@ Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can
 
 First we provide terminology to define how robots interact with each other. 
 
-When each $M(k)$, in a particular command sequence $M$, is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for move $M(k)$, the robot $a$ ends at location $(i,j)$. With the addition of more robots,  it is possible for one robot to hit another.
+%  AARON: I think this line just restated what was said inSection 1-A
+%When each $M(k)$, in a particular command sequence $M$, is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for move $M(k)$, the robot $a$ ends at location $(x,y)$. With the addition of more robots,  it is possible for one robot to hit another.
 
 \paragraph{Definition of hit}
-During move $M(k)$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $(i,j)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $M(k)$ will be $(i,j)$ and robot $a$'s location at the end of $M(k)$ can be calculated as follows:
+During move $M(k)$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $(x,y)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $M(k)$ will be $(x,y)$ and robot $a$'s location at the end of $M(k)$ can be calculated as follows:
 \begin{displaymath}
     \left\{
-     \begin{array}{lr}
-       (i-1,j) & \text{if }M(k)=r\\
-       (i+1,j) &\text{if }M(k)=l\\
-       (i,j-1) &\text{if }M(k)=u\\
-       (i,j+1) & \text{if }M(k)=d\\
+     \begin{array}{ll}
+       (x-1,y) &\text{if }M(k)=r\\
+       (x+1,y) &\text{if }M(k)=l\\
+       (x,y-1) &\text{if }M(k)=u\\
+       (x,y+1) &\text{if }M(k)=d\\
      \end{array}
    \right.
 \end{displaymath} 
 
 \paragraph{Definition of path}
-As robot $r$ travels from $s$ to $g$ it passes through a sequence of locations $\{(x_i,y_j)\}$.  We call this sequence of locations $r$'s \emph{path}. 
+As robot $r$ travels from $s$ to $g$ it passes through a sequence of locations $\{s,\ldots,g\}$.  We call this sequence of locations $r$'s \emph{path}. 
 
 \begin{lemma}\label{lemma:changeInHitsNeededToChangePath}
 Given a workspace $W$, a command sequence $M$, and a robot $r$ traveling along a path beginning at location $s$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
 \end{lemma}
 
 \begin{proof}
-By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by three factors: the starting location of the robot, the command sequence, and the obstacles the robot encounters. These obstacles can be either locations in the workspace where the robot cannot go, or they can be other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, receive the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  
+By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by four factors: the starting location of the robot, the command sequence, obstacles,  and encounters with other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, receive the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  
 \end{proof}
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation}
