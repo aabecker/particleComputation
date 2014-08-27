@@ -66,7 +66,7 @@ D.~de~Lanauze, O.~Felfoul, J.-P. Turcot, M.~Mohammadi, and S.~Martel,
   ``Three-dimensional remote aggregation and steering of magnetotactic bacteria
   microrobots for drug delivery applications,'' \emph{The International Journal
   of Robotics Research}, 11 2013. [Online]. Available:
-  \url{http://ijr.sagepub.com/content/early/2013/11/11/0278364913500543.abstract}
+  \url{http://ijr.sagepub.com/content/early/2013/11/11/0278364913500543}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Becker2013f}
@@ -104,6 +104,14 @@ A.~Adamatzky and J.~Durand-Lose, ``\BIBforeignlanguage{English}{Collision-based
   Computing}}, G.~Rozenberg, T.~B{\"a}ck, and J.~Kok, Eds.\hskip 1em plus 0.5em
   minus 0.4em\relax Springer Berlin Heidelberg, 2012, pp. 1949--1978. [Online].
   Available: \url{http://dx.doi.org/10.1007/978-3-540-92910-9_58}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Fredkin1982ConservativeLogic}
+\BIBentryALTinterwordspacing
+E.~Fredkin and T.~Toffoli, ``\BIBforeignlanguage{English}{Conservative
+  logic},'' \emph{\BIBforeignlanguage{English}{International Journal of
+  Theoretical Physics}}, vol.~21, no. 3-4, pp. 219--253, 1982. [Online].
+  Available: \url{http://dx.doi.org/10.1007/BF01857727}
 \BIBentrySTDinterwordspacing
 
 \bibitem{berlekamp2001winning}

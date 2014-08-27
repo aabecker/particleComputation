@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  14 AUG 2014 22:13
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 AUG 2014 03:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -918,11 +918,9 @@ Package pdftex.def Info: ./pictures/pdf/HalfAdder.pdf used on input line 232.
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.319 \end{proof}
-                  <./pictures/pdf/HalfAdder.pdf>]
-Underfull \vbox (badness 1728) has occurred while \output is active []
-
- [3pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
-has been already used, duplicate ignored
+                  <./pictures/pdf/HalfAdder.pdf>] [3pdfTeX warning (ext4): dest
+ination with the same identifier (name{table.1}) has been already used, duplica
+te ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1090,6 +1088,12 @@ F inclusion: multiple pdfs with page group included in a single page
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
 )
 File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
  <use ./pictures/png/BinCounterCW000.png>
@@ -1097,7 +1101,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line
 559.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-<./pictures/png/BinCounterCW001.png, id=253, 565.36218pt x 668.4975pt>
+<./pictures/png/BinCounterCW001.png, id=254, 565.36218pt x 668.4975pt>
 File: ./pictures/png/BinCounterCW001.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW001.png>
@@ -1105,7 +1109,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW001.png used on input line
 560.
 (pdftex.def)             Requested size: 120.40321pt x 142.3675pt.
 
-<./pictures/png/BinCounterCW010.png, id=254, 565.36218pt x 667.74469pt>
+<./pictures/png/BinCounterCW010.png, id=255, 565.36218pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW010.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW010.png>
@@ -1113,7 +1117,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW010.png used on input line
 561.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-<./pictures/png/BinCounterCW011.png, id=255, 565.36218pt x 667.74469pt>
+<./pictures/png/BinCounterCW011.png, id=256, 565.36218pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW011.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW011.png>
@@ -1121,7 +1125,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW011.png used on input line
 562.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-<./pictures/png/BinCounterCW100.png, id=256, 564.60938pt x 667.74469pt>
+<./pictures/png/BinCounterCW100.png, id=257, 564.60938pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW100.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW100.png>
@@ -1129,7 +1133,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW100.png used on input line
 564.
 (pdftex.def)             Requested size: 120.40321pt x 142.39058pt.
 
-<./pictures/png/BinCounterCW101.png, id=257, 564.60938pt x 666.99188pt>
+<./pictures/png/BinCounterCW101.png, id=258, 564.60938pt x 666.99188pt>
 File: ./pictures/png/BinCounterCW101.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW101.png>
@@ -1137,7 +1141,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW101.png used on input line
 565.
 (pdftex.def)             Requested size: 120.40321pt x 142.23004pt.
 
-<./pictures/png/BinCounterCW110.png, id=258, 565.36218pt x 668.4975pt>
+<./pictures/png/BinCounterCW110.png, id=259, 565.36218pt x 668.4975pt>
 File: ./pictures/png/BinCounterCW110.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW110.png>
@@ -1145,7 +1149,7 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW110.png used on input line
 566.
 (pdftex.def)             Requested size: 120.40321pt x 142.3675pt.
 
-<./pictures/png/BinCounterCW111.png, id=259, 565.36218pt x 667.74469pt>
+<./pictures/png/BinCounterCW111.png, id=260, 565.36218pt x 667.74469pt>
 File: ./pictures/png/BinCounterCW111.png Graphic file (type png)
 
 <use ./pictures/png/BinCounterCW111.png>
@@ -1191,10 +1195,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 577.
  ) 
 Here is how much of TeX's memory you used:
- 14364 strings out of 493488
- 225291 string characters out of 3141326
- 326377 words of memory out of 3000000
- 17313 multiletter control sequences out of 15000+200000
+ 14366 strings out of 493488
+ 225328 string characters out of 3141326
+ 326381 words of memory out of 3000000
+ 17314 multiletter control sequences out of 15000+200000
  52934 words of font info for 120 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,10n,38p,1758b,371s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1218,9 +1222,9 @@ ype1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw
 /times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utm
 bi8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FanOutgatesAndBinaryCounters.pdf (7 pages, 679295 bytes).
+Output written on FanOutgatesAndBinaryCounters.pdf (7 pages, 679731 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 73 named destinations out of 1000 (max. 500000)
+ 376 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
  217 words of extra memory for PDF output out of 10000 (max. 10000000)
 
