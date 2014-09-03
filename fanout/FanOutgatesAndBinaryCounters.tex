@@ -180,7 +180,7 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
 \end{abstract}
 
 
-\textcolor{red}{In general pay more attention to structuring each paragraph so that you guide your reader by telling them first what you will accomplish in that paragraph and then making sure you support all your assertions.}
+%\textcolor{red}{In general pay more attention to structuring each paragraph so that you guide your reader by telling them first what you will accomplish in that paragraph and then making sure you support all your assertions.}
 
 %###############################################################
 \section{Introduction}
@@ -188,39 +188,30 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
     
   Currently, micro- and nanorobot systems with many robots are steered and directed by a common control signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}. These common control signals include global magnetic or electric fields, chemical gradients, and turning a light source on and off.  In this paper, we show how a common control signal, mobile particles, and unit-sized obstacles can implement a computer.  
     We do not present particle logic as an alternative to electronic computing.
-  Frankly, this form of computation is impractical, being both slow, requiring large amounts of space, and being vulnerable to manufacturing defects. Rather, we want to quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
-  
-  \subsection{Model}
+  Frankly, this form of computation is impractical. It is slow, requires large amounts of space, and is vulnerable to manufacturing defects. Rather, we quantify the computing power of mobile robotics at the most simple level in order to gain insight for massively-parallel, automated assembly at the micro and nano length-scales.
+
+ \subsection{Model}
   
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
 \begin{enumerate}
-\item A planar  grid \emph{workspace} $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $(x,y)$.
+\item A planar  grid \emph{workspace} $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bar{x}=(x,y)$.
 \item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
-\item The robots all move in the commanded direction until they hit an obstacle or a stationary robot. A \emph{command sequence} $M$ consists of a ordered sequence of moves $M(k)$ where each $M(k)\in\{u,d,r,l\}$  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is known to be finite and issue each command long enough for the robots to reach their maximum extent.
+\item The robots all move in the commanded direction until they hit an obstacle or a stationary robot. A \emph{command sequence} $M$ consists of a ordered sequence of moves $m_k$ where each $m_k\in\{u,d,r,l\}$  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the robots to reach their maximum extent.
 \end{enumerate}
-  
-    \subsection{Contributions}
-  
- After a brief overview of related work,  the contributions of this paper are as listed:
-  \begin{enumerate}
-  \item prove the necessity of dual-rail logic for Boolean logic (Section \ref{sec:theory})
-  \item prove the insufficiency of unit-size particles for gate fan-out (Section \ref{sec:theory})
-  \item design {\sc fan-out} gates (Section \ref{sec:FanOut})
-  \item design memory latches (Section \ref{subsec:Storage})
-  \item present architecture for device integration, design a common clock sequence, and present a binary counter (Section \ref{sec:binaryCounter})
-    \end{enumerate}
-  
-  
-  \subsection{Fan-out}
-  
+
+
+ \subsection{Dual Rail Logic and Fan-out Gates}
+
+  As shown in \cite{Becker2013f}, {\sc and} and {\sc or} can be implemented with single particles.  However, particle logic is \emph{conservative}---particles are neither created nor destroyed--and we were unable to implement a {\sc not} gate. To implement {\sc not} gates and other logic we used \emph{dual-rail logic}, where two lines for each input are supplied to explicitly represent the variable and its complement~\cite{Becker2014a}. Here, we show that dual rail logic is necessary, as single rail logic is insufficient to produce a {\sc not} gate. 
+
   The \emph{fan-out} of a logic gate output is the number of gate inputs it can feed or connect to.  With particle logic, as demonstrated in  \cite{Becker2014}, each logic gate output could fan-out to only one gate.  This is sufficient for \emph{sum of products} and \emph{product of sums}  operations in CPLDs (complex programmable logic devices), but insufficient for more flexible architectures.
   %  In digital electronics, the fan-out of a logic gate output is the number of gate inputs it can feed or connect to.
 %In most designs, logic gates are connected to form more complex circuits. While no more than one logic gate output is connected to any single input, it is common for one output to be connected to several inputs. The technology used to implement logic gates usually allows a certain number of gate inputs to be wired directly together without additional interfacing circuitry. The maximum fan-out of an output measures its load-driving capability: it is the greatest number of inputs of gates of the same type to which the output can be safely connected. http://en.wikipedia.org/wiki/fan-out
 %  
-    Consider the half-adder shown in Fig.~\ref{fig:HalfAdder}.  The inputs $\mathbf{A}$ and  $\mathbf{B}$ are needed to compute both the {\sc sum} and the {\sc carry} bits, so the fanout of $\mathbf{A}$ and  $\mathbf{B}$ is two.
+    Consider the half-adder shown in Fig.~\ref{fig:HalfAdder}.  The inputs $\mathbf{A}$ and  $\mathbf{B}$ are needed to compute both the {\sc sum} and the {\sc carry} bits, so the fanout of $\mathbf{A}$ and  $\mathbf{B}$ is two. In this paper we prove the insufficiency of unit sized particles for the implementation of fan out gates, and design a fan out gate using $2\times 1$ particles. 
   
   
-{\sc and} and {\sc or} can be implemented with particles, as shown in \cite{Becker2013f}.  However, particle logic is \emph{conservative}---particles are neither created nor destroyed--and we were unable to implement a {\sc not} gate. To implement {\sc not} gates and other logic we used \emph{dual-rail logic}, where two lines for each input are supplied to explicitly represent the variable and its complemen~\cite{Becker2014a}. 
+
 
 
 %%%%%Unfounded Assertation... would be a cool proof later. Can we reverse particle logic? 
@@ -241,6 +232,22 @@ The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}
 
 
 
+  
+ 
+  
+    \subsection{Contributions}
+  
+ After a brief overview of related work,  the contributions of this paper are as listed:
+  \begin{enumerate}
+  \item prove the necessity of dual-rail logic for Boolean logic (Section \ref{sec:theory})
+  \item prove the insufficiency of unit-size particles for gate fan-out (Section \ref{sec:theory})
+  \item design {\sc fan-out} gates (Section \ref{sec:FanOut})
+  \item design memory latches (Section \ref{subsec:Storage})
+  \item present architecture for device integration, design a common clock sequence, and present a binary counter (Section \ref{sec:binaryCounter})
+    \end{enumerate}
+  
+  
+ 
 
 %###############################################################
 \section{Related Work}\label{sec:RelatedWork}
@@ -269,39 +276,42 @@ First we provide terminology to define how robots interact with each other.
 %When each $M(k)$, in a particular command sequence $M$, is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for move $M(k)$, the robot $a$ ends at location $(x,y)$. With the addition of more robots,  it is possible for one robot to hit another.
 
 \paragraph{Definition of hit}
-During move $M(k)$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $(x,y)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $M(k)$ will be $(x,y)$ and robot $a$'s location at the end of $M(k)$ can be calculated as follows:
+During move $m_k$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $\bar{x}=(x,y)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $m_k$ will be $\bar{x}$ and robot $a$'s location at the end of $m_k$ can be calculated as follows:
 \begin{displaymath}
     \left\{
      \begin{array}{ll}
-       (x-1,y) &\text{if }M(k)=r\\
-       (x+1,y) &\text{if }M(k)=l\\
-       (x,y-1) &\text{if }M(k)=u\\
-       (x,y+1) &\text{if }M(k)=d\\
+       (x-1,y) &\text{if }m_k=r\\
+       (x+1,y) &\text{if }m_k=l\\
+       (x,y-1) &\text{if }m_k=u\\
+       (x,y+1) &\text{if }m_k=d\\
      \end{array}
    \right.
 \end{displaymath} 
 
 \paragraph{Definition of path}
-As robot $r$ travels from $s$ to $g$ it passes through a sequence of locations $\{s,\ldots,g\}$.  We call this sequence of locations $r$'s \emph{path}. 
+As robot $r$ travels from $\bar{s}$ to $\bar{g}$, it passes through a sequence of locations $\{\bar{s},\ldots,\bar{g}\}$.  We call this sequence of locations $r$'s \emph{path}. 
 
 \begin{lemma}\label{lemma:changeInHitsNeededToChangePath}
-Given a workspace $W$, a command sequence $M$, and a robot $r$ traveling along a path beginning at location $s$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
+Given a workspace $W$, a command sequence $M$, and a robot $r$ traveling along a path beginning at location $\bar{s}$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
 \end{lemma}
 
 \begin{proof}
-By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by four factors: the starting location of the robot, the command sequence, obstacles,  and encounters with other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, receive the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  
+By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by four factors: the starting location of the robot, the command sequence, obstacles in the workspace,  and encounters with other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, receive the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  Note that $r$'s path is still unchanged if it is hit by another robot. According to our definition fo a hit, if robot$q$ hits $r$, then $r$'s path is unchanged, while if robot $r$ hits $q$ then $r$'s path is changed. 
 \end{proof}
 
+Now we show that adding more unit sized robots cannot prevent a location form being occupied at the end of the command sequence.
+
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation}
-If given an workspace $W$ and a command sequence $M$ that moves a robot initially at $s$ to a goal location $g$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $g$ from being occupied at the conclusion of sequence $M$.
+If given an workspace $W$ and a command sequence $M$ that moves a robot initially at $\bar{s}$ to a goal location $\bar{g}$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $\bar{g}$ from being occupied at the conclusion of sequence $M$.
 \end{theorem}
 
 \begin{proof} 
-This theorem addresses how adding more robots can effect the final outcome. 
+%This theorem addresses how adding more robots can effect the final outcome. 
 
-Consider the effect of adding robot $b$ to workspace $W$. If no hit occurs between $a$ and $b$, then $a$ follows by the same path, and by Lemma \ref{lemma:changeInHitsNeededToChangePath}, the path remains the same. Therefore, at the conclusion of $M$, $a$ occupies $g$. 
+Consider the effect of adding robot $b$ to workspace $W$. If $a$ never hits $b$, then by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $a$'s path remains the same. Therefore, at the conclusion of $M$, $a$ occupies $\bar{g}$. 
 
-Suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $(x,y)$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $g$. Thus by adding more robots, it is impossible to prevent some robot from occupying $g$ at the conclusion of $M$.  \textcolor{blue}{Should we say something about multiple hits (an inductive proof)? }
+Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bar{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bar{g}$. By induction, we can clearly see that adding additional robots will have the same effect. If $b$ hits any other robot this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bar{g}$ at the conclusion of $M$.  
+%\textcolor{blue}{Should we say something about multiple hits (an inductive proof)? }
 \end{proof}
 
 \begin{corollary}
@@ -309,29 +319,34 @@ A  {\sc not} gate without dual-rail inputs cannot be constructed
 \end{corollary}
 \begin{proof}
 By contradiction.
-A particle logic {\sc not} gate without dual-rail inputs has one input at $s$, one output at $g$, an arbitrary number of asserted inputs which are all initially occupied, and an arbitrary number of waste outputs.
-Given a command sequence $M$:  
+A particle logic {\sc not} gate without dual-rail inputs has one input at $\bar{s}$, one output at $\bar{g}$, an arbitrary, possibly zero, number of asserted inputs which are all initially occupied, and an arbitrary, possibly zero, number of waste outputs.
+
+In order for the {\sc not} gate conditions to be satisified, given a command sequence $M$:  
 \begin{enumerate}
-\item if $s$ is initially unoccupied, $g$ must be occupied at the conclusion of $M$
-\item if $s$ is initially occupied, $g$ must be unoccupied at the conclusion of $M$ 
+\item if $\bar{s}$ is initially unoccupied, $\bar{g}$ must be occupied at the conclusion of $M$
+\item if $\bar{s}$ is initially occupied, $\bar{g}$ must be unoccupied at the conclusion of $M$ 
 \end{enumerate}
-By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $s$ initially unoccupied results in $g$ being occupied at the conclusion of $M$, the addition of a robot at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
+By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bar{s}$ initially unoccupied results in $\bar{g}$ being occupied by soem robot $r$ at the conclusion of $M$, then the addition of a robot $q$ at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
 \end{proof}
 
+This shows that dual rail logic is necessary for the formation of {\sc not} gates. 
+
+Additionally, we would like to show that $1\times1$ robots are insufficient to produce fan out gates. In order to do this we need to examine both the possibilities when we add additional robots to the scenario, as well as the possibilities when we remove robots.  
+
 \begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
-If given an workspace $W$ and a command sequence $M$ that moves two robots, $r_1$ and $r_2$, initially at $s_1$ and $s_2$ to respective goal locations $g_1$ and $g_2$, then removing one robot results in either $g_1$ or $g_2$ being occupied at the conclusion of $M$.
+If given an workspace $W$ and a command sequence $M$ that moves two robots, $r_1$ and $r_2$, initially at $\bar{s}_1$ and $\bar{s}_2$ to respective goal locations $\bar{g}_1$ and $\bar{g}_2$, then removing one robot results in either $\bar{g}_1$ or $\bar{g}_2$ being occupied at the conclusion of $M$.
 \end{theorem}
 
 \begin{proof} 
-In $W$ under $M$, either $r_1$ and $r_2$ hit at least once, or they never hit. Without loss of generality, robot $r_1$ is removed. 
+ Without loss of generality, robot $r_1$ is removed. 
 
-First suppose $r_2$ never hits $r_1$. Then the removal of $r_1$ will not affect the path of $r_2$. Robot $r_2$ has the same number of hits that it had before the removal of $r_1$ and so by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $r_2$ will follow the same path and occupy $g_2$ at the conclusion. 
+First suppose $r_2$ never hits $r_1$. Then the removal of $r_1$ will not affect the path of $r_2$. Robot $r_2$ has the same number of hits that it had before the removal of $r_1$ and so by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $r_2$ will follow the same path and occupy $\bar{g}_2$ at the conclusion. 
 
-Alternatively, suppose $r_2$ hit $r_1$ when $r_1$ was occupying location $(x,y)$. Since $r_1$ is removed, it no longer occupies $(x,y)$ during this move, and $(x,y)$ becomes $r_2$'s new location. $r_2$ now proceeds along the path previously traveled by $r_1$. Effectively, $r_2$ has replaced $r_1$.  Successive hits between $r_2$ and $r_1$ in the original scenario are resolved in the same manner.
+Alternatively, suppose $r_2$ hit $r_1$ when $r_1$ was occupying location $\bar{x}$. Since $r_1$ is removed, it no longer occupies $\bar{x}$ during this move, and $\bar{x}$ becomes $r_2$'s new location. $r_2$ now proceeds along the path previously traveled by $r_1$. Effectively, $r_2$ has replaced $r_1$ and follows the path until it reaches $\bar{g}_1$. Successive hits between $r_2$ and $r_1$ in the original scenario are resolved in the same manner.
 \end{proof}
 
 \begin{corollary}\label{cor:No1x1FanOut}
-A  {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
+A  conservative dual logic {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
 \end{corollary}
 
   \begin{table}
@@ -351,17 +366,19 @@ A  {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
   \label{tab:Fanout}
 \end{table}
 
-\textcolor{red}{I think we have all the pieces here, but we need to say something about it being conservative. That is a key piece of our argument here. }
-\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
+%\textcolor{red}{I think we have all the pieces here, but we need to say something about it being conservative. That is a key piece of our argument here. }
+%\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
-\begin{proof} By contradiction.
-Consider a  {\sc fan-out} gate $W$,  dual-rail inputs  $s_{a}$, $s_{\bar{a}}$, dual rail outputs  $\{g_{a1}, g_{a2},g_{\bar{a}1},g_{\bar{a}2}\}$, and one or more supply locations initially occupied. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $M$:  
+\begin{proof} We assume such a {\sc fan-out} gate exists and reach a constradiction. 
+Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bar{s}_{a}$, $\bar{s}_{\bar{a}}$, and dual rail output locations  $\{\bar{g}_{a_1}, \bar{g}_{a_2},\bar{g}_{\bar{a}_1},\bar{g}_{\bar{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bar{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $M$:  
 \begin{enumerate}
-\item if $s_{a}$ is initially occupied and $s_{\bar{a}}$ vacant, at the conclusion of $M$ $g_{a1}$ and $g_{a2}$ are occupied and the locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are vacant.
-\item if $s_{a}$ is initially vacant and $s_{\bar{a}}$ occupied, at the conclusion of $M$ $g_{a1}$ and $g_{a2}$ are vacant and the locations  $g_{\bar{a}1}$ and $g_{\bar{a}2}$ are occupied.
+\item if $\bar{s}_{a}$  and $\bar{s}_r$ are initially occupied and $\bar{s}_{\bar{a}}$ vacant, at the conclusion of $M$ $\bar{g}_{a_1}$ and $\bar{g}_{a_2}$ are occupied and the locations  $\bar{g}_{\bar{a}_1}$ and $\bar{g}_{\bar{a}_2}$ are vacant.
+\item if $\bar{s}_{a}$ is initially vacant and $\bar{s}_{\bar{a}}$ and $\bar{s}_r$ are occupied, at the conclusion of $M$ $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\bar{a}_1}$ and $g_{\bar{a}_2}$ are occupied.
 \end{enumerate}
 
-However, if input $s_{a}$ is initially vacant, by Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $g_{a1}$ or $g_{a2}$ must be occupied at the conclusion of $M$.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent one of $g_{a1}$ and $g_{a2}$ being filled, thus arriving at a contradiction.
+We will now assume that condition 1, above, is the original scenerio and  add and subtract robots, applying theorems ~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and ~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
+
+Assume condition 1. Robots $a$ and $r$ start at $\bar{s}_{a}$ and $\bar{s}_r$  respectively and at the conclusion of $M$, the locations  $\bar{g}_{a1}$ and $\bar{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bar{g}_{a_1}$ or $\bar{g}_{a_2}$ must be occupied at the conclusion of $M$. Suppose without loss of generality that $\bar{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent $\bar{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bar{g}_{a_1}$ must be vacant, thus no such gate is possible. 
  \end{proof}
 
 \begin{table}
