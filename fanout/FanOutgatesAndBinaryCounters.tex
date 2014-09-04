@@ -159,11 +159,9 @@ Particle Computation:  Device Fan-out and Binary Memory
 Rose Morris-Wright,
 Erik D. Demaine,
 S\'andor P. Fekete
-\thanks{{A. Becker is with the Department of Cardiovascular Surgery,  Boston Children's Hospital and Harvard Medical School, Boston, MA, 02115 USA {\tt\small \{first name.lastname\}@childrens.harvard.edu}, 
+\thanks{{A. Becker is with the University of  Dept.~of Electrical and Computer Engineering, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}, 
 R. Morris-Wright  \protect\url{rmorriswright@gmail.com},
-E. Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT,
-     Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
-  % James McLurkin,  Department of Computer Science, Rice University, Houston, TX 77005, \protect\url{jm23@rice.edu}, 
+E. Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
 S. Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
       \protect\url{s.fekete@tu-bs.de}.
 }
@@ -208,13 +206,13 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
   %  In digital electronics, the fan-out of a logic gate output is the number of gate inputs it can feed or connect to.
 %In most designs, logic gates are connected to form more complex circuits. While no more than one logic gate output is connected to any single input, it is common for one output to be connected to several inputs. The technology used to implement logic gates usually allows a certain number of gate inputs to be wired directly together without additional interfacing circuitry. The maximum fan-out of an output measures its load-driving capability: it is the greatest number of inputs of gates of the same type to which the output can be safely connected. http://en.wikipedia.org/wiki/fan-out
 %  
-    Consider the half-adder shown in Fig.~\ref{fig:HalfAdder}.  The inputs $\mathbf{A}$ and  $\mathbf{B}$ are needed to compute both the {\sc sum} and the {\sc carry} bits, so the fanout of $\mathbf{A}$ and  $\mathbf{B}$ is two. In this paper we prove the insufficiency of unit sized particles for the implementation of fan out gates, and design a fan out gate using $2\times 1$ particles. 
+    Consider the half-adder shown in Fig.~\ref{fig:HalfAdder}.  The inputs $\mathbf{A}$ and  $\mathbf{B}$ are needed to compute both the {\sc sum} and the {\sc carry} bits, so the fanout of $\mathbf{A}$ and  $\mathbf{B}$ is two. In this paper we prove the insufficiency of unit sized particles for the implementation of fan-out gates, and design a fan-out gate using $2\times 1$ particles. 
   
   
 
 
 
-%%%%%Unfounded Assertation... would be a cool proof later. Can we reverse particle logic? 
+%%%%%Unfounded Assertion... would be a cool proof later. Can we reverse particle logic? 
 %Unfortunately particle logic is not reversible.   The {\sc or} gate outputs a 1 if either input is asserted, but afterwards we cannot determine which input was high.  This makes implementing a {\sc fan-out} gate impossible with unit size particles and obstacles.
 %\textcolor{red}{This paragraph is confusing to me. You're making a lot of assertions and there are a lot of different ideas that aren't fully explained or backed up. Either split it into several paragraphs where you can explain each idea in more detail or save these ideas for later in the paper when you can support them more fully. This is a good place to define dual-real logic and conservative but perhaps we can find a way to do it and leave these assertions for later on.}
 
@@ -229,13 +227,7 @@ The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}
 \vspace{-1em}
 \end{figure}
 
-
-
-
-  
- 
-  
-    \subsection{Contributions}
+\subsection{Contributions}
   
  After a brief overview of related work,  the contributions of this paper are as listed:
   \begin{enumerate}
@@ -245,9 +237,6 @@ The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}
   \item design memory latches (Section \ref{subsec:Storage})
   \item present architecture for device integration, design a common clock sequence, and present a binary counter (Section \ref{sec:binaryCounter})
     \end{enumerate}
-  
-  
- 
 
 %###############################################################
 \section{Related Work}\label{sec:RelatedWork}
@@ -321,17 +310,17 @@ A  {\sc not} gate without dual-rail inputs cannot be constructed
 By contradiction.
 A particle logic {\sc not} gate without dual-rail inputs has one input at $\bar{s}$, one output at $\bar{g}$, an arbitrary, possibly zero, number of asserted inputs which are all initially occupied, and an arbitrary, possibly zero, number of waste outputs.
 
-In order for the {\sc not} gate conditions to be satisified, given a command sequence $M$:  
+In order for the {\sc not} gate conditions to be satisfied, given a command sequence $M$:  
 \begin{enumerate}
 \item if $\bar{s}$ is initially unoccupied, $\bar{g}$ must be occupied at the conclusion of $M$
 \item if $\bar{s}$ is initially occupied, $\bar{g}$ must be unoccupied at the conclusion of $M$ 
 \end{enumerate}
-By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bar{s}$ initially unoccupied results in $\bar{g}$ being occupied by soem robot $r$ at the conclusion of $M$, then the addition of a robot $q$ at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
+By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bar{s}$ initially unoccupied results in $\bar{g}$ being occupied by some robot $r$ at the conclusion of $M$, then the addition of a robot $q$ at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
 \end{proof}
 
 This shows that dual rail logic is necessary for the formation of {\sc not} gates. 
 
-Additionally, we would like to show that $1\times1$ robots are insufficient to produce fan out gates. In order to do this we need to examine both the possibilities when we add additional robots to the scenario, as well as the possibilities when we remove robots.  
+Additionally, we would like to show that $1\times1$ robots are insufficient to produce fan-out gates. In order to do this we need to examine both the possibilities when we add additional robots to the scenario, as well as the possibilities when we remove robots.  
 
 \begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
 If given an workspace $W$ and a command sequence $M$ that moves two robots, $r_1$ and $r_2$, initially at $\bar{s}_1$ and $\bar{s}_2$ to respective goal locations $\bar{g}_1$ and $\bar{g}_2$, then removing one robot results in either $\bar{g}_1$ or $\bar{g}_2$ being occupied at the conclusion of $M$.
@@ -362,21 +351,21 @@ A  conservative dual logic {\sc fan-out} gate cannot be constructed using only 1
 %\bottomrule
 \end{array}
 \end{displaymath}
-\caption{{\sc fan-out} operation. This cannot be implemented with 1$\times$1 particles and obstacles.   Our technique uses 2$\times$1 particles. }
+\caption{{\sc fan-out} operation. This cannot be implemented with 1$\times$1 particles and obstacles. Our technique uses 2$\times$1 particles. }
   \label{tab:Fanout}
 \end{table}
 
 %\textcolor{red}{I think we have all the pieces here, but we need to say something about it being conservative. That is a key piece of our argument here. }
 %\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
-\begin{proof} We assume such a {\sc fan-out} gate exists and reach a constradiction. 
+\begin{proof} We assume such a {\sc fan-out} gate exists and reach a contradiction. 
 Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bar{s}_{a}$, $\bar{s}_{\bar{a}}$, and dual rail output locations  $\{\bar{g}_{a_1}, \bar{g}_{a_2},\bar{g}_{\bar{a}_1},\bar{g}_{\bar{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bar{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $M$:  
 \begin{enumerate}
 \item if $\bar{s}_{a}$  and $\bar{s}_r$ are initially occupied and $\bar{s}_{\bar{a}}$ vacant, at the conclusion of $M$ $\bar{g}_{a_1}$ and $\bar{g}_{a_2}$ are occupied and the locations  $\bar{g}_{\bar{a}_1}$ and $\bar{g}_{\bar{a}_2}$ are vacant.
 \item if $\bar{s}_{a}$ is initially vacant and $\bar{s}_{\bar{a}}$ and $\bar{s}_r$ are occupied, at the conclusion of $M$ $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\bar{a}_1}$ and $g_{\bar{a}_2}$ are occupied.
 \end{enumerate}
 
-We will now assume that condition 1, above, is the original scenerio and  add and subtract robots, applying theorems ~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and ~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
+We will now assume that condition 1, above, is the original scenario and  add and subtract robots, applying theorems ~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and ~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
 
 Assume condition 1. Robots $a$ and $r$ start at $\bar{s}_{a}$ and $\bar{s}_r$  respectively and at the conclusion of $M$, the locations  $\bar{g}_{a1}$ and $\bar{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bar{g}_{a_1}$ or $\bar{g}_{a_2}$ must be occupied at the conclusion of $M$. Suppose without loss of generality that $\bar{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent $\bar{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bar{g}_{a_1}$ must be vacant, thus no such gate is possible. 
  \end{proof}
@@ -476,11 +465,9 @@ The {\sc fan-out} gate can drive multiple outputs. Here a single input drives fo
 \vspace{-1em}
 \end{figure}
 
-
 \subsection{Data Storage\label{subsec:Storage}}
 
 A general-purpose computer must be able to store data.  A $2\times1$ particle enables us to construct a read/writable data storage for one bit. A single-bit data storage latch is shown in Fig.~\ref{fig:Memory} and implements the truth table in Table \ref{tab:memoryTruthTable}.     By combining an $n$-out {\sc fan-out} gate shown in Fig~\ref{fig:Fanout4} with $n$ data storage devices, we can implement an $n$ bit memory. To maintain \emph{conservative} properties of the computer, i.e. the same number of robots enter and leave each gate,  single-bit data storage latches must be used in pairs to record the state and its inverse.
-
 
  \begin{figure*}
 \begin{overpic}[width =2\columnwidth]{MemoryElement.pdf}
@@ -491,7 +478,6 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
 }
 \vspace{-1em}
 \end{figure*}
-
 
 \begin{table}
 \begin{displaymath}
@@ -519,7 +505,6 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
   \caption{A single-bit data storage latch with state $Q$.  \label{tab:memoryTruthTable}}
 \end{table}
   
-
 \subsection{A binary counter}\label{sec:binaryCounter}
   Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate.  
   
@@ -560,7 +545,9 @@ With our current CW clock cycle, we cannot have outputs at the same column as in
 %###############################################################
 \section{Conclusion}\label{sec:Conclusion}
 %###############################################################
-In this paper we... (copy over from intro)
+In this paper we proved the necessity of dual-rail logic for Boolean logic;  proved the insufficiency of unit-size particles for gate fan-out; designed {\sc fan-out} gates and memory latches; and presented architecture for device integration,  a common clock sequence, and a binary counter.
+
+This work, along with \cite{Becker2013f,Becker2014,Becker2014a}, introduces a new model for mechanical computation.  Interesting applications may exist at the nanoscale and for microfluidics work.
 
     
 %\section{Acknowledgements}
