@@ -1,6 +1,7 @@
 % easy truth tables: http://www.kwi.dk/projects/php/truthtable/?
 %  177199 Hamed Mohtasham shad
 % 177228 Rose Morris-Wright
+% we can submit papers on the 16th of September
 \pdfobjcompresslevel=0  % I had adobe error 131, and this removed it: http://tex.stackexchange.com/questions/64448/how-to-overcome-acrobat-reader-error-131-with-a-pdflatex-doc
 
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}
@@ -159,10 +160,10 @@ Particle Computation:  Device Fan-out and Binary Memory
 Rose Morris-Wright,
 Erik D. Demaine,
 S\'andor P. Fekete
-\thanks{{A. Becker is with the University of  Dept.~of Electrical and Computer Engineering, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}, 
-R. Morris-Wright  \protect\url{rmorriswright@gmail.com},
-E. Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
-S. Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
+\thanks{{A.~Becker is with the University of  Dept.~of Electrical and Computer Engineering, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}, 
+R.~Morris-Wright  \protect\url{rmorriswright@gmail.com},
+E.~Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
+S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
       \protect\url{s.fekete@tu-bs.de}.
 }
 } %\end thanks
@@ -172,7 +173,7 @@ S. Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpford
 
 
 \begin{abstract} %because such a gate depends on particle priority, and our particles are indistinguishable.
-Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated \emph{particle computation} in this world, designing obstacle configurations that implement {\sc and} and {\sc or} logic gates.  By using dual-rail logic, we designed {\sc not, nor, nand, xor, xnor} logic gates.  However, we could not implement a {\sc fan-out} gate. This prevented us from creating arbitrary digital circuits.  In this work we prove unit-sized robots cannot generate a {\sc fan-out} gate.  We introduce $2\times 1$ robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
+Consider a 2D grid world, where all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. We demonstrated \emph{particle computation} in this world, designing obstacle configurations that implement {\sc and} and {\sc or} logic gates.  By using dual-rail logic, we designed {\sc not, nor, nand, xor, xnor} logic gates.  However, we could not implement a {\sc fan-out} gate. This prevented us from creating arbitrary digital circuits.  In this work we prove unit-sized robots cannot generate a {\sc fan-out} gate.  We introduce 2$\times$1 robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we can create complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.
    We also implement a data storage element.
    %Flip-flops and latches are used as data storage elements.
 \end{abstract}
@@ -192,9 +193,9 @@ Consider a 2D grid world, where all obstacles and robots are unit squares, and f
   
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, using the following rules:
 \begin{enumerate}
-\item A planar  grid \emph{workspace} $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bar{x}=(x,y)$.
+\item A planar  grid \emph{workspace} $W$ is filled with some unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
 \item All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
-\item The robots all move in the commanded direction until they hit an obstacle or a stationary robot. A \emph{command sequence} $M$ consists of a ordered sequence of moves $m_k$ where each $m_k\in\{u,d,r,l\}$  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the robots to reach their maximum extent.
+\item The robots all move in the commanded direction until they hit an obstacle or a stationary robot. A \emph{command sequence} $\bm{m}$ consists of a ordered sequence of moves $m_k$ where each $m_k\in\{u,d,r,l\}$  A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the robots to reach their maximum extent.
 \end{enumerate}
 
 
@@ -241,7 +242,7 @@ The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}
 %###############################################################
 \section{Related Work}\label{sec:RelatedWork}
 %###############################################################
-Our efforts have similarities with \emph{mechanical computers},  computers constructed from mechanical, not electrical components. For a fascinating nontechnical review, see \cite{McCourtney1999}.  These devices have a rich history, from the \emph{Pascaline}, an adding machine invented in 1642 by a nineteen-year old Blaise Pascal; Herman Hollerith's punch card tabulator in 1890; to the mechanical devices of IBM culminating in the 1940s.  These devices used precision gears, pulleys, or electric motors to carry out calculations.  Though our {\sc Grid-World} implementations may seem anachronistic, note that we require none of these precision elements---merely unit-size obstacles,  and $2\times1$ and $1\times1$ sliding particles.
+Our efforts have similarities with \emph{mechanical computers},  computers constructed from mechanical, not electrical components. For a fascinating nontechnical review, see \cite{McCourtney1999}.  These devices have a rich history, from the \emph{Pascaline}, an adding machine invented in 1642 by a nineteen-year old Blaise Pascal; Herman Hollerith's punch card tabulator in 1890; to the mechanical devices of IBM culminating in the 1940s.  These devices used precision gears, pulleys, or electric motors to carry out calculations.  Though our {\sc Grid-World} implementations may seem anachronistic, note that we require none of these precision elements---merely unit-size obstacles,  and sliding particles sized 2$\times$1 and 1$\times$1.
 %Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the associated press when it was announced in the 1940s. 
 
 \subsection{Collision-based computing}
@@ -262,10 +263,10 @@ Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can
 First we provide terminology to define how robots interact with each other. 
 
 %  AARON: I think this line just restated what was said inSection 1-A
-%When each $M(k)$, in a particular command sequence $M$, is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for move $M(k)$, the robot $a$ ends at location $(x,y)$. With the addition of more robots,  it is possible for one robot to hit another.
+%When each $M(k)$, in a particular command sequence $\bm{m}$, is executed all robots move in the specified direction until they are stopped by an obstacle or another robot. Suppose for move $M(k)$, the robot $a$ ends at location $(x,y)$. With the addition of more robots,  it is possible for one robot to hit another.
 
 \paragraph{Definition of hit}
-During move $m_k$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $\bar{x}=(x,y)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $m_k$ will be $\bar{x}$ and robot $a$'s location at the end of $m_k$ can be calculated as follows:
+During move $m_k$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reaching location $\bm{x}=(x,y)$ because robot $b$ occupies this location. Robot $b$'s location at the end of $m_k$ will be $\bm{x}$ and robot $a$'s location at the end of $m_k$ can be calculated as follows:
 \begin{displaymath}
     \left\{
      \begin{array}{ll}
@@ -278,28 +279,26 @@ During move $m_k$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reac
 \end{displaymath} 
 
 \paragraph{Definition of path}
-As robot $r$ travels from $\bar{s}$ to $\bar{g}$, it passes through a sequence of locations $\{\bar{s},\ldots,\bar{g}\}$.  We call this sequence of locations $r$'s \emph{path}. 
+As robot $r$ travels from $\bm{s}$ to $\bm{g}$, it passes through a sequence of locations $\{\bm{s},\ldots,\bm{g}\}$.  We call this sequence of locations $r$'s \emph{path}. 
 
 \begin{lemma}\label{lemma:changeInHitsNeededToChangePath}
-Given a workspace $W$, a command sequence $M$, and a robot $r$ traveling along a path beginning at location $\bar{s}$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
+Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
 \end{lemma}
 
 \begin{proof}
-By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by four factors: the starting location of the robot, the command sequence, obstacles in the workspace,  and encounters with other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, receive the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  Note that $r$'s path is still unchanged if it is hit by another robot. According to our definition fo a hit, if robot$q$ hits $r$, then $r$'s path is unchanged, while if robot $r$ hits $q$ then $r$'s path is changed. 
+By definition, the path is the sequence of locations occupied by the robot. The path is entirely determined by four factors: the starting location of the robot, the command sequence, obstacles in the workspace,  and encounters with other robots already occupying free locations. If no hits with other robots are added or subtracted, then robot $r$ will start in the same place, receive the same command sequence and encounter the same obstacles, so robot $r$'s path will remain unchanged.  Note that $r$'s path is still unchanged if it is hit by another robot. According to our definition of a hit, if robot $q$ hits $r$, then $r$'s path is unchanged, while if robot $r$ hits $q$ then $r$'s path is changed. 
 \end{proof}
 
-Now we show that adding more unit sized robots cannot prevent a location form being occupied at the end of the command sequence.
+Now we show that adding more unit sized robots cannot prevent a location from being occupied at the end of the command sequence.
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation}
-If given an workspace $W$ and a command sequence $M$ that moves a robot initially at $\bar{s}$ to a goal location $\bar{g}$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $\bar{g}$ from being occupied at the conclusion of sequence $M$.
+If given an workspace $W$ and a command sequence $\bm{m}$ that moves a robot initially at $\bm{s}$ to a goal location $\bm{g}$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $\bm{g}$ from being occupied at the conclusion of sequence $\bm{m}$.
 \end{theorem}
 
-\begin{proof} 
 %This theorem addresses how adding more robots can effect the final outcome. 
+\begin{proof} Consider the effect of adding robot $b$ to workspace $W$. If $a$ never hits $b$, then by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $a$'s path remains the same. Therefore, at the conclusion of $\bm{m}$, $a$ occupies $\bm{g}$. 
 
-Consider the effect of adding robot $b$ to workspace $W$. If $a$ never hits $b$, then by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $a$'s path remains the same. Therefore, at the conclusion of $M$, $a$ occupies $\bar{g}$. 
-
-Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bar{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bar{g}$. By induction, we can clearly see that adding additional robots will have the same effect. If $b$ hits any other robot this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bar{g}$ at the conclusion of $M$.  
+Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bm{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bm{g}$. By induction, we can clearly see that adding additional robots will have the same effect. If $b$ hits any other robot this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bm{g}$ at the conclusion of $\bm{m}$.  
 %\textcolor{blue}{Should we say something about multiple hits (an inductive proof)? }
 \end{proof}
 
@@ -308,30 +307,30 @@ A  {\sc not} gate without dual-rail inputs cannot be constructed
 \end{corollary}
 \begin{proof}
 By contradiction.
-A particle logic {\sc not} gate without dual-rail inputs has one input at $\bar{s}$, one output at $\bar{g}$, an arbitrary, possibly zero, number of asserted inputs which are all initially occupied, and an arbitrary, possibly zero, number of waste outputs.
+A particle logic {\sc not} gate without dual-rail inputs has one input at $\bm{s}$, one output at $\bm{g}$, an arbitrary, possibly zero, number of asserted inputs which are all initially occupied, and an arbitrary, possibly zero, number of waste outputs.
 
-In order for the {\sc not} gate conditions to be satisfied, given a command sequence $M$:  
+In order for the {\sc not} gate conditions to be satisfied, given a command sequence $\bm{m}$:  
 \begin{enumerate}
-\item if $\bar{s}$ is initially unoccupied, $\bar{g}$ must be occupied at the conclusion of $M$
-\item if $\bar{s}$ is initially occupied, $\bar{g}$ must be unoccupied at the conclusion of $M$ 
+\item if $\bm{s}$ is initially unoccupied, $\bm{g}$ must be occupied at the conclusion of $\bm{m}$
+\item if $\bm{s}$ is initially occupied, $\bm{g}$ must be unoccupied at the conclusion of $\bm{m}$ 
 \end{enumerate}
-By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bar{s}$ initially unoccupied results in $\bar{g}$ being occupied by some robot $r$ at the conclusion of $M$, then the addition of a robot $q$ at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
+By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bm{s}$ initially unoccupied results in $\bm{g}$ being occupied by some robot $r$ at the conclusion of $\bm{m}$, then the addition of a robot $q$ at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
 \end{proof}
 
 This shows that dual rail logic is necessary for the formation of {\sc not} gates. 
 
-Additionally, we would like to show that $1\times1$ robots are insufficient to produce fan-out gates. In order to do this we need to examine both the possibilities when we add additional robots to the scenario, as well as the possibilities when we remove robots.  
+Additionally, we would like to show that $1\times1$ robots are insufficient to produce fan-out gates. To do this we must examine the possibilities both when we add additional robots to the scenario, as well as when we remove robots.  
 
 \begin{theorem}\label{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal} 
-If given an workspace $W$ and a command sequence $M$ that moves two robots, $r_1$ and $r_2$, initially at $\bar{s}_1$ and $\bar{s}_2$ to respective goal locations $\bar{g}_1$ and $\bar{g}_2$, then removing one robot results in either $\bar{g}_1$ or $\bar{g}_2$ being occupied at the conclusion of $M$.
+If given a workspace $W$ and a command sequence $\bm{m}$ that moves two robots, $r_1$ and $r_2$, initially at $\bm{s}_1$ and $\bm{s}_2$ to respective goal locations $\bm{g}_1$ and $\bm{g}_2$, then removing one robot results in either $\bm{g}_1$ or $\bm{g}_2$ being occupied at the conclusion of $\bm{m}$.
 \end{theorem}
 
 \begin{proof} 
- Without loss of generality, robot $r_1$ is removed. 
+Without loss of generality, robot $r_1$ is removed. 
 
-First suppose $r_2$ never hits $r_1$. Then the removal of $r_1$ will not affect the path of $r_2$. Robot $r_2$ has the same number of hits that it had before the removal of $r_1$ and so by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $r_2$ will follow the same path and occupy $\bar{g}_2$ at the conclusion. 
+First suppose $r_2$ never hits $r_1$. Then the removal of $r_1$ will not affect the path of $r_2$. Robot $r_2$ has the same number of hits that it had before the removal of $r_1$ and so by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $r_2$ will follow the same path and occupy $\bm{g}_2$ at the conclusion. 
 
-Alternatively, suppose $r_2$ hit $r_1$ when $r_1$ was occupying location $\bar{x}$. Since $r_1$ is removed, it no longer occupies $\bar{x}$ during this move, and $\bar{x}$ becomes $r_2$'s new location. $r_2$ now proceeds along the path previously traveled by $r_1$. Effectively, $r_2$ has replaced $r_1$ and follows the path until it reaches $\bar{g}_1$. Successive hits between $r_2$ and $r_1$ in the original scenario are resolved in the same manner.
+Alternatively, suppose $r_2$ hit $r_1$ when $r_1$ was occupying location $\bm{x}$. Since $r_1$ is removed, it no longer occupies $\bm{x}$ during this move, and $\bm{x}$ becomes $r_2$'s new location. $r_2$ now proceeds along the path previously traveled by $r_1$. Effectively, $r_2$ has replaced $r_1$ and follows the path until it reaches $\bm{g}_1$. Successive hits between $r_2$ and $r_1$ in the original scenario are resolved in the same manner.
 \end{proof}
 
 \begin{corollary}\label{cor:No1x1FanOut}
@@ -359,15 +358,15 @@ A  conservative dual logic {\sc fan-out} gate cannot be constructed using only 1
 %\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
 \begin{proof} We assume such a {\sc fan-out} gate exists and reach a contradiction. 
-Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bar{s}_{a}$, $\bar{s}_{\bar{a}}$, and dual rail output locations  $\{\bar{g}_{a_1}, \bar{g}_{a_2},\bar{g}_{\bar{a}_1},\bar{g}_{\bar{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bar{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $M$:  
+Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\bar{a}}$, and dual rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\bar{a}_1},\bm{g}_{\bar{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
 \begin{enumerate}
-\item if $\bar{s}_{a}$  and $\bar{s}_r$ are initially occupied and $\bar{s}_{\bar{a}}$ vacant, at the conclusion of $M$ $\bar{g}_{a_1}$ and $\bar{g}_{a_2}$ are occupied and the locations  $\bar{g}_{\bar{a}_1}$ and $\bar{g}_{\bar{a}_2}$ are vacant.
-\item if $\bar{s}_{a}$ is initially vacant and $\bar{s}_{\bar{a}}$ and $\bar{s}_r$ are occupied, at the conclusion of $M$ $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\bar{a}_1}$ and $g_{\bar{a}_2}$ are occupied.
+\item if $\bm{s}_{a}$  and $\bm{s}_r$ are initially occupied and $\bm{s}_{\bar{a}}$ vacant, at the conclusion of $\bm{m}$ $\bm{g}_{a_1}$ and $\bm{g}_{a_2}$ are occupied and the locations  $\bm{g}_{\bar{a}_1}$ and $\bm{g}_{\bar{a}_2}$ are vacant.
+\item if $\bm{s}_{a}$ is initially vacant and $\bm{s}_{\bar{a}}$ and $\bm{s}_r$ are occupied, at the conclusion of $\bm{m}$ $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\bar{a}_1}$ and $g_{\bar{a}_2}$ are occupied.
 \end{enumerate}
 
 We will now assume that condition 1, above, is the original scenario and  add and subtract robots, applying theorems ~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and ~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
 
-Assume condition 1. Robots $a$ and $r$ start at $\bar{s}_{a}$ and $\bar{s}_r$  respectively and at the conclusion of $M$, the locations  $\bar{g}_{a1}$ and $\bar{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bar{g}_{a_1}$ or $\bar{g}_{a_2}$ must be occupied at the conclusion of $M$. Suppose without loss of generality that $\bar{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent $\bar{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bar{g}_{a_1}$ must be vacant, thus no such gate is possible. 
+Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
  \end{proof}
 
 \begin{table}
