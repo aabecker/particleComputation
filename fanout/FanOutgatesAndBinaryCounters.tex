@@ -172,7 +172,7 @@ S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpford
 
 
 
-\begin{abstract} %because such a gate depends on particle priority, and our particles are indistinguishable.
+\begin{abstract} 
 We present fundamental progress on the computational universality of swarms of nano-scale robots
 in complex environments, controlled not by individual navigation, but by a uniform global, external force.
 Consider a 2D grid world, in which all obstacles and robots are unit squares,
@@ -190,7 +190,6 @@ of the inputs.  Using these gates we are able to establish the full range
 of computational universality as presented by complex digital circuits.  As
 an example we connect our logic elements to produce a 3-bit counter.  We also
 demonstrate how to implement a data storage element.
-   %Flip-flops and latches are used as data storage elements.
 \end{abstract}
 
 
@@ -583,7 +582,7 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
 \subsection{A binary counter}\label{sec:binaryCounter}
   Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate.  
   
-We illustrate how many gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}.  Six logic gates are used to implement a 3-bit counter.  A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}, and Fig.~\label{fig:CounterShowingEachStage} [MISSING?] shows the results of each computation stage. The counter  requires three {\sc fan-out} gates, two adders, and one carry.  Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
+We illustrate how many gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}.  Six logic gates are used to implement a 3-bit counter.  A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}, and Fig.~\ref{fig:CounterShowingEachStage}. The counter  requires three {\sc fan-out} gates, two adders, and one carry.  Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
 
 \begin{figure}
  \begin{overpic}[width =\columnwidth]{BinCounterCW000.png}\end{overpic}
@@ -595,6 +594,7 @@ A three-bit counter implemented with particles. The counter  requires three {\sc
 \vspace{-1em}
 \end{figure}
 
+
  \begin{figure}
  \begin{overpic}[width =\columnwidth]{counterSchem.pdf}\end{overpic}
 \caption{
@@ -604,15 +604,36 @@ Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor}
 \vspace{-1em}
 \end{figure}
 
+     \begin{figure*}
+ \begin{overpic}[width =0.49\columnwidth]{BinCounterCW000.png}\put(20,-6){$b_2b_1b_0=000$}\end{overpic}
+  \begin{overpic}[width =0.49\columnwidth]{BinCounterCW001.png}\put(20,-6){$b_2b_1b_0=001$}\end{overpic}
+   \begin{overpic}[width =0.49\columnwidth]{BinCounterCW010.png}\put(20,-6){$b_2b_1b_0=010$}\end{overpic}
+    \begin{overpic}[width =0.49\columnwidth]{BinCounterCW011.png}\put(20,-6){$b_2b_1b_0=011$}\end{overpic}\\
+    \vspace{0.1em}\\
+     \begin{overpic}[width =0.49\columnwidth]{BinCounterCW100.png}\put(20,-6){$b_2b_1b_0=100$}\end{overpic}
+      \begin{overpic}[width =0.49\columnwidth]{BinCounterCW101.png}\put(20,-6){$b_2b_1b_0=101$}\end{overpic}
+       \begin{overpic}[width =0.49\columnwidth]{BinCounterCW110.png}\put(20,-6){$b_2b_1b_0=110$}\end{overpic}
+        \begin{overpic}[width =0.49\columnwidth]{BinCounterCW111.png}\put(20,-6){$b_2b_1b_0=111$}\end{overpic}
+\vspace{.1em}\\
+\caption{
+\label{fig:CounterShowingEachStage}
+Ending configuration for each stage of the computation.
+}
+\end{figure*}
+
+
 \subsection{Scaling issues}
  Particle computation requires multiple clock cycles, workspace area for gates and interconnections, and many particles.  In this section we analyze how these scale with the size of the counter, using Fig.~\ref{fig:CounterBlockDiagram} as a reference.   
 
-\paragraph{gates}  an $n$-bit counter requires $n$ {\sc fan-out} gates, $n-1$ summers ({\sc xor}) gates, and $n-2$ carry ({\sc and}) gates. 
+%n+n-1+n-2 = 3(n-1)
+
+\paragraph{gates}  an $n$-bit counter requires $3(n-1)$ gates: $n$ {\sc fan-out} gates, $n-1$ summers ({\sc xor}) gates, and $n-2$ carry ({\sc and}) gates. 
 \paragraph{particles} we require $n$ 1$\times$1 particles, one for each bit and $n$ 2$\times$1 particles, one for each {\sc fan-out} gate.
 \paragraph{ propagation delay} the counter requires $n$ stages of logic, and $n$ corresponding wiring stages.  Each stage requires a complete clock cycle $\langle d,l,u,r \rangle$ for a total of 8$n$ moves.
 
-\todo{These are comparable to a ripple-carry adder:  the delay for $n$ bits is  and requires $x=$ gates.
-Numerous other schemes exist to speed up the computation.  The advantage of gates is that they are easily reused and connected.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute logic.  }
+%http://en.wikipedia.org/wiki/Adder_(electronics)  one FA needs 5 gates 2 XOR, 2 AND 1 OR,  Half after needs 2gates: 1 XOR, 1 AND, n-bit ripple needs 5(n-1)+2 gates
+These requirements are comparable to a ripple-carry adder:  the delay for $n$ bits is $n$ delays  and requires $5(n-1)+2$ gates.
+Numerous other schemes exist to speed up the computation, however the advantage of gates is that they are easily reused and connected.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute logic.  
 
 \subsection{Optimal Wiring schemes}\label{sec:wiring}
 With our current CW clock cycle, we cannot have outputs from the same column as
@@ -643,26 +664,6 @@ nanoscale and microfluidics work.
    
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,../../../svn/ensemble/bib/aaronrefs}%,../aaronrefs} %../../../../../../ensemble/bib/aaronrefs}
-
-\newpage    
-    
-     \begin{figure*}
- \begin{overpic}[width =0.49\columnwidth]{BinCounterCW000.png}\put(20,-6){$b_2b_1b_0=000$}\end{overpic}
-  \begin{overpic}[width =0.49\columnwidth]{BinCounterCW001.png}\put(20,-6){$b_2b_1b_0=001$}\end{overpic}
-   \begin{overpic}[width =0.49\columnwidth]{BinCounterCW010.png}\put(20,-6){$b_2b_1b_0=010$}\end{overpic}
-    \begin{overpic}[width =0.49\columnwidth]{BinCounterCW011.png}\put(20,-6){$b_2b_1b_0=011$}\end{overpic}\\
-    \vspace{0.1em}\\
-     \begin{overpic}[width =0.49\columnwidth]{BinCounterCW100.png}\put(20,-6){$b_2b_1b_0=100$}\end{overpic}
-      \begin{overpic}[width =0.49\columnwidth]{BinCounterCW101.png}\put(20,-6){$b_2b_1b_0=101$}\end{overpic}
-       \begin{overpic}[width =0.49\columnwidth]{BinCounterCW110.png}\put(20,-6){$b_2b_1b_0=110$}\end{overpic}
-        \begin{overpic}[width =0.49\columnwidth]{BinCounterCW111.png}\put(20,-6){$b_2b_1b_0=111$}\end{overpic}
-\vspace{.1em}\\
-\caption{
-\label{fig:CounterShowingEachStage}
-Ending configuration for each stage of the computation.
-}
-\end{figure*}
-
 
 
 \end{document}
