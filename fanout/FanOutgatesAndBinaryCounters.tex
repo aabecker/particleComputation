@@ -206,26 +206,26 @@ issues, individual control of the involved robots becomes physically impossible:
 while energy storage capacity drops with the third power of robot size,
 medium resistance decreases much slower. As a consequence,
 current micro- and nanorobot systems with many robots are steered and
-directed by a common control
+directed by a common control 
 signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}.
 These common control signals include global magnetic or electric fields,
 chemical gradients, and turning a light source on and off.  
 
 Clearly, having only one global signal that uniformly affects all robots at once
 poses a strong restriction on the ability of the swarm to perform complex operations,
-by making use of the interactions between robot swarm and obstacles in the environment.
+by making use of the interactions between robot swarm and obstacles in the environment.  %awkward
 As a consequence, it becomes a key challenge to establish this ability, ideally by
 analyzing the complexity of possible logical operations. In previous work \cite{Becker2013f,Becker2014,Becker2014a},
 we were able to demonstrate how a subset of logical functions can be implemented;
 however, devising a fan-out gate (and thus the ability to replicate and copy information)
 appeared to be prohibitively challenging. In this paper, we resolve this crucial question by
-showing that only using unit-sized pixels is insufficient for achieving computational
+showing that only using unit-sized robots is insufficient for achieving computational
 universality. Remarkably, adding a limited number of domino-shaped objects {\em is sufficient}
 to let a common control signal, mobile particles, and unit-sized obstacles
 simulate a computer. While this does not imply that large-scale computational 
 tasks should be run on these particle computers instead of current electronic
 devices, it establishes that future nano-scale systems are able to perform
-arbitrarily complex operations {\em em as part of the physical system}, instead
+arbitrarily complex operations {\em as part of the physical system}, instead
 of having to go through external computational devices.
 % We do not present particle logic as an alternative
 %to electronic computing.
@@ -248,7 +248,7 @@ This paper builds on the techniques for controlling many simple robots with unif
  \subsection{Dual-Rail Logic and Fan-out Gates}
 
 As shown in \cite{Becker2013f}, {\sc and} and {\sc or} can be implemented with
-single particles.  However, particle logic is \emph{conservative}---particles
+unit-size particles.  However, particle logic is \emph{conservative}---particles
 are neither created nor destroyed--and we were unable to implement a {\sc not}
 gate. To implement {\sc not} gates and other logic we used \emph{dual-rail
 logic}, where two lines for each input are supplied to explicitly represent the
