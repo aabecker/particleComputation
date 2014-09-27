@@ -157,10 +157,12 @@
 Particle Computation:  Device Fan-out and Binary Memory 
 }
 \author{Aaron Becker,
+Hamed Mohtasham Shad,
 Rose Morris-Wright,
 Erik D. Demaine,
 S\'andor P. Fekete
 \thanks{{A.~Becker is with the University of  Dept.~of Electrical and Computer Engineering, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}, 
+H. Mohtasham  \protect\url{mohtasham@gmail.com},
 R.~Morris-Wright  \protect\url{rmorriswright@gmail.com},
 E.~Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
 S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
@@ -235,6 +237,16 @@ of having to go through external computational devices.
 %quantify the computing power of mobile robotics at the most simple level in
 %order to gain insight for massively-parallel, automated assembly at the micro
 %and nano length-scales.
+
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{DSC_0093lowres.JPG}%\put(30,-7){ $m=1$, partition 1}
+\end{overpic}
+\caption{
+\label{fig:prototype}
+Gravity-fed hardware implementation of  particle computation.  The reconfigurable prototype is setup as a {\sc fan-out} gate using a 2$\times$1 robot (white). This paper proves that such a gate is impossible using only 1$\times$1 robots. \href{http://youtu.be/mJWl-Pgfos0}{See \url{http://youtu.be/mJWl-Pgfos0}.} }
+\vspace{-1em}
+\end{figure}
 
  \subsection{Model}
   
@@ -519,20 +531,20 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
 \put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
 \put(61.2,21){$1$~~$1$~~$1$~~\,$A$} \put(93.5,21){$\overline{A}$} 
 
-\put(10,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
-\put(63,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\put(10,-3){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-3){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\put(63,-3){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-3){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
 \end{overpic}\\
 \vspace{.5em}\\
 
 \begin{overpic}[width =\columnwidth]{FanOutcw4step34.png}
 \put(2,-7){ $\langle d,l,d,r \rangle$}
-\put(20,-7){$A=0$ }\put(70,-6){ $A=1$ }
+\put(20,-7){$A=0$ }\put(70,-7){ $A=1$ }
 \scriptsize
 \put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
 \put(61.2,21){$1$~~$1$~~$1$~~\,$A$} \put(93.5,21){$\overline{A}$} 
 
-\put(10,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
-\put(63,-2){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-2){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\put(10,-3){$A$~\,\,$A$~\,$A$~\,$A$} \put(30.5,-3){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
+\put(63,-3){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-3){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
 \end{overpic}
 \caption{\label{fig:Fanout4}
 The {\sc fan-out} gate can drive multiple outputs. Here a single input drives four-outputs.  This gate requires a dual-rail input, three supply particles, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
@@ -638,12 +650,44 @@ Numerous other schemes exist to speed up the computation, however the advantage 
 
 \subsection{Optimal Wiring schemes}\label{sec:wiring}
 With our current CW clock cycle, we cannot have outputs from the same column as
-inputs -- outputs must be either one to the right, or three to the left.
+inputs -- outputs must be either one to the right, or three to the left. particle 
 Choosing one of these results in horizontal shifts at each stage and thus
 requires spreading out the logic gates. A better wiring scheme cycles
 through three layers that each shift right by one, followed by one layer that
 shifts left by three.  We also want the wiring to be tight left-to-right.  If our
 height is also limited, \emph{wire buses} provide a compact solution. 
+
+%###############################################################
+\section{Experiment}\label{sec:Experiment}
+%###############################################################
+A large-scale prototype was built as a physical implementation of particle computation with global inputs, shown in Fig.~\ref{fig:prototype}.  The design is inspired by the gravity-fed logic maze \emph{Tilt\texttrademark}
+\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\bar{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details for the prototype. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
+
+ \begin{figure}
+% DSC_0003lr.JPG%DSC_0006lr.JPG%DSC_0009lr.JPG%DSC_0010lr.JPG%DSC_0013lr.JPG%DSC_0015lr.JPG
+% 
+% DSC_0012lr.JPG%DSC_0017lr.JPG%DSC_0021lr.JPG%DSC_0024lr.JPG%DSC_0026lr.JPG%DSC_0030lr.JPG
+\begin{overpic}[width =0.49\columnwidth]{DSC_0003lr.JPG}\put(25,25){\textcolor{white}{start}}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{DSC_0012lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0006lr.JPG}\put(25,25){\textcolor{white}{$\downarrow$}}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{DSC_0017lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0009lr.JPG}\put(25,25){\textcolor{white}{$\leftarrow$}}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{DSC_0021lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0010lr.JPG}\put(25,25){\textcolor{white}{$\uparrow$}}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{DSC_0024lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0013lr.JPG}\put(25,25){\textcolor{white}{$\rightarrow$}}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{DSC_0026lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0015lr.JPG}\put(25,25){\textcolor{white}{end}}\put(30,-8){$A=1$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{DSC_0030lr.JPG}\put(30,-8){$A=0$}\end{overpic}\\
+\caption{\label{fig:MultiFanOutPhysical}Implementation of a single-input, four-output {\sc fan-out} gate.}
+\vspace{-1em}
+\end{figure}
+
+ \begin{figure}
+\begin{overpic}[width =\columnwidth]{scale.JPG}\end{overpic}
+\caption{\label{fig:Scale}Detail of the prototype construction.}
+\vspace{-1em}
+\end{figure}
 
 %###############################################################
 \section{Conclusion}\label{sec:Conclusion}

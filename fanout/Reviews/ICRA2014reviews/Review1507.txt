@@ -1,0 +1,63 @@
+Reviewer 3 of ICRA 2014 submission 12
+
+Comments to the author
+======================
+
+This paper describes an intriguing manifestation of
+permutation groups, and how they may be used to employ
+robotic systems in physical calculations.
+
+Global control in either direction along two axes is used
+to effect maximal movement of individual agents in that
+direction: agents move in a cardinal direction until they
+hit an obstacle. In this framework, the task of moving each
+agent to its specified location is shown to be
+PSPACE-complete. The proof of this result is generally due
+to Jerrum, who considered more traditional generators of
+permutation groups, which the authors here apply to the
+described motion planning problem.
+
+The authors go on to describe how such motion strategies
+may be used to implement boolean logic circuits using
+dual-rail logic where each state and its complement are
+always represented.
+
+The paper is enjoyable, and the solution to the matrix
+permutation problem is both attractively simple, and an
+effective demonstration of the space requirements of the
+problem. As a corollary to thinking about permutation
+groups, this is very neat, and a refreshing change of
+scenery from the usual considerations of grammars and
+productions.
+
+(TODO: BIG ISSUE)
+
+It is therefore unfortunate that the connection to robotics
+is left so tenuously suggested. While the authors bookend
+the paper with descriptions of practical considerations and
+problem domains where large numbers of robots under limited
+control may be useful, they do very little to convince the
+reader that the results here are particularly relevant. Why
+is instrumenting the environment with obstacles in order to
+control the behavior of micro- and nano-robots a reasonable
+avenue of investigation? I think a stronger argument can be
+made than what is given here.
+
+On its own merits, the work is interesting, and the
+authors' exploration of the problem is clear and enjoyable.
+But I have to wonder about the novelty of the core claim of
+PSPACE-completeness in light of the existing literature.
+Introducing this work to a robotics audience is a wonderful
+cause, (TODO) but it should be better grounded in the robotics
+context to have the most impact. The area of global control
+is certainly relevant, and it is reasonable to think that
+this work may prove to be a useful exploration of one
+variant of the problem. I suspect that further work
+adapting such systems to found environments will be of
+interest to a robotics audience.
+
+
+Comments on the Video Attachment
+================================
+
+The hardware implementation is tremendously charming.

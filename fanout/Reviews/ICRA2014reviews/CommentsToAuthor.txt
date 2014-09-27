@@ -1,0 +1,12 @@
+The reviewers are generally positive about this paper. In
+particular, the strength of the matrix permutation
+techniques is mentioned by several reviewers. Some issues
+are raised regarding the novelty of the PSPACE-completeness
+proof, and the reviewers suggest that the connection to
+robotics applications be made more strongly. Some minor
+errors should also be fixed in Figure 2.    (FIXED)
+
+----------------------------------------
+Comments on Video Attachment:
+
+The reviewers feel the video is useful.

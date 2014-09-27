@@ -1,0 +1,42 @@
+Reviewer 5 of ICRA 2014 submission 12
+
+Comments to the author
+======================
+
+This paper describes an extension of previous work that
+explores the computational complexity of an approach for
+(locally) manipulating a collective or swarm of agents
+using global control inputs, as well as its algorithmic and
+experimental implementation.  The main contributions of
+this work includes the theoretical analysis of the proposed
+variant of the block-pushing problems found in the
+literature, including proof of the problem's complexity
+residing in PSPACE-complete, by relation to previously
+known results. Additionally, the work extends previous work
+to construct particle logic gates that leverage dual-rail
+logic to allow for various logical outputs for given
+inputs.
+
+The paper is well-written and clearly presented (nice
+job!), and distinctly represents interesting work, both
+theoretically and also from an emerging application area
+for particle or swarm robotics.  The illustrative
+simulation examples and companion multimedia are useful for
+clarifying and showcasing the presented work. The technical
+details are also thorough and complete, and offer good
+insights for follow-on research and applications.  The
+bibliography is recognized to be both appropriately broad
+and relevant.
+
+Despite some of the strong assumptions necessary for both
+the analysis and also the physical implementation (e.g.,
+rails to avoid bearings from "hopping" in unintended
+directions), the presented work is both interesting and
+compelling.
+
+
+Comments on the Video Attachment
+================================
+
+The video attachment helps to illustrate the presented
+approach and is well-constructed.

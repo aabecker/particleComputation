@@ -1,0 +1,58 @@
+Reviewer 4 of ICRA 2014 submission 12
+
+Comments to the author
+======================
+
+In this article, authors present their analysis on
+controlling multiple robots to desired positions with
+global inputs and stationary obstacles in 2D environment.
+Motivated by this method of permutation, they prove that
+finding an optimal control sequence for such path planning
+problem is PSPACE-complete. Also, this technique of
+transforming initial configuration to desired configuration
+could be used on micro and nano robots in different fields
+such as medical science and biological research. The
+benefits also includes application on robotic systems such
+as Boolean logic gate design.
+
+The paper is well-organized. Authors clearly state the
+problem and describe how they apply global move sequences
+step by step to solve the problem. In the paper, some
+examples and figures are provided which are quite helpful
+for readers to understand. Also, the complexity proof about
+PSPACE-complete is important to this area.
+
+In Fig. 2, there is a small mistake in the diagram picture
+of the bottom case. 
+[[[FIXED, AARON]]]
+The techniques on matrix permutation is
+impressive. However, it still has some limitations such as
+the size of space and the number of obstacles it requires.
+Moreover, in the proof of Theorem 1, it is a little
+confusing on the obstacles’ coordinates notation. For
+example, authors denote the bottom left unit as (0,0), but
+in Move 1, the first obstacle starts with (2,n+1) as i=1
+which is not satisfied with the technique in this case.
+[[ check these again ]]
+Then, this technique is extended to arbitrary permutation
+with two base permutations. But in real life, some networks
+may or may not meet such requirements so that the
+permutations may not work. For the logic gate, authors
+present some dual-rail gadgets with the use of stationary
+obstacles. But due to they are conservative logic, some
+limitations exist. Also, authors could consider giving some
+examples of applying such gadgets in real life.   [[ we'll reserve that for future work]]
+
+Overall, authors' work is impressive on matrix permutation,
+complexity proof and logic gate design. More concrete real
+life application examples could be added to indicate the
+importance of this technique. Also, the complexity proof is
+more like a computer science topic. The only relation to
+robotics is that this technique could be applied on robots,
+as well as any other object which would be affected by
+global controlling sequences. 
+
+Comments on the Video Attachment
+================================
+
+Nice video
