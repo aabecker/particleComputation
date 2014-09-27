@@ -1,7 +1,10 @@
 % easy truth tables: http://www.kwi.dk/projects/php/truthtable/?
 %  177199 Hamed Mohtasham shad
 % 177228 Rose Morris-Wright
-% we can submit papers on the 16th of September
+%
+% TODO: assembly (we can implement aTAM!) , 
+% could we add tiny magnets to robot sides to make them link up?
+% can we place our prototype  on an inclined lazy susan?
 \pdfobjcompresslevel=0  % I had adobe error 131, and this removed it: http://tex.stackexchange.com/questions/64448/how-to-overcome-acrobat-reader-error-131-with-a-pdflatex-doc
 
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}
@@ -156,17 +159,19 @@
 \title{\LARGE \bf 
 Particle Computation:  Device Fan-out and Binary Memory 
 }
-\author{Aaron Becker,
+\author{
 Hamed Mohtasham Shad,
 Rose Morris-Wright,
 Erik D. Demaine,
-S\'andor P. Fekete
-\thanks{{A.~Becker is with the University of  Dept.~of Electrical and Computer Engineering, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}, 
+S\'andor P. Fekete,
+Aaron Becker
+\thanks{{
 H. Mohtasham  \protect\url{mohtasham@gmail.com},
 R.~Morris-Wright  \protect\url{rmorriswright@gmail.com},
 E.~Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
 S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
-      \protect\url{s.fekete@tu-bs.de}.
+      \protect\url{s.fekete@tu-bs.de},
+A.~Becker is with the University of  Dept.~of Electrical and Computer Engineering, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}.
 }
 } %\end thanks
 } % end author block
@@ -175,7 +180,7 @@ S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpford
 
 
 \begin{abstract} 
-We present fundamental progress on the computational universality of swarms of nano-scale robots
+We present fundamental progress on the computational universality of swarms of micro- or nano-scale robots
 in complex environments, controlled not by individual navigation, but by a uniform global, external force.
 Consider a 2D grid world, in which all obstacles and robots are unit squares,
 and for each actuation, robots move maximally until they collide with an
@@ -262,7 +267,7 @@ This paper builds on the techniques for controlling many simple robots with unif
 
 As shown in \cite{Becker2013f}, {\sc and} and {\sc or} can be implemented with
 unit-size particles.  However, particle logic is \emph{conservative}---particles
-are neither created nor destroyed--and we were unable to implement a {\sc not}
+are neither created nor destroyed---and we were unable to implement a {\sc not}
 gate. To implement {\sc not} gates and other logic we used \emph{dual-rail
 logic}, where two lines for each input are supplied to explicitly represent the
 variable and its complement~\cite{Becker2014a}. Here we show that dual-rail
@@ -303,6 +308,7 @@ The half adder shown above requires two copies of  $\mathbf{A}$ and  $\mathbf{B}
   \item We design {\sc fan-out} gates (Section \ref{sec:FanOut}).
   \item We design memory latches (Section \ref{subsec:Storage}).
   \item We present architecture for device integration, design a common clock sequence, and present a binary counter (Section \ref{sec:binaryCounter}).
+    \item We present the design and implementation of a large-scale particle computation prototype (Section \ref{sec:Experiment}).
     \end{enumerate}
 
 %###############################################################
@@ -322,7 +328,7 @@ sliding particles sized 2$\times$1 and 1$\times$1 for achieving computational un
 %associated press when it was announced in the 1940s. 
 
 \subsection{Collision-based computing}
-Collision-based computing has been defined as \emph{computation in a structureless medium populated with mobile objects}.  For a survey of this area, see the excellent collection~\cite{Adamatzky2012}. Early examples include the billiard-ball computer proposed by Fredkin and Toffoli using only spherical balls and a frictionless environment composed of elastic collisions with other balls and with angled walls \cite{Fredkin1982ConservativeLogic}. Another popular example is Conway's {\em Game of Life}, a cellular automaton governed by four simple rules~\cite{berlekamp2001winning}. Cells live or die based on the number of neighbors. These rules have been examined in depth and used to design a Turing-complete computer \cite{Adamatzky2002}.  Game of life scenarios and billiard-ball computers are fascinating, but lack a physical implementation.  In this paper we present a collision-based system for computation and provide a physical implementation.
+Collision-based computing has been defined as \emph{``computation in a structureless medium populated with mobile objects''}.  For a survey of this area, see the excellent collection~\cite{Adamatzky2012}. Early examples include the billiard-ball computer proposed by Fredkin and Toffoli using only spherical balls and a frictionless environment composed of elastic collisions with other balls and with angled walls \cite{Fredkin1982ConservativeLogic}. Another popular example is Conway's {\em Game of Life}, a cellular automaton governed by four simple rules~\cite{berlekamp2001winning}. Cells live or die based on the number of neighbors. These rules have been examined in depth and used to design a Turing-complete computer \cite{Adamatzky2002}.  Game of life scenarios and billiard-ball computers are fascinating, but lack a physical implementation.  In this paper we present a collision-based system for computation and provide a physical implementation.
 %\textcolor{red}{Todo: this paragraph is incomplete}
 
 
@@ -447,15 +453,15 @@ A  conservative dual-logic {\sc fan-out} gate cannot be constructed using only 1
 %\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
 \begin{proof} We assume such a {\sc fan-out} gate exists and reach a contradiction. 
-Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\bar{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\bar{a}_1},\bm{g}_{\bar{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
+Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
 \begin{enumerate}
-\item if $\bm{s}_{a}$  and $\bm{s}_r$ are initially occupied and $\bm{s}_{\bar{a}}$ vacant, at the conclusion of $\bm{m}$ $\bm{g}_{a_1}$ and $\bm{g}_{a_2}$ are occupied and the locations  $\bm{g}_{\bar{a}_1}$ and $\bm{g}_{\bar{a}_2}$ are vacant.
-\item if $\bm{s}_{a}$ is initially vacant and $\bm{s}_{\bar{a}}$ and $\bm{s}_r$ are occupied, at the conclusion of $\bm{m}$ $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\bar{a}_1}$ and $g_{\bar{a}_2}$ are occupied.
+\item if $\bm{s}_{a}$  and $\bm{s}_r$ are initially occupied and $\bm{s}_{\overline{a}}$ vacant, at the conclusion of $\bm{m}$ then $\bm{g}_{a_1}$ and $\bm{g}_{a_2}$ are occupied and the locations  $\bm{g}_{\overline{a}_1}$ and $\bm{g}_{\overline{a}_2}$ are vacant.
+\item if $\bm{s}_{a}$ is initially vacant and $\bm{s}_{\overline{a}}$ and $\bm{s}_r$ are occupied, at the conclusion of $\bm{m}$ then $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\overline{a}_1}$ and $g_{\overline{a}_2}$ are occupied.
 \end{enumerate}
 
-We will now assume that condition 1, above, is the original scenario and  add and subtract robots, applying theorems ~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and ~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
+We will now assume that condition 1, above, is the original scenario and  add and subtract robots, applying theorems~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
 
-Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\bar{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
+Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\overline{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
  \end{proof}
 
 \begin{table}
@@ -471,7 +477,7 @@ Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  res
 \bottomrule
 \end{array}
 \end{displaymath}
-  \caption{Possible Boolean operations in dual-rail particle logic.}
+  \caption{Implemented Boolean operations in dual-rail particle logic.}
   \label{tab:dualRailParticleLogic}
 \end{table}
 
@@ -484,12 +490,12 @@ This section describes how the clock signal, logic gates, and wiring were design
 The \emph{clock sequence} is the ordered set of moves that are simultaneously applied to every particle in our workspace. We call this the clock sequence because, as in digital computers, this sequence is universally applied and keeps all logic synchronized.
 
 A clock sequence determines the basic functionality of each gate.  To simplify implementation in the spirit of Reduced Instruction Set Computing (RISC), which uses a simplified set of instructions that run at the same rate, we want to use the same clock cycle for each gate and for \emph{all} wiring. 
-Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequence can be used to make {\sc and, or, xor}, and any of their inverses.  This sequence can also be used for \emph{wiring} to connect arbitrary inputs and outputs, as long as the outputs are below the inputs.  Unfortunately, $\langle d,l,d,r \rangle$ cannot move any particles upwards. To connect outputs as inputs to higher-level logic requires an additional reset sequence that contains a $\langle u \rangle$ command.  Including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and by designing examples prove that this sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring.
+Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequence can be used to make {\sc and, or, xor}, and any of their inverses.  This sequence can also be used for \emph{wiring} to connect arbitrary inputs and outputs, as long as the outputs are below the inputs.  Unfortunately, $\langle d,l,d,r \rangle$ cannot move any particles upwards. To connect outputs as inputs to higher-level logic requires an additional reset sequence that contains a $\langle u \rangle$ command.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  The shortest sequence has four commands, each appearing once. We choose the sequence, $\langle d,l,u,r \rangle$, and by designing examples prove that this sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring.
 
   
 %  A clock sequence without orthogonal inputs, i.e. $\langle u,d,u,d \rangle$ can only implement assertions.  \textcolor{red}{This is an assertion. You need to support it} Using two orthogonal inputs, i.e.~$\langle d,l,d,l \rangle$  cannot implement {\sc fan-out} gates,\textcolor{red}{another assertion} and particles cannot be returned $u$ or $r$.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and prove that this  sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring. \textcolor{red}{Here's what I got out of this paragraph: In order to simplify our system and according the principles of RISC we would like to use the same clock sequence for all gates. This sequence should also be used for all wiring, that is for all connections between inputs and outputs. It is insufficient to use a clock sequence with only two directions. If these two directions are orthogonal (i.e. d,l,d,l) it is insufficient because (need more explanation here). If these two directions are not orthogonal (i.e. d,u,d,u) it is insufficient because (need more explanation here). Using only three directions, we were able to implement AND, OR, and  XOR gates, as well as their inverses. Specifically, in our previous work we used the sequence d,l,d,r. However this sequence makes it impossible to wire outputs of gates to inputs of gates that are higher up in the workspace. As clock sequences with two and three directions are insufficient for our purposes we have chosen to the simplest sequence d,l,u,r and will proceed to prove that this sequence is sufficient for logic gates, fan-out gates, and wiring.  }
 
-This clock sequence has the attractive property of being a clockwise rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating perpendicular to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
+This clock sequence has the attractive property of being a clockwise (CW) rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating perpendicular to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
 
 \subsection{A {\sc fan-out} gate}\label{sec:FanOut}
 A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{tab:Fanout}.  
@@ -505,13 +511,13 @@ In general, an $n$-output {\sc fan-out} gate with control sequence $\langle d,l,
 
 \put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
 \put(72.5,0){$A$} \put(79.5,0){$A$} \put(86.2,0){$\overline{A}$} \put(93,0){$\overline{A}$} 
-\put(2,-5){ $\langle d \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+\put(0,-5){ $\langle d \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
 \vspace{.1em}\\
 
-\begin{overpic}[width =\columnwidth]{FanOutS2cw.png}\put(2,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+\begin{overpic}[width =\columnwidth]{FanOutS2cw.png}\put(0,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
 \vspace{.1em}\\
 
-\begin{overpic}[width =\columnwidth]{FanOutS4cw.png}\put(2,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
+\begin{overpic}[width =\columnwidth]{FanOutS4cw.png}\put(0,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
 \put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
 \put(72.5,0){$A$} \put(79.5,0){$A$} \put(86.2,0){$\overline{A}$} \put(93,0){$\overline{A}$} 
 \end{overpic}
@@ -593,16 +599,16 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
 \end{table}
   
 \subsection{A binary counter}\label{sec:binaryCounter}
-  Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate.  
+  Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate, one {\sc and} and one {\sc xor} gate.
   
-We illustrate how many gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}.  Six logic gates are used to implement a 3-bit counter.  A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}, and Fig.~\ref{fig:CounterShowingEachStage}. The counter  requires three {\sc fan-out} gates, two adders, and one carry.  Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
+We illustrate how many gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
 
 \begin{figure}
  \begin{overpic}[width =\columnwidth]{BinCounterCW000.png}\end{overpic}
 \vspace{.1em}\\
 \caption{
 \label{fig:Counter}
-A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. 
+A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. 
 }
 \vspace{-1em}
 \end{figure}
@@ -646,11 +652,11 @@ Ending configuration for each stage of the computation.
 
 %http://en.wikipedia.org/wiki/Adder_(electronics)  one FA needs 5 gates 2 XOR, 2 AND 1 OR,  Half after needs 2gates: 1 XOR, 1 AND, n-bit ripple needs 5(n-1)+2 gates
 These requirements are comparable to a ripple-carry adder:  the delay for $n$ bits is $n$ delays  and requires $5(n-1)+2$ gates.
-Numerous other schemes exist to speed up the computation, however the advantage of gates is that they are easily reused and connected.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute logic.  
+Numerous other schemes exist to speed up the computation, however using discrete gates allows us to use standard methods for translating a Boolean expression into gate-level logic.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute the desired logic.  
 
 \subsection{Optimal Wiring schemes}\label{sec:wiring}
 With our current CW clock cycle, we cannot have outputs from the same column as
-inputs -- outputs must be either one to the right, or three to the left. particle 
+inputs---outputs must be either one to the right, or three to the left.  
 Choosing one of these results in horizontal shifts at each stage and thus
 requires spreading out the logic gates. A better wiring scheme cycles
 through three layers that each shift right by one, followed by one layer that
@@ -661,9 +667,9 @@ height is also limited, \emph{wire buses} provide a compact solution.
 \section{Experiment}\label{sec:Experiment}
 %###############################################################
 A large-scale prototype was built as a physical implementation of particle computation with global inputs, shown in Fig.~\ref{fig:prototype}.  The design is inspired by the gravity-fed logic maze \emph{Tilt\texttrademark}
-\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\bar{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details for the prototype. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
+\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details for the prototype. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
 
-The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any of slot's junctions. A clearance of 0.5mm on each side of the obstacle ensures the moving parts slide.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
+The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any of slot's junctions. A clearance of 0.5mm on each side of the obstacle ensures that moving parts can slide past.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
 
 The board can rotate along two perpendicular axes and these rotations generate the four valid commands. Both types of sliders start moving at 12.5$^\circ$. We chose a rotation of 20$^\circ$ for each command to ensure that sliders  slide reliably.
 
@@ -673,15 +679,15 @@ The board can rotate along two perpendicular axes and these rotations generate t
 % 
 % DSC_0012lr.JPG%DSC_0017lr.JPG%DSC_0021lr.JPG%DSC_0024lr.JPG%DSC_0026lr.JPG%DSC_0030lr.JPG
 \begin{overpic}[width =0.49\columnwidth]{DSC_0003lr.JPG}\put(25,25){\textcolor{white}{start}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0012lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0012lr.JPG}\end{overpic}\vspace{0.5em}\\
 \begin{overpic}[width =0.49\columnwidth]{DSC_0006lr.JPG}\put(25,25){\textcolor{white}{$\downarrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0017lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0017lr.JPG}\end{overpic}\vspace{0.5em}\\
 \begin{overpic}[width =0.49\columnwidth]{DSC_0009lr.JPG}\put(25,25){\textcolor{white}{$\leftarrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0021lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0021lr.JPG}\end{overpic}\vspace{0.5em}\\
 \begin{overpic}[width =0.49\columnwidth]{DSC_0010lr.JPG}\put(25,25){\textcolor{white}{$\uparrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0024lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0024lr.JPG}\end{overpic}\vspace{0.5em}\\
 \begin{overpic}[width =0.49\columnwidth]{DSC_0013lr.JPG}\put(25,25){\textcolor{white}{$\rightarrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0026lr.JPG}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{DSC_0026lr.JPG}\end{overpic}\vspace{0.5em}\\
 \begin{overpic}[width =0.49\columnwidth]{DSC_0015lr.JPG}\put(25,25){\textcolor{white}{end}}\put(30,-8){$A=1$}\end{overpic}
 \begin{overpic}[width =0.49\columnwidth]{DSC_0030lr.JPG}\put(30,-8){$A=0$}\end{overpic}\\
 \caption{\label{fig:MultiFanOutPhysical}Implementation of a single-input, four-output {\sc fan-out} gate.}
@@ -701,10 +707,11 @@ In this paper we
 (1) proved the insufficiency of unit-size particles for gate fan-out; 
 (2) established the necessity of dual-rail logic for Boolean logic;  
 (3) designed {\sc fan-out} gates and memory latches by employing slightly different particles;
-and (4) presented an architecture for device integration,  a common clock sequence, and a binary counter.
+ (4) presented an architecture for device integration,  a common clock sequence, and a binary counter,
+ and (5) implemented a large-scale model of particle computation.
 
 This work, along with \cite{Becker2013f,Becker2014,Becker2014a}, introduces a
-new model for mechanical computation.  Interesting applications aim at the
+new model for mechanical computation.  Interesting applications will aim at 
 nanoscale and microfluidics work.
 
     
