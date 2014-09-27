@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 SEP 2014 00:34
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 SEP 2014 01:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1162,98 +1162,102 @@ l.643 \paragraph
 tures/png/BinCounterCW010.png> <./pictures/png/BinCounterCW011.png> <./pictures
 /png/BinCounterCW100.png> <./pictures/png/BinCounterCW101.png> <./pictures/png/
 BinCounterCW110.png> <./pictures/png/BinCounterCW111.png>]
+Underfull \hbox (badness 1748) in paragraph at lines 666--667
+[]\OT1/ptm/m/n/10 The ex-per-i-men-tal setup con-sists of Plex-i-glas square
+ []
+
 <./pictures/jpg/DSC_0003lr.JPG, id=284, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0003lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0003lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0003lr.JPG used on input line 680.
+Package pdftex.def Info: ./pictures/jpg/DSC_0003lr.JPG used on input line 685.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0012lr.JPG, id=285, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0012lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0012lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0012lr.JPG used on input line 681.
+Package pdftex.def Info: ./pictures/jpg/DSC_0012lr.JPG used on input line 686.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0006lr.JPG, id=286, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0006lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0006lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0006lr.JPG used on input line 682.
+Package pdftex.def Info: ./pictures/jpg/DSC_0006lr.JPG used on input line 687.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0017lr.JPG, id=287, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0017lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0017lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0017lr.JPG used on input line 683.
+Package pdftex.def Info: ./pictures/jpg/DSC_0017lr.JPG used on input line 688.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0009lr.JPG, id=288, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0009lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0009lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0009lr.JPG used on input line 684.
+Package pdftex.def Info: ./pictures/jpg/DSC_0009lr.JPG used on input line 689.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0021lr.JPG, id=289, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0021lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0021lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0021lr.JPG used on input line 685.
+Package pdftex.def Info: ./pictures/jpg/DSC_0021lr.JPG used on input line 690.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0010lr.JPG, id=290, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0010lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0010lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0010lr.JPG used on input line 686.
+Package pdftex.def Info: ./pictures/jpg/DSC_0010lr.JPG used on input line 691.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0024lr.JPG, id=291, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0024lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0024lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0024lr.JPG used on input line 687.
+Package pdftex.def Info: ./pictures/jpg/DSC_0024lr.JPG used on input line 692.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0013lr.JPG, id=292, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0013lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0013lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0013lr.JPG used on input line 688.
+Package pdftex.def Info: ./pictures/jpg/DSC_0013lr.JPG used on input line 693.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0026lr.JPG, id=293, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0026lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0026lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0026lr.JPG used on input line 689.
+Package pdftex.def Info: ./pictures/jpg/DSC_0026lr.JPG used on input line 694.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0015lr.JPG, id=294, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0015lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0015lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0015lr.JPG used on input line 690.
+Package pdftex.def Info: ./pictures/jpg/DSC_0015lr.JPG used on input line 695.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/DSC_0030lr.JPG, id=295, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0030lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0030lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0030lr.JPG used on input line 691.
+Package pdftex.def Info: ./pictures/jpg/DSC_0030lr.JPG used on input line 696.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
 <./pictures/jpg/scale.JPG, id=296, 803.0pt x 517.935pt>
 File: ./pictures/jpg/scale.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/scale.JPG>
-Package pdftex.def Info: ./pictures/jpg/scale.JPG used on input line 697.
+Package pdftex.def Info: ./pictures/jpg/scale.JPG used on input line 702.
 (pdftex.def)             Requested size: 245.71811pt x 158.48758pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--698
+Underfull \hbox (badness 10000) in paragraph at lines 702--703
 [][]
  []
 
@@ -1262,19 +1266,12 @@ he same identifier (name{figure.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.38 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.1
-0}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.38 
+l.43 
       <./pictures/jpg/DSC_0003lr.JPG> <./pictures/jpg/DSC_0012lr.JPG> <./pictur
 es/jpg/DSC_0006lr.JPG> <./pictures/jpg/DSC_0017lr.JPG> <./pictures/jpg/DSC_0009
 lr.JPG> <./pictures/jpg/DSC_0021lr.JPG> <./pictures/jpg/DSC_0010lr.JPG> <./pict
 ures/jpg/DSC_0024lr.JPG> <./pictures/jpg/DSC_0013lr.JPG> <./pictures/jpg/DSC_00
-26lr.JPG> <./pictures/jpg/DSC_0015lr.JPG> <./pictures/jpg/DSC_0030lr.JPG> <./pi
-ctures/jpg/scale.JPG>]
+26lr.JPG> <./pictures/jpg/DSC_0015lr.JPG> <./pictures/jpg/DSC_0030lr.JPG>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -1305,16 +1302,23 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 724.
-[8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 724.
- (./FanOutgatesAndBinaryCounters.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 724.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 724.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 729.
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.10})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.729 \end{document}
+                     <./pictures/jpg/scale.JPG>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 729.
+
+(./FanOutgatesAndBinaryCounters.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 729.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 729.
 Package rerunfilecheck Info: File `FanOutgatesAndBinaryCounters.out' has not ch
 anged.
 (rerunfilecheck)             Checksum: 2F4D6C5A05F511BCA475F95A5432185A;1165.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 724.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 729.
  ) 
 Here is how much of TeX's memory you used:
  14461 strings out of 493488
@@ -1323,7 +1327,7 @@ Here is how much of TeX's memory you used:
  17369 multiletter control sequences out of 15000+200000
  54070 words of font info for 121 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,10n,38p,1758b,480s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,38p,1758b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texl
@@ -1339,15 +1343,16 @@ f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2012/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-dist/fonts/t
-ype1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw
-/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utm
-bi8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FanOutgatesAndBinaryCounters.pdf (8 pages, 2543834 bytes).
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
+e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/t
+imes/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmbi
+8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FanOutgatesAndBinaryCounters.pdf (8 pages, 2552615 bytes).
 PDF statistics:
- 430 PDF objects out of 1000 (max. 8388607)
+ 434 PDF objects out of 1000 (max. 8388607)
  87 named destinations out of 1000 (max. 500000)
  303 words of extra memory for PDF output out of 10000 (max. 10000000)
 

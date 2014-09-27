@@ -663,6 +663,11 @@ height is also limited, \emph{wire buses} provide a compact solution.
 A large-scale prototype was built as a physical implementation of particle computation with global inputs, shown in Fig.~\ref{fig:prototype}.  The design is inspired by the gravity-fed logic maze \emph{Tilt\texttrademark}
 \url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\bar{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details for the prototype. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
 
+The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any of slot's junctions. A clearance of 0.5mm on each side of the obstacle ensures the moving parts slide.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
+
+The board can rotate along two perpendicular axes and these rotations generate the four valid commands. Both types of sliders start moving at 12.5$^\circ$. We chose a rotation of 20$^\circ$ for each command to ensure that sliders  slide reliably.
+
+
  \begin{figure}
 % DSC_0003lr.JPG%DSC_0006lr.JPG%DSC_0009lr.JPG%DSC_0010lr.JPG%DSC_0013lr.JPG%DSC_0015lr.JPG
 % 
