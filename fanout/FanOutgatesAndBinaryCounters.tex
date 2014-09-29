@@ -146,14 +146,13 @@
 \begin{document}
 
 %%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
-%    \tableofcontents
-%    \setcounter{tocdepth}{3}
+%\tableofcontents
+%\setcounter{tocdepth}{3}
 %\newpage
 %\mbox{}
 %\newpage
 %\mbox{}
 %\newpage
-
 %%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{\LARGE \bf 
@@ -213,8 +212,7 @@ issues, individual control of the involved robots becomes physically impossible:
 while energy storage capacity drops with the third power of robot size,
 medium resistance decreases much slower. As a consequence,
 current micro- and nanorobot systems with many robots are steered and
-directed by a common control 
-signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}.
+directed by an external force that acts as a common control signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}.
 These common control signals include global magnetic or electric fields,
 chemical gradients, and turning a light source on and off.  
 
@@ -263,7 +261,7 @@ This paper builds on the techniques for controlling many simple robots with unif
 \end{enumerate}
 
 
- \subsection{Dual-Rail Logic and Fan-out Gates}
+ \subsection{Dual-Rail Logic and {\sc fan-out} Gates}
 
 As shown in \cite{Becker2013f}, {\sc and} and {\sc or} can be implemented with
 unit-size particles.  However, particle logic is \emph{conservative}---particles
@@ -327,27 +325,28 @@ sliding particles sized 2$\times$1 and 1$\times$1 for achieving computational un
 %Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the
 %associated press when it was announced in the 1940s. 
 
-\subsection{Collision-based computing}
+\subsection{Collision-Based Computing}
 Collision-based computing has been defined as \emph{``computation in a structureless medium populated with mobile objects''}.  For a survey of this area, see the excellent collection~\cite{Adamatzky2012}. Early examples include the billiard-ball computer proposed by Fredkin and Toffoli using only spherical balls and a frictionless environment composed of elastic collisions with other balls and with angled walls \cite{Fredkin1982ConservativeLogic}. Another popular example is Conway's {\em Game of Life}, a cellular automaton governed by four simple rules~\cite{berlekamp2001winning}. Cells live or die based on the number of neighbors. These rules have been examined in depth and used to design a Turing-complete computer \cite{Adamatzky2002}.  Game of life scenarios and billiard-ball computers are fascinating, but lack a physical implementation.  In this paper we present a collision-based system for computation and provide a physical implementation.
 %\textcolor{red}{Todo: this paragraph is incomplete}
 
 
-\subsection{Sliding-block puzzles}
+\subsection{Sliding-Block Puzzles}
 Sliding-block puzzles use rectangular tiles that are constrained to move in a 2D workspace. The objective is to move one or more tiles to desired locations. They have a long history.
 Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can be arranged to create logic gates, and used this technique to prove {\sc pspace} complexity for a variety of sliding-block puzzles.  Hearn expressed the idea of building computers from the sliding blocks---many of the logic gates could be connected together, and the user could propagate a signal from one gate to the next by sliding intermediate tiles.  This requires the user to know precisely which sequence of gates to enable/disable.  In contrast to such a hands-on approach, with our architecture we can build circuits, store parameters in memory, and then actuate the entire system in parallel using a global control signal.
 
 \subsection{Other Related Work on Programmable Matter}
 Clearly there is a wide range of interesting scenarios for developing approaches to programmable matter.
-One such model is the {abstract Tile-Assembly Model} (aTAM) by Winfree~\cite{Winf98,WLWS98,LaWiRe99}, which has 
+One such model is the \emph{abstract Tile-Assembly Model} (aTAM) by Winfree~\cite{Winf98,WLWS98,LaWiRe99}, which has 
 sparked a wide range of theoretical and practical research. In this model, unit-sized pixels (``tiles'')
 interact and bond with the help of differently labeled edges, eventually composing complex assemblies.
 Even though the operations and final objectives in this model are quite different from our particle computation with global
 inputs (e.g., key features of the aTAM are that tiles can have a wide range of different edge types, and
 that they keep sticking together after bonding), there is
-a remarkable geometric parallelism to a key feature of our present paper:
+a remarkable geometric parallelism to a key result of our present paper:
 While it is widely believed that at the most basic level of interaction (called {\em temperature 1}),
 computational universality {\em cannot be achieved}~\cite{LSAT1,ManuchTemp1,IUNeedsCoop} in the aTAM with only unit-sized pixels, 
-very recent work~\cite{fhp+-ucapt-15} shows that computational universality {\em can be achieved} as soon as even slightly bigger tiles are used.
+very recent work~\cite{fhp+-ucapt-15} shows that computational universality {\em can be achieved} as soon as even slightly bigger tiles are used. 
+This resembles the results of our paper, which shows that unit-size particles are insufficient for universal computation, while employing bigger particles suffices
 
 %###############################################################
 \section{Theory}\label{sec:theory}
@@ -387,13 +386,13 @@ By definition, the path is the sequence of locations occupied by the robot. The 
 Now we show that adding more unit-sized robots cannot prevent a location from being occupied at the end of the command sequence.
 
 \begin{theorem}\label{thm:AdditionalRobotsCannotPreventAnOccupation}
-If given a workspace $W$ and a command sequence $\bm{m}$ that moves a robot initially at $\bm{s}$ to a goal location $\bm{g}$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $\bm{g}$ from being occupied at the conclusion of sequence $\bm{m}$.
+If given a workspace $W$ and a command sequence $\bm{m}$ that moves a robot from a start location $\bm{s}$ to a goal location $\bm{g}$, adding additional robots anywhere in $W$ at any stage of the command sequence cannot prevent $\bm{g}$ from being occupied at the conclusion of sequence $\bm{m}$.
 \end{theorem}
 
 %This theorem addresses how adding more robots can effect the final outcome. 
 \begin{proof} Consider the effect of adding robot $b$ to workspace $W$. If $a$ never hits $b$, then by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $a$'s path remains the same. Therefore, at the conclusion of $\bm{m}$, $a$ occupies $\bm{g}$. 
 
-Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bm{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bm{g}$. By induction, we can clearly see that adding additional robots will have the same effect. If $b$ hits any other robot, this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bm{g}$ at the conclusion of $\bm{m}$.  
+Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bm{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bm{g}$ unless $b$ hits yet another robot. By induction, we can clearly see that such additional robots will have the same effect. If $b$ hits any other robot, this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bm{g}$ at the conclusion of $\bm{m}$.  
 %\textcolor{blue}{Should we say something about multiple hits (an inductive proof)? }
 \end{proof}
 
@@ -461,7 +460,7 @@ Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\
 
 We will now assume that condition 1, above, is the original scenario and  add and subtract robots, applying theorems~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
 
-Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\overline{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However in order to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
+Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\overline{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However, in order to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
  \end{proof}
 
 \begin{table}
@@ -495,9 +494,9 @@ Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequen
   
 %  A clock sequence without orthogonal inputs, i.e. $\langle u,d,u,d \rangle$ can only implement assertions.  \textcolor{red}{This is an assertion. You need to support it} Using two orthogonal inputs, i.e.~$\langle d,l,d,l \rangle$  cannot implement {\sc fan-out} gates,\textcolor{red}{another assertion} and particles cannot be returned $u$ or $r$.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  We choose the simplest such sequence, $\langle d,l,u,r \rangle$, and prove that this  sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring. \textcolor{red}{Here's what I got out of this paragraph: In order to simplify our system and according the principles of RISC we would like to use the same clock sequence for all gates. This sequence should also be used for all wiring, that is for all connections between inputs and outputs. It is insufficient to use a clock sequence with only two directions. If these two directions are orthogonal (i.e. d,l,d,l) it is insufficient because (need more explanation here). If these two directions are not orthogonal (i.e. d,u,d,u) it is insufficient because (need more explanation here). Using only three directions, we were able to implement AND, OR, and  XOR gates, as well as their inverses. Specifically, in our previous work we used the sequence d,l,d,r. However this sequence makes it impossible to wire outputs of gates to inputs of gates that are higher up in the workspace. As clock sequences with two and three directions are insufficient for our purposes we have chosen to the simplest sequence d,l,u,r and will proceed to prove that this sequence is sufficient for logic gates, fan-out gates, and wiring.  }
 
-This clock sequence has the attractive property of being a clockwise (CW) rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating perpendicular to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
+This clock sequence has the attractive property of being a clockwise (CW) rotation through the possible input sequences.  One could imagine our particle logic circuit mounted on a wheel rotating about an axis parallel to the ground. If the particles were moved by the pull of gravity, each counter-clockwise revolution would advance the circuit by one clock cycle.
 
-\subsection{A {\sc fan-out} gate}\label{sec:FanOut}
+\subsection{A {\sc fan-out} Gate}\label{sec:FanOut}
 A {\sc fan-out} gate with two outputs implements the truth table in Table~\ref{tab:Fanout}.  
 This cannot be implemented with 1$\times$1 particles and obstacles, by corollary \ref{cor:No1x1FanOut}.   Our technique uses 2$\times$1 particles.   A single-input, two-output {\sc fan-out} gate is shown in Fig~\ref{fig:Fanout}.  This gate requires a dual-rail input, a supply particle, and a $2\times 1$ slider.  The  \emph{clockwise} control sequence $\langle d,l,u,r \rangle$  duplicates the dual-rail input.
 
@@ -553,7 +552,7 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
 \put(63,-3){$A$~\,\,$A$~\,$A$~\,$A$} \put(83.6,-3){$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$~\,$\overline{A}$} 
 \end{overpic}
 \caption{\label{fig:Fanout4}
-The {\sc fan-out} gate can drive multiple outputs. Here a single input drives four-outputs.  This gate requires a dual-rail input, three supply particles, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
+The {\sc fan-out} gate can drive multiple outputs. Here a single input drives four outputs.  This gate requires a dual-rail input, three supply particles, and a $2\times 1$ slider.  The \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ quadruples the dual-rail input.
 }
 \vspace{-1em}
 \end{figure}
@@ -598,10 +597,10 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
   \caption{A single-bit data storage latch with state $Q$.  \label{tab:memoryTruthTable}}
 \end{table}
   
-\subsection{A binary counter}\label{sec:binaryCounter}
+\subsection{A Binary Counter}\label{sec:binaryCounter}
   Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate, one {\sc and} and one {\sc xor} gate.
   
-We illustrate how many gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
+We illustrate how several gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
 
 \begin{figure}
  \begin{overpic}[width =\columnwidth]{BinCounterCW000.png}\end{overpic}
@@ -641,7 +640,7 @@ Ending configuration for each stage of the computation.
 \end{figure*}
 
 
-\subsection{Scaling issues}
+\subsection{Scaling Issues}
  Particle computation requires multiple clock cycles, workspace area for gates and interconnections, and many particles.  In this section we analyze how these scale with the size of the counter, using Fig.~\ref{fig:CounterBlockDiagram} as a reference.   
 
 %n+n-1+n-2 = 3(n-1)
@@ -652,9 +651,9 @@ Ending configuration for each stage of the computation.
 
 %http://en.wikipedia.org/wiki/Adder_(electronics)  one FA needs 5 gates 2 XOR, 2 AND 1 OR,  Half after needs 2gates: 1 XOR, 1 AND, n-bit ripple needs 5(n-1)+2 gates
 These requirements are comparable to a ripple-carry adder:  the delay for $n$ bits is $n$ delays  and requires $5(n-1)+2$ gates.
-Numerous other schemes exist to speed up the computation, however using discrete gates allows us to use standard methods for translating a Boolean expression into gate-level logic.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute the desired logic.  
+Numerous other schemes exist to speed up the computation; however, using discrete gates allows us to use standard methods for translating a Boolean expression into gate-level logic.  If speed was critical, instead of using discrete gates, we could engineer the workspace to directly compute the desired logic.  
 
-\subsection{Optimal Wiring schemes}\label{sec:wiring}
+\subsection{Optimal Wiring Schemes}\label{sec:wiring}
 With our current CW clock cycle, we cannot have outputs from the same column as
 inputs---outputs must be either one to the right, or three to the left.  
 Choosing one of these results in horizontal shifts at each stage and thus
