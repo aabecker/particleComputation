@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  1 OCT 2014 18:56
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  1 OCT 2014 21:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -908,7 +908,7 @@ File: ./pictures/jpg/DSC_0093lowres.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0093lowres.JPG>
 Package pdftex.def Info: ./pictures/jpg/DSC_0093lowres.JPG used on input line 2
-46.
+48.
 (pdftex.def)             Requested size: 245.71811pt x 136.86276pt.
  [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -918,29 +918,29 @@ s been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.261 \end{enumerate}
+l.263 \end{enumerate}
                       <./pictures/jpg/DSC_0093lowres.JPG>]
 <./pictures/pdf/HalfAdder.pdf, id=108, 144.54pt x 80.3pt>
 File: ./pictures/pdf/HalfAdder.pdf Graphic file (type pdf)
 
 <use ./pictures/pdf/HalfAdder.pdf>
-Package pdftex.def Info: ./pictures/pdf/HalfAdder.pdf used on input line 291.
+Package pdftex.def Info: ./pictures/pdf/HalfAdder.pdf used on input line 293.
 (pdftex.def)             Requested size: 120.40321pt x 66.89035pt.
  [2pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.350 
+l.352 
        <./pictures/pdf/HalfAdder.pdf>] [3]
 <./pictures/png/FanOutS1cw.png, id=167, 695.59875pt x 168.63pt>
 File: ./pictures/png/FanOutS1cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS1cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS1cw.png used on input line 507.
+Package pdftex.def Info: ./pictures/png/FanOutS1cw.png used on input line 509.
 (pdftex.def)             Requested size: 245.71811pt x 59.56686pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 513--515
+Underfull \hbox (badness 10000) in paragraph at lines 515--517
 
  []
 
@@ -948,10 +948,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 513--515
 File: ./pictures/png/FanOutS2cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS2cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS2cw.png used on input line 516.
+Package pdftex.def Info: ./pictures/png/FanOutS2cw.png used on input line 518.
 (pdftex.def)             Requested size: 245.71811pt x 59.03502pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 516--518
+Underfull \hbox (badness 10000) in paragraph at lines 518--520
 
  []
 
@@ -959,10 +959,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 516--518
 File: ./pictures/png/FanOutS4cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS4cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS4cw.png used on input line 519.
+Package pdftex.def Info: ./pictures/png/FanOutS4cw.png used on input line 521.
 (pdftex.def)             Requested size: 245.71811pt x 59.36499pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 522--526
+Underfull \hbox (badness 10000) in paragraph at lines 524--528
 [][]
  []
 
@@ -971,10 +971,10 @@ File: ./pictures/png/FanOutcw4step12.png Graphic file (type png)
 
 <use ./pictures/png/FanOutcw4step12.png>
 Package pdftex.def Info: ./pictures/png/FanOutcw4step12.png used on input line 
-532.
+534.
 (pdftex.def)             Requested size: 245.71811pt x 50.02434pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 541--543
+Underfull \hbox (badness 10000) in paragraph at lines 543--545
 
  []
 
@@ -983,20 +983,20 @@ File: ./pictures/png/FanOutcw4step34.png Graphic file (type png)
 
 <use ./pictures/png/FanOutcw4step34.png>
 Package pdftex.def Info: ./pictures/png/FanOutcw4step34.png used on input line 
-544.
+546.
 (pdftex.def)             Requested size: 245.71811pt x 50.42453pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--556
+Underfull \hbox (badness 10000) in paragraph at lines 555--558
 [][]
  []
 
-<./pictures/pdf/MemoryElement.pdf, id=176, 963.6pt x 542.025pt>
+<./pictures/pdf/MemoryElement.pdf, id=176, 967.615pt x 433.62pt>
 File: ./pictures/pdf/MemoryElement.pdf Graphic file (type pdf)
 
 <use ./pictures/pdf/MemoryElement.pdf>
 Package pdftex.def Info: ./pictures/pdf/MemoryElement.pdf used on input line 56
-5.
-(pdftex.def)             Requested size: 491.43622pt x 276.4291pt.
+7.
+(pdftex.def)             Requested size: 491.43622pt x 220.2302pt.
  [4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
 has been already used, duplicate ignored
 
@@ -1096,187 +1096,189 @@ Package pdftex.def Info: ./pictures/png/BinCounterCW111.png used on input line
 634.
 (pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
 
-Underfull \hbox (badness 2980) in paragraph at lines 644--645
+Underfull \hbox (badness 2980) in paragraph at lines 645--646
 []\OT1/ptm/m/n/10 Particle com-pu-ta-tion re-quires mul-ti-ple clock cy-cles,
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
- has been already used, duplicate ignored
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.645 
+l.652 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.645 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.645 
+l.652 
       pdfTeX warning (ext4): destination with the same identifier (name{table.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.645 
-       <./pictures/pdf/MemoryElement.pdf> <./pictures/png/FanOutS1cw.png> <./pi
-ctures/png/FanOutS2cw.png> <./pictures/png/FanOutS4cw.png> <./pictures/png/FanO
-utcw4step12.png> <./pictures/png/FanOutcw4step34.png>]
-Underfull \hbox (badness 1748) in paragraph at lines 671--672
-[]\OT1/ptm/m/n/10 The ex-per-i-men-tal setup con-sists of Plex-i-glas square
- []
-
-[6pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) 
-has been already used, duplicate ignored
+l.652 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.672 
-       <./pictures/png/BinCounterCW000.png> <./pictures/png/BinCounterCW001.png
-> <./pictures/png/BinCounterCW010.png> <./pictures/png/BinCounterCW011.png> <./
-pictures/png/BinCounterCW100.png> <./pictures/png/BinCounterCW101.png> <./pictu
-res/png/BinCounterCW110.png> <./pictures/png/BinCounterCW111.png>]
-<./pictures/pdf/ReliabilityAsFuncTipAngle.pdf, id=290, 412.36243pt x 179.80113p
+l.652 
+       <./pictures/pdf/MemoryElement.pdf> <./pictures/png/FanOutS1cw.png> <./pi
+ctures/png/FanOutS2cw.png> <./pictures/png/FanOutS4cw.png> <./pictures/png/FanO
+utcw4step12.png> <./pictures/png/FanOutcw4step34.png>]
+Underfull \hbox (badness 1748) in paragraph at lines 672--673
+[]\OT1/ptm/m/n/10 The ex-per-i-men-tal setup con-sists of Plex-i-glas square
+ []
+
+
+<./pictures/pdf/ReliabilityAsFuncTipAngle.pdf, id=291, 412.36243pt x 179.80113p
 t>
 File: ./pictures/pdf/ReliabilityAsFuncTipAngle.pdf Graphic file (type pdf)
  <use ./pictures/pdf/ReliabilityAsFuncTipAngle.pdf>
 Package pdftex.def Info: ./pictures/pdf/ReliabilityAsFuncTipAngle.pdf used on i
-nput line 693.
+nput line 694.
 (pdftex.def)             Requested size: 245.71811pt x 107.138pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--694
+Underfull \hbox (badness 10000) in paragraph at lines 694--695
 [][]
  []
 
-<./pictures/jpg/DSC_0003lr.JPG, id=291, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0003lr.JPG, id=292, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0003lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0003lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0003lr.JPG used on input line 712.
+Package pdftex.def Info: ./pictures/jpg/DSC_0003lr.JPG used on input line 713.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0012lr.JPG, id=292, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0012lr.JPG, id=293, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0012lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0012lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0012lr.JPG used on input line 713.
+Package pdftex.def Info: ./pictures/jpg/DSC_0012lr.JPG used on input line 714.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0006lr.JPG, id=293, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0006lr.JPG, id=294, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0006lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0006lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0006lr.JPG used on input line 714.
+Package pdftex.def Info: ./pictures/jpg/DSC_0006lr.JPG used on input line 715.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0017lr.JPG, id=294, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0017lr.JPG, id=295, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0017lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0017lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0017lr.JPG used on input line 715.
+Package pdftex.def Info: ./pictures/jpg/DSC_0017lr.JPG used on input line 716.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0009lr.JPG, id=295, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0009lr.JPG, id=296, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0009lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0009lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0009lr.JPG used on input line 716.
+Package pdftex.def Info: ./pictures/jpg/DSC_0009lr.JPG used on input line 717.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0021lr.JPG, id=296, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0021lr.JPG, id=297, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0021lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0021lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0021lr.JPG used on input line 717.
+Package pdftex.def Info: ./pictures/jpg/DSC_0021lr.JPG used on input line 718.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0010lr.JPG, id=297, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0010lr.JPG, id=298, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0010lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0010lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0010lr.JPG used on input line 718.
+Package pdftex.def Info: ./pictures/jpg/DSC_0010lr.JPG used on input line 719.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0024lr.JPG, id=298, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0024lr.JPG, id=299, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0024lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0024lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0024lr.JPG used on input line 719.
+Package pdftex.def Info: ./pictures/jpg/DSC_0024lr.JPG used on input line 720.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0013lr.JPG, id=299, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0013lr.JPG, id=300, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0013lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0013lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0013lr.JPG used on input line 720.
+Package pdftex.def Info: ./pictures/jpg/DSC_0013lr.JPG used on input line 721.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0026lr.JPG, id=300, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0026lr.JPG, id=301, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0026lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0026lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0026lr.JPG used on input line 721.
+Package pdftex.def Info: ./pictures/jpg/DSC_0026lr.JPG used on input line 722.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0015lr.JPG, id=301, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0015lr.JPG, id=302, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0015lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0015lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0015lr.JPG used on input line 722.
+Package pdftex.def Info: ./pictures/jpg/DSC_0015lr.JPG used on input line 723.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0030lr.JPG, id=302, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0030lr.JPG, id=303, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0030lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0030lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0030lr.JPG used on input line 723.
+Package pdftex.def Info: ./pictures/jpg/DSC_0030lr.JPG used on input line 724.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/scale.JPG, id=303, 803.0pt x 517.935pt>
+<./pictures/jpg/scale.JPG, id=304, 803.0pt x 517.935pt>
 File: ./pictures/jpg/scale.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/scale.JPG>
-Package pdftex.def Info: ./pictures/jpg/scale.JPG used on input line 729.
+Package pdftex.def Info: ./pictures/jpg/scale.JPG used on input line 730.
 (pdftex.def)             Requested size: 245.71811pt x 158.48758pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 729--730
+Underfull \hbox (badness 10000) in paragraph at lines 730--731
 [][]
  []
 
-(./FanOutgatesAndBinaryCounters.bbl [7pdfTeX warning (ext4): destination with t
-he same identifier (name{figure.6}) has been already used, duplicate ignored
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.71 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.7
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.71 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.9
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.71 
-      <./pictures/pdf/counterSchem.pdf> <./pictures/pdf/ReliabilityAsFuncTipAng
-le.pdf>]
+l.744 
+       <./pictures/png/BinCounterCW000.png> <./pictures/png/BinCounterCW001.png
+> <./pictures/png/BinCounterCW010.png> <./pictures/png/BinCounterCW011.png> <./
+pictures/png/BinCounterCW100.png> <./pictures/png/BinCounterCW101.png> <./pictu
+res/png/BinCounterCW110.png> <./pictures/png/BinCounterCW111.png>]
+(./FanOutgatesAndBinaryCounters.bbl
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.95 \bibitem{McCourtney1999}
+                             pdfTeX warning (ext4): destination with the same i
+dentifier (name{figure.7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.95 \bibitem{McCourtney1999}
+                             pdfTeX warning (ext4): destination with the same i
+dentifier (name{figure.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.95 \bibitem{McCourtney1999}
+                              <./pictures/pdf/counterSchem.pdf> <./pictures/pdf
+/ReliabilityAsFuncTipAngle.pdf>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -1301,42 +1303,42 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 757.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 758.
 [8pdfTeX warning (ext4): destination with the same identifier (name{figure.10})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.757 \end{document}
+l.758 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.757 \end{document}
+l.758 \end{document}
                      <./pictures/jpg/DSC_0003lr.JPG> <./pictures/jpg/DSC_0012lr
 .JPG> <./pictures/jpg/DSC_0006lr.JPG> <./pictures/jpg/DSC_0017lr.JPG> <./pictur
 es/jpg/DSC_0009lr.JPG> <./pictures/jpg/DSC_0021lr.JPG> <./pictures/jpg/DSC_0010
 lr.JPG> <./pictures/jpg/DSC_0024lr.JPG> <./pictures/jpg/DSC_0013lr.JPG> <./pict
 ures/jpg/DSC_0026lr.JPG> <./pictures/jpg/DSC_0015lr.JPG> <./pictures/jpg/DSC_00
 30lr.JPG> <./pictures/jpg/scale.JPG>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 757.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 758.
  (./FanOutgatesAndBinaryCounters.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 757.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 757.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 758.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 758.
 Package rerunfilecheck Info: File `FanOutgatesAndBinaryCounters.out' has not ch
 anged.
 (rerunfilecheck)             Checksum: 94100DAD38C974F6DB736C5589448CD4;1165.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 757.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 758.
  ) 
 Here is how much of TeX's memory you used:
  14470 strings out of 493488
  227829 string characters out of 3141326
- 333954 words of memory out of 3000000
+ 333990 words of memory out of 3000000
  17374 multiletter control sequences out of 15000+200000
  54070 words of font info for 121 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,10n,38p,1758b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,38p,1758b,476s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texl
@@ -1359,9 +1361,9 @@ e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FanOutgatesAndBinaryCounters.pdf (8 pages, 2581658 bytes).
+Output written on FanOutgatesAndBinaryCounters.pdf (8 pages, 2447752 bytes).
 PDF statistics:
- 466 PDF objects out of 1000 (max. 8388607)
+ 482 PDF objects out of 1000 (max. 8388607)
  89 named destinations out of 1000 (max. 500000)
  308 words of extra memory for PDF output out of 10000 (max. 10000000)
 

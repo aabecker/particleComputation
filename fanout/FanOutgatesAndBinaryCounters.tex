@@ -566,11 +566,9 @@ A general-purpose computer must be able to store data.  A $2\times1$ particle en
  \begin{figure*}
 \begin{overpic}[width =2\columnwidth]{MemoryElement.pdf}
 \end{overpic}
-\caption{
-\label{fig:Memory}
+\caption{\label{fig:Memory}
 A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emph{Clear}, a state variable (shown in blue), and a $2\times 1$ slider.  Depending on which input is active, the control sequence $\langle d,l,d,r \rangle$ will read, set, or clear the memory.
 }
-\vspace{-1em}
 \end{figure*}
 
 \begin{table}
@@ -609,7 +607,7 @@ We illustrate how several gates can be combined by constructing a binary counter
 \vspace{.1em}\\
 \caption{
 \label{fig:Counter}
-A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. 
+A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. See video attachment for animation.
 }
 \vspace{-1em}
 \end{figure}
@@ -639,6 +637,7 @@ Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor}
 \label{fig:CounterShowingEachStage}
 Ending configuration for each stage of the computation.
 }
+\vspace{-1em}
 \end{figure*}
 
 
@@ -668,9 +667,9 @@ height is also limited, \emph{wire buses} provide a compact solution.
 \section{Experiment}\label{sec:Experiment}
 %###############################################################
 A large-scale prototype was built as a physical implementation of particle computation with global inputs, shown in Fig.~\ref{fig:prototype}.  The design is inspired by the gravity-fed logic maze \emph{Tilt\texttrademark}
-\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details for the prototype. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
+\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
 
-The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any of slot's junctions. A clearance of 0.5mm on each side of the obstacle ensures that moving parts can slide past.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
+The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any slot junction. A clearance of 0.5mm on each side of the obstacle ensures that moving parts can slide past.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
 
 The board can rotate along two perpendicular axes and these rotations generate the four valid commands. Both types of sliders start moving at 12.5$^\circ$. Experimental data on success rate as a function of tipping angle are shown in Fig.~\ref{fig:TipAngleExperiment}. We chose a rotation of 20$^\circ$ for each command to ensure that sliders  slide reliably.
 
@@ -739,7 +738,7 @@ In this paper we
 (2) established the necessity of dual-rail logic for Boolean logic;  
 (3) designed {\sc fan-out} gates and memory latches by employing slightly different particles;
  (4) presented an architecture for device integration,  a common clock sequence, and a binary counter,
- and (5) implemented a large-scale model of particle computation.
+ and (5) implemented a large-scale prototype of particle computation.
 
 This work, along with \cite{Becker2013f,Becker2014,Becker2014a}, introduces a
 new model for mechanical computation.  Interesting applications will aim at 
