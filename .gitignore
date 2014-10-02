@@ -259,3 +259,9 @@ pip-log.txt
 *.log
 
 *.gz
+
+*.aux
+
+*.log
+
+*.gz

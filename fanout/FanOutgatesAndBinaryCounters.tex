@@ -196,6 +196,8 @@ of the inputs.  Using these gates we are able to establish the full range
 of computational universality as presented by complex digital circuits.  As
 an example we connect our logic elements to produce a 3-bit counter.  We also
 demonstrate how to implement a data storage element.
+
+%We present fundamental progress on the computational universality of swarms of micro- or nano-scale robots in complex environments, controlled not by individual navigation, but by a uniform global, external force. Consider a 2D grid world, in which all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. In previous work, we demonstrated components of particle computation in this world, designing obstacle configurations that implement AND and OR logic gates:  by using dual-rail logic, we designed NOT, NOR, NAND, XOR, XNOR logic gates. However, we were unable to design a FAN-OUT gate, which is necessary for simulating the full range of complex interactions that are present in arbitrary digital circuits. In this work we resolve this problem by proving unit-sized robots cannot generate a FAN-OUT gate. On the positive side, we resolve the missing component with the help of  2x1 robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we are able to establish the full range of computational universality as presented by complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.  We also demonstrate how to implement a data storage element.
 \end{abstract}
 
 
@@ -670,8 +672,28 @@ A large-scale prototype was built as a physical implementation of particle compu
 
 The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any of slot's junctions. A clearance of 0.5mm on each side of the obstacle ensures that moving parts can slide past.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
 
-The board can rotate along two perpendicular axes and these rotations generate the four valid commands. Both types of sliders start moving at 12.5$^\circ$. We chose a rotation of 20$^\circ$ for each command to ensure that sliders  slide reliably.
+The board can rotate along two perpendicular axes and these rotations generate the four valid commands. Both types of sliders start moving at 12.5$^\circ$. Experimental data on success rate as a function of tipping angle are shown in Fig.~\ref{fig:TipAngleExperiment}. We chose a rotation of 20$^\circ$ for each command to ensure that sliders  slide reliably.
 
+%  \begin{table}
+%\begin{displaymath}
+%\begin{array}{r c c c c c | c c c c c}
+%%\toprule
+%& \multicolumn{5}{c}{1$\times$1 slider} & \multicolumn{5}{c}{1$\times$2 slider	} \\
+%\hline
+%rotation angle (degree)	&12	&13	&14	&15		&20	&12	&13	&14	&15	&20 \\%failures per 50 tests		&10	&1	&3	&0		&0	&6	&8	&0	&0	&0 \\%success rate (percent)	&80	&98	&94	&100	&100	&88	&84	&100	&100	&100
+%%\bottomrule
+%\end{array}
+%\end{displaymath}
+%\caption{Reliability as a function of rotation angle}
+%  \label{tab:Reliability}
+%\end{table}
+
+
+ \begin{figure}
+\begin{overpic}[width =\columnwidth]{ReliabilityAsFuncTipAngle}\end{overpic}
+\caption{\label{fig:TipAngleExperiment}Experimental data on slider reliability as a function of tip angle.}
+\vspace{-1em}
+\end{figure}
 
  \begin{figure}
 % DSC_0003lr.JPG
