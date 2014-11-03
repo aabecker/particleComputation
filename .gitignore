@@ -265,3 +265,11 @@ pip-log.txt
 *.log
 
 *.gz
+
+*.gz
+
+*.log
+
+*.blg
+
+*.aux
