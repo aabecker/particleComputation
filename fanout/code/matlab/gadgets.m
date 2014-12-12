@@ -86,9 +86,10 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts] = ddXORgatecw; %sum bit
-[G.obstacle_pos,RobotPts] = memorycw; %memory
+%[G.obstacle_pos,RobotPts] = memorycw; %memory
 %[G.obstacle_pos,RobotPts] = ddANDgatecw();  %NAND/NOR/OR/AND 
 %[G.obstacle_pos,RobotPts] = ddCarrycw(); 
+[G.obstacle_pos,RobotPts] = singleCycleDelay(); 
 G.EMPTY = 0;
 G.OBST = 1;
 
@@ -681,7 +682,41 @@ function [blk,RobotPts] = ddANDgatecw()
             end            
         end
         blk = flipud(repmat(blk,1,2^ins));
+end
+
+
+
+function [blk,RobotPts] = singleCycleDelay()
+ % this gate starts with a large collection of components, and
+ % emits one particle every other cycle.
+        RobotPts = [];
+        
+        % DESIGN THE OBSTACLES:
+        %                  A   A'  B   B' 
+        blk=[1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0;
+             1 1 0 1 1 1 1 0 1 0 1 0 1 0 1 0;
+             1 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0;
+             1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+             1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
+             1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
+             1 1 0 1 0 0 0 0 1 0 1 1 1 0 1 0;
+             1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0;
+             1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 0;
+           %    AND,   1,  NAND    
+            ];
+        w = size(blk,2);
+        h = size(blk,1);
+        
+        
+        %INSERT THE ROBOTS   each row is  x,y,color, 
+           RobotPts = [
+            5,h,1,1;
+            7,h,2,2;
+            ];
+
+        blk = flipud(repmat(blk,1,1));
     end
+
 
 function [blk,RobotPts] = ddCarrycw()
  % sum bit for dual-rail full adder   d,l,d,r,d,l,d
