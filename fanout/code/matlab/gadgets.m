@@ -1,37 +1,38 @@
 function gadgets
-% demonstrates several gadgets for "Particle Computation: Designing Worlds
-% To Control Robot Swarms with only Global Signals"  See paper at 
+% @brief: demonstrates several gadgets for "Particle Computation: Designing Worlds
+% To Control Robot Swarms with only Global Signals"  See paper at
 % https://github.com/aabecker/particleComputation/blob/master/fanout/FanOutgatesAndBinaryCounters.pdf
 % And video at http://youtu.be/EJSv8ny31r8
 %
+% @author; Aaron Becker, atbecker@uh.edu
 %
-%  These 'gadgets' manipulate particles (also called robots) according to 
+%  These 'gadgets' manipulate particles (also called robots) according to
 %  THREE LAWS:
 %  1.) everything is on a planar, square grid, with unit-sized robots (in color)
 %  and fixed, unit-size blocks (black)
-%  2.) Valid commands are "Go Up" (u), "Go Down" (d), "Go Left" (l), 
+%  2.) Valid commands are "Go Up" (u), "Go Down" (d), "Go Left" (l),
 %  "Go Right" (r)
 %  3.) All robots move in the commanded direction until they hit an
 %  obstacle or another robot.
 %
-%  To play:  
+%  To play:
 %       1.) uncomment a gadget below "STEP 1: create Workspace"
 %       2.) run the code, use arrow keys or {'u','r','d','l'} keyboard
 %       letters to move the robots
 %       3.) design your own obstacle map.
 %
-% 
+%
 % My goal is to do everything with the input
 % sequence {D,L,D,R}
-% TODO: 
+% TODO:
 %   1.) the memory gate memorycw() is not conservative. This is not good
 %   enough for a journal submission. It is not conservative.  I'd like to
 %   represent state (true or false) by the position of a 2x1 slider.  This
 %   slider may require more than 1 CW cycle.
-%   2.) a collection of obstacles and 2x1 sliders that work as a one-cycle delay:
+%   2.) design a collection of obstacles and 2x1 sliders that work as a one-cycle delay:
 % [ reservoir full of 1x1 components] --> [connecting line that feeds 1x1
 % components] -->[ one-cycle-delay]
-%   
+%
 % OUTPUT:  every other CW cycle a 1x1 block comes out.  Currently we get a
 % new component every CW cycle.  We'd like to get one every other cycle, or
 % concatenate these to get a 1x1 output every n cycles.
@@ -87,9 +88,10 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts] = ddXORgatecw; %sum bit
 %[G.obstacle_pos,RobotPts] = memorycw; %memory
-%[G.obstacle_pos,RobotPts] = ddANDgatecw();  %NAND/NOR/OR/AND 
-%[G.obstacle_pos,RobotPts] = ddCarrycw(); 
-[G.obstacle_pos,RobotPts] = singleCycleDelay(); 
+%[G.obstacle_pos,RobotPts] = ddANDgatecw();  %NAND/NOR/OR/AND
+%[G.obstacle_pos,RobotPts] = ddCarrycw();
+[G.obstacle_pos,RobotPts] = singleCycleDelay();
+%[G.obstacle_pos,RobotPts] = partHopper()
 G.EMPTY = 0;
 G.OBST = 1;
 
@@ -170,16 +172,16 @@ for hi = 1: numRobots
     
     %G.hRobotsPast4(hi) =  BLUEcreateRobotPath( RobotPts(hi,:), 0.6);
     
-%     G.hRobotsPast10(hi) =  createRobotPath( RobotPts(hi,:), 0.03);
-%     G.hRobotsPast9(hi) =  createRobotPath( RobotPts(hi,:), 0.05);
-%     G.hRobotsPast8(hi) =  createRobotPath( RobotPts(hi,:), 0.10);
-%     G.hRobotsPast7(hi) =  createRobotPath( RobotPts(hi,:), 0.15);
-%     G.hRobotsPast6(hi) =  createRobotPath( RobotPts(hi,:), 0.2);
-%     G.hRobotsPast5(hi) =  createRobotPath( RobotPts(hi,:), 0.3);
-%     G.hRobotsPast4(hi) =  createRobotPath( RobotPts(hi,:), 0.4);
-%     G.hRobotsPast3(hi) =  createRobotPath( RobotPts(hi,:), 0.5);
-%     G.hRobotsPast2(hi) =  createRobotPath( RobotPts(hi,:), 0.6);
-%     G.hRobotsPast(hi) =  createRobotPath( RobotPts(hi,:), 0.7);
+    %     G.hRobotsPast10(hi) =  createRobotPath( RobotPts(hi,:), 0.03);
+    %     G.hRobotsPast9(hi) =  createRobotPath( RobotPts(hi,:), 0.05);
+    %     G.hRobotsPast8(hi) =  createRobotPath( RobotPts(hi,:), 0.10);
+    %     G.hRobotsPast7(hi) =  createRobotPath( RobotPts(hi,:), 0.15);
+    %     G.hRobotsPast6(hi) =  createRobotPath( RobotPts(hi,:), 0.2);
+    %     G.hRobotsPast5(hi) =  createRobotPath( RobotPts(hi,:), 0.3);
+    %     G.hRobotsPast4(hi) =  createRobotPath( RobotPts(hi,:), 0.4);
+    %     G.hRobotsPast3(hi) =  createRobotPath( RobotPts(hi,:), 0.5);
+    %     G.hRobotsPast2(hi) =  createRobotPath( RobotPts(hi,:), 0.6);
+    %     G.hRobotsPast(hi) =  createRobotPath( RobotPts(hi,:), 0.7);
     if numel( RobotPts(hi,:))>5
         G.hRobots(hi) =  rectangle('Position',[RobotPts(hi,1)-1/2,RobotPts(hi,2)-1/2,RobotPts(hi,5),RobotPts(hi,6)],'Curvature',[1/RobotPts(hi,5),1/RobotPts(hi,6)],'FaceColor',colors(RobotPts(hi,4),:));
     else
@@ -206,7 +208,7 @@ end
         end
     end
 
- function updatePastPath( hOldPath, hOlderPath)
+    function updatePastPath( hOldPath, hOlderPath)
         for ni = 1:size(RobotPts,1)
             set(hOlderPath(ni),'Position', get(hOldPath(ni),'Position'), ...
                 'Curvature', get(hOldPath(ni),'Curvature'));
@@ -251,10 +253,10 @@ end
         for ni = 1:size(RobotPts,1)
             stVal = RobotPts(ni,1:2);
             desVal = RobotPts(ni,1:2)+step;
-                       
+            
             % move there if no robot in the way and space is free
             if numel( RobotPts(ni,:))>5
-             
+                
                 %1 augment RobotPts to include all additional blocks except
                 %this moving block
                 sRobotPts =  [];
@@ -266,14 +268,14 @@ end
                     end
                 end
                 moveOk = true;
-                while moveOk 
+                while moveOk
                     %2.) create a list of coordinates for each section of the
                     %moved block
                     for i2 = 1:RobotPts(ni,5)
-                            for i3 = 1:RobotPts(ni,6)
-                                %3.) do any of the moving block hit?
-                                moveOk = moveOk & spaceFreeWithNoRobot([RobotPts(ni,1)+i2-1+step(1), RobotPts(ni,2)+i3-1+step(2)], sRobotPts, G);
-                            end
+                        for i3 = 1:RobotPts(ni,6)
+                            %3.) do any of the moving block hit?
+                            moveOk = moveOk & spaceFreeWithNoRobot([RobotPts(ni,1)+i2-1+step(1), RobotPts(ni,2)+i3-1+step(2)], sRobotPts, G);
+                        end
                     end
                     if moveOk
                         RobotPts(ni,1:2) = desVal;
@@ -282,10 +284,10 @@ end
                 end
                 
             else
-            while spaceFreeWithNoRobot(desVal, RobotPts, G)
+                while spaceFreeWithNoRobot(desVal, RobotPts, G)
                     RobotPts(ni,1:2) = desVal;
                     desVal = RobotPts(ni,1:2)+step;
-            end
+                end
             end
             if ~isequal( stVal, RobotPts(ni,1:2) )
                 x = min(stVal(1), RobotPts(ni,1));
@@ -364,15 +366,15 @@ end
             RobotPts(i,4) = i;
         end
         %               x     x'
-%         blk=[1 1 1 0 1 0 1 1 1 0 1 1
-%             1 1 1 0 1 0 0 0 0 0 0 0
-%             1 1 1 0 1 0 0 0 0 1 0 1
-%             1 0 0 0 0 0 0 0 0 0 0 1
-%             1 1 1 1 0 1 1 1 1 1 1 1
-%             1 1 1 1 0 0 1 1 1 1 1 1
-%             1 1 1 1 1 0 1 1 1 1 1 1
-%             1 1 1 1 1 0 1 1 1 1 1 1];
-       blk=[1 1 0 1 1 0 1 1 1 1 1 0 1 1 1
+        %         blk=[1 1 1 0 1 0 1 1 1 0 1 1
+        %             1 1 1 0 1 0 0 0 0 0 0 0
+        %             1 1 1 0 1 0 0 0 0 1 0 1
+        %             1 0 0 0 0 0 0 0 0 0 0 1
+        %             1 1 1 1 0 1 1 1 1 1 1 1
+        %             1 1 1 1 0 0 1 1 1 1 1 1
+        %             1 1 1 1 1 0 1 1 1 1 1 1
+        %             1 1 1 1 1 0 1 1 1 1 1 1];
+        blk=[1 1 0 1 1 0 1 1 1 1 1 0 1 1 1
             1 1 0 1 0 0 0 1 1 1 0 0 0 1 1
             1 0 0 0 1 1 0 1 1 1 1 1 0 1 1
             1 1 1 0 1 1 0 1 1 1 1 1 0 1 1
@@ -395,7 +397,7 @@ end
             RobotPts(i,3) = i;
             RobotPts(i,4) = i;
         end
-       blk=[1 1 1 1 1 0 1 1 0 1 1 1 1 1 1  %problem 0->1 OR 0!
+        blk=[1 1 1 1 1 0 1 1 0 1 1 1 1 1 1  %problem 0->1 OR 0!
             1 1 1 1 1 0 1 0 0 0 1 1 1 1 1
             1 1 1 1 1 0 1 0 1 1 1 1 1 1 1
             1 0 0 0 0 0 0 0 0 0 0 0 0 1 1
@@ -405,28 +407,28 @@ end
             1 1 1 1 1 0 1 1 1 1 1 1 1 1 1];
         blk = flipud([blk, repmat(blk(:,end),1,5)]);
     end
-function [blk,RobotPts] = FANOUTgate() %#ok<DEFNU>
+    function [blk,RobotPts] = FANOUTgate() %#ok<DEFNU>
         % uses a 2x1 block and supply bit to create a FANOUT gate
         %  Only outputs ones with the correct input sequence BUT easy to
-        %  create zeros  
+        %  create zeros
         % want 1 -> 11; 0 -> 00
-%         RobotPts = [ % x,y,color, num, w,h
-%             6,8,1,1,1,1;  %X input
-%             9,8,3,3,1,1; %supply
-%             10,5,4,4,2,1; %slider
-%             ];
-%         for i = 1:numel(RobotPts(:,1))
-%             RobotPts(i,3) = i;
-%             RobotPts(i,4) = i;
-%         end
-%        blk=[1 1 1 1 1 0 1 1 0 1 1 1 1  %allows 1 -> 11, 01, 10
-%             1 1 1 1 1 0 1 0 0 0 1 1 1  %allows 0 -> 00
-%             1 1 1 1 1 0 1 0 1 1 1 1 1
-%             1 0 0 0 0 0 0 0 0 0 0 1 1
-%             1 1 1 1 0 1 1 1 0 1 0 1 1
-%             1 1 1 1 0 1 1 0 0 0 0 0 0
-%             1 1 1 0 0 0 1 1 0 1 1 1 1
-%             1 1 1 1 1 0 1 1 0 1 1 1 1];
+        %         RobotPts = [ % x,y,color, num, w,h
+        %             6,8,1,1,1,1;  %X input
+        %             9,8,3,3,1,1; %supply
+        %             10,5,4,4,2,1; %slider
+        %             ];
+        %         for i = 1:numel(RobotPts(:,1))
+        %             RobotPts(i,3) = i;
+        %             RobotPts(i,4) = i;
+        %         end
+        %        blk=[1 1 1 1 1 0 1 1 0 1 1 1 1  %allows 1 -> 11, 01, 10
+        %             1 1 1 1 1 0 1 0 0 0 1 1 1  %allows 0 -> 00
+        %             1 1 1 1 1 0 1 0 1 1 1 1 1
+        %             1 0 0 0 0 0 0 0 0 0 0 1 1
+        %             1 1 1 1 0 1 1 1 0 1 0 1 1
+        %             1 1 1 1 0 1 1 0 0 0 0 0 0
+        %             1 1 1 0 0 0 1 1 0 1 1 1 1
+        %             1 1 1 1 1 0 1 1 0 1 1 1 1];
         RobotPts = [ % x,y,color, num, w,h
             5,12,1,1,1,1;  %X input
             8,10,3,3,1,1; %supply
@@ -436,7 +438,7 @@ function [blk,RobotPts] = FANOUTgate() %#ok<DEFNU>
             RobotPts(i,3) = i;
             RobotPts(i,4) = i;
         end
-       blk=[1 1 1 1 0 1 1 0 1 1 1 1 1 %allows 1 -> 11, 01, 
+        blk=[1 1 1 1 0 1 1 0 1 1 1 1 1 %allows 1 -> 11, 01,
             1 1 1 1 0 1 0 0 0 1 1 1 1 %allows 0 -> 00
             1 1 1 1 0 1 1 1 0 1 1 1 1
             1 1 1 0 0 0 1 0 0 0 1 1 1
@@ -446,11 +448,11 @@ function [blk,RobotPts] = FANOUTgate() %#ok<DEFNU>
             1 1 1 1 0 1 1 0 0 0 0 0 0
             1 1 1 0 0 0 1 1 0 1 1 1 1
             1 1 1 1 1 0 1 1 0 1 1 1 1];
-
+        
         blk = flipud([blk, repmat(blk(:,end),1,5)]);
-end
+    end
 
-function [blk,RobotPts] = ddNOTandConnectorgate() %#ok<DEFNU>
+    function [blk,RobotPts] = ddNOTandConnectorgate() %#ok<DEFNU>
         % this is a reversible cross-over switch that is also a NOT gate for
         % dual-rail logic SAFE because both paths require same # of moves
         RobotPts = [
@@ -458,8 +460,8 @@ function [blk,RobotPts] = ddNOTandConnectorgate() %#ok<DEFNU>
             %6,11,2,1;
             12,11,2,2;
             ];
-       %            A   A'      
-       blk=[1 1 1 1 0 1 0 1 ;
+        %            A   A'
+        blk=[1 1 1 1 0 1 0 1 ;
             1 1 1 1 0 1 0 1 ;
             1 0 0 0 0 0 0 1 ;
             1 0 1 1 0 1 1 1 ;
@@ -470,18 +472,18 @@ function [blk,RobotPts] = ddNOTandConnectorgate() %#ok<DEFNU>
             1 0 0 0 0 1 0 1 ;
             1 1 1 1 0 1 0 1 ;
             1 1 1 1 0 1 0 1 ];
-      %             B   B'       
-      blkC=[ 1 1 1 0 1 0 1 ;
-             1 1 1 0 1 0 1 ;
-             0 0 0 0 0 0 1 ;
-             0 1 1 0 1 1 1 ;
-             0 1 0 0 1 1 1 ;
-             0 1 0 1 1 1 1 ;
-             0 1 0 0 1 1 1 ;
-             0 1 1 0 1 1 1 ;
-             0 0 0 0 0 0 1 ;
-             1 1 1 0 1 0 1 ;
-             1 1 1 0 1 0 1 ];
+        %             B   B'
+        blkC=[ 1 1 1 0 1 0 1 ;
+            1 1 1 0 1 0 1 ;
+            0 0 0 0 0 0 1 ;
+            0 1 1 0 1 1 1 ;
+            0 1 0 0 1 1 1 ;
+            0 1 0 1 1 1 1 ;
+            0 1 0 0 1 1 1 ;
+            0 1 1 0 1 1 1 ;
+            0 0 0 0 0 0 1 ;
+            1 1 1 0 1 0 1 ;
+            1 1 1 0 1 0 1 ];
         blk = flipud([blk,blkC]);
     end
 
@@ -650,20 +652,20 @@ function [blk,RobotPts] = ddNOTandConnectorgate() %#ok<DEFNU>
         blk = flipud(blk);
     end
 
-function [blk,RobotPts] = ddANDgatecw()
- % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+    function [blk,RobotPts] = ddANDgatecw()
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
         RobotPts = [];
-        %                  A   B   A'  B' 
+        %                  A   B   A'  B'
         blk=[1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 1 0 1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 1 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 1 0 1 0 1 1 1 1 1 1 0 1 0 1 0;
-             1 1 0 1 0 1 1 0 1 1 1 0 1 0 1 0;
-             1 1 0 1 0 1 0 0 0 0 1 0 1 0 1 0;
-             1 1 0 1 0 1 0 0 0 0 0 0 0 0 1 0;
-             1 1 0 1 0 1 1 0 1 0 1 1 1 1 1 0;
-           %      AND,OR,NOR,NAND    
+            1 1 0 1 1 1 1 0 1 0 1 0 1 0 1 0;
+            1 0 0 0 0 1 1 0 1 0 1 0 1 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 1 0 1 0 1 1 1 1 1 1 0 1 0 1 0;
+            1 1 0 1 0 1 1 0 1 1 1 0 1 0 1 0;
+            1 1 0 1 0 1 0 0 0 0 1 0 1 0 1 0;
+            1 1 0 1 0 1 0 0 0 0 0 0 0 0 1 0;
+            1 1 0 1 0 1 1 0 1 0 1 1 1 1 1 0;
+            %      AND,OR,NOR,NAND
             ];
         w = size(blk,2);
         h = size(blk,1);
@@ -679,59 +681,89 @@ function [blk,RobotPts] = ddANDgatecw()
                 RobotPts(end+1,:) = [w*(c-1)+10,h,2+(c-1)*ins,2];  %B
             else
                 RobotPts(end+1,:) = [w*(c-1)+14,h,2+(c-1)*ins,2]; %B'
-            end            
+            end
         end
         blk = flipud(repmat(blk,1,2^ins));
-end
+    end
 
 
 
-function [blk,RobotPts] = singleCycleDelay()
- % this gate starts with a large collection of components, and
- % emits one particle every other cycle.
+    function [blk,RobotPts] = partHopper()
+        % this holds many parts and releases one per turn.
+        
         RobotPts = [];
         
-        % DESIGN THE OBSTACLES:
-        %                  A   A'  B   B' 
-        blk=[1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 1 0 1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
-             1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
-             1 1 0 1 0 0 0 0 1 0 1 1 1 0 1 0;
-             1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 0;
-           %    AND,   1,  NAND    
+        % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles
+        %                  A   A'  B   B'
+        blk=[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;  %OUTPUT
+            1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0;
             ];
         w = size(blk,2);
         h = size(blk,1);
         
         
-        %INSERT THE ROBOTS   each row is  x,y,color, 
-           RobotPts = [
-            5,h,1,1;
-            7,h,2,2;
-            ];
-
+        %INSERT THE ROBOTS   each row is  [x,y,  ID(must be unique) , color]
+        nr = w-3;
+        RobotPts = [ 1+[1:nr]', 2*ones(nr,1), [1:nr]'  ,ones(nr,1)          ];
+        
         blk = flipud(repmat(blk,1,1));
     end
 
 
-function [blk,RobotPts] = ddCarrycw()
- % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+
+    function [blk,RobotPts] = singleCycleDelay()
+        % @Author: Aaron and Shiva, THIS DOES NOT WORK YET!
+        %
+        % @BRIEF: this gate starts with a large collection of components, and
+        % emits one particle every other cycle.
         RobotPts = [];
-        %                  A   A'  B   B' 
+        
+        % DESIGN THE OBSTACLES:
+        blk=[1 1 1 1 1 0 1;
+            1 1 1 1 1 0 1;
+            1 1 1 1 1 0 1;
+            1 0 1 1 1 0 1;
+            1 0 1 0 0 0 1;
+            1 0 0 0 0 0 1;
+            1 1 1 1 1 1 1;
+            ];
+        w = size(blk,2);
+        h = size(blk,1);
+        
+        
+        %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
+        RobotPts = [
+            6,h,1,1,1,1
+            6,h-1,1,1,1,1;
+            4,2,2,2,2,1;
+            2,2,3,3,1,2;
+            ];
+        
+        blk = flipud(repmat(blk,1,1));
+    end
+
+
+    function [blk,RobotPts] = ddCarrycw()
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+        RobotPts = [];
+        %                  A   A'  B   B'
         blk=[1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 1 0 1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
-             1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
-             1 1 0 1 0 0 0 0 1 0 1 1 1 0 1 0;
-             1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 0;
-           %    AND,   1,  NAND    
+            1 1 0 1 1 1 1 0 1 0 1 0 1 0 1 0;
+            1 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
+            1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0;
+            1 1 0 1 0 0 0 0 1 0 1 1 1 0 1 0;
+            1 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 0;
+            %    AND,   1,  NAND
             ];
         w = size(blk,2);
         h = size(blk,1);
@@ -747,24 +779,24 @@ function [blk,RobotPts] = ddCarrycw()
                 RobotPts(end+1,:) = [w*(c-1)+12,h,2+(c-1)*ins,2];  %B
             else
                 RobotPts(end+1,:) = [w*(c-1)+14,h,2+(c-1)*ins,2]; %B'
-            end            
+            end
         end
         blk = flipud(repmat(blk,1,2^ins));
     end
 
-function [blk,RobotPts] = ddXORgatecw() %SUMMER
- % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+    function [blk,RobotPts] = ddXORgatecw() %SUMMER
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
         RobotPts = [];
         %              A   A'  B   B'
         blk=[1 1 1 0 1 0 1 0 1 0 1 1 1 1 1 1 0;
-             1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0;
-             1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0;
-             1 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 0 0 1 1 0 1 0 1 0 1 0;
-             1 1 1 1 1 1 1 1 1 1 0 1 0 1 0 1 0;
-           ];%                     XOR, XNOR,1      
-            
+            1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0;
+            1 0 0 1 1 0 1 0 1 1 0 1 0 1 0 1 0;
+            1 0 0 0 0 0 0 0 1 1 0 1 0 1 0 1 0;
+            1 1 1 1 1 1 1 1 1 1 0 1 0 1 0 1 0;
+            ];%                     XOR, XNOR,1
+        
         w = size(blk,2);
         h = size(blk,1);
         ins = 2;
@@ -779,24 +811,24 @@ function [blk,RobotPts] = ddXORgatecw() %SUMMER
                 RobotPts(end+1,:) = [w*(c-1)+8,h,2+(c-1)*ins,2];  %B
             else
                 RobotPts(end+1,:) = [w*(c-1)+10,h,2+(c-1)*ins,2]; %B'
-            end            
+            end
         end
         blk = flipud(repmat(blk,1,2^ins));
     end
-function [blk,RobotPts] = ddXORgate()
- % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+    function [blk,RobotPts] = ddXORgate()
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
         RobotPts = [];
-        %            A   B   A'  B' 
+        %            A   B   A'  B'
         blk=[1 1 1 1 0 1 0 1 0 1 0 1 0;
-             1 0 0 0 0 0 0 0 0 0 0 1 0;
-             1 0 0 1 1 1 0 1 0 1 1 1 0;
-             1 0 0 1 0 0 0 0 0 1 1 1 0;
-             1 0 0 1 0 0 1 1 1 1 1 1 0;
-             1 0 0 0 0 0 0 0 0 0 1 1 0;
-             1 1 0 1 1 0 1 1 0 0 1 1 0;
-             1 1 0 0 0 0 0 1 0 0 1 1 0;
-             1 1 1 1 1 1 0 1 0 0 1 1 0;
-           %      
+            1 0 0 0 0 0 0 0 0 0 0 1 0;
+            1 0 0 1 1 1 0 1 0 1 1 1 0;
+            1 0 0 1 0 0 0 0 0 1 1 1 0;
+            1 0 0 1 0 0 1 1 1 1 1 1 0;
+            1 0 0 0 0 0 0 0 0 0 1 1 0;
+            1 1 0 1 1 0 1 1 0 0 1 1 0;
+            1 1 0 0 0 0 0 1 0 0 1 1 0;
+            1 1 1 1 1 1 0 1 0 0 1 1 0;
+            %
             ];
         w = size(blk,2);
         h = size(blk,1);
@@ -812,16 +844,16 @@ function [blk,RobotPts] = ddXORgate()
                 RobotPts(end+1,:) = [w*(c-1)+9,h,2+(c-1)*ins,2];  %B
             else
                 RobotPts(end+1,:) = [w*(c-1)+11,h,2+(c-1)*ins,2]; %B'
-            end            
+            end
         end
         blk = flipud(repmat(blk,1,2^ins));
     end
-function [blk,RobotPts] = FullAdderCarry() %#ok<DEFNU>
-    RobotPts = [];
-    %Fails.  Tomorrow. make a 3-XOR
+    function [blk,RobotPts] = FullAdderCarry() %#ok<DEFNU>
+        RobotPts = [];
+        %Fails.  Tomorrow. make a 3-XOR
         % dual-rail full adder
         %           A   B   C         A'  B'  C'
-       blk=[1 1 1 1 0 1 0 1 0 1 1 1 1 0 1 0 1 0 1;
+        blk=[1 1 1 1 0 1 0 1 0 1 1 1 1 0 1 0 1 0 1;
             1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1;
             1 0 0 0 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1;
             1 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1;
@@ -830,7 +862,7 @@ function [blk,RobotPts] = FullAdderCarry() %#ok<DEFNU>
             1 1 0 1 1 0 1 1 1 1 1 0 1 1 0 1 1 1 1;
             1 1 0 0 1 0 1 1 1 1 1 0 0 1 0 1 1 1 1;
             1 1 1 0 1 0 1 1 1 1 1 1 0 1 0 1 1 1 1;
-           %      C   S             C'  S'
+            %      C   S             C'  S'
             ];
         w = size(blk,2);
         for c = 1:8
@@ -854,15 +886,15 @@ function [blk,RobotPts] = FullAdderCarry() %#ok<DEFNU>
         end
         blk = flipud(repmat(blk,1,8));
     end
-function [blk,RobotPts] = FullAdderSum() %#ok<DEFNU>
+    function [blk,RobotPts] = FullAdderSum() %#ok<DEFNU>
         % sum bit for dual-rail full adder   d,l,d,r,d,l,d
         RobotPts = [];
         %           A   B   C         A'  B'  C'
-       blk=[1 1 1 1 0 1 0 1 0 1 1 1 1 0 1 0 1 0 1;
+        blk=[1 1 1 1 0 1 0 1 0 1 1 1 1 0 1 0 1 0 1;
             1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1;
             1 0 0 0 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1;
             1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1; %at least 1 / 2
-            1 1 0 0 1 1 1 1 1 1 0 1 0 1 0 1 1 1 1; 
+            1 1 0 0 1 1 1 1 1 1 0 1 0 1 0 1 1 1 1;
             1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1; %at least 2 / 1
             1 1 1 0 1 1 1 1 1 1 1 1 0 1 0 1 0 1 1;
             1 1 1 0 0 1 1 1 1 1 1 1 0 1 0 1 0 1 1;
@@ -874,7 +906,7 @@ function [blk,RobotPts] = FullAdderSum() %#ok<DEFNU>
             1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1;
             1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1;
             1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1;
-           %      
+            %
             ];
         w = size(blk,2);
         h = size(blk,1);
@@ -894,7 +926,7 @@ function [blk,RobotPts] = FullAdderSum() %#ok<DEFNU>
                 RobotPts(end+1,:) = [w*(c-1)+9,h,3+(c-1)*3,3];  %C
             else
                 RobotPts(end+1,:) = [w*(c-1)+18,h,3+(c-1)*3,3]; %C'
-            end 
+            end
         end
         blk = flipud(repmat(blk,1,8));
     end
@@ -1083,7 +1115,7 @@ function [blk,RobotPts] = FullAdderSum() %#ok<DEFNU>
         blk = flipud(blk);
     end
 
-function [blk,RobotPts,strTitle] = verySAFEddANDgate() %#ok<DEFNU>
+    function [blk,RobotPts,strTitle] = verySAFEddANDgate() %#ok<DEFNU>
         % this is a  dual-rail logic gate that implements AND/NOR/OR/NAND
         % and can never be reversed more than 1 move.
         %  thi is the first gate we will manufacture
@@ -1116,8 +1148,8 @@ function [blk,RobotPts,strTitle] = verySAFEddANDgate() %#ok<DEFNU>
             % 2 2 2 2 2 2 2 2 2 0 2 0 2 2 2; %NOR/OR gate
             ];
         %           x&y, (x&y)',x|y, (x|y)'
-       blk = flipud(blk);
-
+        blk = flipud(blk);
+        
     end
 
     function [blk,RobotPts,strTitle] = verySAFEddANDgateSET() %#ok<DEFNU>
@@ -1147,8 +1179,8 @@ function [blk,RobotPts,strTitle] = verySAFEddANDgate() %#ok<DEFNU>
             % 2 2 2 2 2 2 2 2 2 0 2 0 2 2 2; %NOR/OR gate
             ];
         %           x&y, (x&y)',x|y, (x|y)'
-       % blk = flipud(blk);
-               w = size(blk,2);
+        % blk = flipud(blk);
+        w = size(blk,2);
         h = size(blk,1);
         RobotPts = [];
         ins = 2;
@@ -1168,13 +1200,13 @@ function [blk,RobotPts,strTitle] = verySAFEddANDgate() %#ok<DEFNU>
         blk = flipud(repmat(blk,1,2^ins));
     end
 
-function [blk,RobotPts,strTitle] = unSAFEddANDgateSET() %#ok<DEFNU>
+    function [blk,RobotPts,strTitle] = unSAFEddANDgateSET() %#ok<DEFNU>
         % this is a  dual-rail logic gate that implements AND/NOR/OR/NAND
         % and can never be reversed more than 1 move.
         %  thi is the first gate we will manufacture
         strTitle = 'x, x'', y, y''';
         %                x     x'    y     y'
-       blk=[1 1 1 0 1 0 1 0 1 0 1 0;
+        blk=[1 1 1 0 1 0 1 0 1 0 1 0;
             1 0 0 0 0 0 0 0 1 0 1 0;
             1 0 0 1 1 0 1 1 1 0 1 0;
             1 0 0 0 0 0 0 0 1 0 1 0;
@@ -1189,8 +1221,8 @@ function [blk,RobotPts,strTitle] = unSAFEddANDgateSET() %#ok<DEFNU>
             1 1 1 0 1 0 1 0 1 0 1 0;
             ];
         %           x&y, (x&y)',x|y, (x|y)'
-       % blk = flipud(blk);
-               w = size(blk,2);
+        % blk = flipud(blk);
+        w = size(blk,2);
         h = size(blk,1);
         RobotPts = [];
         ins = 2;
@@ -1208,15 +1240,15 @@ function [blk,RobotPts,strTitle] = unSAFEddANDgateSET() %#ok<DEFNU>
             end
         end
         blk = flipud(repmat(blk,1,2^ins));
-end
+    end
 
- function [blk,RobotPts,strTitle] = ddFANOUTcw4
+    function [blk,RobotPts,strTitle] = ddFANOUTcw4
         % this is a  dual-rail logic gate that implements a FanOut with 4
         % copies of the input
         % With the universal input <d,l,u,r>
         strTitle = 'x, x'', 1';
         %           1   1   1   x                  x'
-       blk=[1 1 1 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 1 1 0 1 1
+        blk=[1 1 1 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 1 1 0 1 1
             1 1 1 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 1 0 0 0 1
             1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1
             1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1
@@ -1228,8 +1260,8 @@ end
             1 1 1 1 1 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1
             ];%       x   x   x   x   x'  x'  x'  x'
         
-
-       % blk = flipud(blk);
+        
+        % blk = flipud(blk);
         w = size(blk,2);
         h = size(blk,1);
         RobotPts = [];
@@ -1243,7 +1275,7 @@ end
                 RobotPts(end+1,:) = [w*(c-1)+21,h,1+(c-1)*ins,1,1,1]; %A'
             end
         end
-                %         x   1   x'    
+        %         x   1   x'
         RobotPts(end+1,:) = [5,h,3,2,1,1]; %supply
         RobotPts(end+1,:) = [7,h,4,2,1,1]; %supply
         RobotPts(end+1,:) = [9,h,5,2,1,1]; %supply
@@ -1253,16 +1285,16 @@ end
         RobotPts(end+1,:) = [sp+w+9,h,9,2,1,1]; %supply
         RobotPts(end+1,:) = [sp+w+13,5,10,3,2,1]; %slider
         blk = flipud([blk, zeros(h,sp),blk]);
- end
+    end
 
-function [blk,RobotPts,strTitle] = memorycw
+    function [blk,RobotPts,strTitle] = memorycw
         % this is a  dual-rail logic gate that implements one bit of memory
         % With the universal input <d,l,u,r>
         strTitle = 'x, x'', 1';
         sp = 3;
-            %       5       9               15
-            %     READ     SET         CLEAR
-       blk=[1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 1
+        %       5       9               15
+        %     READ     SET         CLEAR
+        blk=[1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 1
             1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 1
             1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 1%this line is optional (makes process easier to understand)
             1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 1
@@ -1272,8 +1304,8 @@ function [blk,RobotPts,strTitle] = memorycw
             1 1 1 1 1 0 1 0 1 1 0 0 0 0 0 1
             1 1 1 1 1 0 1 0 1 1 0 1 0 1 1 1
             ];%       Q   W     W   Q'
-
-       % blk = flipud(blk);
+        
+        % blk = flipud(blk);
         w = size(blk,2);
         h = size(blk,1);
         RobotPts = [];
@@ -1283,70 +1315,70 @@ function [blk,RobotPts,strTitle] = memorycw
         %  Q = 0: Read, Set, Clear, nothing
         %  Q = 1: Read, Set, Clear, nothing
         for c =1:6
-            if c == 1 
+            if c == 1
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
                 rc=rc+1;
             elseif c == 2
-%                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
-%                 rc=rc+1;
+                %                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
+                %                 rc=rc+1;
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+9,h,rc,4,1,1]; %Set
                 rc=rc+1;
             elseif c == 3
-%                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
-%                 rc=rc+1;
-
+                %                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
+                %                 rc=rc+1;
+                
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+15,h,rc,4,1,1]; %Clear
                 rc=rc+1;
-            elseif c == 4 
+            elseif c == 4
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
                 rc=rc+1;
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+sw-1,sh,rc,2,1,1];  %STATE=1
                 rc=rc+1;
             elseif c == 5
-%                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
-%                 rc=rc+1;
+                %                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
+                %                 rc=rc+1;
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+9,h,rc,4,1,1]; %Set
                 rc=rc+1;
-                RobotPts(end+1,:) = [(c-1)*(sp+w)+sw-1,sh,rc,2,1,1];  %STATE=1  
+                RobotPts(end+1,:) = [(c-1)*(sp+w)+sw-1,sh,rc,2,1,1];  %STATE=1
                 rc=rc+1;
             elseif c == 6
-%                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
-%                 rc=rc+1;
+                %                 RobotPts(end+1,:) = [(c-1)*(sp+w)+5,h,rc,1,1,1];  %Read
+                %                 rc=rc+1;
                 RobotPts(end+1,:) = [(c-1)*(sp+w)+15,h,rc,4,1,1]; %Clear
                 rc=rc+1;
-                RobotPts(end+1,:) = [(c-1)*(sp+w)+sw-1,sh,rc,2,1,1];   %STATE=1 
+                RobotPts(end+1,:) = [(c-1)*(sp+w)+sw-1,sh,rc,2,1,1];   %STATE=1
                 rc=rc+1;
             end
             RobotPts(end+1,:) = [(c-1)*(sp+w)+sw,sh,rc,3,2,1]; %slider
             rc=rc+1;
         end
         blk = flipud([blk, zeros(h,sp),blk, zeros(h,sp),blk, zeros(h,sp),blk,zeros(h,sp),blk, zeros(h,sp),blk]);
-end
- function [blk,RobotPts,strTitle] = ddFANOUTcw
+    end
+    function [blk,RobotPts,strTitle] = ddFANOUTcw
         % this is a  dual-rail logic gate that implements a FanOut
         % With the universal input <d,l,u,r>
         strTitle = 'x, x'', 1';
         sp = 3;
         %       x   1           x'
-       blk=[1 1 0 1 0 1 1 1 1 1 0 1 1 
+        blk=[1 1 0 1 0 1 1 1 1 1 0 1 1
             1 1 0 1 0 1 1 1 1 0 0 0 1  %this line is optional (makes process easier to understand)
-            1 1 0 1 0 1 1 1 1 0 0 0 1 
+            1 1 0 1 0 1 1 1 1 0 0 0 1
             1 1 0 1 0 1 1 1 1 1 1 0 1   %this line is optional (makes process easier to understand)
             1 0 0 0 0 0 0 0 0 0 1 0 1
             1 1 1 0 0 0 1 0 1 0 1 0 1
             1 1 1 1 1 0 1 0 1 0 1 0 1
             ];%       x   x   x'  x'
         %           1   x           x'
-%        blk=[1 1 1 1 0 1 0 1 1 1 1 1 0 1 1
-%             1 1 1 1 0 1 0 1 1 1 1 0 0 0 1
-%             1 1 1 1 0 1 0 1 1 1 1 1 1 0 1%this line is optional (makes process easier to understand)
-%             1 1 1 0 0 0 0 0 0 0 0 0 1 0 1
-%             1 0 0 0 0 0 0 0 0 0 1 0 1 0 1
-%             1 1 1 0 0 0 1 0 1 1 1 0 1 0 1
-%             1 1 1 1 1 0 1 0 1 1 1 0 1 0 1
-%             ];%       x   x       x'  x'  x'  x'
-
-       % blk = flipud(blk);
+        %        blk=[1 1 1 1 0 1 0 1 1 1 1 1 0 1 1
+        %             1 1 1 1 0 1 0 1 1 1 1 0 0 0 1
+        %             1 1 1 1 0 1 0 1 1 1 1 1 1 0 1%this line is optional (makes process easier to understand)
+        %             1 1 1 0 0 0 0 0 0 0 0 0 1 0 1
+        %             1 0 0 0 0 0 0 0 0 0 1 0 1 0 1
+        %             1 1 1 0 0 0 1 0 1 1 1 0 1 0 1
+        %             1 1 1 1 1 0 1 0 1 1 1 0 1 0 1
+        %             ];%       x   x       x'  x'  x'  x'
+        
+        % blk = flipud(blk);
         w = size(blk,2);
         h = size(blk,1);
         RobotPts = [];
@@ -1359,22 +1391,22 @@ end
                 RobotPts(end+1,:) = [w*(c-1)+11,h,1+(c-1)*ins,1,1,1]; %A'
             end
         end
-                %         x   1   x'    
+        %         x   1   x'
         RobotPts(end+1,:) = [5,h,3,2,1,1]; %supply
         RobotPts(end+1,:) = [9,3,4,3,2,1]; %slider
         RobotPts(end+1,:) = [sp+w+5,h,5,2,1,1]; %supply
         RobotPts(end+1,:) = [sp+w+9,3,6,3,2,1]; %slider
         blk = flipud([blk, zeros(h,sp),blk]);
-end
+    end
 
 
- function [blk,RobotPts,strTitle] = unSAFEddFANOUT
-             % this is a  dual-rail logic gate that implements a FanOut
+    function [blk,RobotPts,strTitle] = unSAFEddFANOUT
+        % this is a  dual-rail logic gate that implements a FanOut
         
-        % 
+        %
         strTitle = 'x, x'', 1';
         %       x   x'     1
-       blk=[1 1 0 1 0 1 1 0 1 1 1 1 1 1 1 0 %allows 1 -> 11, 01, 
+        blk=[1 1 0 1 0 1 1 0 1 1 1 1 1 1 1 0 %allows 1 -> 11, 01,
             1 0 0 1 0 1 0 0 1 1 1 1 1 1 1 0 %allows 0 -> 00
             1 0 1 1 0 1 0 1 1 1 1 1 1 1 1 0
             1 0 0 1 0 1 0 0 0 0 1 1 1 1 1 0
@@ -1383,8 +1415,8 @@ end
             1 1 0 1 1 1 0 0 1 0 1 0 1 1 1 0
             1 1 0 1 1 1 1 0 1 0 1 0 1 1 1 0];
         %       x       x   x'  x'
-
-       % blk = flipud(blk);
+        
+        % blk = flipud(blk);
         w = size(blk,2);
         h = size(blk,1);
         RobotPts = [];
@@ -1397,15 +1429,15 @@ end
                 RobotPts(end+1,:) = [w*(c-1)+5,h,1+(c-1)*ins,1,1,1]; %A'
             end
         end
-                %         x   1   x'    
+        %         x   1   x'
         RobotPts(end+1,:) = [8,h,3,2,1,1]; %supply
         RobotPts(end+1,:) = [13,4,4,3,2,1]; %slider
         RobotPts(end+1,:) = [w+8,h,5,2,1,1]; %supply
         RobotPts(end+1,:) = [w+13,4,6,3,2,1]; %slider
-
-
+        
+        
         blk = flipud(repmat(blk,1,2^ins));
-end
+    end
 
 
     function [blk,RobotPts] = SAFEVariableBlk() %#ok<DEFNU>
@@ -1453,9 +1485,9 @@ end
             otherwise
                 RobotPts = [ 7,11,1,1;  ];
         end
-                
+        
         %
-      blk{1}=[1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1;
+        blk{1}=[1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1;
             1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1;
             1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1;
             1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1;
@@ -1466,8 +1498,8 @@ end
             1 1 0 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 1;
             1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0;
             1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0;
-           ];%               10,                 20
-      blk{2}=[1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1;
+            ];%               10,                 20
+        blk{2}=[1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1;
             1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1;
             1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1;
             1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1;
@@ -1478,8 +1510,8 @@ end
             1 1 0 1 1 1 0 1 1 1 0 1 1 1 0 1;
             1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0;
             1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0;
-           ]; %           8              16
-      blk{3}=[1 1 1 1 1 1 0 1 1 1 1 1;
+            ]; %           8              16
+        blk{3}=[1 1 1 1 1 1 0 1 1 1 1 1;
             1 1 1 1 1 0 0 0 1 1 1 1;
             1 1 1 1 1 0 1 0 1 1 1 1;
             1 1 1 1 0 0 0 0 0 1 1 1;
@@ -1490,8 +1522,8 @@ end
             1 1 0 1 0 1 1 1 0 1 0 1;
             1 0 0 0 0 0 1 0 0 0 0 0;
             1 1 1 1 1 0 1 1 1 1 1 0;
-           ];%        6          12
-      blk{4}=[1, 1 1 1 1 1 0 1 1 1 1 1;
+            ];%        6          12
+        blk{4}=[1, 1 1 1 1 1 0 1 1 1 1 1;
             1 1 1 1 1 0 0 0 1 1 1 1;
             1 1 1 1 1 0 1 0 1 1 1 1;
             1 1 1 1 0 0 0 0 0 1 1 1;
@@ -1502,8 +1534,8 @@ end
             1 1 0 1 1 1 1 1 1 1 0 1;
             1 0 0 0 1 1 1 1 1 0 0 0;
             1 1 1 0 1 1 1 1 1 1 1 0;
-           ];%    4              12
-blk = flipud([blk{index},ones(size(blk{index}(:,1)))] );
+            ];%    4              12
+        blk = flipud([blk{index},ones(size(blk{index}(:,1)))] );
     end
 
     function [blk,RobotPts] = VariableBlk() %#ok<DEFNU>

@@ -279,3 +279,4 @@ pip-log.txt
 *.gz
 
 *.log
+*.asv
