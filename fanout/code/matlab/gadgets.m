@@ -90,7 +90,8 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts] = memorycw; %memory
 %[G.obstacle_pos,RobotPts] = ddANDgatecw();  %NAND/NOR/OR/AND
 %[G.obstacle_pos,RobotPts] = ddCarrycw();
-[G.obstacle_pos,RobotPts] = singleCycleDelay();
+%[G.obstacle_pos,RobotPts] = singleCycleDelay();
+[G.obstacle_pos,RobotPts] = DialsGate();
 %[G.obstacle_pos,RobotPts] = partHopper()
 G.EMPTY = 0;
 G.OBST = 1;
@@ -749,6 +750,49 @@ end
         blk = flipud(repmat(blk,1,1));
     end
 
+
+   function [blk,RobotPts] = DialsGate()
+        % @Author: Aaron and Robert Dial
+        %
+        % @BRIEF: this gate starts with a large collection of components, and
+        % emits one particle every other cycle.
+        RobotPts = [];
+        
+        % DESIGN THE OBSTACLES:
+        blk=[0 1 0 0 0 0 0 0 0 0 0 0;
+            0 0 0 0 0 0 0 0 0 1 0 0;
+            0 0 0 0 0 0 0 0 0 1 0 0;
+            0 0 0 0 0 0 1 0 0 0 0 0;
+            0 0 1 1 1 1 0 1 0 0 0 0;
+            0 0 1 0 0 0 0 0 0 0 0 0;
+            0 0 1 0 1 1 0 0 0 0 0 0;
+            0 0 1 0 0 1 0 0 0 0 0 0;
+            0 0 1 0 0 1 0 0 0 0 0 0;
+            0 0 1 0 0 1 0 0 0 0 0 0;
+            0 0 1 1 1 1 0 1 1 1 0 0;
+            1 0 0 0 0 0 0 1 0 0 0 0;
+            1 0 0 0 0 0 0 1 0 0 0 0;
+            0 0 0 0 0 0 1 1 0 0 0 0;
+            ];
+        w = size(blk,2);
+        h = size(blk,1);
+        
+        
+        %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
+        RobotPts = [
+            5,5,1,1,1,1
+            4,5,2,1,1,1;
+            5,6,3,1,1,1
+            4,6,4,1,1,1;
+            5,7,5,1,1,1
+            4,7,6,1,1,1;
+            4,8,7,1,1,1;
+            7,9,8,2,1,2;
+            %2,2,3,3,1,2;
+            ];
+        
+        blk = flipud(repmat(blk,1,1));
+    end
 
     function [blk,RobotPts] = ddCarrycw()
         % sum bit for dual-rail full adder   d,l,d,r,d,l,d
