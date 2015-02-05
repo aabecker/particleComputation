@@ -1,0 +1,41 @@
+Reviewer 2 of ICRA 2015 submission 20
+
+Comments to the author
+======================
+
+This paper gave an impossibility theorem about the
+construction of a Fan-Out gate in a form of mechanical
+computation, in which 1x1 particles are manipulated en
+masse by an external force field such as gravity or
+magnetic field.  To circumvent this problem, the design of
+a Fan-Out gate using 1x2 particles is given. This provided
+the last missing piece of the puzzle in the so-called
+particle computation. A prototype of this computation
+mechanism was given.
+
+Conducting computation mechanically using gravity or other
+external forces at the nano scale is an interesting and
+creative idea. However, it is not clear why this particular
+form of particle computation is important. More
+importantly, the rules governing the movement of particles
+seems ad hoc, and changing the rule a little bit would have
+a dramatic effect on the design.  The use of the 2x1 robots
+makes thing more complicated and unnatural.
+
+The paper is well-written, but there are some typos and
+mistakes. It will be helpful to define the dual-rail logic
+before Section 3.  In Lemma 1, what does "or if r fails to
+hit robots it did hit before" mean? In the proof of
+Corollary 5, it is not clear why "Because W is conservative
+there must also be one additional input location sr and
+robot r." The IDs of the figures are out of order.  In
+Figure 5 and 4, <d, l, d, r> should be <d, l, u, r>. In
+Figure 4, <d> should be <d, l>.  In the conclusion, it is
+not clear how the necessity of dual-rail logic for Boolean
+logic was established in this paper. Finally, I would not
+call a particle a nanorobot.
+
+Comments on the Video Attachment
+================================
+
+The video is well-made.

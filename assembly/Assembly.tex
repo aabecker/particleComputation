@@ -304,16 +304,26 @@ This resembles the results of our paper, which shows that unit-size particles ar
 %###############################################################
 \subsection{How many species are required to build an arbitrary 2D shape?}\label{subsec:RobotSpecies}
 %###############################################################
+A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge. Polyominoes have four-point connectivity.
 
-  Any 2D shape can be constructed using multiple particles from just two species, as shown in Fig.~\ref{fig:Grid}.
+
+\begin{lemma}
+  Any polyomino can be constructed using just two species
+  \end{lemma}
+\begin{proof} 
+Label a grid with an alternating pattern like a checkerboard.  Any desired polyomino can be constructed on this checkerboard, and all joints are between dissimilar species.
+  An example shape is shown in Fig.~\ref{fig:Grid}.
+  \end{proof}
   
-  This may correspond to many implementations including species based on electric charge, ionic charge, magnetic polarity, or hook-and-loop type fasteners.
+  The sufficiency of two species to construct any shape gives many options for implementation.  The two species could correspond to any gendered connection, 
+including electric charge, ionic charge, magnetic polarity, or hook-and-loop type fasteners.
+
 
    \begin{figure}
    \centering
 \begin{overpic}[width =.3\columnwidth]{Grid.pdf}
 \end{overpic}
-\caption{\label{fig:Grid}Any 2D shape can be constructed with two compatible robot species.  
+\caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species.  
 }
 \end{figure}
 
@@ -321,6 +331,9 @@ This resembles the results of our paper, which shows that unit-size particles ar
 %###############################################################
 \subsection{Hopper Construction}\label{subsec:HopperConstruction}
 %###############################################################
+Two-part adhesives react when the components mix.  Placing the components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
+%WIKI: harden by mixing two or more components which chemically react.
+
 We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle.
    \begin{figure}
    \centering
@@ -331,6 +344,9 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \end{figure}
 
 
+
+
+
 %###############################################################
 \subsection{Part Assembly Jigs}\label{subsec:PartAssemblyJigs}
 %###############################################################
@@ -339,7 +355,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \section{Design Rules}\label{sec:DesignRules}
 %###############################################################
 
-Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a \# symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shaper could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
+Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
 
 The shape on the right is two mirrored spirals that are connected.  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
 
@@ -347,19 +363,52 @@ The shape on the right is two mirrored spirals that are connected.  This part ca
    \centering
 \begin{overpic}[width =\columnwidth]{IncreasingDifficulty.pdf}
 \end{overpic}
-\caption{\label{fig:IncreasingDifficulty}Parts built by additive construction. Difficulty increases from left to right.
+\caption{\label{fig:IncreasingDifficulty}Polyomino parts built by additive construction. Difficulty increases from left to right.
 }
 \end{figure} 
+
+
+ A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
+
+\begin{lemma}\label{lemma:convexonjectsCanbeConstructedAdditively}
+Any convex polyomino can be constructed by adding one particle at a time
+\end{lemma}
+\begin{proof}
+Select any pixel as the \emph{seed block}, or root node.  Perform a breadth-first search starting at the seed block, labelling each block in the order they are expanded.  Constructing the shape according to the ordering ensures that the polyomino is convex at every step of construction.
+\end{proof}
+
+The proof of \ref{lemma:convexonjectsCanbeConstructedAdditively} assumes the existence of fixtures for assembly.
+\todo{describe fixtures for adding one particle at a time}
+
+
+
 
 
 %###############################################################
 \subsection{Sub Assemblies for Additive Manufacture}\label{subsec:SubAssemblies}
 %###############################################################
+Some non-convex polynominos cannot be constructed one particle at a time, as illustrated in Fig. ~\ref{fig:IncreasingDifficulty}.    For instance, a polynomino consisting of a clockwise and a counterclockwise square spiral, joined at the ends with a gap of one unit between the spirals must be constructed by first assembling each spiral, and then combining the sub assemblies.
+
+
+
+\begin{lemma}\label{lemma:nonconvexObjectsCanBeDecomposedIntoConvex}
+Any non-convex polyomino can be disassembled into convex sub-assemblies.
+\end{lemma}
+\begin{proof}
+How do you decompose an arbitrary polyomino into convex sub assemblies?
+\end{proof}
+
+The proof of \ref{lemma:nonconvexObjectsCanBeDecomposedIntoConvex} requires 
+
+
 
 
 %###############################################################
 \subsection{Combining Sub Assemblies}\label{subsec:CombineSubAssemblies}
 %###############################################################
+
+\todo{provide design rules for fixtures that combine arbitrary sized  sub-assemblies}
+
 
 
 %###############################################################
@@ -374,7 +423,7 @@ The shape on the right is two mirrored spirals that are connected.  This part ca
 In this paper we 
 
 This work, along with \cite{Becker2013f,Becker2014,Becker2014a}, introduces a
-new model for mechanical computation.  Interesting applications will aim at 
+new model for additive assembly.  Interesting applications will aim at 
 nanoscale and microfluidics work.
 
     

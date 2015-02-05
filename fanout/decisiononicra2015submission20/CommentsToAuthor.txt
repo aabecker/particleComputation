@@ -1,0 +1,16 @@
+The paper tries to give a solution to the computational
+problem in a mechanical form for a multi particle system,
+improving a previous contribution of the same authors. The
+solution, passing through the design of a suitable fan-out
+gate, let one get a full computational result. 
+
+As evidenced by the reviewers, both the different kind of
+system considered and a poor discussion of the results give
+a certain weakness to the paper. A certain effort should be
+devoted to clarify the points touched by the reviewers.
+
+----------------------------------------
+Comments on Video Attachment:
+
+The video, despite its simplicity, shows off the main idea
+in an effective way.

@@ -1,0 +1,44 @@
+Reviewer 6 of ICRA 2015 submission 20
+
+Comments to the author
+======================
+
+The authors present an extension of their previous work
+presented at ICRA 2014, in which they simply devise a
+FAN-OUT gate. 
+
+The overall idea of controlling a large number of
+minimalist robots using some global strategy is
+interesting, as described in the authors’ previous works.
+This specific paper only tries to further extend that by
+designing a FAN-OUT gate to achieve the full computational
+universality required.
+
+The paper is generally well-written and a can be considered
+as a good sequel of the authors’ previous work. Yet, there
+are mistakes that should be avoided in this type of
+high-ranked conferences. Namely, even the title of their
+previous paper published at ICRA 2014 is wrong: “Particle
+Computation: Designing Worlds to Control Robot Swarms with
+only Global Signals” instead of “Particle computation:
+Controlling robot swarms with only global signals”. The
+paper is too lengthy to present content that sometimes is
+not that new or irrelevant. For instance, what is the point
+of Table II? Logical operations are well-known in
+engineering and computer science – this can be simply
+removed.
+
+Anyway, the most flimsy part of the paper are the
+experimental results. Section V describes a prototype
+though most of it mainly focus on the description of the
+setup instead of discussing the results obtained. As such,
+it is rather hard to grasp the relevance of the addition of
+the FAN-OUT gate and, as such, the whole contribution of
+the work.
+
+
+Comments on the Video Attachment
+================================
+
+The video, although simplistic, depicts the idea presented
+by the authors.
