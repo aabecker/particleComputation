@@ -95,8 +95,10 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts] = partHopper();
 %[G.obstacle_pos,RobotPts] = partHopper2();
 %[G.obstacle_pos,RobotPts] = partHopper3();
-%[G.obstacle_pos,RobotPts] = partHopper4(); %fails...
-[G.obstacle_pos,RobotPts] = twoStateGate();
+%[G.obstacle_pos,RobotPts] = partHopper4(); %
+[G.obstacle_pos,RobotPts] = partHopper7(); %7 
+%[G.obstacle_pos,RobotPts] = partHopper8(); %compact powers of 2
+%[G.obstacle_pos,RobotPts] = twoStateGate();
 %[G.obstacle_pos,RobotPts] = twoStateGateV();
 G.EMPTY = 0;
 G.OBST = 1;
@@ -747,10 +749,10 @@ end
         %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
         
         %RobotPts = [ 4+[1:nr]', 2*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
-        RobotPts = [%9,13, 1,1,1,1; %set
-            12,13, 1,1,1,1; %reset
-            %17,13, 2,2,1,1; %read
-            26,13, 2,2,1,1; %don't read
+        RobotPts = [9,13, 1,1,1,1; %set
+            %12,13, 1,1,1,1; %reset
+            17,13, 2,2,1,1; %read
+            %26,13, 2,2,1,1; %don't read
             5,6, 3,3,2,1; %state 0
             %16,6, 3,3,2,1; %state 1
             7,2, 4,4,1,2;%Slider
@@ -883,18 +885,17 @@ end
         blk=[
             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
             1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
-            1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 ;
-            1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 1 1 1 1 1 ;
-            1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 1 0 0 0 0 0 1 ;
-            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 1 0 1 ;
-            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 ;
-            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 ;
             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 ;
             0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
             0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
@@ -906,15 +907,96 @@ end
         
         %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
         nr = w-14;
-        RobotPts = [ 1+[1:nr]', 14*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
-            9,12, nr+1,2,2,1;
-            14,11, nr+2,2,2,1;
-            18,10, nr+3,2,2,1]
+        RobotPts = [ 
+            1+[1:nr]', 14*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            13,8, nr+1,2,2,1;
+            16,12, nr+2,2,2,1;];
+           % 18,10, nr+3,2,2,1];
         %4,11, nr+2,3,2,1];
         blk = flipud(repmat(blk,1,1));
     end
-
-
+function [blk,RobotPts] = partHopper7()
+        % this holds many parts and releases one every EIGHTH turn.
+        % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles
+        blk=[
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 1 1 0 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 ;
+            0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            ];
+        w = size(blk,2);    %h = size(blk,1);
+        
+        %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
+        nr = w-13;
+        RobotPts = [ 
+            1+[1:nr]', 16*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            1+[1:nr]', 17*ones(nr,1), nr+[1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            14,13, 2*nr+1,2,2,1;];
+            %16,12, nr+2,2,2,1;
+            %19,16, nr+3,2,2,1];
+        %4,11, nr+2,3,2,1];
+        blk = flipud(repmat(blk,1,1));
+    end
+function [blk,RobotPts] = partHopper8()
+        % this holds many parts and releases one every EIGHTH turn.
+        % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles
+        blk=[
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 1 0 0 0 0 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 1 0 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 1 0 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 1 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 ;
+            0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            ];
+        w = size(blk,2);    h = size(blk,1);
+        
+        %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
+        nr = w-14;
+        RobotPts = [ 
+            1+[1:nr]', 14*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            13,8, nr+1,2,2,1;
+            16,12, nr+2,2,2,1;
+            19,16, nr+3,2,2,1];
+        %4,11, nr+2,3,2,1];
+        blk = flipud(repmat(blk,1,1));
+    end
 
     function [blk,RobotPts] = singleCycleDelay()
         % @Author: Aaron and Shiva, THIS DOES NOT WORK YET!
