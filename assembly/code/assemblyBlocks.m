@@ -2,11 +2,12 @@ function assemblyBlocks()
 % Implements assembly (similar to jelly blocks), where the arrow keys move all
 % unobstructed blocks by one unit, and blocks that touch are joined if a
 % red touches a green
+%TODO: submit to matlab central, 
+% Neat future:  a collector so that unused part are recycled to the part hoppers.
 
 G.fig = figure(1);
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
-s
-% build environment that makes the folling tetris piece:
+% build environment that makes the folling Tetris piece:
 %
 %       o
 %      oao
@@ -14,8 +15,8 @@ s
 G.game = flipud([
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
     1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-    1 0 1 1 1 1 0 1 0 1 1 1 1 0 1 0 1 1 1 1 0 1 0 1 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-    1 0 0 0 2 1 0 1 0 0 3 3 1 0 1 0 2 2 2 1 0 1 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+    1 2 2 2 2 1 0 1 3 3 3 3 1 0 1 2 2 2 2 1 0 1 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+    1 2 2 2 2 1 0 1 3 3 3 3 1 0 1 2 2 2 2 1 0 1 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
     1 2 2 2 2 1 0 1 3 3 3 3 1 0 1 2 2 2 2 1 0 1 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
     1 2 2 2 2 1 0 1 3 3 3 3 1 0 1 2 2 2 2 1 0 1 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
     1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
@@ -25,15 +26,13 @@ G.game = flipud([
     1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
     1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
     1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1;
     1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1;
     1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1;
     1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1;
     1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1;
-    1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1;
-    1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1;
-    1 0 0 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1 0 0 0 1;
-    1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1;
-    1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 1;
+    1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; %Exit
+    1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
     1 0 0 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 1;
     1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1;
     1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1;
@@ -76,15 +75,29 @@ drawGameboard();
             revertList = [];
             for i = 1:numel(G.items)
                 for j = 1:size(G.items{i},1)
-                    G.items{i}(j,1:2) =  G.items{i}(j,1:2)+int16(step);
-                    G.game(G.items{i}(j,1),G.items{i}(j,2)) = i;
-                    if G.obstacle_pos(G.items{i}(j,1),G.items{i}(j,2))==true
-                        if isempty(find(revertList == i, 1))
-                            revertList(end+1) = i;
+                    ny = G.items{i}(j,1) + int16(step(1));
+                    nx = G.items{i}(j,2) + int16(step(2));
+                    G.items{i}(j,1:2) =  [ny,nx];
+                    if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2) 
+                    G.game(ny,nx) = i;
+                        if  G.obstacle_pos(ny,nx)==true % if this bit hit an obstacle, make sure it is on the revertList
+                            if isempty(find(revertList == i, 1))
+                                revertList(end+1) = i;
+                            end
+                        end
+                    else  
+                        scEdge = 5;
+                        if nx<-scEdge || ny<scEdge && ny>size(G.game,1)+scEdge || nx>size(G.game,2) +scEdge
+                            if isempty(find(revertList == i, 1))
+                                revertList(end+1) = i;
+                            end
                         end
                     end
                 end
+
             end
+            
+            
             % go recursively through revert list, moving them back in the image
             % and adding any shapes they collide with back to the
             i = 1;
@@ -93,8 +106,7 @@ drawGameboard();
                 for j = 1:size(G.items{item2revert},1)
                     G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int16(step);
                     collisionItem = G.game(G.items{item2revert}(j,1),G.items{item2revert}(j,2));
-                    if collisionItem ~= item2revert && collisionItem ~= 0
-                        
+                    if collisionItem ~= item2revert && collisionItem ~= 0 
                         if isempty(find(revertList == collisionItem, 1))
                             revertList(end+1) = collisionItem;
                         end
@@ -102,11 +114,9 @@ drawGameboard();
                 end
                 i=i+1;
             end
-            
             drawGameboard();
             makeItemList();
         end
-        
         
     end
     function drawGameboard()
@@ -115,19 +125,17 @@ drawGameboard();
         for i = 1:numel(G.items)
             for j = 1:size(G.items{i},1)
                 %%delete any components that leave the screen
-                %if G.items{i}(j,1)>0 && G.items{i}(j,1)<=size(G.game,1) &&...
-                %   G.items{i}(j,2)>0 && G.items{i}(j,2)<=size(G.game,2)
+                if G.items{i}(j,1)>0 && G.items{i}(j,1)<=size(G.game,1) &&...
+                   G.items{i}(j,2)>0 && G.items{i}(j,2)<=size(G.game,2)
                 G.game(G.items{i}(j,1),G.items{i}(j,2)) = G.items{i}(j,3);
-                %end
+                end
             end
         end
-        
         set(G.axis,'CData',G.game)
     end
 
-
-
     function makeItemList()
+        % searches over the whole gameboard to find 'Items'
         G.items = {};
         for x = 1:size(G.game,2)
             for y = 1:size(G.game,1)
@@ -145,8 +153,10 @@ drawGameboard();
     end
 
     function  addItems(y,x,color,num)
-        thisColor = G.game(y,x);
-        
+        if y>size(G.game,1) || y<1 ||x<1 || x>size(G.game,2)
+            return
+        end
+        thisColor = G.game(y,x);  
         %if thisColor == color
         if (thisColor == 2 && color == 3) || (thisColor == 3 && color == 2)
             G.game(y,x) = 0;
@@ -158,6 +168,4 @@ drawGameboard();
             addItems(y,x-1,thisColor,num);
         end
     end
-
-
 end

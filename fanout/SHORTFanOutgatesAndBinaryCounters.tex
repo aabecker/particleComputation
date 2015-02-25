@@ -197,7 +197,6 @@ of computational universality as presented by complex digital circuits.  As
 an example we connect our logic elements to produce a 3-bit counter.  We also
 demonstrate how to implement a data storage element.
 
-%We present fundamental progress on the computational universality of swarms of micro- or nano-scale robots in complex environments, controlled not by individual navigation, but by a uniform global, external force. Consider a 2D grid world, in which all obstacles and robots are unit squares, and for each actuation, robots move maximally until they collide with an obstacle or another robot. In previous work, we demonstrated components of particle computation in this world, designing obstacle configurations that implement AND and OR logic gates:  by using dual-rail logic, we designed NOT, NOR, NAND, XOR, XNOR logic gates. However, we were unable to design a FAN-OUT gate, which is necessary for simulating the full range of complex interactions that are present in arbitrary digital circuits. In this work we resolve this problem by proving unit-sized robots cannot generate a FAN-OUT gate. On the positive side, we resolve the missing component with the help of  2x1 robots, which can create fan-out gates that produce multiple copies of the inputs.  Using these gates we are able to establish the full range of computational universality as presented by complex digital circuits.  As an example we connect our logic elements to produce a 3-bit counter.  We also demonstrate how to implement a data storage element.
 \end{abstract}
 
 
@@ -248,10 +247,11 @@ of having to go through external computational devices.
    \href{http://youtu.be/EJSv8ny31r8}{
 \begin{overpic}[width =\columnwidth]{DSC_0093lowres.JPG}%\put(30,-7){ $m=1$, partition 1}
 \end{overpic}}
+\vspace{-2em}
 \caption{
 \label{fig:prototype}
 Gravity-fed hardware implementation of  particle computation.  The reconfigurable prototype is setup as a {\sc fan-out} gate using a 2$\times$1 robot (white). This paper proves that such a gate is impossible using only 1$\times$1 robots. \href{http://youtu.be/EJSv8ny31r8}{See the demonstrations in the video attachment \url{http://youtu.be/EJSv8ny31r8}.} }
-\vspace{-1em}
+\vspace{-2em}
 \end{figure}
 
  \subsection{Model}
@@ -328,27 +328,25 @@ sliding particles sized 2$\times$1 and 1$\times$1 for achieving computational un
 %Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the
 %associated press when it was announced in the 1940s. 
 
-\subsection{Collision-Based Computing}
-Collision-based computing has been defined as \emph{``computation in a structureless medium populated with mobile objects''}.  For a survey of this area, see the excellent collection~\cite{Adamatzky2012}. Early examples include the billiard-ball computer proposed by Fredkin and Toffoli using only spherical balls and a frictionless environment composed of elastic collisions with other balls and with angled walls \cite{Fredkin1982ConservativeLogic}. Another popular example is Conway's {\em Game of Life}, a cellular automaton governed by four simple rules~\cite{berlekamp2001winning}. Cells live or die based on the number of neighbors. These rules have been examined in depth and used to design a Turing-complete computer \cite{Adamatzky2002}.  Game of life scenarios and billiard-ball computers are fascinating, but lack a physical implementation.  In this paper we present a collision-based system for computation and provide a physical implementation.
+\textbf{Collision-Based Computing} has been defined as \emph{``computation in a structureless medium populated with mobile objects''}.  For a survey of this area, see the excellent collection~\cite{Adamatzky2012}. Early examples include the billiard-ball computer proposed by Fredkin and Toffoli using only spherical balls and a frictionless environment composed of elastic collisions with other balls and with angled walls \cite{Fredkin1982ConservativeLogic}. Another popular example is Conway's {\em Game of Life}, a cellular automaton governed by four simple rules~\cite{berlekamp2001winning}. Cells live or die based on the number of neighbors. These rules have been examined in depth and used to design a Turing-complete computer \cite{Adamatzky2002}.  Game of life scenarios and billiard-ball computers are fascinating, but lack a physical implementation.  In this paper we present a collision-based system for computation and provide a physical implementation.
 %\textcolor{red}{Todo: this paragraph is incomplete}
 
 
-\subsection{Sliding-Block Puzzles}
-Sliding-block puzzles use rectangular tiles that are constrained to move in a 2D workspace. The objective is to move one or more tiles to desired locations. They have a long history.
+\textbf{Sliding-Block Puzzles} use rectangular tiles that are constrained to move in a 2D workspace. The objective is to move one or more tiles to desired locations. They have a long history.
 Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can be arranged to create logic gates, and used this technique to prove {\sc pspace} complexity for a variety of sliding-block puzzles.  Hearn expressed the idea of building computers from the sliding blocks---many of the logic gates could be connected together, and the user could propagate a signal from one gate to the next by sliding intermediate tiles.  This requires the user to know precisely which sequence of gates to enable/disable.  In contrast to such a hands-on approach, with our architecture we can build circuits, store parameters in memory, and then actuate the entire system in parallel using a global control signal.
 
-\subsection{Other Related Work on Programmable Matter}
-Clearly there is a wide range of interesting scenarios for developing approaches to programmable matter.
-One such model is the \emph{abstract Tile-Assembly Model} (aTAM) by Winfree~\cite{Winf98,WLWS98,LaWiRe99}, which has 
-sparked a wide range of theoretical and practical research. In this model, unit-sized pixels (``tiles'')
+\textbf{Related Work on Programmable Matter:}
+There is a wide range of interesting approaches to programmable matter.
+One model is the \emph{abstract Tile-Assembly Model} (aTAM) by Winfree~\cite{Winf98,WLWS98,LaWiRe99}, which has 
+sparked a range of theoretical and practical research. In this model, unit-sized pixels (``tiles'')
 interact and bond with the help of differently labeled edges, eventually composing complex assemblies.
-Even though the operations and final objectives in this model are quite different from our particle computation with global
+Though the operations and final objectives in this model are different from our particle computation with global
 inputs (e.g., key features of the aTAM are that tiles can have a wide range of different edge types, and
 that they keep sticking together after bonding), there is
 a remarkable geometric parallelism to a key result of our present paper:
-While it is widely believed that at the most basic level of interaction (called {\em temperature 1}),
-computational universality {\em cannot be achieved}~\cite{LSAT1,ManuchTemp1,IUNeedsCoop} in the aTAM with only unit-sized pixels, 
-very recent work~\cite{fhp+-ucapt-15} shows that computational universality {\em can be achieved} as soon as even slightly bigger tiles are used. 
+While it is  believed that at the most basic level of interaction (called {\em temperature 1}),
+computational universality {\em cannot be achieved}~\cite{LSAT1,IUNeedsCoop} in the aTAM with only unit-sized pixels, 
+ recent work~\cite{fhp+-ucapt-15} shows that computational universality {\em can be achieved} as soon as even slightly bigger tiles are used. 
 This resembles the results of our paper, which shows that unit-size particles are insufficient for universal computation, while employing bigger particles suffices.
 
 %###############################################################
@@ -380,7 +378,6 @@ As robot $r$ travels from $\bm{s}$ to $\bm{g}$, it passes through a sequence of 
 
 \begin{lemma}\label{lemma:changeInHitsNeededToChangePath}
 Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed by introducing a new robot that $r$ hits, or by removing one of the robots that $r$ hit before.
-%Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
 \end{lemma}
 
 \begin{proof}
@@ -444,19 +441,19 @@ A  conservative dual-logic {\sc fan-out} gate cannot be constructed using only 1
    A & \overline{A} & 1 & A & A &  \overline{A} & \overline{A}\\
 \hline
 0 & 1 & 1 & 0 & 0 & 1 & 1  \\
-1 & 0 & 1 & 1 & 1 & 0 & 0  \\
+1 & 0 & 1 & 1 & 1 & 0 & 0  
 %\bottomrule
-\end{array}
+\end{array}\vspace{-1em}
 \end{displaymath}
 \caption{{\sc fan-out} operation. This cannot be implemented with 1$\times$1 particles and obstacles. Our technique uses 2$\times$1 particles. }
-  \label{tab:Fanout}
+  \label{tab:Fanout}\vspace{-2em}
 \end{table}
 
 %\textcolor{red}{I think we have all the pieces here, but we need to say something about it being conservative. That is a key piece of our argument here. }
 %\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
 \begin{proof} We assume such a {\sc fan-out} gate exists and reach a contradiction. 
-Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because particle logic is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
+Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
 \begin{enumerate}
 \item if $\bm{s}_{a}$  and $\bm{s}_r$ are initially occupied and $\bm{s}_{\overline{a}}$ vacant, at the conclusion of $\bm{m}$ then $\bm{g}_{a_1}$ and $\bm{g}_{a_2}$ are occupied and the locations  $\bm{g}_{\overline{a}_1}$ and $\bm{g}_{\overline{a}_2}$ are vacant.
 \item if $\bm{s}_{a}$ is initially vacant and $\bm{s}_{\overline{a}}$ and $\bm{s}_r$ are occupied, at the conclusion of $\bm{m}$ then $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\overline{a}_1}$ and $g_{\overline{a}_2}$ are occupied.
@@ -490,7 +487,7 @@ Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  res
 This section describes how the clock signal, logic gates, and wiring were designed.
 \subsection{Choosing a clock signal}
 
-The \emph{clock sequence} is the ordered set of moves that are simultaneously applied to every particle in our workspace. We call this the clock sequence because, as in digital computers, this sequence is universally applied and keeps all logic synchronized.
+The \emph{clock sequence} is the ordered set of moves that are simultaneously applied to every particle in our workspace. As in digital computers, this sequence is universally applied and keeps all logic synchronized.
 
 A clock sequence determines the basic functionality of each gate.  To simplify implementation in the spirit of Reduced Instruction Set Computing (RISC), which uses a simplified set of instructions that run at the same rate, we want to use the same clock cycle for each gate and for \emph{all} wiring. 
 Our early work used a standard sequence  $\langle d,l,d,r \rangle$.  This sequence can be used to make {\sc and, or, xor}, and any of their inverses.  This sequence can also be used for \emph{wiring} to connect arbitrary inputs and outputs, as long as the outputs are below the inputs.  Unfortunately, $\langle d,l,d,r \rangle$ cannot move any particles upwards. To connect outputs as inputs to higher-level logic requires an additional reset sequence that contains a $\langle u \rangle$ command.  Therefore, including all four directions is a necessary condition for a valid clock sequence.  The shortest sequence has four commands, each appearing once. We choose the sequence, $\langle d,l,u,r \rangle$, and by designing examples prove that this sequence is sufficient for logic gates, {\sc fan-out} gates, and wiring.
@@ -515,10 +512,10 @@ In general, an $n$-output {\sc fan-out} gate with control sequence $\langle d,l,
 \put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
 \put(72.5,0){$A$} \put(79.5,0){$A$} \put(86.2,0){$\overline{A}$} \put(93,0){$\overline{A}$} 
 \put(0,-5){ $\langle d \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
-\vspace{.1em}\\
+\vspace{-.1em}\\
 
-\begin{overpic}[width =\columnwidth]{FanOutS2cw.png}\put(0,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
-\vspace{.1em}\\
+%\begin{overpic}[width =\columnwidth]{FanOutS2cw.png}\put(0,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
+%\vspace{.1em}\\
 
 \begin{overpic}[width =\columnwidth]{FanOutS4cw.png}\put(0,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
 \put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
@@ -534,7 +531,7 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
  \begin{figure} 
  \vspace{2em}
 \begin{overpic}[width =\columnwidth]{FanOutcw4step12.png}
-\put(2,-7){ $\langle d, l \rangle$}
+\put(2,-7){ $\langle d,l \rangle$}
 \put(20,-7){$A=0$ }\put(70,-7){ $A=1$ }
 \scriptsize
 \put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
@@ -566,11 +563,11 @@ The {\sc fan-out} gate can drive multiple outputs. Here a single input drives fo
 A general-purpose computer must be able to store data.  A $2\times1$ particle enables us to construct a read/writable data storage for one bit. A single-bit data storage latch is shown in Fig.~\ref{fig:Memory} and implements the truth table in Table \ref{tab:memoryTruthTable}.     By combining an $n$-out {\sc fan-out} gate shown in Fig~\ref{fig:Fanout4} with $n$ data storage devices, we can implement an $n$-bit memory. To maintain \emph{conservative} properties of the computer, i.e., the same number of robots enter and leave each gate,  single-bit data storage latches must be used in pairs to record the state and its inverse.
 
  \begin{figure*}
-\begin{overpic}[width =2\columnwidth]{MemoryElement.pdf}
-\end{overpic}
+\begin{overpic}[width =2\columnwidth]{MemoryElementSHORT.pdf}
+\end{overpic}\vspace{-1em}
 \caption{\label{fig:Memory}
 A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emph{Clear}, a state variable (shown in blue), and a $2\times 1$ slider.  Depending on which input is active, the \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ will read, set, or clear the memory.
-}
+}\vspace{-1em}
 \end{figure*}
 
 \begin{table}
@@ -596,33 +593,36 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
 \bottomrule
 \end{array}
 \end{displaymath}
+\vspace{-1em}
   \caption{A single-bit data storage latch with state $Q$.  \label{tab:memoryTruthTable}}
+  \vspace{-3em}
 \end{table}
   
 \subsection{A Binary Counter}\label{sec:binaryCounter}
   Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate, one {\sc and} and one {\sc xor} gate.
   
-We illustrate how several gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. 
-%Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
+We illustrate how several gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. 
+%Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. %Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
 
 \begin{figure}\centering
  \begin{overpic}[width =.8\columnwidth]{BinCounterCW000.png}\end{overpic}
-\vspace{-1em}\\
+\vspace{.1em}\\
 \caption{
 \label{fig:Counter}
-A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. See video attachment for animation.
-}
-\end{figure}
-
-
- \begin{figure}
- \begin{overpic}[width =\columnwidth]{counterSchem.pdf}\end{overpic}
-\caption{
-\label{fig:CounterBlockDiagram}
-Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor} gates, $n-2$ {\sc and} gates, and 1 {\sc not} gate.
+A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. See video attachment.% for animation.
 }
 \vspace{-1em}
 \end{figure}
+
+
+% \begin{figure}\centering
+% \begin{overpic}[width =.8\columnwidth]{counterSchem.pdf}\end{overpic}
+%\caption{
+%\label{fig:CounterBlockDiagram}
+%Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor} gates, $n-2$ {\sc and} gates, and 1 {\sc not} gate.
+%}
+%\vspace{-1em}
+%\end{figure}
 
 %     \begin{figure*}
 % \begin{overpic}[width =0.49\columnwidth]{BinCounterCW000.png}\put(20,-6){$b_2b_1b_0=000$}\end{overpic}
@@ -644,7 +644,7 @@ Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor}
 
 
 \subsection{Scaling Issues}\setcounter{paragraph}{0}
- Particle computation requires multiple clock cycles, workspace area for gates and interconnections, and many particles.  In this section we analyze how these scale with the size of the counter, using Fig.~\ref{fig:CounterBlockDiagram} as a reference.   
+ Particle computation requires multiple clock cycles, workspace area for gates and interconnections, and many particles.  In this section we analyze how these scale with the size of the counter.%, using Fig.~\ref{fig:CounterBlockDiagram} as a reference.   
 
 %n+n-1+n-2 = 3(n-1)
 
@@ -660,16 +660,18 @@ Numerous other schemes exist to speed up the computation; however, using discret
 With our current CW clock cycle, we cannot have outputs from the same column as
 inputs---outputs must be either one to the right, or three to the left.  
 Choosing one of these results in horizontal shifts at each stage and thus
-requires spreading out the logic gates. A better wiring scheme cycles
+requires spreading the logic gates horizontally. A better wiring scheme cycles
 through three layers that each shift right by one, followed by one layer that
 shifts left by three.  We also want the wiring to be tight left-to-right.  If our
-height is also limited, \emph{wire buses}, shown in Fig.~\ref{fig:Counter} provide a compact solution. 
+height is also limited, \emph{wire buses}, shown in Fig.~\ref{fig:Counter}, provide a compact solution. 
 
 %###############################################################
 \section{Experiment}\label{sec:Experiment}
 %###############################################################
 A large-scale prototype was built as a physical implementation of particle computation with global inputs, shown in Fig.~\ref{fig:prototype}.  The design is inspired by the gravity-fed logic maze \emph{Tilt\texttrademark}
-\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  %See Fig.~\ref{fig:Scale} for construction details.
+\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:prototype} shows a functioning single-input, four-output {\sc fan-out} gate. 
+%s The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  
+The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  %See Fig.~\ref{fig:Scale} for construction details.
 The video attachment demonstrates how the gates are constructed and shows each variant in operation.
 
 The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any slot junction. A clearance of 0.5mm on each side of the obstacle ensures that moving parts can slide past.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
@@ -695,39 +697,40 @@ The board can rotate along two perpendicular axes and these rotations generate t
 
  \begin{figure}
 \begin{overpic}[width =\columnwidth]{ReliabilityAsFuncTipAngle}\end{overpic}
+\vspace{-1.5em}
 \caption{\label{fig:TipAngleExperiment}Experimental data on slider reliability as a function of tip angle.}
 \vspace{-1em}
 \end{figure}
 
- \begin{figure}
-% DSC_0003lr.JPG
-%DSC_0006lr.JPG
-%DSC_0009lr.JPG
-%DSC_0010lr.JPG
-%DSC_0013lr.JPG
-%DSC_0015lr.JPG
-% 
-% DSC_0012lr.JPG
-%DSC_0017lr.JPG
-%DSC_0021lr.JPG
-%DSC_0024lr.JPG
-%DSC_0026lr.JPG
-%DSC_0030lr.JPG
-\begin{overpic}[width =0.49\columnwidth]{DSC_0003lr.JPG}\put(25,25){\textcolor{white}{start}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0012lr.JPG}\end{overpic}\vspace{0.5em}\\
-\begin{overpic}[width =0.49\columnwidth]{DSC_0006lr.JPG}\put(25,25){\textcolor{white}{$\downarrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0017lr.JPG}\end{overpic}\vspace{0.5em}\\
-\begin{overpic}[width =0.49\columnwidth]{DSC_0009lr.JPG}\put(25,25){\textcolor{white}{$\leftarrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0021lr.JPG}\end{overpic}\vspace{0.5em}\\
-\begin{overpic}[width =0.49\columnwidth]{DSC_0010lr.JPG}\put(25,25){\textcolor{white}{$\uparrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0024lr.JPG}\end{overpic}\vspace{0.5em}\\
-\begin{overpic}[width =0.49\columnwidth]{DSC_0013lr.JPG}\put(25,25){\textcolor{white}{$\rightarrow$}}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0026lr.JPG}\end{overpic}\vspace{0.5em}\\
-\begin{overpic}[width =0.49\columnwidth]{DSC_0015lr.JPG}\put(25,25){\textcolor{white}{end}}\put(30,-8){$A=1$}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{DSC_0030lr.JPG}\put(30,-8){$A=0$}\end{overpic}\\
-\caption{\label{fig:MultiFanOutPhysical}Implementation of a single-input, four-output {\sc fan-out} gate.  See video attachment at \url{http://youtu.be/EJSv8ny31r8}.}
-\vspace{-1em}
-\end{figure}
+% \begin{figure}
+%% DSC_0003lr.JPG
+%%DSC_0006lr.JPG
+%%DSC_0009lr.JPG
+%%DSC_0010lr.JPG
+%%DSC_0013lr.JPG
+%%DSC_0015lr.JPG
+%% 
+%% DSC_0012lr.JPG
+%%DSC_0017lr.JPG
+%%DSC_0021lr.JPG
+%%DSC_0024lr.JPG
+%%DSC_0026lr.JPG
+%%DSC_0030lr.JPG
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0003lr.JPG}\put(25,25){\textcolor{white}{start}}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0012lr.JPG}\end{overpic}\vspace{0.5em}\\
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0006lr.JPG}\put(25,25){\textcolor{white}{$\downarrow$}}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0017lr.JPG}\end{overpic}\vspace{0.5em}\\
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0009lr.JPG}\put(25,25){\textcolor{white}{$\leftarrow$}}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0021lr.JPG}\end{overpic}\vspace{0.5em}\\
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0010lr.JPG}\put(25,25){\textcolor{white}{$\uparrow$}}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0024lr.JPG}\end{overpic}\vspace{0.5em}\\
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0013lr.JPG}\put(25,25){\textcolor{white}{$\rightarrow$}}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0026lr.JPG}\end{overpic}\vspace{0.5em}\\
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0015lr.JPG}\put(25,25){\textcolor{white}{end}}\put(30,-8){$A=1$}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{DSC_0030lr.JPG}\put(30,-8){$A=0$}\end{overpic}\\
+%\caption{\label{fig:MultiFanOutPhysical}Implementation of a single-input, four-output {\sc fan-out} gate.  See video attachment at \url{http://youtu.be/EJSv8ny31r8}.}
+%\vspace{-1em}
+%\end{figure}
 
 % \begin{figure}
 %\begin{overpic}[width =\columnwidth]{scale.JPG}\end{overpic}
@@ -757,6 +760,7 @@ nanoscale and microfluidics work.
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,../../RoboticSwarmControlLab/bib/aaronrefs}%
 %\bibliography{IEEEabrv,../../../svn/ensemble/bib/aaronrefs}%,../aaronrefs} %../../../../../../ensemble/bib/aaronrefs}
+
 
 \end{document}
 

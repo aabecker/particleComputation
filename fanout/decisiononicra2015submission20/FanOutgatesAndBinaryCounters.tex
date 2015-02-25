@@ -349,7 +349,7 @@ a remarkable geometric parallelism to a key result of our present paper:
 While it is widely believed that at the most basic level of interaction (called {\em temperature 1}),
 computational universality {\em cannot be achieved}~\cite{LSAT1,ManuchTemp1,IUNeedsCoop} in the aTAM with only unit-sized pixels, 
 very recent work~\cite{fhp+-ucapt-15} shows that computational universality {\em can be achieved} as soon as even slightly bigger tiles are used. 
-This resembles the results of our paper, which shows that unit-size particles are insufficient for universal computation, while employing bigger particles suffices.
+This resembles the results of our paper, which shows that unit-size particles are insufficient for universal computation, while employing bigger particles suffices
 
 %###############################################################
 \section{Theory}\label{sec:theory}
@@ -379,8 +379,7 @@ During move $m_k$, robot $a$ \emph{hits} robot $b$ if $a$ is prevented from reac
 As robot $r$ travels from $\bm{s}$ to $\bm{g}$, it passes through a sequence of locations $\{\bm{s},\ldots,\bm{g}\}$.  We call this sequence of locations $r$'s \emph{path}. 
 
 \begin{lemma}\label{lemma:changeInHitsNeededToChangePath}
-Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed by introducing a new robot that $r$ hits, or by removing one of the robots that $r$ hit before.
-%Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
+Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed if $r$ hits a robot it did not hit before, or if $r$ fails to hit robots it did hit before.
 \end{lemma}
 
 \begin{proof}
@@ -456,7 +455,7 @@ A  conservative dual-logic {\sc fan-out} gate cannot be constructed using only 1
 %\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
 \begin{proof} We assume such a {\sc fan-out} gate exists and reach a contradiction. 
-Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because particle logic is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
+Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
 \begin{enumerate}
 \item if $\bm{s}_{a}$  and $\bm{s}_r$ are initially occupied and $\bm{s}_{\overline{a}}$ vacant, at the conclusion of $\bm{m}$ then $\bm{g}_{a_1}$ and $\bm{g}_{a_2}$ are occupied and the locations  $\bm{g}_{\overline{a}_1}$ and $\bm{g}_{\overline{a}_2}$ are vacant.
 \item if $\bm{s}_{a}$ is initially vacant and $\bm{s}_{\overline{a}}$ and $\bm{s}_r$ are occupied, at the conclusion of $\bm{m}$ then $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\overline{a}_1}$ and $g_{\overline{a}_2}$ are occupied.
@@ -464,25 +463,25 @@ Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\
 
 We will now assume that condition 1, above, is the original scenario and  add and subtract robots, applying theorems~\ref{thm:AdditionalRobotsCannotPreventAnOccupation} and~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, to show that it is impossible to meet condition 2. 
 
-Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\overline{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However, to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
+Assume condition 1. Robots $a$ and $r$ start at $\bm{s}_{a}$ and $\bm{s}_r$  respectively and at the conclusion of $\bm{m}$, the locations  $\bm{g}_{a1}$ and $\bm{g}_{a2}$ are occupied. Now remove robot $a$. According to  Thm.~\ref{thm:TwoRobotsTwoGoalsImpliesOneRobotOneGoal}, either $\bm{g}_{a_1}$ or $\bm{g}_{a_2}$ must be occupied at the conclusion of $\bm{m}$. Suppose without loss of generality that $\bm{g}_{a_1}$ is filled.  By Thm.~\ref{thm:AdditionalRobotsCannotPreventAnOccupation}, adding an additional robot at location $s_{\overline{a}}$ cannot prevent $\bm{g}_{a_1}$ from being filled. However, in order to meet condition 2, $\bm{g}_{a_1}$ must be vacant, thus no such gate is possible. 
  \end{proof}
 
-%\begin{table}
-%\begin{displaymath}
-%\begin{array}{cc|cccccc}
-%\toprule
-%   A & B & A\lor{}B & AB & \overline{A\lor{}B} & \overline{AB} & A\oplus B & \overline{A\oplus B} \\
-%\midrule
-%0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
-%0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
-%1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\
-%1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
-%\bottomrule
-%\end{array}
-%\end{displaymath}
-%  \caption{Implemented Boolean operations in dual-rail particle logic.}
-%  \label{tab:dualRailParticleLogic}
-%\end{table}
+\begin{table}
+\begin{displaymath}
+\begin{array}{cc|cccccc}
+\toprule
+   A & B & A\lor{}B & AB & \overline{A\lor{}B} & \overline{AB} & A\oplus B & \overline{A\oplus B} \\
+\midrule
+0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+\bottomrule
+\end{array}
+\end{displaymath}
+  \caption{Implemented Boolean operations in dual-rail particle logic.}
+  \label{tab:dualRailParticleLogic}
+\end{table}
 
 %###############################################################  
 \section{Device and gate design}\label{sec:Design}
@@ -534,7 +533,7 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
  \begin{figure} 
  \vspace{2em}
 \begin{overpic}[width =\columnwidth]{FanOutcw4step12.png}
-\put(2,-7){ $\langle d, l \rangle$}
+\put(2,-7){ $\langle d \rangle$}
 \put(20,-7){$A=0$ }\put(70,-7){ $A=1$ }
 \scriptsize
 \put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
@@ -546,7 +545,7 @@ A single input, two-output {\sc fan-out} gate.  This gate requires a dual-rail i
 \vspace{.5em}\\
 
 \begin{overpic}[width =\columnwidth]{FanOutcw4step34.png}
-\put(2,-7){ $\langle d,l,u,r \rangle$}
+\put(2,-7){ $\langle d,l,d,r \rangle$}
 \put(20,-7){$A=0$ }\put(70,-7){ $A=1$ }
 \scriptsize
 \put(9,21){$1$~~$1$~~$1$~~\,$A$} \put(41,21){$\overline{A}$} 
@@ -602,16 +601,16 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
 \subsection{A Binary Counter}\label{sec:binaryCounter}
   Using the {\sc fan-out} gate from Section \ref{sec:FanOut} we can generate arbitrary Boolean logic.  The half-adder from Fig.~\ref{fig:HalfAdder} requires a single {\sc fan-out} gate, one {\sc and} and one {\sc xor} gate.
   
-We illustrate how several gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. 
-%Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
+We illustrate how several gates can be combined by constructing a binary counter, shown in Fig.~\ref{fig:Counter}. Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
 
-\begin{figure}\centering
- \begin{overpic}[width =.8\columnwidth]{BinCounterCW000.png}\end{overpic}
-\vspace{-1em}\\
+\begin{figure}
+ \begin{overpic}[width =\columnwidth]{BinCounterCW000.png}\end{overpic}
+\vspace{.1em}\\
 \caption{
 \label{fig:Counter}
 A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. See video attachment for animation.
 }
+\vspace{-1em}
 \end{figure}
 
 
@@ -624,26 +623,26 @@ Gate-level diagram for an $n$-bit counter.  The counter requires $n-1$ {\sc xor}
 \vspace{-1em}
 \end{figure}
 
-%     \begin{figure*}
-% \begin{overpic}[width =0.49\columnwidth]{BinCounterCW000.png}\put(20,-6){$b_2b_1b_0=000$}\end{overpic}
-%  \begin{overpic}[width =0.49\columnwidth]{BinCounterCW001.png}\put(20,-6){$b_2b_1b_0=001$}\end{overpic}
-%   \begin{overpic}[width =0.49\columnwidth]{BinCounterCW010.png}\put(20,-6){$b_2b_1b_0=010$}\end{overpic}
-%    \begin{overpic}[width =0.49\columnwidth]{BinCounterCW011.png}\put(20,-6){$b_2b_1b_0=011$}\end{overpic}\\
-%    \vspace{0.1em}\\
-%     \begin{overpic}[width =0.49\columnwidth]{BinCounterCW100.png}\put(20,-6){$b_2b_1b_0=100$}\end{overpic}
-%      \begin{overpic}[width =0.49\columnwidth]{BinCounterCW101.png}\put(20,-6){$b_2b_1b_0=101$}\end{overpic}
-%       \begin{overpic}[width =0.49\columnwidth]{BinCounterCW110.png}\put(20,-6){$b_2b_1b_0=110$}\end{overpic}
-%        \begin{overpic}[width =0.49\columnwidth]{BinCounterCW111.png}\put(20,-6){$b_2b_1b_0=111$}\end{overpic}
-%\vspace{.1em}\\
-%\caption{
-%\label{fig:CounterShowingEachStage}
-%Ending configuration for each stage of the computation.
-%}
-%\vspace{-1em}
-%\end{figure*}
+     \begin{figure*}
+ \begin{overpic}[width =0.49\columnwidth]{BinCounterCW000.png}\put(20,-6){$b_2b_1b_0=000$}\end{overpic}
+  \begin{overpic}[width =0.49\columnwidth]{BinCounterCW001.png}\put(20,-6){$b_2b_1b_0=001$}\end{overpic}
+   \begin{overpic}[width =0.49\columnwidth]{BinCounterCW010.png}\put(20,-6){$b_2b_1b_0=010$}\end{overpic}
+    \begin{overpic}[width =0.49\columnwidth]{BinCounterCW011.png}\put(20,-6){$b_2b_1b_0=011$}\end{overpic}\\
+    \vspace{0.1em}\\
+     \begin{overpic}[width =0.49\columnwidth]{BinCounterCW100.png}\put(20,-6){$b_2b_1b_0=100$}\end{overpic}
+      \begin{overpic}[width =0.49\columnwidth]{BinCounterCW101.png}\put(20,-6){$b_2b_1b_0=101$}\end{overpic}
+       \begin{overpic}[width =0.49\columnwidth]{BinCounterCW110.png}\put(20,-6){$b_2b_1b_0=110$}\end{overpic}
+        \begin{overpic}[width =0.49\columnwidth]{BinCounterCW111.png}\put(20,-6){$b_2b_1b_0=111$}\end{overpic}
+\vspace{.1em}\\
+\caption{
+\label{fig:CounterShowingEachStage}
+Ending configuration for each stage of the computation.
+}
+\vspace{-1em}
+\end{figure*}
 
 
-\subsection{Scaling Issues}\setcounter{paragraph}{0}
+\subsection{Scaling Issues}
  Particle computation requires multiple clock cycles, workspace area for gates and interconnections, and many particles.  In this section we analyze how these scale with the size of the counter, using Fig.~\ref{fig:CounterBlockDiagram} as a reference.   
 
 %n+n-1+n-2 = 3(n-1)
@@ -663,14 +662,13 @@ Choosing one of these results in horizontal shifts at each stage and thus
 requires spreading out the logic gates. A better wiring scheme cycles
 through three layers that each shift right by one, followed by one layer that
 shifts left by three.  We also want the wiring to be tight left-to-right.  If our
-height is also limited, \emph{wire buses}, shown in Fig.~\ref{fig:Counter} provide a compact solution. 
+height is also limited, \emph{wire buses} provide a compact solution. 
 
 %###############################################################
 \section{Experiment}\label{sec:Experiment}
 %###############################################################
 A large-scale prototype was built as a physical implementation of particle computation with global inputs, shown in Fig.~\ref{fig:prototype}.  The design is inspired by the gravity-fed logic maze \emph{Tilt\texttrademark}
-\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  %See Fig.~\ref{fig:Scale} for construction details.
-The video attachment demonstrates how the gates are constructed and shows each variant in operation.
+\url{http://www.thinkfun.com/tilt}. Figure~\ref{fig:MultiFanOutPhysical} shows a functioning single-input, four-output {\sc fan-out} gate.  The left column replicates an $A$ input, and the right column an $\overline{A}$, both represented by a red 1$\times$1 particle.  The gate requires three  1$\times$1 supply particles, shown in blue.  The slider is white and the obstacles are yellow.  See Fig.~\ref{fig:Scale} for construction details. The video attachment demonstrates how the gates are constructed and shows each variant in operation.
 
 The experimental setup consists of Plexiglas square boards, which can be assembled together to form a bigger board. Each board has 12 vertical and 12 horizontal slots that constitute a checkered board. Each slot is 5mm in width and 4mm in depth.  The distance between adjacent slots is 20mm. Different configurations can be achieved using 19mm$\times$19mm obstacles, which can be fitted in any slot junction. A clearance of 0.5mm on each side of the obstacle ensures that moving parts can slide past.  There are two types of moving parts; 1$\times$1 and 1$\times$2 sliders. 1$\times$1 sliders are 19.5mm diameter steel cylinders.  Beneath this top cylinder is a cylindrical peg with a diameter of 4mm that guides the slider through the slot. 1$\times$2 sliders are 20mm$\times$40mm rectangular steel parts with a rectangular guide at the bottom.
 
@@ -729,11 +727,11 @@ The board can rotate along two perpendicular axes and these rotations generate t
 \vspace{-1em}
 \end{figure}
 
-% \begin{figure}
-%\begin{overpic}[width =\columnwidth]{scale.JPG}\end{overpic}
-%\caption{\label{fig:Scale}Detail of the prototype construction.}
-%\vspace{-1em}
-%\end{figure}
+ \begin{figure}
+\begin{overpic}[width =\columnwidth]{scale.JPG}\end{overpic}
+\caption{\label{fig:Scale}Detail of the prototype construction.}
+\vspace{-1em}
+\end{figure}
 
 %###############################################################
 \section{Conclusion}\label{sec:Conclusion}
@@ -755,8 +753,8 @@ nanoscale and microfluidics work.
 %\href{http://nsf.gov/awardsearch/showAward?AWD_ID=1208509}{NRI-1208509}.  
    
 \bibliographystyle{IEEEtran}
-\bibliography{IEEEabrv,../../RoboticSwarmControlLab/bib/aaronrefs}%
-%\bibliography{IEEEabrv,../../../svn/ensemble/bib/aaronrefs}%,../aaronrefs} %../../../../../../ensemble/bib/aaronrefs}
+\bibliography{IEEEabrv,../../../svn/ensemble/bib/aaronrefs}%,../aaronrefs} %../../../../../../ensemble/bib/aaronrefs}
+
 
 \end{document}
 

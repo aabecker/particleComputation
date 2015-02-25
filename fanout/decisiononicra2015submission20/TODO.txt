@@ -1,0 +1,53 @@
+ It will be helpful to define the dual-rail logic before Section 3. [[defined in 1.b]]
+
+In Lemma 1, what does "or if r fails to hit robots it did hit before" mean? [[Given a workspace $W$, a command sequence $\bm{m}$, and a robot $r$ traveling along a path beginning at location $\bm{s}$, this path can only be changed by introducing a new robot that $r$ hits, or by removing one of the robots that $r$ hit before.]]
+
+In the proof of Corollary 5, it is not clear why "Because W is conservative
+there must also be one additional input location sr and robot r."   [[changed $W$ to particle logic ]]
+
+REDO Fig 5 in mircosoft (all outputs are named wrong)
+
+
+missing period at end of II. [[done]]
+
+The IDs of the figures are out of order. 
+
+In Figure 5 and 4, <d, l, d, r> should be <d, l, u, r>.  [[fixed]]
+
+In Figure 4, <d> should be <d, l>.  [[fixed]]
+
+In the conclusion, it is not clear how the necessity of dual-rail logic for Boolean logic was established in this paper. 
+
+Finally, I would not call a particle a nanorobot. 
+[[[ we use the word ÔnanoÕ 5 times:
+1.) We present fundamental progress on the computational universality of swarms of micro- or nano-scale robots in complex environments
+2.) One of the exciting new directions of robotics is the design and development of micro- and nanorobot systemsÓ
+3.) As a consequence, current micro- and nanorobot systems with many robots are steered and directed by an external force that acts as a common control signal
+4.)  it establishes that future nano-scale systems are able to perform
+arbitrarily complex operations
+5.) This work, along with \cite{Becker2013f,Becker2014,Becker2014a}, introduces a
+new model for mechanical computation.  Interesting applications will aim at 
+nanoscale and microfluidics work.
+]]]
+
+Namely, even the title of their previous paper published at ICRA 2014 is wrong: “Particle
+Computation: Designing Worlds to Control Robot Swarms with
+only Global Signals” instead of “Particle computation:
+Controlling robot swarms with only global signals”.  [[[fixed]]]]
+
+
+The paper is too lengthy to present content that sometimes is
+not that new or irrelevant. For instance, what is the point
+of Table II? Logical operations are well-known in
+engineering and computer science – this can be simply
+removed.   [[[[ REMOVED ]]]]
+
+Anyway, the most flimsy part of the paper are the
+experimental results. Section V describes a prototype
+though most of it mainly focus on the description of the
+setup instead of discussing the results obtained. As such,
+it is rather hard to grasp the relevance of the addition of
+the FAN-OUT gate and, as such, the whole contribution of
+the work.
+
+http://robots.stanford.edu/movies/lasertag-video.avi

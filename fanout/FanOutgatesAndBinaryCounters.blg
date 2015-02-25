@@ -8,7 +8,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEabrv.bib
-Database file #2: ../../../svn/ensemble/bib/aaronrefs.bib
+Database file #2: ../../RoboticSwarmControlLab/bib/aaronrefs.bib
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -16,42 +16,42 @@ Database file #2: ../../../svn/ensemble/bib/aaronrefs.bib
 Done.
 You've used 24 entries,
             4039 wiz_defined-function locations,
-            1380 strings with 20596 characters,
-and the built_in function-call counts, 19628 in all, are:
-= -- 1554
-> -- 520
-< -- 162
-+ -- 283
+            1383 strings with 20642 characters,
+and the built_in function-call counts, 20157 in all, are:
+= -- 1598
+> -- 530
+< -- 173
++ -- 291
 - -- 92
-* -- 1001
-:= -- 2905
-add.period$ -- 50
+* -- 1029
+:= -- 2959
+add.period$ -- 51
 call.type$ -- 24
 change.case$ -- 25
-chr.to.int$ -- 387
+chr.to.int$ -- 417
 cite$ -- 24
-duplicate$ -- 1353
-empty$ -- 1595
+duplicate$ -- 1381
+empty$ -- 1627
 format.name$ -- 115
-if$ -- 4532
+if$ -- 4662
 int.to.chr$ -- 0
 int.to.str$ -- 24
-missing$ -- 243
+missing$ -- 245
 newline$ -- 111
 num.names$ -- 28
-pop$ -- 581
+pop$ -- 584
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1504
+skip$ -- 1537
 stack$ -- 0
-substring$ -- 924
-swap$ -- 1140
-text.length$ -- 33
+substring$ -- 994
+swap$ -- 1179
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 24
 warning$ -- 0
-while$ -- 88
+while$ -- 92
 width$ -- 26
-write$ -- 272
+write$ -- 273

@@ -125,7 +125,7 @@ set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off');
 
 %set(G.axis,'edgealpha',.08)
 axis equal
-set(gcf,'Position',[4 260 1897 728])
+%set(gcf,'Position',[4 260 1897 728])
 set(gca,'Position',[0 0 1 1])
 %axis tight
 hold on
@@ -939,19 +939,22 @@ function [blk,RobotPts] = partHopper7()
             1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
             1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 ;
             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 ;
-            0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
             1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
-            0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
-            0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
             ];
         w = size(blk,2);    %h = size(blk,1);
         
         %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
         nr = w-13;
         RobotPts = [ 
-            1+[1:nr]', 16*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            %1+ones(nr,1), 11+[1:nr]', [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            %2+ones(nr,1), 11+[1:nr]', nr+[1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            1+[1:nr]', 18*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
             1+[1:nr]', 17*ones(nr,1), nr+[1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
-            14,13, 2*nr+1,2,2,1;];
+            14,14, 2*nr+1,2,2,1;];
             %16,12, nr+2,2,2,1;
             %19,16, nr+3,2,2,1];
         %4,11, nr+2,3,2,1];

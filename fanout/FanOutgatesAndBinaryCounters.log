@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  17 NOV 2014 09:48
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  25 FEB 2015 06:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -937,10 +937,10 @@ l.353
 File: ./pictures/png/FanOutS1cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS1cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS1cw.png used on input line 510.
+Package pdftex.def Info: ./pictures/png/FanOutS1cw.png used on input line 511.
 (pdftex.def)             Requested size: 245.71811pt x 59.56686pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 516--518
+Underfull \hbox (badness 10000) in paragraph at lines 517--519
 
  []
 
@@ -948,10 +948,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 516--518
 File: ./pictures/png/FanOutS2cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS2cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS2cw.png used on input line 519.
+Package pdftex.def Info: ./pictures/png/FanOutS2cw.png used on input line 520.
 (pdftex.def)             Requested size: 245.71811pt x 59.03502pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 519--521
+Underfull \hbox (badness 10000) in paragraph at lines 520--522
 
  []
 
@@ -959,10 +959,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 519--521
 File: ./pictures/png/FanOutS4cw.png Graphic file (type png)
 
 <use ./pictures/png/FanOutS4cw.png>
-Package pdftex.def Info: ./pictures/png/FanOutS4cw.png used on input line 522.
+Package pdftex.def Info: ./pictures/png/FanOutS4cw.png used on input line 523.
 (pdftex.def)             Requested size: 245.71811pt x 59.36499pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 525--529
+Underfull \hbox (badness 10000) in paragraph at lines 526--530
 [][]
  []
 
@@ -971,10 +971,10 @@ File: ./pictures/png/FanOutcw4step12.png Graphic file (type png)
 
 <use ./pictures/png/FanOutcw4step12.png>
 Package pdftex.def Info: ./pictures/png/FanOutcw4step12.png used on input line 
-535.
+536.
 (pdftex.def)             Requested size: 245.71811pt x 50.02434pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 544--546
+Underfull \hbox (badness 10000) in paragraph at lines 545--547
 
  []
 
@@ -983,306 +983,201 @@ File: ./pictures/png/FanOutcw4step34.png Graphic file (type png)
 
 <use ./pictures/png/FanOutcw4step34.png>
 Package pdftex.def Info: ./pictures/png/FanOutcw4step34.png used on input line 
-547.
+548.
 (pdftex.def)             Requested size: 245.71811pt x 50.42453pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 556--559
+Underfull \hbox (badness 10000) in paragraph at lines 557--560
 [][]
  []
 
-<./pictures/pdf/MemoryElement.pdf, id=179, 967.615pt x 433.62pt>
-File: ./pictures/pdf/MemoryElement.pdf Graphic file (type pdf)
-
-<use ./pictures/pdf/MemoryElement.pdf>
-Package pdftex.def Info: ./pictures/pdf/MemoryElement.pdf used on input line 56
-8.
-(pdftex.def)             Requested size: 491.43622pt x 220.2302pt.
- [4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
-has been already used, duplicate ignored
+[4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
+as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.605 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.2
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.605 
-      ]
-<./pictures/png/BinCounterCW000.png, id=200, 565.36218pt x 667.74469pt>
-File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW000.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line 
-607.
-(pdftex.def)             Requested size: 245.71811pt x 290.21187pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 607--612
-[][]
- []
-
-<./pictures/pdf/counterSchem.pdf, id=201, 2020.90004pt x 1640.85544pt>
-File: ./pictures/pdf/counterSchem.pdf Graphic file (type pdf)
-
-<use ./pictures/pdf/counterSchem.pdf>
-Package pdftex.def Info: ./pictures/pdf/counterSchem.pdf used on input line 618
-.
-(pdftex.def)             Requested size: 245.71811pt x 199.49805pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 618--622
-[][]
- []
-
-File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
-<use ./pictures/png/BinCounterCW000.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line 
-627.
-(pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
-
-<./pictures/png/BinCounterCW001.png, id=202, 565.36218pt x 668.4975pt>
-File: ./pictures/png/BinCounterCW001.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW001.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW001.png used on input line 
-628.
-(pdftex.def)             Requested size: 120.40321pt x 142.3675pt.
-
-<./pictures/png/BinCounterCW010.png, id=203, 565.36218pt x 667.74469pt>
-File: ./pictures/png/BinCounterCW010.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW010.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW010.png used on input line 
-629.
-(pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
-
-<./pictures/png/BinCounterCW011.png, id=204, 565.36218pt x 667.74469pt>
-File: ./pictures/png/BinCounterCW011.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW011.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW011.png used on input line 
-630.
-(pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
-
-<./pictures/png/BinCounterCW100.png, id=205, 564.60938pt x 667.74469pt>
-File: ./pictures/png/BinCounterCW100.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW100.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW100.png used on input line 
-632.
-(pdftex.def)             Requested size: 120.40321pt x 142.39058pt.
-
-<./pictures/png/BinCounterCW101.png, id=206, 564.60938pt x 666.99188pt>
-File: ./pictures/png/BinCounterCW101.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW101.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW101.png used on input line 
-633.
-(pdftex.def)             Requested size: 120.40321pt x 142.23004pt.
-
-<./pictures/png/BinCounterCW110.png, id=207, 565.36218pt x 668.4975pt>
-File: ./pictures/png/BinCounterCW110.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW110.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW110.png used on input line 
-634.
-(pdftex.def)             Requested size: 120.40321pt x 142.3675pt.
-
-<./pictures/png/BinCounterCW111.png, id=208, 565.36218pt x 667.74469pt>
-File: ./pictures/png/BinCounterCW111.png Graphic file (type png)
-
-<use ./pictures/png/BinCounterCW111.png>
-Package pdftex.def Info: ./pictures/png/BinCounterCW111.png used on input line 
-635.
-(pdftex.def)             Requested size: 120.40321pt x 142.20717pt.
-
-Underfull \hbox (badness 2980) in paragraph at lines 646--647
-[]\OT1/ptm/m/n/10 Particle com-pu-ta-tion re-quires mul-ti-ple clock cy-cles,
- []
-
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.653 
+l.567 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.653 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.3
+l.567 
+       <./pictures/png/FanOutS1cw.png> <./pictures/png/FanOutS2cw.png> <./pictu
+res/png/FanOutS4cw.png>]
+<./pictures/pdf/MemoryElement.pdf, id=192, 967.615pt x 433.62pt>
+File: ./pictures/pdf/MemoryElement.pdf Graphic file (type pdf)
+
+<use ./pictures/pdf/MemoryElement.pdf>
+Package pdftex.def Info: ./pictures/pdf/MemoryElement.pdf used on input line 56
+9.
+(pdftex.def)             Requested size: 491.43622pt x 220.2302pt.
+
+<./pictures/png/BinCounterCW000.png, id=197, 565.36218pt x 667.74469pt>
+File: ./pictures/png/BinCounterCW000.png Graphic file (type png)
+
+<use ./pictures/png/BinCounterCW000.png>
+Package pdftex.def Info: ./pictures/png/BinCounterCW000.png used on input line 
+609.
+(pdftex.def)             Requested size: 196.57523pt x 232.16542pt.
+
+<./pictures/pdf/counterSchem.pdf, id=198, 2020.90004pt x 1640.85544pt>
+File: ./pictures/pdf/counterSchem.pdf Graphic file (type pdf)
+
+<use ./pictures/pdf/counterSchem.pdf>
+Package pdftex.def Info: ./pictures/pdf/counterSchem.pdf used on input line 619
+.
+(pdftex.def)             Requested size: 245.71811pt x 199.49805pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 619--623
+[][]
+ []
+
+
+Underfull \hbox (badness 2980) in paragraph at lines 647--648
+[]\OT1/ptm/m/n/10 Particle com-pu-ta-tion re-quires mul-ti-ple clock cy-cles,
+ []
+
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.674 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.653 
+l.674 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-4}) has been already used, duplicate ignored
+6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.653 
-       <./pictures/pdf/MemoryElement.pdf> <./pictures/png/FanOutS1cw.png> <./pi
-ctures/png/FanOutS2cw.png> <./pictures/png/FanOutS4cw.png> <./pictures/png/FanO
-utcw4step12.png> <./pictures/png/FanOutcw4step34.png>]
-Underfull \hbox (badness 1748) in paragraph at lines 673--674
+l.674 
+       <./pictures/png/FanOutcw4step12.png> <./pictures/png/FanOutcw4step34.png
+> <./pictures/png/BinCounterCW000.png>]
+Underfull \hbox (badness 1748) in paragraph at lines 675--676
 []\OT1/ptm/m/n/10 The ex-per-i-men-tal setup con-sists of Plex-i-glas square
  []
 
 
-<./pictures/pdf/ReliabilityAsFuncTipAngle.pdf, id=294, 412.36243pt x 179.80113p
+<./pictures/pdf/ReliabilityAsFuncTipAngle.pdf, id=220, 412.36243pt x 179.80113p
 t>
 File: ./pictures/pdf/ReliabilityAsFuncTipAngle.pdf Graphic file (type pdf)
  <use ./pictures/pdf/ReliabilityAsFuncTipAngle.pdf>
 Package pdftex.def Info: ./pictures/pdf/ReliabilityAsFuncTipAngle.pdf used on i
-nput line 695.
+nput line 697.
 (pdftex.def)             Requested size: 245.71811pt x 107.138pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 695--696
+Underfull \hbox (badness 10000) in paragraph at lines 697--698
 [][]
  []
 
-<./pictures/jpg/DSC_0003lr.JPG, id=295, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0003lr.JPG, id=221, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0003lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0003lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0003lr.JPG used on input line 714.
+Package pdftex.def Info: ./pictures/jpg/DSC_0003lr.JPG used on input line 716.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0012lr.JPG, id=296, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0012lr.JPG, id=222, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0012lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0012lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0012lr.JPG used on input line 715.
+Package pdftex.def Info: ./pictures/jpg/DSC_0012lr.JPG used on input line 717.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0006lr.JPG, id=297, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0006lr.JPG, id=223, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0006lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0006lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0006lr.JPG used on input line 716.
+Package pdftex.def Info: ./pictures/jpg/DSC_0006lr.JPG used on input line 718.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0017lr.JPG, id=298, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0017lr.JPG, id=224, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0017lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0017lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0017lr.JPG used on input line 717.
+Package pdftex.def Info: ./pictures/jpg/DSC_0017lr.JPG used on input line 719.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0009lr.JPG, id=299, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0009lr.JPG, id=225, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0009lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0009lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0009lr.JPG used on input line 718.
+Package pdftex.def Info: ./pictures/jpg/DSC_0009lr.JPG used on input line 720.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0021lr.JPG, id=300, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0021lr.JPG, id=226, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0021lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0021lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0021lr.JPG used on input line 719.
+Package pdftex.def Info: ./pictures/jpg/DSC_0021lr.JPG used on input line 721.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0010lr.JPG, id=301, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0010lr.JPG, id=227, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0010lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0010lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0010lr.JPG used on input line 720.
+Package pdftex.def Info: ./pictures/jpg/DSC_0010lr.JPG used on input line 722.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0024lr.JPG, id=302, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0024lr.JPG, id=228, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0024lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0024lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0024lr.JPG used on input line 721.
+Package pdftex.def Info: ./pictures/jpg/DSC_0024lr.JPG used on input line 723.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0013lr.JPG, id=303, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0013lr.JPG, id=229, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0013lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0013lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0013lr.JPG used on input line 722.
+Package pdftex.def Info: ./pictures/jpg/DSC_0013lr.JPG used on input line 724.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0026lr.JPG, id=304, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0026lr.JPG, id=230, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0026lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0026lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0026lr.JPG used on input line 723.
+Package pdftex.def Info: ./pictures/jpg/DSC_0026lr.JPG used on input line 725.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0015lr.JPG, id=305, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0015lr.JPG, id=231, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0015lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0015lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0015lr.JPG used on input line 724.
+Package pdftex.def Info: ./pictures/jpg/DSC_0015lr.JPG used on input line 726.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
 
-<./pictures/jpg/DSC_0030lr.JPG, id=306, 803.0pt x 402.50375pt>
+<./pictures/jpg/DSC_0030lr.JPG, id=232, 803.0pt x 402.50375pt>
 File: ./pictures/jpg/DSC_0030lr.JPG Graphic file (type jpg)
 
 <use ./pictures/jpg/DSC_0030lr.JPG>
-Package pdftex.def Info: ./pictures/jpg/DSC_0030lr.JPG used on input line 725.
+Package pdftex.def Info: ./pictures/jpg/DSC_0030lr.JPG used on input line 727.
 (pdftex.def)             Requested size: 120.40321pt x 60.34839pt.
-
-<./pictures/jpg/scale.JPG, id=309, 803.0pt x 517.935pt>
-File: ./pictures/jpg/scale.JPG Graphic file (type jpg)
-
-<use ./pictures/jpg/scale.JPG>
-Package pdftex.def Info: ./pictures/jpg/scale.JPG used on input line 731.
-(pdftex.def)             Requested size: 245.71811pt x 158.48758pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 731--732
-[][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
- has been already used, duplicate ignored
+ (./FanOutgatesAndBinaryCounters.bbl
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.745 
-       <./pictures/png/BinCounterCW000.png> <./pictures/png/BinCounterCW001.png
-> <./pictures/png/BinCounterCW010.png> <./pictures/png/BinCounterCW011.png> <./
-pictures/png/BinCounterCW100.png> <./pictures/png/BinCounterCW101.png> <./pictu
-res/png/BinCounterCW110.png> <./pictures/png/BinCounterCW111.png>] [7pdfTeX war
-ning (ext4): destination with the same identifier (name{figure.6}) has been alr
-eady used, duplicate ignored
+l.32 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.745 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7}) has been already used, duplicate ignored
+l.32 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.8
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.745 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-9}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.745 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-10}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.745 
-       <./pictures/pdf/counterSchem.pdf> <./pictures/pdf/ReliabilityAsFuncTipAn
-gle.pdf> <./pictures/jpg/DSC_0003lr.JPG> <./pictures/jpg/DSC_0012lr.JPG> <./pic
-tures/jpg/DSC_0006lr.JPG> <./pictures/jpg/DSC_0017lr.JPG> <./pictures/jpg/DSC_0
-009lr.JPG> <./pictures/jpg/DSC_0021lr.JPG> <./pictures/jpg/DSC_0010lr.JPG> <./p
-ictures/jpg/DSC_0024lr.JPG> <./pictures/jpg/DSC_0013lr.JPG> <./pictures/jpg/DSC
-_0026lr.JPG> <./pictures/jpg/DSC_0015lr.JPG> <./pictures/jpg/DSC_0030lr.JPG>]
-(./FanOutgatesAndBinaryCounters.bbl
+l.32 
+      <./pictures/pdf/MemoryElement.pdf> <./pictures/pdf/counterSchem.pdf> <./p
+ictures/pdf/ReliabilityAsFuncTipAngle.pdf>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -1313,36 +1208,36 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 759.
-[8pdfTeX warning (ext4): destination with the same identifier (name{figure.11})
- has been already used, duplicate ignored
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 761.
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.759 \end{document}
-                     <./pictures/jpg/scale.JPG>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 759.
-
-(./FanOutgatesAndBinaryCounters.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 759.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 759.
+l.761 \end{document}
+                     <./pictures/jpg/DSC_0003lr.JPG> <./pictures/jpg/DSC_0012lr
+.JPG> <./pictures/jpg/DSC_0006lr.JPG> <./pictures/jpg/DSC_0017lr.JPG> <./pictur
+es/jpg/DSC_0009lr.JPG> <./pictures/jpg/DSC_0021lr.JPG> <./pictures/jpg/DSC_0010
+lr.JPG> <./pictures/jpg/DSC_0024lr.JPG> <./pictures/jpg/DSC_0013lr.JPG> <./pict
+ures/jpg/DSC_0026lr.JPG> <./pictures/jpg/DSC_0015lr.JPG> <./pictures/jpg/DSC_00
+30lr.JPG>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 761.
+ (./FanOutgatesAndBinaryCounters.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 761.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 761.
 Package rerunfilecheck Info: File `FanOutgatesAndBinaryCounters.out' has not ch
 anged.
 (rerunfilecheck)             Checksum: 94100DAD38C974F6DB736C5589448CD4;1165.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 759.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 761.
  ) 
 Here is how much of TeX's memory you used:
- 14470 strings out of 493488
- 227829 string characters out of 3141326
- 334089 words of memory out of 3000000
- 17374 multiletter control sequences out of 15000+200000
+ 14415 strings out of 493488
+ 226271 string characters out of 3141326
+ 322883 words of memory out of 3000000
+ 17339 multiletter control sequences out of 15000+200000
  54070 words of font info for 121 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,10n,38p,1758b,451s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,38p,1758b,480s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texl
@@ -1365,9 +1260,9 @@ e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FanOutgatesAndBinaryCounters.pdf (8 pages, 2449718 bytes).
+Output written on FanOutgatesAndBinaryCounters.pdf (7 pages, 2209020 bytes).
 PDF statistics:
- 487 PDF objects out of 1000 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 308 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 465 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
+ 268 words of extra memory for PDF output out of 10000 (max. 10000000)
 
