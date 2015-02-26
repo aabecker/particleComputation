@@ -96,7 +96,8 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts] = partHopper2();
 %[G.obstacle_pos,RobotPts] = partHopper3();
 %[G.obstacle_pos,RobotPts] = partHopper4(); %
-[G.obstacle_pos,RobotPts] = partHopper7(); %7 
+%[G.obstacle_pos,RobotPts] = partHopper7(); %7 
+[G.obstacle_pos,RobotPts] = simpleCounter(); %7 
 %[G.obstacle_pos,RobotPts] = partHopper8(); %compact powers of 2
 %[G.obstacle_pos,RobotPts] = twoStateGate();
 %[G.obstacle_pos,RobotPts] = twoStateGateV();
@@ -915,6 +916,47 @@ end
         %4,11, nr+2,3,2,1];
         blk = flipud(repmat(blk,1,1));
     end
+
+simpleCounter
+function [blk,RobotPts] = simpleCounter()
+        % this holds many parts and releases one every EIGHTH turn.
+        % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles
+        blk=[
+            1 1 1 1 1 1 1 1 1 1 ;
+            1 1 1 1 1 1 0 0 1 1 ;
+            1 1 1 1 1 1 0 0 1 1 ;
+            1 1 1 1 1 1 0 0 1 1 ;
+            1 1 1 1 1 1 0 0 1 1 ;
+            1 0 0 0 0 1 0 0 1 1 ;
+            1 0 0 0 0 1 0 0 1 1 ;
+            1 0 0 0 0 0 0 0 1 1 ;
+            1 1 1 1 0 1 0 1 1 1 ;
+            1 1 1 0 0 0 0 1 1 1 ;
+            1 1 1 1 1 1 0 0 0 1 ;
+            1 1 1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 1 1 1 1 ;
+            ];
+        w = size(blk,2);    %h = size(blk,1);
+        
+        %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
+        nr = 4;
+        RobotPts = [ 
+            %1+ones(nr,1), 11+[1:nr]', [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            %2+ones(nr,1), 11+[1:nr]', nr+[1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            1+[1:nr]', 13*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            1+[1:nr-1]', 12*ones(nr-1,1), nr+[1:nr-1]'  ,ones(nr-1,1),ones(nr-1,1),ones(nr-1,1);
+            8,8, 2*nr,2,2,1;];
+            %16,12, nr+2,2,2,1;
+            %19,16, nr+3,2,2,1];
+        %4,11, nr+2,3,2,1];
+        blk = flipud(repmat(blk,1,1));
+    end
+
 function [blk,RobotPts] = partHopper7()
         % this holds many parts and releases one every EIGHTH turn.
         % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles

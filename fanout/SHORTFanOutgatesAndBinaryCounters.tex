@@ -595,7 +595,7 @@ A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emp
 \end{displaymath}
 \vspace{-1em}
   \caption{A single-bit data storage latch with state $Q$.  \label{tab:memoryTruthTable}}
-  \vspace{-3em}
+  \vspace{-2em}
 \end{table}
   
 \subsection{A Binary Counter}\label{sec:binaryCounter}
@@ -605,11 +605,12 @@ We illustrate how several gates can be combined by constructing a binary counter
 %Six logic gates are used to implement a 3-bit counter. A block diagram of the device is shown in Fig.~\ref{fig:CounterBlockDiagram}. The counter  requires three {\sc fan-out} gates, two adders, and one carry. Six $1\times1$ particles and three $2\times1$ particles are used.  The counter has three levels of gates $\langle d,l,d,r \rangle$ and requires three interconnection moves $\langle d,l,d,r \rangle$, for a total of 24 moves per cycle. %Figure \ref{fig:CounterShowingEachStage} shows the ending configuration for each iteration of the counter.
 
 \begin{figure}\centering
- \begin{overpic}[width =.8\columnwidth]{BinCounterCW000.png}\end{overpic}
-\vspace{.1em}\\
+ %\begin{overpic}[width =.8\columnwidth]{BinCounterCW000.png}\end{overpic}
+  \begin{overpic}[width =\columnwidth]{BinaryCounterAnnotated.pdf}\end{overpic}
+    \vspace{-1em}
 \caption{
 \label{fig:Counter}
-A three-bit counter implemented with particles. The counter  requires three {\sc fan-out} gates, two summers, and one carry.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. See video attachment.% for animation.
+A three-bit counter implemented with particles. The counter  requires three {\sc fan-out}, two {\sc summer}, and one {\sc carry} gates.  Six 1$\times$1 particles and three 2$\times$1 particles are used.  The counter has three levels of gates actuated by CW sequence $\langle d,l,u,r \rangle$ and requires three interconnection sequences $\langle d,l,u,r \rangle$, for a total of 24 moves. See video attachment.% for animation.
 }
 \vspace{-1em}
 \end{figure}
