@@ -161,11 +161,11 @@ Particle Computation:  Device Fan-out and Binary Memory
 \author{
 Hamed Mohtasham Shad,
 Rose Morris-Wright,
-Erik D. Demaine,
+Erik D.\ Demaine,
 S\'andor P. Fekete,
-Aaron T. Becker
+Aaron T.\ Becker
 \thanks{{
-H. Mohtasham  \protect\url{mohtasham@gmail.com},
+H.~Mohtasham  \protect\url{mohtasham@gmail.com},
 R.~Morris-Wright  \protect\url{rmorriswright@gmail.com},
 E.~Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
 S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
@@ -250,7 +250,8 @@ of having to go through external computational devices.
 \vspace{-2em}
 \caption{
 \label{fig:prototype}
-Gravity-fed hardware implementation of  particle computation.  The reconfigurable prototype is setup as a {\sc fan-out} gate using a 2$\times$1 robot (white). This paper proves that such a gate is impossible using only 1$\times$1 robots. \href{http://youtu.be/EJSv8ny31r8}{See the demonstrations in the video attachment \url{http://youtu.be/EJSv8ny31r8}.} }
+Gravity-fed hardware implementation of  particle computation.  The reconfigurable prototype is setup as a {\sc fan-out} gate using a 2$\times$1 robot (white). This paper proves that such a gate is impossible using only 1$\times$1 robots. \href{http://youtu.be/EJSv8ny31r8}{See the demonstrations in the video attachment}\qquad \qquad \qquad
+ \href{http://youtu.be/EJSv8ny31r8}{\url{http://youtu.be/EJSv8ny31r8}.} }
 \vspace{-2em}
 \end{figure}
 
@@ -393,7 +394,7 @@ If given a workspace $W$ and a command sequence $\bm{m}$ that moves a robot from
 %This theorem addresses how adding more robots can effect the final outcome. 
 \begin{proof} Consider the effect of adding robot $b$ to workspace $W$. If $a$ never hits $b$, then by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $a$'s path remains the same. Therefore, at the conclusion of $\bm{m}$, $a$ occupies $\bm{g}$. 
 
-Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bm{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bm{g}$ unless $b$ hits yet another robot. By induction, we can clearly see that such additional robots will have the same effect. If $b$ hits any other robot, this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bm{g}$ at the conclusion of $\bm{m}$.  
+Now suppose $a$ hits $b$. By the definition of a hit, $b$ prevents $a$ from reaching some location $\bm{x}$ because $b$ already occupies this location. After the hit, the command sequence will continue and so robot $b$ will continue on $a$'s original path, following the same instructions and therefore ending up in the same location, $\bm{g}$, unless $b$ hits yet another robot. By induction, we can clearly see that such additional robots will have the same effect. If $b$ hits any other robot, this robot will continue on the original path. Thus by adding more robots, it is impossible to prevent some robot from occupying $\bm{g}$ at the conclusion of $\bm{m}$.  
 %\textcolor{blue}{Should we say something about multiple hits (an inductive proof)? }
 \end{proof}
 
@@ -409,7 +410,7 @@ In order for the {\sc not} gate conditions to be satisfied, given a command sequ
 \item if $\bm{s}$ is initially unoccupied, $\bm{g}$ must be occupied at the conclusion of $\bm{m}$
 \item if $\bm{s}$ is initially occupied, $\bm{g}$ must be unoccupied at the conclusion of $\bm{m}$ 
 \end{enumerate}
-By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bm{s}$ initially unoccupied results in $\bm{g}$ being occupied by some robot $r$ at the conclusion of $\bm{m}$, then the addition of a robot $q$ at $s$ cannot prevent $g$ from being filled, resulting in a contradiction.
+By Theorem \ref{thm:AdditionalRobotsCannotPreventAnOccupation}, if $\bm{s}$ initially unoccupied results in $\bm{g}$ being occupied by some robot $r$ at the conclusion of $\bm{m}$, then the addition of a robot $q$ at $\bm{s}$ cannot prevent $\bm{g}$ from being filled, resulting in a contradiction.
 \end{proof}
 
 This shows that dual-rail logic is necessary for the formation of {\sc not} gates. 
@@ -425,11 +426,11 @@ Without loss of generality, robot $r_1$ is removed.
 
 First suppose $r_2$ never hits $r_1$. Then the removal of $r_1$ will not affect the path of $r_2$. Robot $r_2$ has the same number of hits that it had before the removal of $r_1$ and so by Lemma \ref{lemma:changeInHitsNeededToChangePath}, $r_2$ will follow the same path and occupy $\bm{g}_2$ at the conclusion. 
 
-Alternatively, suppose $r_2$ hit $r_1$ when $r_1$ was occupying location $\bm{x}$. Because $r_1$ is removed, it no longer occupies $\bm{x}$ during this move; because it was stopped in the common direction when being hit by $r_2$, robot $r_2$ gets stopped by this obstacle at location $\bm{x}$, previously occupied by $r_1$. $r_2$ now proceeds along the path previously traveled by $r_1$. Effectively, $r_2$ has replaced $r_1$ and follows the path until it reaches $\bm{g}_1$. Successive hits between $r_2$ and $r_1$ in the original scenario are resolved in the same manner.
+Alternatively, suppose $r_2$ hit $r_1$ when $r_1$ was occupying location $\bm{x}$. Because $r_1$ is removed, it no longer occupies $\bm{x}$ during this move; because it was stopped in the common direction when being hit by $r_2$, robot $r_2$ gets stopped by this obstacle at location $\bm{x}$, previously occupied by $r_1$. $r_2$ now proceeds along the path previously traveled by $r_1$. Effectively, $r_2$ has replaced $r_1$ and follows $r_1$'s path until it reaches $\bm{g}_1$. Successive hits between $r_2$ and $r_1$ in the original scenario are resolved in the same manner.
 \end{proof}
 
 \begin{corollary}\label{cor:No1x1FanOut}
-A  conservative dual-logic {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
+A  conservative dual-rail logic {\sc fan-out} gate cannot be constructed using only 1$\times$1 robots.
 \end{corollary}
 
   \begin{table}
@@ -453,7 +454,7 @@ A  conservative dual-logic {\sc fan-out} gate cannot be constructed using only 1
 %\textcolor{blue}{Why does conservative matter?  We've already said we are using dual-rail logic.  The big problem here is that we cannot create copies of an input}
 
 \begin{proof} We assume such a {\sc fan-out} gate exists and reach a contradiction. 
-Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because $W$ is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
+Consider a  {\sc fan-out} gate $W$,  dual-rail input locations  $\bm{s}_{a}$, $\bm{s}_{\overline{a}}$, and dual-rail output locations  $\{\bm{g}_{a_1}, \bm{g}_{a_2},\bm{g}_{\overline{a}_1},\bm{g}_{\overline{a}_2}\}$. Because particle logic is conservative there must also be one additional input location $\bm{s}_r$ and robot $r$. A {\sc fan-out} gate implements the truth table shown in Table \ref{tab:Fanout}. Given an arbitrary command sequence $\bm{m}$:  
 \begin{enumerate}
 \item if $\bm{s}_{a}$  and $\bm{s}_r$ are initially occupied and $\bm{s}_{\overline{a}}$ vacant, at the conclusion of $\bm{m}$ then $\bm{g}_{a_1}$ and $\bm{g}_{a_2}$ are occupied and the locations  $\bm{g}_{\overline{a}_1}$ and $\bm{g}_{\overline{a}_2}$ are vacant.
 \item if $\bm{s}_{a}$ is initially vacant and $\bm{s}_{\overline{a}}$ and $\bm{s}_r$ are occupied, at the conclusion of $\bm{m}$ then $g_{a_1}$ and $g_{a_2}$ are vacant and the locations  $g_{\overline{a}_1}$ and $g_{\overline{a}_2}$ are occupied.
@@ -517,7 +518,7 @@ In general, an $n$-output {\sc fan-out} gate with control sequence $\langle d,l,
 %\begin{overpic}[width =\columnwidth]{FanOutS2cw.png}\put(0,-5){ $\langle d,l \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }\end{overpic}\\
 %\vspace{.1em}\\
 
-\begin{overpic}[width =\columnwidth]{FanOutS4cw.png}\put(0,-5){ $\langle d,l,d,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
+\begin{overpic}[width =\columnwidth]{FanOutS4cw.png}\put(0,-5){ $\langle d,l,u,r \rangle$}\put(20,-5){$A=0$ }\put(70,-5){ $A=1$ }
 \put(17.5,0){$A$}\put(24,0){$A$} \put(31.2,0){$\overline{A}$} \put(38,0){$\overline{A}$} 
 \put(72.5,0){$A$} \put(79.5,0){$A$} \put(86.2,0){$\overline{A}$} \put(93,0){$\overline{A}$} 
 \end{overpic}
@@ -561,15 +562,6 @@ The {\sc fan-out} gate can drive multiple outputs. Here a single input drives fo
 \subsection{Data Storage\label{subsec:Storage}}
 
 A general-purpose computer must be able to store data.  A $2\times1$ particle enables us to construct a read/writable data storage for one bit. A single-bit data storage latch is shown in Fig.~\ref{fig:Memory} and implements the truth table in Table \ref{tab:memoryTruthTable}.     By combining an $n$-out {\sc fan-out} gate shown in Fig~\ref{fig:Fanout4} with $n$ data storage devices, we can implement an $n$-bit memory. To maintain \emph{conservative} properties of the computer, i.e., the same number of robots enter and leave each gate,  single-bit data storage latches must be used in pairs to record the state and its inverse.
-
- \begin{figure*}
- \centering
-\begin{overpic}[width =2\columnwidth]{MemoryElementSHORT.pdf}
-\end{overpic}\vspace{-1em}
-\caption{\label{fig:Memory}
-A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emph{Clear}, a state variable (shown in blue), and a $2\times 1$ slider.  Depending on which input is active, the \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ will read, set, or clear the memory.
-}\vspace{-1em}
-\end{figure*}
 
 \begin{table}
 \begin{displaymath}
@@ -615,6 +607,15 @@ A three-bit counter implemented with particles. The counter  requires three {\sc
 }
 \vspace{-1em}
 \end{figure}
+
+ \begin{figure*}
+ \centering
+\begin{overpic}[width =2\columnwidth]{MemoryElementSHORT.pdf}
+\end{overpic}\vspace{-1em}
+\caption{\label{fig:Memory}
+A flip-flop memory.  This device has three inputs, \emph{Read}, \emph{Set}, \emph{Clear}, a state variable (shown in blue), and a $2\times 1$ slider.  Depending on which input is active, the \emph{clockwise} control sequence $\langle d,l,u,r \rangle$ will read, set, or clear the memory.
+}\vspace{-1em}
+\end{figure*}
 
 
 % \begin{figure}\centering
