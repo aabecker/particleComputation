@@ -95,10 +95,12 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts] = partHopper();
 %[G.obstacle_pos,RobotPts] = partHopper2();
 %[G.obstacle_pos,RobotPts] = partHopper3();
-%[G.obstacle_pos,RobotPts] = partHopper4(); %
+[G.obstacle_pos,RobotPts] = partHopper4(); %
 %[G.obstacle_pos,RobotPts] = partHopper7(); %7 
-[G.obstacle_pos,RobotPts] = simpleCounter(); %7 
+%[G.obstacle_pos,RobotPts] = simpleCounter(); % counts to 8, not binary
 %[G.obstacle_pos,RobotPts] = partHopper8(); %compact powers of 2
+%G.obstacle_pos,RobotPts] = binaryCount8(); %Count to 8 3slider
+%[G.obstacle_pos,RobotPts] = path8states(); %Count to 8 (repeats every 32 moves)
 %[G.obstacle_pos,RobotPts] = twoStateGate();
 %[G.obstacle_pos,RobotPts] = twoStateGateV();
 G.EMPTY = 0;
@@ -921,36 +923,35 @@ simpleCounter
 function [blk,RobotPts] = simpleCounter()
         % this holds many parts and releases one every EIGHTH turn.
         % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles
-        blk=[
-            1 1 1 1 1 1 1 1 1 1 ;
-            1 1 1 1 1 1 0 0 1 1 ;
-            1 1 1 1 1 1 0 0 1 1 ;
-            1 1 1 1 1 1 0 0 1 1 ;
-            1 1 1 1 1 1 0 0 1 1 ;
-            1 0 0 0 0 1 0 0 1 1 ;
-            1 0 0 0 0 1 0 0 1 1 ;
-            1 0 0 0 0 0 0 0 1 1 ;
-            1 1 1 1 0 1 0 1 1 1 ;
-            1 1 1 0 0 0 0 1 1 1 ;
-            1 1 1 1 1 1 0 0 0 1 ;
-            1 1 1 1 1 1 0 1 1 1 ;
-            1 1 1 1 1 1 0 1 1 1 ;
-            1 1 1 1 1 1 0 1 1 1 ;
-            1 1 1 1 1 1 0 1 1 1 ;
-            1 1 1 1 1 1 0 1 1 1 ;
-            1 1 1 1 1 1 0 1 1 1 ;
-            1 1 1 1 1 1 1 1 1 1 ;
+        blk=[  %18x8
+            1 1 1 1 1 1 1 1 ;
+            1 1 1 1 0 0 1 1 ;
+            1 1 1 1 0 0 1 1 ;
+            1 1 1 1 0 0 1 1 ;
+            1 1 1 1 0 0 1 1 ;
+            1 1 1 1 0 0 1 1 ;
+            1 0 0 1 0 0 1 1 ;
+            1 0 0 0 0 0 1 1 ;
+            1 1 0 1 0 1 1 1 ;
+            1 0 0 0 0 1 1 1 ;
+            1 1 1 1 0 0 0 1 ;
+            1 1 1 1 0 1 1 1 ;
+            1 1 1 1 0 1 1 1 ;
+            1 1 1 1 0 1 1 1 ;
+            1 1 1 1 0 1 1 1 ;
+            1 1 1 1 0 1 1 1 ;
+            1 1 1 1 0 1 1 1 ;
+            1 1 1 1 1 1 1 1 ;
             ];
         w = size(blk,2);    %h = size(blk,1);
         
         %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
-        nr = 4;
+        nr = 7;
         RobotPts = [ 
             %1+ones(nr,1), 11+[1:nr]', [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
             %2+ones(nr,1), 11+[1:nr]', nr+[1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
-            1+[1:nr]', 13*ones(nr,1), [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
-            1+[1:nr-1]', 12*ones(nr-1,1), nr+[1:nr-1]'  ,ones(nr-1,1),ones(nr-1,1),ones(nr-1,1);
-            8,8, 2*nr,2,2,1;];
+             5*ones(nr,1),1+[1:nr]', [1:nr]'  ,ones(nr,1),ones(nr,1),ones(nr,1);
+            6,8, nr+1,2,2,1;];
             %16,12, nr+2,2,2,1;
             %19,16, nr+3,2,2,1];
         %4,11, nr+2,3,2,1];
@@ -1001,7 +1002,85 @@ function [blk,RobotPts] = partHopper7()
             %19,16, nr+3,2,2,1];
         %4,11, nr+2,3,2,1];
         blk = flipud(repmat(blk,1,1));
+end
+    function [blk,RobotPts] = path8states()
+
+        % Figure 2: possible cell
+        RobotPts = [
+            2,2,1,1;
+            ];
+        blk=[ %repeats every 32 moves, 14x16, 1 robot
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+            1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1;
+            1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1;
+            1 1 1 1 1 1 1 0 0 0 0 1 1 1 0 1;
+            1 1 1 1 1 1 1 0 1 0 0 1 1 1 0 1;
+            1 1 1 1 1 0 0 0 0 1 1 0 0 1 0 1;
+            1 1 1 1 1 0 1 0 0 1 1 0 0 0 0 1;
+            1 1 1 0 0 0 0 1 1 0 0 1 0 1 1 1;
+            1 1 1 0 1 0 0 1 1 0 0 0 0 1 1 1;
+            1 0 0 0 0 1 1 0 0 1 0 1 1 1 1 1;
+            1 0 1 0 0 1 1 0 0 0 0 1 1 1 1 1;
+            1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1;
+            1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+            ];
+%         blk=[ %repeats every 36 moves
+%             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+%             1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1;
+%             1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 1;
+%             1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 1;
+%             1 1 1 1 1 1 1 0 1 0 0 1 0 0 1 0 1;
+%             1 1 1 1 1 0 0 0 0 1 1 1 0 0 0 0 1;
+%             1 1 1 1 1 0 1 0 0 1 0 0 1 0 1 1 1;
+%             1 1 1 0 0 0 0 1 1 1 0 0 0 0 1 1 1;
+%             1 1 1 0 1 0 0 1 0 0 1 0 1 1 1 1 1;
+%             1 0 0 0 0 1 1 1 0 0 0 0 1 1 1 1 1;
+%             1 0 1 0 0 1 0 0 1 0 1 1 1 1 1 1 1;
+%             1 0 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1;
+%             1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1;
+%             1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1;
+%             1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+%            ];
+        blk = flipud(blk);
+
+end
+
+
+function [blk,RobotPts] = binaryCount8()
+        % Counts to 8 -- binary counter
+        % In Sublime: highlight the lines and use CTRL, Shift, L (CMD, Shift, L on Mac). You can then move the cursor to your heart's content and edit all lines at once.
+%It's also called 'Split into Lines' in the 'Selection' menu
+blk=[  %14x14
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
+            1 1 0 1 0 1 1 1 1 1 0 0 1 1 ;
+            1 1 0 1 0 0 0 0 0 0 0 0 1 1 ;
+            1 1 0 1 0 1 1 1 1 1 0 1 1 1 ;
+            1 1 0 1 0 1 1 0 0 0 0 1 1 1 ;
+            1 1 0 0 0 0 0 0 0 1 0 0 0 1 ;
+            1 1 0 1 1 1 1 0 1 1 0 1 1 1 ;
+            1 1 0 1 0 0 0 0 1 1 1 1 1 1 ;
+            1 1 0 0 0 0 1 0 0 0 1 1 1 1 ;
+            1 1 0 1 0 1 1 0 1 1 1 1 1 1 ;
+            1 0 0 0 0 1 1 1 1 1 1 1 1 1 ;
+            1 1 1 1 0 0 0 1 1 1 1 1 1 1 ;
+            1 1 1 1 0 1 1 1 1 1 1 1 1 1 ;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 ;
+            ];
+        w = size(blk,2);    h = size(blk,1);
+        %INSERT THE ROBOTS   each row is [x,y,  ID(must be unique) , color,width, height]
+        nr = 4;
+        RobotPts = [ 
+            2+ones(nr,1), 3+[1:nr]', [1:nr]',ones(nr,1),ones(nr,1),ones(nr,1);
+            6,3, nr+1,2,2,1;
+            9,6, nr+2,2,2,1;
+            12,9, nr+3,2,2,1];
+        %4,11, nr+2,3,2,1];
+        blk = flipud(repmat(blk,1,1));
     end
+
+
+
 function [blk,RobotPts] = partHopper8()
         % this holds many parts and releases one every EIGHTH turn.
         % DESIGN THE OBSTACLES:  0 are free space, 1 are obstacles
