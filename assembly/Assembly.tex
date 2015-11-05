@@ -23,6 +23,7 @@
 \usepackage{rotating}
 \usepackage{booktabs}
 
+\usepackage{rotating}
 \usepackage{nicefrac}
 \usepackage{cite}
 \usepackage[caption=false,font=footnotesize]{subfig}
@@ -357,13 +358,13 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 
 Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
 
-The shape on the right is two mirrored spirals that are connected.  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
+The third shape on the right is two mirrored spirals that are connected.  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
 
    \begin{figure}
    \centering
-\begin{overpic}[width =\columnwidth]{IncreasingDifficulty.pdf}
+\begin{overpic}[width =\columnwidth]{IncreasingDifficulty2.pdf}
 \end{overpic}
-\caption{\label{fig:IncreasingDifficulty}Polyomino parts built by additive construction. Difficulty increases from left to right.
+\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. The rightmost part cannot be built by additive construction. 
 }
 \end{figure} 
 
@@ -409,7 +410,13 @@ The proof of \ref{lemma:nonconvexObjectsCanBeDecomposedIntoConvex} requires
 
 \todo{provide design rules for fixtures that combine arbitrary sized  sub-assemblies}
 
-
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{TetrisOne.jpg}
+\end{overpic}
+\caption{\label{fig:TetrisOne}A factory hand-designed for constructing a $\bot$  tetromino using four hoppers and a clockwise global input.
+}
+\end{figure} 
 
 %###############################################################
 \section{Experiment}\label{sec:Experiment}

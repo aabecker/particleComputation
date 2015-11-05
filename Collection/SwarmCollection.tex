@@ -1,0 +1,323 @@
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\IEEEoverridecommandlockouts
+\usepackage{calc}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks =true,
+  urlcolor = black,
+  linkcolor = black
+}
+\usepackage{graphicx}
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
+\usepackage{rotating}
+
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{overpic}
+\graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
+\usepackage{breqn} %for breaking equations automatically
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+
+\usepackage{bm}   % boldface math type
+\usepackage{soul}  % for highlighting
+\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent \framebox{\begin{minipage}[c]{0.98 \columnwidth} \ttfamily\flushleft \textcolor{red}{#1}\end{minipage}}\vspace{5 mm}\par}
+% uncomment this to hide all red todos
+%\renewcommand{\todo}{}
+
+%% ABBREVIATIONS
+
+%% MACROS
+
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\normn}[2]{\left\lVert#1\right\rVert_#2}
+\providecommand{\dualnorm}[1]{\norm{#1}_\ast}
+\providecommand{\dualnormn}[2]{\norm{#1}_{#2\ast}}
+\providecommand{\set}[1]{\lbrace\,#1\,\rbrace}
+\providecommand{\cset}[2]{\lbrace\,{#1}\nobreak\mid\nobreak{#2}\,\rbrace}
+\providecommand{\lscal}{<}
+\providecommand{\gscal}{>}
+\providecommand{\lvect}{\prec}
+\providecommand{\gvect}{\succ}
+\providecommand{\leqscal}{\leq}
+\providecommand{\geqscal}{\geq}
+\providecommand{\leqvect}{\preceq}
+\providecommand{\geqvect}{\succeq}
+\providecommand{\onevect}{\mathbf{1}}
+\providecommand{\zerovect}{\mathbf{0}}
+\providecommand{\field}[1]{\mathbb{#1}}
+\providecommand{\C}{\field{C}}
+\providecommand{\R}{\field{R}}
+\newcommand{\Cspace}{\mathcal{Q}}
+\newcommand{\Uspace}{\mathcal{U}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\Hcal}{$\mathcal{H}$}
+\providecommand{\Vcal}{$\mathcal{V}$}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\homog}{homog}
+\DeclareMathOperator{\domain}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\sgn}{signum}
+\providecommand{\polar}{\triangle}
+\providecommand{\ainner}{\underline{a}}
+\providecommand{\aouter}{\overline{a}}
+\providecommand{\binner}{\underline{b}}
+\providecommand{\bouter}{\overline{b}}
+\newcommand{\D}{\nobreakdash-\textsc{d}}
+%\newcommand{\Fspace}{\mathcal{F}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\free}{\text{\{}\mathsf{free}\text{\}}}
+\providecommand{\iff}{\Leftrightarrow}
+\providecommand{\subinner}[1]{#1_{\text{inner}}}
+\providecommand{\subouter}[1]{#1_{\text{outer}}}
+\providecommand{\Ppoly}{\mathcal{X}}
+\providecommand{\Pproj}{\mathcal{Y}}
+\providecommand{\Pinner}{\subinner{\Pproj}}
+\providecommand{\Pouter}{\subouter{\Pproj}}
+\DeclareMathOperator{\argmax}{arg\,max}
+\providecommand{\Aineq}{B}
+\providecommand{\Aeq}{A}
+\providecommand{\bineq}{u}
+\providecommand{\beq}{t}
+\DeclareMathOperator{\area}{area}
+\newcommand{\contact}[1]{\Cspace_{#1}}
+\newcommand{\feasible}[1]{\Fspace_{#1}}
+\newcommand{\dd}{\; \mathrm{d}}
+\newcommand{\figwid}{0.22\columnwidth}
+
+\DeclareMathOperator{\atan2}{atan2}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\begin{document}
+
+%%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
+%    \tableofcontents
+%    \setcounter{tocdepth}{3}
+%\newpage
+%\mbox{}
+%\newpage
+%\mbox{}
+%\newpage
+
+%%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\LARGE \bf 
+Collecting a Swarm in a 2D Environment Using Shared, Global Inputs
+}
+\author{Shiva Shahrokhi and  Aaron T.\ Becker%, 
+\thanks{{S. Shahrokhi and A.\ Becker are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204-4005 USA {\tt\small  \{sshahrokhi2, atbecker\}@uh.edu}
+}
+} %\end thanks
+} % end author block
+\maketitle
+
+\begin{abstract}
+Consider a swarm of robots initialized in a 2D planar grid world where each position is either free-space or obstacle.   Assume all robots respond equally to the same global input, such as an applied fluidic flow or electric field.
+This paper investigates what input sequence should be applied to collect all the robots to one position.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Uses MATLAB code at
+% https://svn.rice.edu/r/MRSL-Papers/Drafts-Current/2013-06-26-ALGOSENSORS-Tilt/code/matlab/investigateCoverage.m
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+  \section{Introduction}
+  
+  This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, and outlines new research problems.
+  
+  
+ \paragraph{Definitions}
+The `robots' in this paper are simple particles without autonomy.
+A planar  grid \emph{workspace} $W$ is filled with a number of unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a robot may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
+All robots are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
+
+
+
+We consider two classes of commands, discrete and maximal moves.
+\emph{Discrete moves}: robots all move in the commanded direction one unit unless they are prevented from moving by an obstacle or a stationary robot.
+\emph{Maximal moves}: robots all move in the commanded direction until they hit an obstacle or a stationary robot. For maximal moves, we assume the area of $W$ is finite and issue each command long enough for the robots to reach their maximum extent.
+A \emph{command sequence} $\bm{m}$ consists of an ordered sequence of moves $m_k$, where each $m_k\in\{u,d,r,l\}$  
+A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$.
+  
+  We consider two notions of a collected swarm:  if robots are allowed to overlap, the swarm is connected when all robots share the same $(x,y)$ coordinates.  If the robots may not overlap, the swarm is collected when it forms one 4-connected component.
+  
+  
+  Research questions include
+  \begin{enumerate}
+  \item What connected topologies allow collecting a swarm?
+  \item What connected topologies do not allow collecting a swarm?
+  \item What connected topologies can be collected with a given command sequence?
+  \end{enumerate}
+  
+  
+  \section{Related work}
+  
+  \subsection{Robot Rendezvous}
+  \emph{Rendezvous} usually concerns two independent, intelligent agents that must meet at a predetermined time.
+  
+  \subsection{Manufacturing}
+  
+  This is similar to work on draining a polygon~\cite{aloupis2014draining}, but with discrete inputs.  
+  
+  Or injection-molding (22 years ago).
+  
+  \subsection{Localization}
+  
+  Or localizing a blind robot in a known map.
+
+  maybe similar to localizing a robot with minimum travel, but this moves the robot and has it take additional measurements\cite{dudek1998localizing}  % http://www.cs.cmu.edu/~motionplanning/papers/sbp_papers/integrated2/dudek_pose.pdf
+  
+  
+    \subsection{Robot Gathering}
+todo: scholar search on this keyword
+
+  
+  \subsection{Topologies that do not allow collecting a swarm}
+  Robots initialized in two unconnected components $i$ and $j$ of a freespace cannot be collected.  The proof is trivial, since robot in freespace $i$ can not reach freespace $j$.
+  
+  Under maximal inputs, the freespace can be constructed with spaces resembling bottles or fish weirs from which a single robot cannot escape, as shown in Fig. ~[TODO].  If the freespace contains at least two such bottles with at least one robot in each, the swarm cannot be collected.
+  
+The world must be bounded.  Two initially-separated robots in an unbounded world without obstacles cannot be collected, however with discrete inputs, one obstacle is sufficient \cite{Becker2013b}.
+
+  \subsection{ connected  topologies allow collecting a swarm}
+  With discrete inputs and robots that are allowed to overlap, the problem can be reduced to localizing a sensorless robot in a known workspace.   This is similar to work on draining a polygon~\cite{aloupis2014draining}, but with discrete inputs.  
+  
+  Algorithm 1, brute-force-search:
+initializes a tree with the root node $\{ C_0, {} \}$, where $C_0$ is the current configuration  of possible robot locations, where $C_0$ is an ordered vector containing the locations of every possible location for a robot in the workspace and $\{\}$ is the shortest corresponding movement sequence to achieve this configuration.
+We then construct a breadth-first tree of possible configurations $\{ u,r,d,l\}$,   pruning leaves that already exist in the tree. We stop with  the cardinality at a leaf $C_i = 1$, which indicates that the swarm has been collected (equivalently, the robot has been localized).
+This algorithm produces the optimal path, but requires O(XX) time to learn and O(YY) memory.
+
+
+  \begin{algorithm}
+\caption{BlindLocalizationBruteForce($W$, $C_0$}\label{alg:XControl}
+\begin{algorithmic}[1]
+\Require 
+\Ensure  $C_{ \bm{m}} \gets \mathrm{ApplyMoves}[ \bm{m},C_0,W]$ , $|C_{ \bm{m}}| = 1$
+\State $T \gets  {C_0, {}}$ 
+
+\State  \Return $(r_1,r_2)$
+\end{algorithmic}
+\end{algorithm}
+
+%Breadth-First-Search(G, v):
+% 2 
+% 3     for each node n in G:            
+% 4         n.distance = INFINITY        
+% 5         n.parent = NIL
+% 6 
+% 7     create empty queue Q      
+% 8 
+% 9     v.distance = 0
+%10     Q.enqueue(v)                      
+%11 
+%12     while Q is not empty:        
+%13     
+%14         u = Q.dequeue()
+%15     
+%16         for each node n that is adjacent to u:
+%17             if n.distance == INFINITY:
+%18                 n.distance = u.distance + 1
+%19                 n.parent = u
+%20                 Q.enqueue(n)
+
+
+%
+%\begin{algorithmic}[1]
+%%% input and output
+%\Require A directed or undirected graph $G = (V, E)$ of order $n > 0$. A
+%  vertex $s$ from which to start the search. The vertices are numbered
+%  from $1$ to  $n = |V|$, i.e.~$V = \{1, 2, \dots, n\}$.
+%\Ensure A list $D$ of distances of all vertices from $s$. A tree $T$
+%  rooted at $s$.
+%%% algorithm body
+%\State $Q \gets [s]$\label{alg:BFS:initialize_queue_visit_nodes}\Comment{queue of nodes to visit}
+%\State $D \gets [\infty, \infty, \dots, \infty]$\Comment{$n$ copies of $\infty$}
+%\State $D[s] \gets 0$
+%\State $T \gets [\,]$\label{alg:BFS:initialize_empty_tree}
+%\While{$\length(Q) > 0$\label{alg:BFS:while_loop:non_empty_queue}}
+%  \State $v \gets \dequeue(Q)$
+%  \For{\rm each $w \in \adj(v)$\label{alg:BFS:explore_neighborhood}}
+%    \If{$D[w] = \infty$\label{alg:BFS:marking_vertex_as_visited}}
+%      \State $D[w] \gets D[v] + 1$
+%      \State $\enqueue(Q, w)$
+%      \State $\append(T, vw)$\label{alg:BFS:while_loop:append_to_tree}
+%    \EndIf
+%  \EndFor
+%\EndWhile
+%\State \Return $(D, T)$
+%\end{algorithmic}
+
+
+
+      
+    Algorithm 2, greedy-approach:
+      \begin{enumerate}
+  \item    possible configurations = current config
+    \item      initial cardinality = current config
+    \item    construct a breadth-first tree of possible configurations $\{ u,r,d,l\}$ prune leaves that already exist.
+    \item    stop when the cardinality of possible positions in any leaf is less than   initial cardinality, apply this move, and restart the algorithm until cardinality is 1 
+          \end{enumerate}
+    
+  
+  Given two robots in a bounded $L \cross L$ workspace, the worst case to bring them to the same position is $< L^2$.  For $n$ robots, $O(n L^2)$.
+  
+  \section{ Connected topologies that allow collecting a swarm}
+  Assume that passageways are large compared to the maximum diameter of a swarm.
+  We can acomplish with discrete inputs,
+  we can move a 
+  
+  
+  
+  
+  
+
+%\begin{figure}
+%\begin{overpic}[width =0.49\columnwidth]{CoverageNsuccessStart.png}\put(30,-7){Start, $m=n$}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{CoverageNsuccessSEnd.png}\put(30,-7){End, $m=n$}\end{overpic}\\
+%\vspace{.1em}\\
+%\begin{overpic}[width =0.49\columnwidth]{CoverageLessThanNstart.png}\put(30,-7){Start, $2m<n$}\end{overpic}
+%\begin{overpic}[width =0.49\columnwidth]{CoverageLessThanNend.png}\put(30,-7){Impossible, $2m<n$}\end{overpic}\\
+%\vspace{.1em}\\
+%\rule{0.49\columnwidth}{0cm}
+%\begin{overpic}[width =0.49\columnwidth]{CoverageLessThanNsuccess.png}\put(30,-7){Possible, $2m<n$}\end{overpic}
+%\caption{
+%\label{fig:CoverageNsuccess}
+%Coverage can be trivial. If there are sufficient particles to span the region, and the particles are aligned correctly, coverage can require only one move.  Here, two moves are used $\langle l,d \rangle$.
+%With too few particles ($2m<n$) complete coverage requires obstacles. 
+%}
+%\vspace{-1em}
+%\end{figure}
+
+
+    
+    
+%\section{Acknowledgements}
+%This work was supported by the National Science Foundation under
+%\href{http://nsf.gov/awardsearch/showAward?AWD_ID=1208509}{NRI-1208509}.  
+   
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,../../RoboticSwarmControlLab/bib/aaronrefs}%
+%\bibliography{IEEEabrv,../../../../../../ensemble/bib/aaronrefs}%,../aaronrefs}
+\end{document}
+
+
+
+
+
+
+

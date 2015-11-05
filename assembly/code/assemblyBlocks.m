@@ -7,7 +7,7 @@ function assemblyBlocks()
 
 G.fig = figure(1);
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
-% build environment that makes the folling Tetris piece:
+% build environment that makes the following Tetris piece:
 %
 %       o
 %      oao

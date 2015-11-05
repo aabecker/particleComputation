@@ -149,8 +149,9 @@
 \title{\LARGE \bf 
 Aggregation and Coverage with Many Robots and Uniform Inputs
 }
-\author{Aaron Becker%, 
-\thanks{{A. Becker is with the Department of Cardiovascular Surgery,  Boston Children's Hospital and Harvard Medical School, Boston, MA, 02115 USA {\tt\small \{first name.lastname\}@childrens.harvard.edu}, 
+\author{Aaron T.\ Becker%, 
+\thanks{
+{A.\ T.\ Becker is with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204-4005 USA {\tt\small  \{ atbecker\}@uh.edu}
 }
 } %\end thanks
 } % end author block
@@ -183,7 +184,7 @@ For many therapeutic treatments it is important to concentrate a drug at a parti
   
   For biomedical imaging, we want to ensure our sensors pass over the entire scan region.  Similarly, for a drug treatment, we want to ensure our drug is released everywhere in our treatment region.  These are questions of \emph{coverage}.
   
-  Traditional systemic drug delivery is wasteful because a uniform dosage is applied throughout the body, often with deleterious sideeffects on healthy tissue.
+  Traditional systemic drug delivery is wasteful because a uniform dosage is applied throughout the body, often with deleterious side effects on healthy tissue.
    Case study:  metrologists (not weather - nanoscale measuring) can measuring blood vessels in real time (Think 4D MRT - instead of just 3D.) For this it is important to get magnetic particles everywhere - and in a controlled fashion. 
   
     
@@ -227,11 +228,11 @@ A more challenging problem is shown in Fig.~\ref{fig:AggregateCenter}.  Here the
 
 
 \begin{figure}
-\begin{overpic}[width =0.49\columnwidth]{CovergeCenterSt.png}\put(30,-7){Start}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep1.png}\put(30,-7){End}\end{overpic}\\
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterSt.png}\put(40,-7){\small Start}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep1.png}\put(40,-7){\small$\langle  (u,r)_{3x}  \rangle$}\end{overpic}\\
 \vspace{.1em}\\
-\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep2.png}\put(30,-7){Start}\end{overpic}
-\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep3.png}\put(30,-7){End}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep2.png}\put(25,-7){\small$\langle  (u,r)_{3x}, (l,u)_{4x} \rangle$}\end{overpic}
+\begin{overpic}[width =0.49\columnwidth]{CovergeCenterStep3.png}\put(10,-7){\small$\langle  (u,r)_{3x}, (l,u)_{4x}, d,r,u \rangle$}\end{overpic}
 \caption{
 \label{fig:AggregateCenter}
 Aggregating particles to a location other than a corner requires obstacles and additional moves.  The sequence $\langle  u,r,u,r,u,r, l,u,l,u,l,u,l,u, d,r,u \rangle$, and the eight obstacles (grey boxes) shown will move any starting configuration of four robots to end in a square shape at the center of the free space.  \hl{This arrangement was hand designed -- how can we automatically find these obstacle arrangements?  How can we design solutions optimal in terms of minimum movements and/or obstacles?}
