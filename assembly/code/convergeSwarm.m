@@ -1,4 +1,4 @@
-function jellyBlocksSimple()
+function convergeSwarm()
 % Implements a game, jelly lbocks, where the arrow keys move all
 % unobstructed blocks by one unit, and blocks that touch are joined
 % according to various rules

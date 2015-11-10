@@ -1,3 +1,19 @@
+%Sandor:
+
+% https://svn.ibr.cs.tu-bs.de/project-alg-2015-robots/trunk/Swarm_proposal_2015
+% TODO: ask sandor these two questions, show images of the problem.  HOw long will I allow my program to run?  How about to 5 million nodes?  Should also make the program print the minimum value.
+%
+%
+%  Plan:  pick two possible robot locations p_A and p_B, use a BFS to create movement sequence m_{B,A} to move p_B to p_A.
+%  Now one robot is at p_A and the other robot is at p_{m_{B,A}(p_A)}.  I then repeat this process until the two robots end at the same point
+%  Next, I pick another 2 robots and repeat the process until all robots are at same location.
+% 
+%  Need a proof on (1) given two robots, repeatedly moving the second  to the position of the first eventually brings the robots to the same position.  (no endless loops are possible.
+%  Which two robots should I choose?  It seems sensible to bring the furthest two robots together.  Is it easy to calculate the maximum diameter of the graph?
+% 
+%  I'm writing a grant where we can move microscale gelatinous blobs around using magnetic fields. What are the interesting assembly problems?
+%  project-alg-2015-robots
+
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}
 \IEEEoverridecommandlockouts
 \usepackage{calc}
@@ -166,6 +182,21 @@ A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$.
   
   
   \section{Related work}
+  %L. J. Guibas, R. Motwani, and P. Raghavan. The robot localization problem. In K. Goldberg, D. Halperin, J.-C. Latombe, and R. Wilson, editors, Proc. 1st Workshop on Algorithmic Foundations of Robotics, pages 269–282. A.K. Peters, Wellesley, MA, 1995.
+
+``The problem of finding a localizing sequence for a givenenvironment can be seen as a planning problem in which theinitial state is unknown and the current state is unobservable.To manage this uncertainty, we transform the problem froman unobservable planning problem in state space to an observableproblem in a more complex space called the robot’sinformation space, which we now define. ''\cite{o2005almost}.
+
+`` First, actions areselected which reduce the uncertainty in the robot’s positionto a finite set of possibilities. Second, actions are selected toreduce the uncertainty from this finite set to a single point. ''\cite{o2005almost}.
+``it remains an open problem to generate localizingsequences that are optimal.''\cite{o2005almost}.
+
+  \subsection{Localization}
+  The strongest parallel in the literature is the field of ``Almost sensor-less localization'' or   "localizing a blind robot in a known map", where a mobile robot using a compass, a bump-sensor that detects when the robot contacts a wall, and a map of the workspace must localize itself in the map~\cite{o2005almostPhD,o2005almost}.  This has been recently extended to robots with bounded uncertainty in their inputs \cite{Lewis01092013}.  The basic methodology is to construct motion plans that...
+  
+  Also related is work on sensorless part orientation, where flat tray is tilted in a series of directions to bring a polygonal part, initially placed at random orientation and position in the tray, to a known position and orientation~\cite{Akella2000a}.
+%TODO:  find paper: Planning for provably reliable navigation using an unreliable, nearly sensorless robot
+This  may be similar to localizing a robot with minimum travel, but this moves the robot and has it take additional measurements\cite{dudek1998localizing}  % http://www.cs.cmu.edu/~motionplanning/papers/sbp_papers/integrated2/dudek_pose.pdf
+  
+
   
   \subsection{Robot Rendezvous}
   \emph{Rendezvous} usually concerns two independent, intelligent agents that must meet at a predetermined time.
@@ -176,12 +207,7 @@ A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$.
   
   Or injection-molding (22 years ago).
   
-  \subsection{Localization}
-  
-  Or localizing a blind robot in a known map.
 
-  maybe similar to localizing a robot with minimum travel, but this moves the robot and has it take additional measurements\cite{dudek1998localizing}  % http://www.cs.cmu.edu/~motionplanning/papers/sbp_papers/integrated2/dudek_pose.pdf
-  
   
     \subsection{Robot Gathering}
 todo: scholar search on this keyword
@@ -274,11 +300,11 @@ This algorithm produces the optimal path, but requires O(XX) time to learn and O
           \end{enumerate}
     
   
-  Given two robots in a bounded $L \cross L$ workspace, the worst case to bring them to the same position is $< L^2$.  For $n$ robots, $O(n L^2)$.
+  Given two robots in a bounded $L \times L$ workspace, the worst case to bring them to the same position is $< L^2$.  For $n$ robots, $O(n L^2)$.
   
   \section{ Connected topologies that allow collecting a swarm}
   Assume that passageways are large compared to the maximum diameter of a swarm.
-  We can acomplish with discrete inputs,
+  We can accomplish with discrete inputs,
   we can move a 
   
   
