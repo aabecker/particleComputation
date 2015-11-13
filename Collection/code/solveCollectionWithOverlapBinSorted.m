@@ -35,7 +35,7 @@ clc
 format compact
 MAKE_MOVIE = false;
 G.fig = figure(1);
-G.mapnum = 4;
+G.mapnum = 12;
 G.alg = 4;
 G.numCommands = 0;
 G.totalMoves = 0;
@@ -82,16 +82,17 @@ axis tight
 updateTitle()
 hold on
 
-% %%%%  FIND THE SHORTEST PATH TO GET ALL ROBOTS TO ONE PLACE
-% % I have a vector:  LeavesToExpand
+% % %%%%  FIND THE SHORTEST PATH TO GET ALL ROBOTS TO ONE PLACE
+% % % I have a vector:  LeavesToExpand
 tic
 phead = 1;
 G.ptail = 1;
 G.mxSize = 1000;
-G.LeafRobots = zeros(G.mxSize,1);
-Leafsorted = zeros(G.mxSize,1);
-G.LeafPath = zeros(G.mxSize,1);
-G.LeafPrev = zeros(G.mxSize,1);
+G.minsepPoints = 10^10;
+G.LeafRobots = uint32(zeros(G.mxSize,1));
+Leafsorted = uint32(zeros(G.mxSize,1));
+G.LeafPath = uint8(zeros(G.mxSize,1));
+G.LeafPrev = uint32(zeros(G.mxSize,1));
 %TODO: try bit packing: d =bi2de(b)
 G.LeafRobots(phead) = bi2de(G.robvec');
 Leafsorted(1) = bi2de(G.robvec');
@@ -122,7 +123,11 @@ figure(1)
         rvecT = applyMove(mv, rvec);
         brvecT = bi2de(rvecT);
         %     base case: are robots collected?
-        if sum(rvecT)==1 %     return success!
+        sepPoints = sum(rvecT);
+        if sepPoints<G.minsepPoints
+            G.minsepPoints = sepPoints;
+        end
+        if sepPoints==1 %     return success!
             ptr = phead;
             shortpath = mv;
             while G.LeafPath(ptr)>0
@@ -140,8 +145,10 @@ figure(1)
             G.ptail = G.ptail+1;
             
             if G.ptail>G.mxSize-1
-                %20000 nodes, 13.2556s
-                display([num2str(G.mxSize),' nodes, ',num2str(toc),'s'])
+                display([num2str(G.mxSize),' nodes, ',num2str(toc),'s, ', num2str( G.minsepPoints),' min'])
+                save(['Map',num2str(G.mapnum,'%03d'),'Alg',num2str(G.alg,'%03d'),'temp.mat'],...
+                     'phead','G','Leafsorted');
+
                 G.mxSize = G.mxSize + 1000;
                 G.LeafRobots(G.mxSize) = 0;
                 G.LeafPath(G.mxSize) = 0;
@@ -173,7 +180,6 @@ figure(1)
         isNew = true;
         imin = 1;
         imax = G.ptail;
-        imid = 1;
         while imin<imax
             imid = floor(imin + ((imax - imin) / 2));
             %if imid>=imax

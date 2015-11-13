@@ -1,7 +1,7 @@
 %Sandor:
 
 % https://svn.ibr.cs.tu-bs.de/project-alg-2015-robots/trunk/Swarm_proposal_2015
-% TODO: ask sandor these two questions, show images of the problem.  HOw long will I allow my program to run?  How about to 5 million nodes?  Should also make the program print the minimum value.
+% TODO: ask sandor these two questions, show images of the problem.  
 %
 %
 %  Plan:  pick two possible robot locations p_A and p_B, use a BFS to create movement sequence m_{B,A} to move p_B to p_A.
@@ -184,13 +184,26 @@ A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$.
   \section{Related work}
   %L. J. Guibas, R. Motwani, and P. Raghavan. The robot localization problem. In K. Goldberg, D. Halperin, J.-C. Latombe, and R. Wilson, editors, Proc. 1st Workshop on Algorithmic Foundations of Robotics, pages 269–282. A.K. Peters, Wellesley, MA, 1995.
 
-``The problem of finding a localizing sequence for a givenenvironment can be seen as a planning problem in which theinitial state is unknown and the current state is unobservable.To manage this uncertainty, we transform the problem froman unobservable planning problem in state space to an observableproblem in a more complex space called the robot’sinformation space, which we now define. ''\cite{o2005almost}.
-
-`` First, actions areselected which reduce the uncertainty in the robot’s positionto a finite set of possibilities. Second, actions are selected toreduce the uncertainty from this finite set to a single point. ''\cite{o2005almost}.
-``it remains an open problem to generate localizingsequences that are optimal.''\cite{o2005almost}.
-
   \subsection{Localization}
-  The strongest parallel in the literature is the field of ``Almost sensor-less localization'' or   "localizing a blind robot in a known map", where a mobile robot using a compass, a bump-sensor that detects when the robot contacts a wall, and a map of the workspace must localize itself in the map~\cite{o2005almostPhD,o2005almost}.  This has been recently extended to robots with bounded uncertainty in their inputs \cite{Lewis01092013}.  The basic methodology is to construct motion plans that...
+  The strongest parallel in the literature is the field of \emph{Almost sensor-less localization} or   "localizing a blind robot in a known map", where a mobile robot using a compass, a bump-sensor that detects when the robot contacts a wall, and a map of the workspace must localize itself in the map~\cite{o2005almostPhD,o2005almost}.  This has been recently extended to robots with bounded uncertainty in their inputs \cite{Lewis01092013}.  The basic methodology is to construct motion plans that:
+  ``First, actions are
+selected which reduce the uncertainty in the robot’s position
+to a finite set of possibilities. Second, actions are selected to
+reduce the uncertainty from this finite set to a single point. ''\cite{o2005almost}.
+  
+``The problem of finding a localizing sequence for a given
+environment can be seen as a planning problem in which the
+initial state is unknown and the current state is unobservable.
+To manage this uncertainty, we transform the problem from
+an unobservable planning problem in state space to an observable
+problem in a more complex space called the robot’s
+information space, which we now define. ''\cite{o2005almost}.
+
+``it remains an open problem to generate localizing
+sequences that are optimal.''\cite{o2005almost}.
+
+This work assumes there is only one robot, and works in a simply connected polygonal environment. We want to relax this to handle unit robots.
+
   
   Also related is work on sensorless part orientation, where flat tray is tilted in a series of directions to bring a polygonal part, initially placed at random orientation and position in the tray, to a known position and orientation~\cite{Akella2000a}.
 %TODO:  find paper: Planning for provably reliable navigation using an unreliable, nearly sensorless robot
@@ -205,13 +218,14 @@ This  may be similar to localizing a robot with minimum travel, but this moves t
   
   This is similar to work on draining a polygon~\cite{aloupis2014draining}, but with discrete inputs.  
   
-  Or injection-molding (22 years ago).
+  Or placing ports for injection-molding \todo{scholar search on this keyword}
   
 
   
     \subsection{Robot Gathering}
-todo: scholar search on this keyword
+\todo{scholar search on this keyword}
 
+\section{Our problems of interest}
   
   \subsection{Topologies that do not allow collecting a swarm}
   Robots initialized in two unconnected components $i$ and $j$ of a freespace cannot be collected.  The proof is trivial, since robot in freespace $i$ can not reach freespace $j$.
