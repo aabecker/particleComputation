@@ -81,35 +81,35 @@ axis equal
 axis tight
 updateTitle()
 hold on
-
-% % %%%%  FIND THE SHORTEST PATH TO GET ALL ROBOTS TO ONE PLACE
-% % % I have a vector:  LeavesToExpand
-tic
-phead = 1;
-G.ptail = 1;
-G.mxSize = 1000;
-G.minsepPoints = 10^10;
-G.LeafRobots = uint32(zeros(G.mxSize,1));
-Leafsorted = uint32(zeros(G.mxSize,1));
-G.LeafPath = uint8(zeros(G.mxSize,1));
-G.LeafPrev = uint32(zeros(G.mxSize,1));
-%TODO: try bit packing: d =bi2de(b)
-G.LeafRobots(phead) = bi2de(G.robvec');
-Leafsorted(1) = bi2de(G.robvec');
-while phead <= G.ptail
-    rvec = de2bi(G.LeafRobots(phead));
-    %  display([num2str(phead), ', and ', num2str(sum(rvec))])
-    %   add up, Left, Right, Down to LeavesToExpand
-    for mvi = 1:4
-        if expandLeaf(mvi,rvec,phead);
-            phead = G.ptail+1;
-            break
-        end
-    end
-    phead = phead+1;
-end
-toc  % simple map took 14.351126 seconds
-figure(1)
+% 
+% % % %%%%  FIND THE SHORTEST PATH TO GET ALL ROBOTS TO ONE PLACE
+% % % % I have a vector:  LeavesToExpand
+% tic
+% phead = 1;
+% G.ptail = 1;
+% G.mxSize = 1000;
+% G.minsepPoints = 10^10;
+% G.LeafRobots = uint32(zeros(G.mxSize,1));
+% Leafsorted = uint32(zeros(G.mxSize,1));
+% G.LeafPath = uint8(zeros(G.mxSize,1));
+% G.LeafPrev = uint32(zeros(G.mxSize,1));
+% %TODO: try bit packing: d =bi2de(b)
+% G.LeafRobots(phead) = bi2de(G.robvec');
+% Leafsorted(1) = bi2de(G.robvec');
+% while phead <= G.ptail
+%     rvec = de2bi(G.LeafRobots(phead));
+%     %  display([num2str(phead), ', and ', num2str(sum(rvec))])
+%     %   add up, Left, Right, Down to LeavesToExpand
+%     for mvi = 1:4
+%         if expandLeaf(mvi,rvec,phead);
+%             phead = G.ptail+1;
+%             break
+%         end
+%     end
+%     phead = phead+1;
+% end
+% toc  % simple map took 14.351126 seconds
+% figure(1)
 
 %%%%%%%%automatic code  (TODO)
 % mvs = ['w','d','d','d','x','a'];

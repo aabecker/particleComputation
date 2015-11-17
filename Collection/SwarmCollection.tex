@@ -35,7 +35,7 @@
 \usepackage[usenames, dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{overpic}
-\graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
+\graphicspath{{./pictures/},{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
 \usepackage{breqn} %for breaking equations automatically
 \usepackage[ruled]{algorithm}
 \usepackage{algpseudocode}
@@ -235,7 +235,20 @@ This  may be similar to localizing a robot with minimum travel, but this moves t
 The world must be bounded.  Two initially-separated robots in an unbounded world without obstacles cannot be collected, however with discrete inputs, one obstacle is sufficient \cite{Becker2013b}.
 
   \subsection{ connected  topologies allow collecting a swarm}
-  With discrete inputs and robots that are allowed to overlap, the problem can be reduced to localizing a sensorless robot in a known workspace.   This is similar to work on draining a polygon~\cite{aloupis2014draining}, but with discrete inputs.  
+  \begin{figure*}[h!]
+  \begin{overpic}[width=\linewidth]{CollectionSolution1.pdf}\end{overpic}
+  \caption{\label{fig:CollectionSolution1}  With discrete inputs and robots that are allowed to overlap, the problem can be reduced to localizing a sensorless robot in a known workspace.   Above shows the optimal solution for a map with 27 free spaces, which required expanding 423,440 nodes with an optimal path (shown) taking 17 moves. 
+ }
+  \end{figure*}
+ 
+
+  \begin{figure}
+  \begin{overpic}[width=\columnwidth]{ConvergenceTimesForOptimal.pdf}\end{overpic}
+  \caption{\label{fig:ConvergenceTimesForOptimal}  Unfortunately, the optimal solution requires time that increases (approximately) exponentially with the number of free spaces. 
+ }
+  \end{figure}
+  
+  With discrete inputs and robots that are allowed to overlap, the problem can be reduced to localizing a sensorless robot in a known workspace.   This is similar to work on draining a polygon~\cite{aloupis2014draining}, or localizing a blind robot\cite{o2005almostPhD,o2005almost}, but with discrete inputs.  
   
   Algorithm 1, brute-force-search:
 initializes a tree with the root node $\{ C_0, {} \}$, where $C_0$ is the current configuration  of possible robot locations, where $C_0$ is an ordered vector containing the locations of every possible location for a robot in the workspace and $\{\}$ is the shortest corresponding movement sequence to achieve this configuration.
@@ -318,11 +331,15 @@ This algorithm produces the optimal path, but requires O(XX) time to learn and O
   
   \section{ Connected topologies that allow collecting a swarm}
   Assume that passageways are large compared to the maximum diameter of a swarm.
-  We can accomplish with discrete inputs,
-  we can move a 
+  We can accomplish by discritizing the environment, and solving the problem with discrete inputs.
+
   
-  
-  
+  \begin{figure*}
+  \begin{overpic}[width=\linewidth]{RobotsAsWater}\end{overpic}
+  \caption{\label{fig:RobotsAsWater}  a large-enough swarm controlled by global inputs can be modeled as a granular media (or as a fluid without surface tension). Above shows such a swarm in a square container.  We assume at steady state under a global control command in the form of a vector direction, that the swarm reaches a minimum energy state with the highest energy level  perpendicular to the applied force.
+ }
+  \end{figure*}
+
   
   
 
