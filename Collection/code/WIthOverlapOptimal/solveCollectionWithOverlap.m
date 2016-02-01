@@ -1,7 +1,7 @@
 function solveCollectionWithOverlap
-% 
-% and Aaron T. Becker
-%                    atbecker@uh.edu
+% Given a planar workspace consisting of 
+%
+% Authors: STUDENT_FIRSTNAME LASTNAME and Aaron T. Becker, atbecker@uh.edu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 global G MAKE_MOVIE RobotPts

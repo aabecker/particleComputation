@@ -1,5 +1,6 @@
 function CollectionManual
-% Allows user to use arrow keys to collect a swarm of robots on a unit grid 
+% Allows user to use arrow keys to collect a swarm of robots initialized on
+% a unit grid. This version of the problem allows robots to overlap
 %  Aaron T. Becker
 %     atbecker@uh.edu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

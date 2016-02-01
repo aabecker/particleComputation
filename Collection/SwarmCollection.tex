@@ -145,6 +145,7 @@ Consider a swarm of robots initialized in a 2D planar grid world where each posi
 This paper investigates what input sequence should be applied to collect all the robots to one position.
 \end{abstract}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Uses MATLAB code at
 % https://svn.rice.edu/r/MRSL-Papers/Drafts-Current/2013-06-26-ALGOSENSORS-Tilt/code/matlab/investigateCoverage.m
@@ -153,7 +154,10 @@ This paper investigates what input sequence should be applied to collect all the
 
 
   \section{Introduction}
+  For many therapeutic treatments it is important to concentrate a drug at a particular site.  The old adage \emph{toxicity is a function of concentration} explains that often we can flow a diluted drug through the body without ill-effect, and then kill cells at a targeted location by collecting drug particles.  Targeted drug therapy is a goal for many interventions, including treating cancers, delivering pain-killers, and stopping internal bleeding.
   
+  
+
   This paper builds on the techniques for controlling many simple robots with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, and outlines new research problems.
   
   
@@ -179,6 +183,15 @@ A representative command sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$.
   \item What connected topologies do not allow collecting a swarm?
   \item What connected topologies can be collected with a given command sequence?
   \end{enumerate}
+  
+  \begin{figure}
+\centering
+\begin{overpic}[width=0.9\columnwidth]{Leaf.pdf}\end{overpic}
+\caption{\label{fig:vascularNetwork}
+Vascular networks are common in biology such as the circulatory system and cerebrospinal spaces, as well as in porous media including sponges and pumice stone.  Navigating a swarm using global inputs, where each member receives the same control inputs, is challenging
+due to the many obstacles. 
+This paper focuses on using boundary walls and wall friction to break the symmetry caused by the global input and control the shape of a swarm.} 
+\end{figure}
   
   
   \section{Related work}
