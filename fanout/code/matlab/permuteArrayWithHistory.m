@@ -51,17 +51,13 @@ function permuteArrayWithHistory(A,B)
                 1,0,1,0,1;
                 1,0,0,1,1];
         elseif outputSym == 2
-            % Changes 'A' -> 'b'
+            % Changes '+' -> 'x'
             A =[1,0,1;
-                0,1,0;
                 0,0,0;
-                0,1,0;
+                1,0,1];
+            B =[0,1,0;
+                1,0,1;
                 0,1,0];
-            B =[0,1,1;
-                0,1,1;
-                0,0,0;
-                0,1,0;
-                0,0,0];
         elseif outputSym == 3
             % Changes 'A' -> 'b'
             A =[0 0 1 1 1 1 0 0
@@ -137,10 +133,10 @@ function permuteArrayWithHistory(A,B)
     G.hRobotsPast = zeros(1, numRobots);
     G.hRobots = zeros(1, numRobots);
     uniqueRobots = numel(unique(RobotPts(:,4)));
-    if uniqueRobots ~=2
+    if uniqueRobots ~=4
         colors = hsv(uniqueRobots);
     else
-        colors = [1,0,0; 0,0,1; .5,0,.5;];
+        colors = [1,0,0; 0,0,1; 1,1,0;];
     end
     for hi = 1: numRobots
         G.hRobotsPast2(hi) =  rectangle('Position',[RobotPts(hi,1)-1/2,RobotPts(hi,2)-1/2,1,1],'Curvature',[1,1],'FaceColor',[1,1,1]-([1,1,1]-colors(RobotPts(hi,4),:))*.2,'LineStyle','none');
