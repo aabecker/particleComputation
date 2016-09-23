@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 function permuteArrayForPhysicalBoard(A,B)
     % program that permutes any given ar*ac matrix A into the br*bc B.
     % [ensure (ar*ac == br*bc)], where each element of A is assigned a
     % destination in B.
+=======
+function permuteArrayForPhysicalBoard(A,B) 
+    % program that permutes any given ar*ac matrix A into the br*bc B.
+    % [ensure (ar*ac == br*bc)], where each element of A is assigned a
+    % destination in B.  
+>>>>>>> Stashed changes
     %
     % Note that this is both a permutation  (changing the order of pixels) and
     % a reshaping of the matrix dimensions.  There are (n!) permutations and

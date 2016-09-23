@@ -44,7 +44,7 @@ clf
 
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
-    0.5,1,0.5; %robot
+   1,0,0; %robot
     ];
 
 im = G.obstacle_pos;
