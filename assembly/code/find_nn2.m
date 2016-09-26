@@ -1,4 +1,6 @@
 function a = find_nn2(curr, tmp_part)
+%TODO: add build rules ( make sure that new part does not hit a previous
+%component (and then stick in the wrong place)
    
     a=[];
     if tmp_part(curr(1,1)+1,curr(1,2),1)==1 && tmp_part(curr(1,1)+1,curr(1,2),3)==0
