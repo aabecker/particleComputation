@@ -1,46 +1,58 @@
-%  gives a possible build sequence to assemble a part
+function Depth_first(part)
+%  Depth_first gives a possible build sequence to assemble a part
 %
 % A DFS expansion, checks d,r, u, l
 % each check marks the node as visited
 % assumes: part is an array (x,y,color), the xy position where color
 % determines if the partciels will stick together (identically labelled
 % parts do not connect)
+%
+%
+%  TODOs:
+%   1.) no warnings
+%   2.) header with comments for each file
+%   3.) switch the visualization to use the technique in assemblyBlocks.m
+%   (show the color of the blocks, place a white numeric label on top
+%   4.) get rid of old code (no need for checkpath#) because we use github
+%
+%  Authors:  Sheryl Manzoor <>   Aaron Becker <atbecker@uh.edu>
 
-
+format compact
 clear all
 clc
 
-
-%part = [1 2 3;2 2 3;3 2 3;4 3 3;5 3 3;4 2 3]; %contains the item positions for the Part
-part=[7 6;
-      9 6;
-      6 7;
-      7 7;
-      8 7;
-      9 7;
-      10 7;
-      7 8;
-      9 8;
-      6 9;
-      7 9;
-      8 9;
-      9 9;
-      10 9;
-      7 10;
-      9 10];
+if nargin<1
+    %part = [1 2 3;2 2 3;3 2 3;4 3 3;5 3 3;4 2 3]; %contains the item positions for the Part
+    part=[7 6;
+        9 6;
+        6 7;
+        7 7;
+        8 7;
+        9 7;
+        10 7;
+        7 8;
+        9 8;
+        6 9;
+        7 9;
+        8 9;
+        9 9;
+        10 9;
+        7 10;
+        9 10];
+end
 pos = part(:,1:2);
 
 
 
 
-tmp_part = zeros(max(pos(:,1)),max(pos(:,2)),3); %create 3D space for 
-                                                %[yx,label,visitorflag]
+tmp_part = zeros(max(pos(:,1)),max(pos(:,2)),3); %create 3D space for
+%[yx,label,visitorflag]
 
 %tmp_part = zeros(5,5,3);
-                                                
+
 for i=1:size(pos,1)
-   tmp_part(pos(i,1),pos(i,2),1) = 1; %save y,x positions of items
-   %tmp_part(pos(i,1),pos(i,2),2) = i; %save 'label' at y,x positions of items
+    tmp_part(pos(i,1),pos(i,2),1) = 1; %save y,x positions of items
+    %tmp_part(pos(i,1),pos(i,2),2) = i; %save 'label' at y,x positions of items
 end
 
 
@@ -65,7 +77,7 @@ tmp_part(curr(:,1),curr(:,2),3) = 1; %mark visited
 for i=1:400 % running for 100 iterations to find the sequence
     valid_nn = find_nn3(curr, tmp_part(:,:,:)); %next node that has not been visited
     if valid_nn(1,1)==0 && cnt_output==size(part,1)
-        seq=[];
+        seq=[];%zeros(size(output,1),2);
         for j=1:size(output,1)
             seq(j,:) = tmp_part(output(j,1),output(j,2),2);
         end
@@ -86,35 +98,36 @@ for i=1:400 % running for 100 iterations to find the sequence
         tmp_part(curr(:,1),curr(:,2),3) = 1; %mark visited
     end
     
-% visualizePart(part,seq);
-%     
-% 
-% function visualizePart(part,seq)
-%     figure(1)
-%     h = plot(-part(:,2),part(:,1),'s');
-%     set(h, 'markersize', 20,'MarkerFaceColor','b')
-%     for k = 1:numel(seq)
-%         s = seq(k);
-%         ht = text(-part(k,2),part(k,1),num2str(s));
-%         set(ht, 'color','w')
-%     end
-%     axis([-10,10,-10,15])
-%     axis equal
-% end
-
+    % visualizePart(part,seq);
+    %
+    %
+    % function visualizePart(part,seq)
+    %     figure(1)
+    %     h = plot(-part(:,2),part(:,1),'s');
+    %     set(h, 'markersize', 20,'MarkerFaceColor','b')
+    %     for k = 1:numel(seq)
+    %         s = seq(k);
+    %         ht = text(-part(k,2),part(k,1),num2str(s));
+    %         set(ht, 'color','w')
+    %     end
+    %     axis([-10,10,-10,15])
+    %     axis equal
+    % end
+    
 end
 
 
 figure(1)
-    h = plot(output(:,2),-output(:,1),'s');
-    set(h, 'markersize', 25,'MarkerFaceColor','b')
-    for k = 1:numel(seq)
-        s = seq(k);
-        ht = text(output(k,2),-output(k,1),num2str(s));
-        set(ht, 'color','w')
-    end
-    axis([0,10,-15,0])
-    axis equal
+h = plot(output(:,2),-output(:,1),'s');
+set(h, 'markersize', 25,'MarkerFaceColor','b')
+for k = 1:numel(seq)
+    s = seq(k);
+    k
+    ht = text(output(k,2),-output(k,1),num2str(s));
+    set(ht, 'color','w')
+end
+axis([0,10,-15,0])
+axis equal
 
 
 

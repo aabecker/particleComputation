@@ -1,4 +1,4 @@
-function [partColored]=labelColor()
+function [partColored]=labelColor(part)
 % labelColor
 % Input: a binary, 2D array part  (0= empty, 1 = filled)
 % Output: a 2D array with each filled cell labeled 1 or 2 (0=empty, 1= red, 2 = blue)
@@ -13,6 +13,13 @@ if nargin==0
         1,1,1,1,1;
         0,1,0,1,0];
 end
+%%  Alternate way, that will teach you matlab tricks
+% n = 5;
+% v = mod(1:n, 2);  %TODO:  you will make two arrays, one for columns and
+% one for rows.; Because our parts might not be square.
+% A = +bsxfun(@eq, v, v.');
+% B = 1+A;
+% B.*part
 
 % this needs to be replaced with something that labels the cells
 partColored = size(part);
