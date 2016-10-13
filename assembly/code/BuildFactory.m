@@ -3,7 +3,7 @@ function [IsPossible, factoryLayoutArray]=BuildFactory(partXY)
 % that contains part hoppers for each part, and a fctory floow layout so
 % that a repeated sequence of l,r,u,d constructs a new partXY each
 % iteration until supplies run out
-direction 
+%
 %
 %Authors: Sheryl Manzoor and Aaron T. Becker, Sep 27, 2016
 clc
@@ -47,16 +47,33 @@ partXY=[4 2;
       5 5];
 end
 % Returned variables
-IsPossible = false;  % no valid path has been found yet
+
 factoryLayoutArray = [];
+%  1.) check for a valid build path.  If impossible, return false
+[IsPossible, sequence, dirs, partColored]=FindBuildPath(partXY);
+if false == IsPossible
+    display('No build path found by assembly one-tile-at-a-time, returning')
+    return
+end
+
+%  2.)  iteratively construct the factory
+partXYbuild = [];
+for i = 1:numel(sequence)
+    %2a, construct part of the factory to add tile i
+    [partXYbuild, factoryObstacleAddition] = factoryAddTile(partXYbuild,  partXY(seq(i),:), dirs(i), partColored(i)); 
+    %2b, concatenate factory to existing factory
+    %TODO:  this will cause errors if either has a different number of
+    %rows, to fix, add empty rows to the smaller one.
+    factoryLayoutArray = [factoryLayoutArray; factoryObstacleAddition];
+    %2c, draw this stage of the factory
+    
+end
 
 
-%  1.) check for a valid build path.  Is impossible, return false
 
-%  2.)  construct the necessary part hoppers
+%  3.) draw the factory
 
-%  3.)  build a blank factory floor
 
-%  4.)  build fixtures 
+% 4.) enable control of the factory
 
 

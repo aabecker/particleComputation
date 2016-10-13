@@ -2,9 +2,9 @@ function  [output,seq,tmp_part] = Depth_firstsearch(part,start)
 
 %  gives a possible build sequence to assemble a part
 %
-% A DFS expansion, checks d,r, u, l
+% A DFS expansion, checks {d,r, u, l}
 % each check marks the node as visited
-% assumes: part is an array (x,y)
+% assumes: part is a 2D array (x,y)
 % Authors: Sheryl Manzoor and Aaron T. Becker, Sep 30, 2016
 
     

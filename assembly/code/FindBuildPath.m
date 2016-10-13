@@ -1,4 +1,4 @@
-function [foundPath, sequence, dirs]=FindBuildPath(partXY)
+function [foundPath, sequence, dirs,partColored]=FindBuildPath(partXY)
 % Given a polyomino part, searches for a valid build path described by
 % order sequence and move direcions dirs.
 % returns foundPath == true if a path is found, false else.
@@ -7,6 +7,10 @@ function [foundPath, sequence, dirs]=FindBuildPath(partXY)
 % find possible sequence of joining the items The output is then passed to
 % CheckPath function to check if the item can join the assembly from
 % l,r,u,d direction 
+% 
+% Input:  TODO
+%
+%  Output: TODO  (must ensure partColored is useable by BuildFactory)
 %
 %Authors: Sheryl Manzoor and Aaron T. Becker, Sep 27, 2016
 
