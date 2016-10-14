@@ -1,4 +1,4 @@
-function moveValid = CheckPath(partialAssembly, loc, direction, partColored)
+function moveValid = CheckPath1Tile(partialAssembly, loc, direction, partColored)
 % labelColor
 %   Input: 
 %   - partialAssemblya binary, 2D array partialAssembly of the current state of the part  (0= empty, 1 = filled)

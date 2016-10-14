@@ -1,4 +1,4 @@
-function [partXYupdated, factoryObstacleAddition] = factoryAddTile(partXY,  tileXY, dir, tileColor) 
+function [partXYupdated, factoryObstacleAdditionArray] = factoryAddTile(partXY,  tileXY, dir, tileColor,numCopies) 
 % Constructs a part of the
 % factory that slides a tile of color tileColor in direction dir to
 % location tileXY of partXY, by sliding the tile out of a part-hopper (and
@@ -19,8 +19,9 @@ function [partXYupdated, factoryObstacleAddition] = factoryAddTile(partXY,  tile
 % added tileXY).  The positions are measured after the part has exited
 % factoryObstacleAddition during a move in the right direction.
 % 
-% factoryObstacleAddition is the obstacles and the part hopper required to
-% add one tile to  partXY. Each factoryObstacleAddition is non-overlapping.
+% factoryObstacleAdditionArray a 2D matrix with all the obstacles and the part hopper required to
+% add one tile to  partXY. Each factoryObstacleAdditionArray is a
+% non-overlapping vertical strip
 % This is ensured by the following constraints.
 % 
 % Min(factoryObstacleAddition(:,1) >= min(partXY(:,1)) and
@@ -45,7 +46,7 @@ display(tileColor)
 
 %stub code
 partXYupdated = [partXY;tileXY];
-factoryObstacleAddition = [3,3];
+factoryObstacleAdditionArray = [3,3];
 
 %suggestions: design this code for 'd' moves first, then do other
 %directions.  First draw pictures.  We want to have an algorithm we can

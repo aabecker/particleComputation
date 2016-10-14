@@ -1,4 +1,4 @@
-function [foundPath, sequence, dirs,partColored]=FindBuildPath(partXY)
+function [foundPath, sequenceXY, dirs,partColoredArr]=FindBuildPath(partXY)
 % Given a polyomino part, searches for a valid build path described by
 % order sequence and move direcions dirs.
 % returns foundPath == true if a path is found, false else.
@@ -18,10 +18,10 @@ clc
 %clear all
 
 % GOAL FOR 10/14/2016: figure 4.2 left  in bachelor thesis, find a valid build order!
-
+format compact
 if nargin <1
-% part = [1 2 3;2 2 3;3 2 3;4 3 3;5 3 3;4 2 3]; %contains the item positions for the Part
-% part=[7 6;
+% partXY = [1 2 ;2 2 ;3 2 ;4 3 ;5 3 ;4 2 ]; %contains the item positions for the Part
+% partXY=[7 6;
 %       9 6;
 %       6 7;
 %       7 7;
@@ -57,36 +57,32 @@ if nargin <1
 %       4 5;
 %       5 5];
   
-partXY=[5,2;6,2;7,2;8,2;9,2;10,2;5,3;5,4;6,4;7,4;8,4;9,4;10,4;5,5;10,5;5,6;7,6;8,6;10,6;5,7;7,7;10,7;5,8;7,8;
-        8,8;9,8;10,8;10,9;10,10;10,11;10,12;9,10;9,12;8,10;8,12;7,10;7,12;6,10;6,12;5,10;5,11;5,12];
+% partXY=[5,2;6,2;7,2;8,2;9,2;10,2;5,3;5,4;6,4;7,4;8,4;9,4;10,4;5,5;10,5;5,6;7,6;8,6;10,6;5,7;7,7;10,7;5,8;7,8;
+%         8,8;9,8;10,8;10,9;10,10;10,11;10,12;9,10;9,12;8,10;8,12;7,10;7,12;6,10;6,12;5,10;5,11;5,12];
 end
 
 % Returned variables
 foundPath = false;  % no valid path has been found yet
-sequence = [];
+sequenceXY = [];
 dirs = [];
 
 
 for m=1:size(partXY,1)
-    %TODO: try all possible start nodes until we get a path that 
+    % try all possible start nodes until we get a path that works
     start = partXY(m,:);
-    %start = partXY(1,:);
-    %start = [5 5];
 
-    %[output,seq,tmp_part] = Depth_firstsearch(partXY,start); %depth first search on part
     [output,seq,tmp_part] = Depth_firstsearch(partXY,start); %depth first search on part
-    partColored = labelColor(tmp_part(:,:,1)); %label color to each item in part
+    partColoredArr = labelColor(tmp_part(:,:,1)); %label color to each item in part
     partialAssembly = zeros(size(tmp_part(:,:,1),1),size(tmp_part(:,:,1),2));
     partialAssembly(output(1,1),output(1,2)) = 1;
 
-    %dirs_final=size(partXY)-1; %Array saves the directions of the items
     dirs_final= size(partXY,1)-1; %Array saves the directions of the items
     dirs_final = char(dirs_final);
     dirs2 = ['l';'r';'u';'d'];
     for i=2:size(output,1)
         for j=1:4
             %move = CheckPath(partialAssembly,output(i,:),dirs2(j,:),partColored);
-            move = CheckPath(partialAssembly,output(i,:),dirs2(j,:),partColored); 
+            move = CheckPath1Tile(partialAssembly,output(i,:),dirs2(j,:),partColoredArr); 
             if strcmp(move,'true')
                partialAssembly(output(i,1),output(i,2)) = 1;
                dirs_final(i-1,:) = num2str(dirs2(j,:));
@@ -103,18 +99,16 @@ for m=1:size(partXY,1)
     end
     
     if foundPath==true
-       sequence = output;
+       sequenceXY = output;
        dirs = dirs_final;
        break; 
     end
-    
+    % clears memory
     clear output seq tmp_part partColored partialAssembly dirs_final;
 
 end
-
-
-
-    tmpAssembly = flipud(partialAssembly.*partColored);  
+% draw part
+    tmpAssembly = flipud(partialAssembly.*partColoredArr);  
     G.fig = figure;
     set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
     G.colormap = [  1,1,1; %Empty = white
@@ -122,8 +116,6 @@ end
         hsv(numel(unique(tmpAssembly))-1);];
     colormap(G.colormap);
     G.axis=imagesc(tmpAssembly);
-    %set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off','color',0.8*[1,1,1]);
-    %set(G.axis,'edgealpha',.08)
     axis equal
     for k = 1:i
         s = seq(k);
