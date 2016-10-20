@@ -34,19 +34,39 @@ function [partXYupdated, factoryObstacleAdditionArray] = factoryAddTile(partXY, 
 format compact
 if nargin< 1
     %test case
-    partXY = [1,1];
-    dir = 'd';
-    tileXY = [1,2];
-    tileColor = 2;
+%     partXY = [1,1];
+%     dir = 'd';
+%     tileXY = [1,2];
+%     tileColor = 2;
+
+        partXY = [2 1; 2 2; 2 3; 2 4; 2 5; ...
+        3 1; 3 2; 3 3; 3 4; 3 5];
+        tileXY = [1 3];
+        tileColor = 2;
+        numCopies = 10;
+        dir = 'd';
+         hopper = [3 3 3 3 3 3 3 3; ...
+            3 0 0 0 0 0 0 3; ...
+            3 1 1 1 1 3 0 3; ...
+            3 1 1 1 1 3 0 3; ...
+            3 1 1 0 0 3 0 3; ...
+            3 3 3 3 3 3 0 3];
 end
 
 display('stub code: not implemented yet')
 display(dir)
 display(tileColor)
 
+%%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
+hopper = define_hopper(tileColor, numCopies);
+%%%%%%%%%%%%ends%%%%%%%%%%%%%%%%%%%%%%%%
+if dir == 'd'
+    [partXYupdated, factoryObstacleAdditionArray] = down_dir(hopper,partXY,  tileXY);
+end
+
 %stub code
-partXYupdated = [partXY;tileXY];
-factoryObstacleAdditionArray = [3,3];
+%partXYupdated = [partXY;tileXY];
+%factoryObstacleAdditionArray = [3,3];
 
 %suggestions: design this code for 'd' moves first, then do other
 %directions.  First draw pictures.  We want to have an algorithm we can
@@ -54,5 +74,3 @@ factoryObstacleAdditionArray = [3,3];
 
 
 end
-
-
