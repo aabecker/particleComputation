@@ -63,7 +63,7 @@ end
 
 
 
-    tmpAssembly = flipud(partialAssembly.*partColored);  
+    tmpAssembly = partialAssembly.*partColored;  
     G.fig = figure;
     set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])   
     G.colormap = [  1,1,1; %Empty = white  
@@ -74,7 +74,7 @@ end
     axis equal
     for k = 1:i
         s = Seq(k);
-        ht = text(Output(k,2),1+size(partialAssembly,1)-Output(k,1),num2str(s));
+        ht = text(Output(k,2),Output(k,1),num2str(s));
         set(ht, 'color','k')
     end
 end
