@@ -1,5 +1,5 @@
 function [partXYupdated, factoryObstacleAdditionArray] = down_dir(hopper,partXY,  tileXY)
- 
+ %TODOs
 
 if nargin<1
    
@@ -14,6 +14,7 @@ if nargin<1
             3 3 3 3 3 3 0 3];
    
 end
+obs = 3;
 
 posx_obs = abs(max(partXY(:,2) - tileXY(:,2)));
 lengthy_obs = abs(max(partXY(:,1)) - min(partXY(:,1)))+1; %length of obstacle is equal...
@@ -22,7 +23,7 @@ lengthy_obs = abs(max(partXY(:,1)) - min(partXY(:,1)))+1; %length of obstacle is
 
 hopper = horzcat(hopper, zeros(size(hopper,1),posx_obs));
 hopper = vertcat(hopper, zeros(lengthy_obs,size(hopper,2)));
-hopper(size(hopper,1)-lengthy_obs+1:size(hopper,1),size(hopper,2)) = 3; %obstacle added
+hopper(size(hopper,1)-lengthy_obs+1:size(hopper,1),size(hopper,2)) = obs; %obstacle added
                         %to stop the 'Right' motion of the part and add the
                         %tile. Obstacle height is same as width of the part
 
@@ -32,14 +33,14 @@ hopper = vertcat(hopper, zeros(lengthy_obs*5,size(hopper,2))); %define white spa
 hopper = vertcat(hopper, 3*ones(2,size(hopper,2))); %define the bottom 
                         %obstacle to stop the downward motion of the part
 
-hopper(size(hopper,1)-(3*lengthy_obs)-1:size(hopper,1)-2,1) = 3; 
+hopper(size(hopper,1)-(3*lengthy_obs)-1:size(hopper,1)-2,1) = obs; 
 %obstacle added to stop the 'Left' motion of the part, Obstacle height is
 %the same as the width of the part
 
 
 part_length = abs(max(partXY(:,2) - min(partXY(:,2))))+1;
 
-hopper(size(hopper,1)-(3*lengthy_obs)-1,1:part_length-1) = 3; 
+hopper(size(hopper,1)-(3*lengthy_obs)-1,1:part_length-1) = obs; 
 %obstacle added to stop the 'Upward' motion of the part, Obstacle height is
 %the same as the width of the part
 
