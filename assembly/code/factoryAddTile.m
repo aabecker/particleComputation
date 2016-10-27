@@ -1,4 +1,4 @@
-function [partXYupdated, factoryObstacleAdditionArray] = factoryAddTile(partXY,  tileXY, dir, tileColor,numCopies) 
+function [partXYupdated, factoryObstacleAdditionArray, align] = factoryAddTile(partXY,  tileXY, dir, tileColor,numCopies) 
 % Constructs a part of the
 % factory that slides a tile of color tileColor in direction dir to
 % location tileXY of partXY, by sliding the tile out of a part-hopper (and
@@ -44,8 +44,9 @@ if nargin< 1
         tileXY = [1 3];
         tileColor = 2;
         numCopies = 10;
+        cols = 4;
         dir = 'd';
-         hopper = [3 3 3 3 3 3 3 3; ...
+         hopper2 = [3 3 3 3 3 3 3 3; ...
             3 0 0 0 0 0 0 3; ...
             3 1 1 1 1 3 0 3; ...
             3 1 1 1 1 3 0 3; ...
@@ -53,19 +54,33 @@ if nargin< 1
             3 3 3 3 3 3 0 3];
 end
 
-display('stub code: not implemented yet')
-display(dir)
-display(tileColor)
+display('stub code: not implemented yet');
+display(dir);
+display(tileColor);
 
 %%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
-hopper = define_hopper(tileColor, numCopies);
+%hopper2 = define_hopper(tileColor, numCopies);
+hopper2 = hopper(tileColor, numCopies,4)
 %%%%%%%%%%%%ends%%%%%%%%%%%%%%%%%%%%%%%%
 if dir == 'd'
-    [partXYupdated, factoryObstacleAdditionArray] = down_dir(hopper,partXY,  tileXY);
+    [partXYupdated, factoryObstacleAdditionArray, align] = down_dir(hopper2,partXY,  tileXY);
 end
 
+if dir == 'l'
+    [partXYupdated, factoryObstacleAdditionArray, align] = left_dir(hopper2,partXY,  tileXY);
+end
+
+if dir == 'u'
+    [partXYupdated, factoryObstacleAdditionArray, align] = up_dir(hopper2,partXY,  tileXY);
+end
+
+if dir == 'r'
+    [partXYupdated, factoryObstacleAdditionArray, align] = right_dir(hopper2,partXY,  tileXY);
+end
+
+
 %stub code
-%partXYupdated = [partXY;tileXY];
+partXYupdated = [partXY;tileXY];
 %factoryObstacleAdditionArray = [3,3];
 
 %suggestions: design this code for 'd' moves first, then do other
