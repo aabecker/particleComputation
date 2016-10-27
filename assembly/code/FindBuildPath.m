@@ -15,7 +15,9 @@ clc
 
 format compact
 if nargin <1  
-partXY= TestDepthFirstSearch();
+% partXY= TestDepthFirstSearch();
+% partXY=BigPartTry();
+partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
 end
 
 % Returned variables
