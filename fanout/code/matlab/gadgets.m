@@ -89,6 +89,7 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts] = ddXORgatecw; %sum bit
 %[G.obstacle_pos,RobotPts] = memorycw; %memory
 %[G.obstacle_pos,RobotPts] = ddANDgatecw();  %NAND/NOR/OR/AND
+[G.obstacle_pos,RobotPts] = ddNOTgatecw();  %NOT and Connect
 %[G.obstacle_pos,RobotPts] = ddCarrycw();
 %[G.obstacle_pos,RobotPts] = singleCycleDelay();%broken
 %[G.obstacle_pos,RobotPts] = DialsGate();
@@ -106,6 +107,7 @@ strTitle = ''; %#ok<NASGU>
 G.EMPTY = 0;
 G.OBST = 1;
 
+size(G.obstacle_pos)
 
 G.maxX = size(G.obstacle_pos,2);
 G.maxY = size(G.obstacle_pos,1);
@@ -158,7 +160,7 @@ hold on
 % G.hRobotsPast8 = zeros(1, numRobots);
 % G.hRobotsPast7 = zeros(1, numRobots);
 % G.hRobotsPast6 = zeros(1, numRobots);
-% G.hRobotsPast5 = zeros(1, numRobots);
+ G.hRobotsPast5 = zeros(1, numRobots);
 G.hRobotsPast4 = zeros(1, numRobots);
 G.hRobotsPast3 = zeros(1, numRobots);
 G.hRobotsPast2 = zeros(1, numRobots);
@@ -175,7 +177,7 @@ for hi = 1: numRobots
     % G.hRobotsPast8(hi) =  createRobotPath( RobotPts(hi,:), 0.35);
     % G.hRobotsPast7(hi) =  createRobotPath( RobotPts(hi,:), 0.4);
     % G.hRobotsPast6(hi) =  createRobotPath( RobotPts(hi,:), 0.45);
-    % G.hRobotsPast5(hi) =  createRobotPath( RobotPts(hi,:), 0.5);
+     G.hRobotsPast5(hi) =  createRobotPath( RobotPts(hi,:), 0.5);
     G.hRobotsPast4(hi) =  createRobotPath( RobotPts(hi,:), 0.55);
     G.hRobotsPast3(hi) =  createRobotPath( RobotPts(hi,:), 0.6);
     G.hRobotsPast2(hi) =  createRobotPath( RobotPts(hi,:), 0.7);
@@ -214,7 +216,10 @@ end
     function keyhandler(src,evnt) %#ok<INUSL>
         if strcmp(evnt.Key,'s')
             imwrite(flipud(get(G.axis,'CData')+1), G.colormap, '../../pictures/png/MatrixPermutePic.png');
-        else
+        elseif strcmp(evnt.Key,'leftarrow') || strcmp(evnt.Key,'-x') || ...
+            strcmp(evnt.Key,'rightarrow')|| strcmp(evnt.Key,'+x') || ...
+            strcmp(evnt.Key,'uparrow')|| strcmp(evnt.Key,'+y') || ...
+            strcmp(evnt.Key,'downarrow')
             moveto(evnt.Key)
         end
     end
@@ -241,7 +246,7 @@ end
         %     updatePastPath(G.hRobotsPast7,G.hRobotsPast8);
         %     updatePastPath(G.hRobotsPast6,G.hRobotsPast7);
         %     updatePastPath(G.hRobotsPast5,G.hRobotsPast6);
-        %    updatePastPath(G.hRobotsPast4,G.hRobotsPast5);
+            updatePastPath(G.hRobotsPast4,G.hRobotsPast5);
         updatePastPath(G.hRobotsPast3,G.hRobotsPast4);
         updatePastPath(G.hRobotsPast2,G.hRobotsPast3);
         updatePastPath(G.hRobotsPast,G.hRobotsPast2);
@@ -697,7 +702,36 @@ end
         blk = flipud(repmat(blk,1,2^ins));
     end
 
-
+function [blk,RobotPts] = ddNOTgatecw()
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+        RobotPts = [];
+        %               A  A'  B B'
+       blk=[ 1 1 1 1 1 0 1 0 1 1 1 1 1 0 1 0 1 0;
+             1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0;
+             1 1 1 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0;
+             1 0 1 0 1 1 1 0 1 0 1 0 1 1 1 0 1 0;
+             1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0;
+             1 0 1 0 1 1 1 1 1 0 1 0 1 1 1 1 1 0;
+            %  A', A  B, B',
+            ];
+        w = size(blk,2);
+        h = size(blk,1);
+        ins = 2;
+        for c =1:2^ins
+            str = dec2bin(c-1,ins);
+            if str(1) == '1'
+                RobotPts(end+1,:) = [w*(c-1)+6,h,1+(c-1)*ins,1];  %A
+            else
+                RobotPts(end+1,:) = [w*(c-1)+8,h,1+(c-1)*ins,1]; %A'
+            end
+            if str(2) == '1'
+                RobotPts(end+1,:) = [w*(c-1)+14,h,2+(c-1)*ins,2];  %B
+            else
+                RobotPts(end+1,:) = [w*(c-1)+16,h,2+(c-1)*ins,2]; %B'
+            end
+        end
+        blk = flipud(repmat(blk,1,2^ins));
+    end
 
     function [blk,RobotPts] = partHopper()
         % this holds many parts and releases one per turn.
