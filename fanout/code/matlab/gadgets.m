@@ -85,11 +85,14 @@ strTitle = ''; %#ok<NASGU>
 
 %%% CLOCKWISE GATES {d,l,u,r}
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw();  % CW fan-out gate
+%[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcwV2();  % CW fan-out gate
+%[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4v2();
+[G.obstacle_pos,RobotPts,strTitle] = memoryJarrettv01();
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts] = ddXORgatecw; %sum bit
 %[G.obstacle_pos,RobotPts] = memorycw; %memory
 %[G.obstacle_pos,RobotPts] = ddANDgatecw();  %NAND/NOR/OR/AND
-[G.obstacle_pos,RobotPts] = ddNOTgatecw();  %NOT and Connect
+%[G.obstacle_pos,RobotPts] = ddNOTgatecw();  %NOT and Connect
 %[G.obstacle_pos,RobotPts] = ddCarrycw();
 %[G.obstacle_pos,RobotPts] = singleCycleDelay();%broken
 %[G.obstacle_pos,RobotPts] = DialsGate();
@@ -1723,6 +1726,137 @@ function [blk,RobotPts] = partHopper8()
         blk = flipud(repmat(blk,1,2^ins));
     end
 
+  function [blk,RobotPts,strTitle] = ddFANOUTcwV2
+        % this is a  dual-rail logic gate that implements a FanOut
+        % With the universal input <d,l,u,r>
+        strTitle = 'x, x'', 1';
+        sp = 3;
+        %   x   1   x'
+       blk=[1 1 1 1 0 1 0 1 1 1 1 1 0 1 1 
+            1 1 1 1 0 1 0 1 1 1 1 0 0 0 1 
+            1 1 1 1 0 1 0 1 1 1 1 0 0 0 1 
+            1 1 1 1 0 1 0 1 1 1 1 1 1 0 1
+            1 1 1 0 0 0 0 0 0 0 0 0 1 0 1
+            1 0 0 0 0 0 0 0 0 0 1 0 1 0 1
+            1 1 1 0 0 0 1 0 1 1 1 0 1 0 1
+            1 1 1 1 1 0 1 0 1 1 1 0 1 0 1];
+        
+        % blk = flipud(blk);
+        w = size(blk,2);
+        h = size(blk,1);
+        RobotPts = [];
+        ins = 1;
+        for c =1:2^ins
+            str = dec2bin(c-1,ins);
+            if str(1) == '1'
+                RobotPts(end+1,:) = [sp+w*(c-1)+13,h,1+(c-1)*ins,1,1,1];  %A
+            else
+                RobotPts(end+1,:) = [w*(c-1)+7,h,1+(c-1)*ins,1,1,1]; %A'
+            end
+        end
+        %     x   1   x'
+        RobotPts(end+1,:) = [5,h,3,2,1,1]; %supply
+        RobotPts(end+1,:) = [9,3,4,3,2,1]; %slider
+        RobotPts(end+1,:) = [sp+w+5,h,5,2,1,1]; %supply
+        RobotPts(end+1,:) = [sp+w+9,3,6,3,2,1]; %slider
+        blk = flipud([blk, zeros(h,sp),blk]);
+  end
+
+ function [blk,RobotPts,strTitle] = memoryJarrettv01
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+        RobotPts = [];
+        % 31x15
+        %   1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        %      A   B   A'  B'
+       blk=[1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1;
+            1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1;
+            1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1;
+            1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+            1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1;
+            1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+            1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+            1 1 1 1 1 0 0 1 0 0 0 0 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+            1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 1;
+            1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 1 0 0 0 0 1;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 1;
+            1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 1;
+            1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0 1;
+            1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 0 1 0 1;
+            %  
+            ];
+        w = size(blk,2);
+        h = size(blk,1);
+        ins = 2;
+        for c =1:2^ins
+            str = dec2bin(c-1,ins);
+            if str(1) == '1'  %blue
+                RobotPts(end+1,:) = [w*(c-1)+12,h,1+(c-1)*ins,2,1,1];  %Write
+            else
+                RobotPts(end+1,:) = [w*(c-1)+18,h,1+(c-1)*ins,2,1,1]; %Read
+            end
+            if str(2) == '1'
+                RobotPts(end+1,:) = [w*(c-1)+15,h,2+(c-1)*ins,1,1,1];  %Memory true
+            else
+                RobotPts(end+1,:) = [w*(c-1)+20,h,2+(c-1)*ins,1,1,1]; %Memory false
+            end
+        end
+        for i = 1:4
+        RobotPts(end+1,:) = [8+(i-1)*w,2,8+6*(i-1)+1,3,1,2]; %slider
+        RobotPts(end+1,:) = [2+(i-1)*w,4,8+6*(i-1)+2,3,2,1]; %slider
+        RobotPts(end+1,:) = [4+(i-1)*w,4,8+6*(i-1)+3,3,2,1]; %slider
+        RobotPts(end+1,:) = [6+(i-1)*w,4,8+6*(i-1)+4,3,2,1]; %slider
+        
+        RobotPts(end+1,:) = [6+(i-1)*w,5,8+6*(i-1)+5,3,2,1]; %slider
+        RobotPts(end+1,:) = [8+(i-1)*w,5,8+6*(i-1)+6,3,2,1]; %slider
+        
+        end
+        blk = flipud(repmat(blk,1,2^ins));
+        strTitle = 'Memory gate, Jarrett v01';
+        
+ end
+
+
+
+ function [blk,RobotPts,strTitle] = ddFANOUTcw4v2
+        % this is a  dual-rail logic gate that implements a FanOut with 4
+        % copies of the input With the universal input <d,l,u,r>
+        strTitle = 'x, x'', 1';
+       blk=[1 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 1 0 1 1
+            1 1 0 1 0 1 0 1 0 1 1 1 1 1 1 1 0 0 0 1
+            1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1
+            1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1
+            1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1
+            1 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1
+            1 1 1 0 0 0 0 0 0 0 1 1 0 1 0 1 0 1 0 1
+            1 1 1 0 0 0 0 0 1 0 1 1 0 1 0 1 0 1 0 1
+            1 1 1 0 0 0 1 0 1 0 1 1 0 1 0 1 0 1 0 1
+            1 1 1 0 1 0 1 0 1 0 1 1 0 1 0 1 0 1 0 1
+            ];%   x   x   x   x   x'  x'  x'  x'
+        w = size(blk,2);
+        h = size(blk,1);
+        RobotPts = [];
+        ins = 1;
+        sp = 3;
+        for c =1:2^ins
+            str = dec2bin(c-1,ins);
+            if str(1) == '1'
+                RobotPts(end+1,:) = [sp+w*(c-1)+18,h,1+(c-1)*ins,1,1,1];  %A
+            else
+                RobotPts(end+1,:) = [w*(c-1)+3,h,1+(c-1)*ins,1,1,1]; %A'
+            end
+        end
+        %     x   1   x'
+        RobotPts(end+1,:) = [5,h,3,2,1,1]; %supply
+        RobotPts(end+1,:) = [7,h,4,2,1,1]; %supply
+        RobotPts(end+1,:) = [9,h,5,2,1,1]; %supply
+        RobotPts(end+1,:) = [10,5,6,3,2,1]; %slider
+        RobotPts(end+1,:) = [sp+w+5,h,7,2,1,1]; %supply
+        RobotPts(end+1,:) = [sp+w+7,h,8,2,1,1]; %supply
+        RobotPts(end+1,:) = [sp+w+9,h,9,2,1,1]; %supply
+        RobotPts(end+1,:) = [sp+w+10,5,10,3,2,1]; %slider
+        blk = flipud([blk, zeros(h,sp),blk]);
+    end
+
     function [blk,RobotPts,strTitle] = ddFANOUTcw4
         % this is a  dual-rail logic gate that implements a FanOut with 4
         % copies of the input
@@ -1735,10 +1869,10 @@ function [blk,RobotPts] = partHopper8()
             1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1
             1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1
             1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1
-            1 1 1 0 0 0 0 0 0 0 1 0 1 1 1 0 1 0 1 0 1 0 1
-            1 1 1 0 0 0 0 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1
-            1 1 1 0 0 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1
-            1 1 1 1 1 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1
+            1 1 1 0 0 0 0 0 0 0 0 1 0 1 1 0 1 0 1 0 1 0 1
+            1 1 1 0 0 0 0 0 0 1 0 1 0 1 1 0 1 0 1 0 1 0 1
+            1 1 1 0 0 0 0 1 0 1 0 1 0 1 1 0 1 0 1 0 1 0 1
+            1 1 1 1 0 1 0 1 0 1 0 1 1 0 1 0 1 0 1 0 1 0 1
             ];%   x   x   x   x   x'  x'  x'  x'
         
         
