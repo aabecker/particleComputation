@@ -43,102 +43,9 @@
 %\renewcommand{\todo}{}
 
 %% ABBREVIATIONS
-\newcommand{\qstart}{q_{\text{start}}}
-\newcommand{\qgoal}{q_{\text{goal}}}
-\newcommand{\pstart}{p_{\text{start}}}
-\newcommand{\pgoal}{p_{\text{goal}}}
-\newcommand{\xstart}{x_{\text{start}}}
-\newcommand{\xgoal}{x_{\text{goal}}}
-\newcommand{\ystart}{y_{\text{start}}}
-\newcommand{\ygoal}{y_{\text{goal}}}
-\newcommand{\gammastart}{\gamma_{\text{start}}}
-\newcommand{\gammagoal}{\gamma_{\text{goal}}}
-\providecommand{\proc}[1]{\textsc{#1}}
-
-
-\newcommand{\ARLfull}{Aero\-space Ro\-bot\-ics La\-bora\-tory }
-\newcommand{\ARL}{\textsc{arl}}
-\newcommand{\JPL}{\textsc{jpl}}
-\newcommand{\PRM}{\textsc{prm}}
-\newcommand{\CM}{\textsc{cm}}
-\newcommand{\SVM}{\textsc{svm}}
-\newcommand{\NN}{\textsc{nn}}
-\newcommand{\prm}{\textsc{prm}}
-\newcommand{\lemur}{\textsc{lemur}}
-\newcommand{\Lemur}{\textsc{Lemur}}
-\newcommand{\LP}{\textsc{lp}} 
-\newcommand{\SOCP}{\textsc{socp}}
-\newcommand{\SDP}{\textsc{sdp}}
-\newcommand{\NP}{\textsc{np}}
-\newcommand{\SAT}{\textsc{sat}}
-\newcommand{\LMI}{\textsc{lmi}}
-\newcommand{\hrp}{\textsc{hrp\nobreakdash-2}}
-\newcommand{\DOF}{\textsc{dof}}
-\newcommand{\UIUC}{\textsc{uiuc}}
-%% MACROS
-
-
-\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
-\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
-\providecommand{\normn}[2]{\left\lVert#1\right\rVert_#2}
-\providecommand{\dualnorm}[1]{\norm{#1}_\ast}
-\providecommand{\dualnormn}[2]{\norm{#1}_{#2\ast}}
-\providecommand{\set}[1]{\lbrace\,#1\,\rbrace}
-\providecommand{\cset}[2]{\lbrace\,{#1}\nobreak\mid\nobreak{#2}\,\rbrace}
-\providecommand{\lscal}{<}
-\providecommand{\gscal}{>}
-\providecommand{\lvect}{\prec}
-\providecommand{\gvect}{\succ}
-\providecommand{\leqscal}{\leq}
-\providecommand{\geqscal}{\geq}
-\providecommand{\leqvect}{\preceq}
-\providecommand{\geqvect}{\succeq}
-\providecommand{\onevect}{\mathbf{1}}
-\providecommand{\zerovect}{\mathbf{0}}
-\providecommand{\field}[1]{\mathbb{#1}}
-\providecommand{\C}{\field{C}}
-\providecommand{\R}{\field{R}}
-\newcommand{\Cspace}{\mathcal{Q}}
-\newcommand{\Uspace}{\mathcal{U}}
-\providecommand{\Fspace}{\Cspace_\text{free}}
-\providecommand{\Hcal}{$\mathcal{H}$}
-\providecommand{\Vcal}{$\mathcal{V}$}
-\DeclareMathOperator{\conv}{conv}
-\DeclareMathOperator{\cone}{cone}
-\DeclareMathOperator{\homog}{homog}
-\DeclareMathOperator{\domain}{dom}
-\DeclareMathOperator{\range}{range}
-\DeclareMathOperator{\sign}{sgn}
-\DeclareMathOperator{\sgn}{signum}
-\providecommand{\polar}{\triangle}
-\providecommand{\ainner}{\underline{a}}
-\providecommand{\aouter}{\overline{a}}
-\providecommand{\binner}{\underline{b}}
-\providecommand{\bouter}{\overline{b}}
-\newcommand{\D}{\nobreakdash-\textsc{d}}
-%\newcommand{\Fspace}{\mathcal{F}}
-\providecommand{\Fspace}{\Cspace_\text{free}}
-\providecommand{\free}{\text{\{}\mathsf{free}\text{\}}}
-\providecommand{\iff}{\Leftrightarrow}
-\providecommand{\subinner}[1]{#1_{\text{inner}}}
-\providecommand{\subouter}[1]{#1_{\text{outer}}}
-\providecommand{\Ppoly}{\mathcal{X}}
-\providecommand{\Pproj}{\mathcal{Y}}
-\providecommand{\Pinner}{\subinner{\Pproj}}
-\providecommand{\Pouter}{\subouter{\Pproj}}
-\DeclareMathOperator{\argmax}{arg\,max}
-\providecommand{\Aineq}{B}
-\providecommand{\Aeq}{A}
-\providecommand{\bineq}{u}
-\providecommand{\beq}{t}
-\DeclareMathOperator{\area}{area}
-\newcommand{\contact}[1]{\Cspace_{#1}}
-\newcommand{\feasible}[1]{\Fspace_{#1}}
-\newcommand{\dd}{\; \mathrm{d}}
 \newcommand{\figwid}{0.22\columnwidth}
 
 \DeclareMathOperator{\atan2}{atan2}
-
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}[theorem]{Definition}
@@ -160,13 +67,14 @@
 Parallel Assembly under Uniform Control Inputs 
 }
 \author{
-Erik D. Demaine,
-S\'andor P. Fekete,
+Sheryl Manzoor,
+%Erik D. Demaine,
+%S\'andor P. Fekete,
 Aaron T. Becker
 \thanks{{
-E.~Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
-S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,
-      \protect\url{s.fekete@tu-bs.de},
+S.~Manzoor is with the  Dept.~of Electrical and Computer Engineering,  University of Houston, Houston, TX 70004, USA {\tt\small smanzoor2@uh.edu}.
+%E.~Demaine is with the Computer Science and Artificial Intelligence Laboratory, MIT, Cambridge, MA 02139, USA,      \protect\url{edemaine@mit.edu},
+%S.~Fekete is with the Dept.~of Computer Science, TU Braunschweig,  M\"uhlenpfordtstr.~23, 38106 Braunschweig, Germany,      \protect\url{s.fekete@tu-bs.de},
 A.~Becker is with the  Dept.~of Electrical and Computer Engineering,  University of Houston, Houston, TX 70004, USA {\tt\small atbecker@uh.edu}.
 }
 } %\end thanks
@@ -184,11 +92,8 @@ obstacle or another robot. In previous work, we demonstrated simulating  arbitra
 
 \end{abstract}
 
-
-%\textcolor{red}{In general pay more attention to structuring each paragraph so that you guide your reader by telling them first what you will accomplish in that paragraph and then making sure you support all your assertions.}
-
 %###############################################################
-\section{Introduction}
+\section{Introduction}\label{sec:Intro}
 %###############################################################
 
 One of the exciting new directions of robotics is the design and development
@@ -353,6 +258,9 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 %###############################################################
 \section{Design Rules}\label{sec:DesignRules}
 %###############################################################
+
+
+\todo{Sheryl, add the algorithmic environment for Build Factory}
 
 Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
 
