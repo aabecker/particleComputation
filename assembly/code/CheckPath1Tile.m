@@ -50,7 +50,7 @@ elseif Direction == 'u'  %item is moving from down to up
     partialAssembly = rot90(partialAssembly);
     partColored = rot90(partColored);
     tmpAssembly = partialAssembly.*partColored;
-elseif Direction == 'd' %item is moving from up to down
+elseif Direction == 'd' %item is moving from up to down 
     Color = partColored(loc(1,1),loc(1,2));
     Location = [loc(1,2),r-loc(1,1)+1];  
     partialAssembly = rot90(partialAssembly,3);
