@@ -1,4 +1,4 @@
-function [foundPath, sequence, dirs]=FindBuildPath(partXY)
+function [foundPath, sequence, dirs, partColoredArray]=FindBuildPath(partXY)
 % Given a polyomino part, searches for a valid build path described by
 % order sequence and move direcions dirs.
 % returns foundPath == true if a path is found, false else.
@@ -18,15 +18,17 @@ if nargin <1
 % partXY= TestDepthFirstSearch();
 % partXY=BigPartTry();
 partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
+
 end
 
 % Returned variables
 foundPath = 'false';  % no valid path has been found yet  
 sequence = [];
 dirs = [];
+partColoredArray = [];
 
-
-for m=1:size(partXY,1) % try all possible start nodes until we get a path that  
+% for m=1:size(partXY,1) % try all possible start nodes until we get a path that  
+for m=1:size(partXY,1)
     Start = partXY(m,:);
     [Output,Seq,Tmppart] = DepthFirstSearch(partXY,Start); %depth first search on part
     partColored = labelColor(Tmppart(:,:,1)); %label color to each item in part
@@ -36,7 +38,8 @@ for m=1:size(partXY,1) % try all possible start nodes until we get a path that
    
     dirsFinal= size(partXY,1)-1; %Array saves the directions of the items
     dirsFinal = char(dirsFinal);
-    dirs2 = ['l';'r';'u';'d'];
+    %dirs2 = ['r';'l';'d';'u'];
+    dirs2 = ['d';'l';'u';'r'];
     for i=2:size(Output,1) 
         for j=1:4
             move = CheckPath1Tile(partialAssembly,Output(i,:),dirs2(j,:),partColored);  
@@ -46,11 +49,12 @@ for m=1:size(partXY,1) % try all possible start nodes until we get a path that
                break;
             end
         end
-        if strcmp(move,'false')
+        if strcmp(move,'false') && m~=size(partXY,1)
+            clear output seq tmp_part partColored partialAssembly dirs_final;
             break;
         end
 
-        if strcmp(move,'true') && i==size(Output,1)  
+        if strcmp(move,'true') && i==size(Output,1)  %If all the moves are true until the loop runs for size of the part then there is a valid path
            foundPath=true; 
         end
     end
@@ -58,6 +62,7 @@ for m=1:size(partXY,1) % try all possible start nodes until we get a path that
     if foundPath==true
        sequence = Output;
        dirs = dirsFinal;
+       partColoredArray = partColored;
        break; 
     end
 
