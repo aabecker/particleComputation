@@ -40,12 +40,6 @@ if nargin< 1
         tileColor = 2;
         numCopies = 10;
         dir = 'd';
-        hopper2 = [3 3 3 3 3 3 3 3; ...
-            3 0 0 0 0 0 0 3; ...
-            3 1 1 1 1 3 0 3; ...
-            3 1 1 1 1 3 0 3; ...
-            3 1 1 0 0 3 0 3; ...
-            3 3 3 3 3 3 0 3];
 end
 
 
@@ -53,7 +47,7 @@ end
 hopper2 = hopper(tileColor, numCopies,4);
 %%%%%%%%%%%%ends%%%%%%%%%%%%%%%%%%%%%%%%
 if dir == 'd'
-    max_partx = max(partXY(:,2));   
+    max_partx = max(partXY(:,2));   %If the new tile is to be added after last column of the part then direction is changed to left
     if  tileXY(1,2) <= max_partx
         [~, factoryObstacleAdditionArray, align] = down_dir(hopper2,partXY,tileXY);
     else
@@ -62,7 +56,7 @@ if dir == 'd'
 end
 
 if dir == 'l'
-    max_party = max(partXY(:,1));
+    max_party = max(partXY(:,1));  %If the new tile is to be added after last row of the part then direction is changed to up
     if tileXY(1,1) <= max_party
         [~, factoryObstacleAdditionArray, align] = left_dir(hopper2,partXY,tileXY);
     else
@@ -71,7 +65,7 @@ if dir == 'l'
 end
 
 if dir == 'u'
-    min_partx = min(partXY(:,2));   
+    min_partx = min(partXY(:,2));   %If the new tile is to be added before first column of the part then direction is changed to right
     if  tileXY(1,2) >= min_partx
         [~, factoryObstacleAdditionArray, align] = up_dir(hopper2,partXY,tileXY);
     else
@@ -80,7 +74,7 @@ if dir == 'u'
 end
 
 if dir == 'r'
-    min_party = min(partXY(:,1));
+    min_party = min(partXY(:,1)); %If the new tile is to be added before first row of the part then direction is changed to down
     if  tileXY(1,1) >= min_party
         [~, factoryObstacleAdditionArray, align] = right_dir(hopper2,partXY,tileXY);
     else
@@ -88,7 +82,7 @@ if dir == 'r'
     end
 end
 
-partXYupdated = [partXY;tileXY];
+partXYupdated = [partXY;tileXY];  
 
 
 
