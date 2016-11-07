@@ -1,39 +1,25 @@
 function [factoryLayoutArray] = concat_factories(all_prev, new, align, hopper_size)
-
-        [rp cp] = size(all_prev);
-        [rn cn] = size(new);
+%Function concatenates all the factory layouts
+%Authors: Sheryl Manzoor and Aaron T. Becker, Oct 19, 2016
+        [rp, cp] = size(all_prev); %size of previous factories
+        [~, cn] = size(new); %size of new factory
         
-        num = align - (hopper_size+2)-1;
+        if align ==0
+            temp_new = new;
+        else
+            num = align - (hopper_size+2)-1;  %rows to be added to new factory
+            temp_new = vertcat(zeros(num,cn),new);
+        end
         
-        temp_new = vertcat(zeros(num,cn),new);
-        [rn cn] = size(temp_new);
-        
-        temp_prev = vertcat(all_prev,zeros(rn-rp,cp));
-        
-        factoryLayoutArray = horzcat(temp_prev,temp_new);
-
-%{
-    %if all_prev == 0 && align==0
-    if align==0
-        %all_prev = new;
-           factoryLayoutArray = horzcat(all_prev,new);
-    
-    %elseif all_prev ~= 0 && align==0
-     %   factoryLayoutArray = horzcat(all_prev,new);
-    else
-        [rp cp] = size(all_prev);
-        [rn cn] = size(new);
-        
-        num = align - (hopper_size+2)-1;
-        
-        temp_new = vertcat(zeros(num,cn),new);
-        [rn cn] = size(temp_new);
-        
-        temp_prev = vertcat(all_prev,zeros(rn-rp,cp));
+        [rn, ~] = size(temp_new);
+        temp_prev = all_prev;
+        if rn >= rp
+            temp_prev = vertcat(all_prev,zeros(rn-rp,cp));
+        else
+            temp_new = vertcat(temp_new,zeros(rp-rn,cn));
+        end
         
         factoryLayoutArray = horzcat(temp_prev,temp_new);
-        
-    end
-    
-%}
+
+
 end
