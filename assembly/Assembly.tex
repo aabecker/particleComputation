@@ -261,6 +261,32 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 
 
 \todo{Sheryl, add the algorithmic environment for Build Factory}
+\begin{algorithm} 
+\caption{The BuildFactory algorithm}
+\begin{algorithmic}[1]
+ \Procedure {BuildFactory}{$partXY$, $numCopies$}
+ \Procedure {FindBuildPath}{$partXY$}
+ \If{$false=IsPossible$}
+ return
+ \EndIf
+ \EndProcedure
+ \For{$i\leftarrow 2,size(sequenceXY)$}
+\Procedure {factoryAddTile}{$partXYbuild$,$XYcoord$,$directions$,$partColoredArray$}
+return factoryObstacleAdditionArray, partXYbuild
+\EndProcedure
+\Procedure {concatfactories}{$factoryLayoutArray$,$factoryObstacleadditionArray$}
+return factoryLayoutArray
+\EndProcedure
+\EndFor
+\Procedure{partFactorytest}{$factoryLayoutArray$}
+\EndProcedure
+\EndProcedure
+\end{algorithmic}
+ \end{algorithm} 
+
+
+
+
 
 Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
 
