@@ -9,7 +9,7 @@ function [IsPossible, factoryLayoutArray]=BuildFactory(partXY,numCopies)
 %   factoryLayoutArray: If 'IsPossible' 2D array of obstacles and part hoppers filled with
 %   colored tiles.  The factory produces partXY
 %
-%Authors: Sheryl Manzoor and Aaron T. Becker, Oct 19, 2016
+%Authors: Sheryl Manzoor and Aaron T. Becker, Sep 27, 2016
 
 
 if nargin <1
@@ -29,17 +29,18 @@ align_prev = 0;
 %  1.) check for a valid build path.  If impossible, return false
 [IsPossible, sequenceXY, dirs, partColoredArray]=FindBuildPath(partXY);
 if false == IsPossible
-    display('No build path found by assembly one-tile-at-a-time, returning')
+    disp('No build path found by assembly one-tile-at-a-time, returning')
     return
 end
 
 
 partXYbuild = sequenceXY(1,:); % the part has first tiles
+% numCopies = 10;
 for i = 2:size(sequenceXY,1)
     
     XYcoord = sequenceXY(i,:);
-    [partXYbuild, factoryObstacleAdditionArray, align_new] = factoryAddTile(partXYbuild,  XYcoord, dirs(i-1), partColoredArray(XYcoord(1,1),XYcoord(1,2)),numCopies); 
- %partXYbuild=part built before adding a tile
+    [partXYbuild, factoryObstacleAdditionArray, align_new] = factoryAddTile(partXYbuild,  XYcoord, dirs(i-1), partColoredArray(XYcoord(1,1),XYcoord(1,2)),numCopies,i); 
+%partXYbuild=part built before adding a tile
  %XYcoord = coordinates of the new tile to be added to the part
  %dirs(i-1)=direction of the new tile
  %partColoredArray(XYcoord)= color of new tile
@@ -47,29 +48,34 @@ for i = 2:size(sequenceXY,1)
  %Outputs: partXYbuild = part after addition of new tile
  %facoryObstacleAdditionArray = array of part hopper, obstacles and free
  %space
- %align_new = ?
+ 
     
     if i==2 %Builds the first factory's layout
-        tileColor = partColoredArray(sequenceXY(1,1),sequenceXY(1,2));   %Color of the first tile in the sequence array
-        hopper2 = hopper(tileColor, numCopies,4); %Returns the hopper arrray
+        tileColor = partColoredArray(sequenceXY(1,1),sequenceXY(1,2));
+        hopper2 = hopper(tileColor, numCopies,4);
         %%%%%%%%%%%%ends%%%%%%%%%%%%%%%%%%%%%%%%
-          [~, factoryLayoutArray] = first_fac(hopper2);
+        [~, factoryLayoutArray] = first_fac(hopper2);
         
     end
     
-    factoryLayoutArray = concat_factories(factoryLayoutArray,factoryObstacleAdditionArray, align_prev,ceil(numCopies/4));
-    hopper_size = ceil(numCopies/4);
+    if i==2
+        factoryLayoutArray = vertcat(zeros(4,size(factoryLayoutArray,2)),factoryLayoutArray);
+    else
+        factoryLayoutArray = vertcat(zeros(2,size(factoryLayoutArray,2)),factoryLayoutArray);
+    end
+    
+    factoryLayoutArray = concat_factories(factoryLayoutArray,factoryObstacleAdditionArray, align_prev,ceil(numCopies/4)+(((i-1)*4)-2));
+    hopper_size = ceil(numCopies/4)+(((i-1)*4)-2);
     if align_prev ==0
         num =0 ;
     else
         num = align_prev - (hopper_size+2)-1;
     end
-    align_prev = num + align_new+1;
-    
+    align_prev = num + align_new+1;    
 
 end
 
-for i=1:size(factoryLayoutArray,1)   % labels of 1 and 2 are changed to 2 and 3; obstacles represented by 3 are changed to 1  for the function partFactory_test
+for i=1:size(factoryLayoutArray,1) % labels of 1 and 2 are changed to 2 and 3; obstacles represented by 3 are changed to 1  for the function partFactory_test
    for j=1:size(factoryLayoutArray,2)
        if factoryLayoutArray(i,j) == 1
             factoryLayoutArray_m(i,j) = 3;
