@@ -87,7 +87,8 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcwV2();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4v2();
-[G.obstacle_pos,RobotPts,strTitle] = memoryJarrettv01();
+[G.obstacle_pos,RobotPts,strTitle] = memoryJarrettv02();
+
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts] = ddXORgatecw; %sum bit
 %[G.obstacle_pos,RobotPts] = memorycw; %memory
@@ -347,6 +348,55 @@ end
             1 1 1 1 1 1 1 1 1];
         blk = flipud(blk);
     end
+
+function [blk,RobotPts,strTitle] = memoryJarrettv02
+        % sum bit for dual-rail full adder   d,l,d,r,d,l,d
+        RobotPts = [];
+        % 31x15
+        %   1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+        %      A   B   A'  B'
+        blk=[
+            1 1 0 1 1 0 1 1 1 1 1 1 1 1 0 1;
+            1 1 0 1 1 0 1 1 1 1 1 1 1 1 0 1;
+            1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1;
+            1 1 0 0 1 0 1 1 0 1 1 0 0 1 0 1;
+            1 0 0 0 0 0 0 0 0 0 1 0 0 1 0 1;
+            1 1 1 0 0 0 1 1 1 0 1 0 0 1 0 1;
+            1 1 0 0 0 0 0 0 0 0 0 0 0 1 0 1;
+            1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+            1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1;
+            1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1
+            ];
+        w = size(blk,2);
+        h = size(blk,1);
+        ins = 2;
+        for c =1:2^ins
+            str = dec2bin(c-1,ins);
+            
+            if str(1) == '0' && str(2) == '0'
+                   RobotPts(end+1,:) = [w*(c-1)+3,h,-1,2,1,1];
+            elseif str(1) == '0' && str(2) == '1'
+                   RobotPts(end+1,:) = [w*(c-1)+6,h,-1,1,1,1];
+                else
+                    RobotPts(end+1,:) = [w*(c-1)+15,h,-1,4,1,1];
+                end
+
+        end
+        for i = 1:3
+            RobotPts(end+1,:) = [9+(i-1)*w,6,-1,3,2,1]; %slider, true state
+            
+        end
+        for i = 4:4
+            RobotPts(end+1,:) = [12+(i-1)*w,3,-1,3,2,1]; %slider, false state
+            
+        end
+        
+        RobotPts(:,3) = (1:size(RobotPts,1))';
+        blk = flipud(repmat(blk,1,2^ins));
+        strTitle = 'Memory gate, Jarrett v01';
+        
+    end
+
 
     function [blk,RobotPts] = ddNOTgate() %#ok<DEFNU>
         % this is a reversible cross-over switch that is also a NOT gate for
