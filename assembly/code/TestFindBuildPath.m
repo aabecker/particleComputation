@@ -18,6 +18,6 @@ function [foundPath, sequence, dirs]=TestFindBuildPath()
 %Two spirals case: returns moveValid 'false'
 % partXY=[5 2;6 2;7 2;8 2;9 2;10 2;5 3;5 4;5 5;5 6;6 6;7 6;8 6;8 5;8 4;7 4;10 3;10 4; 10 5;10 6;10 7;10 8;10 9;10 10;10 11;10 12;9 12;8 12;7 12;6 12;5 12;5 11;5 10;5 9;5 8;6 8;7 8;8 8;8 9;8 10;7 10];  
 
-[foundPath, sequence, dirs]=FindBuildPath(partXY);
+% [foundPath, sequence, dirs]=FindBuildPath(partXY);
 
 end
