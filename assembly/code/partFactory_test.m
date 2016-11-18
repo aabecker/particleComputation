@@ -7,6 +7,7 @@ function [] = partFactory_test(path)
 
 
 G.fig = figure(2);
+set(gcf,'Color','black')
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
 G.game = flipud(dlmread(path));
 G.obstacle_pos = (G.game==1);  %%???
