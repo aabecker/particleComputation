@@ -77,10 +77,18 @@ G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
     hsv(numel(unique(tmpAssembly))-1);];
 colormap(G.colormap);
-G.axis=imagesc(tmpAssembly);
+%G.axis=imagesc(tmpAssembly);
+set(gca,'Ydir','reverse');
 axis equal
+axis([ min(partXY(:,2))-2,max(partXY(:,2))+2,min(partXY(:,1))-2,max(partXY(:,1))+2])
+
 for k = 1:i
     s = Seq(k);
+    clr = partColoredArray(Output(k,1),Output(k,2));
+    rectangle('Position',[Output(k,2)-1/2,Output(k,1)-1/2,1,1],...
+        'FaceColor',G.colormap(clr+2,:),'linewidth',1);
+
+    
     if s > 1
     ht = text(Output(k,2),Output(k,1),[num2str(s),textarrow( dirs(s-1) )],'HorizontalAlignment','center');
     else
