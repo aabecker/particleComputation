@@ -7,7 +7,7 @@ function [foundPath, sequence, dirs]=TestFindBuildPath()
 % partXY = [1 2;2 2;3 2;4 3;5 3;4 2]; %contains the item positions for the Part
 
 % '#' shaped part
-% partXY=[7 6;9 6;6 7;7 7;8 7;9 7;10 7;7 8;9 8;6 9;7 9;8 9;9 9;10 9;7 10;9 10];
+ partXY=[7 6;9 6;6 7;7 7;8 7;9 7;10 7;7 8;9 8;6 9;7 9;8 9;9 9;10 9;7 10;9 10];
  
 % Spiral part inner node [5 5]
 % partXY=[4 2;5 2;6 2;7 2; 8 2; 8 3; 8 4; 8 5; 8 6; 8 7; 7 7; 6 7; 5 7; 4 7; 4 3; 4 4;4 5;5 5];    
