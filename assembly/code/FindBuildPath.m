@@ -75,7 +75,9 @@ G.fig = figure(50);
 set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
-    hsv(numel(unique(tmpAssembly))-1);];
+    1,0,0;
+    0.4,0.4,1];
+   % hsv(numel(unique(tmpAssembly))-1);];
 colormap(G.colormap);
 %G.axis=imagesc(tmpAssembly);
 set(gca,'Ydir','reverse');

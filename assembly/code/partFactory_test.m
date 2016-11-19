@@ -13,11 +13,14 @@ G.game = flipud(dlmread(path));
 G.obstacle_pos = (G.game==1);  %%???
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
-    hsv(numel(unique(G.game))-2);];
+    1,0,0;
+    0.4,0.4,1];
+    %hsv(numel(unique(G.game))-2);];
 colormap(G.colormap);
 G.axis=imagesc(G.game);
 set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off','color',0.8*[1,1,1]);
 axis equal
+axis tight
 
 %assignin('base','P',G);
 
@@ -27,7 +30,6 @@ drawGameboard();
 
     function keyhandler(src,evnt) %#ok<INUSL>
         key = evnt.Key;
-        step = [0,0];
         if strcmp(key,'leftarrow') || strcmp(key,'-x') %-x
             step = -[0,1];
         elseif strcmp(key,'rightarrow')|| strcmp(key,'+x') %+x
@@ -36,6 +38,8 @@ drawGameboard();
             step = [1,0];
         elseif strcmp(key,'downarrow')|| strcmp(key,'-y') %-y
             step = -[1,0];
+        else
+            return
         end
         drawGameboard();
         revertList = [];
@@ -66,7 +70,6 @@ drawGameboard();
                 end
 
             end
-            
             
             % go recursively through revert list, moving them back in the image
             % and adding any shapes they collide with back to the
@@ -102,7 +105,9 @@ drawGameboard();
                 end
             end
         end
+        colormap(G.colormap(unique(G.game)+1,:));
         set(G.axis,'CData',G.game)
+        drawnow
     end
 
 
