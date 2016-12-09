@@ -264,23 +264,23 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \begin{algorithm} 
 \caption{The BuildFactory algorithm}
 \begin{algorithmic}[1]
- \Procedure {BuildFactory}{$partXY$, $numCopies$}
- \Procedure {FindBuildPath}{$partXY$}
+ \Function{BuildFactory}{$partXY$, $numCopies$}
+ \Function{FindBuildPath}{$partXY$}
  \If{$false=IsPossible$}
  return
  \EndIf
- \EndProcedure
+ \EndFunction
  \For{$i\leftarrow 2,size(sequenceXY)$}
-\Procedure {factoryAddTile}{$partXYbuild$,$XYcoord$,$directions$,$partColoredArray$}
+\Function{factoryAddTile}\newline{$partXYbuild$,$XYcoord$,$directions$,$partColoredArray$}
 return factoryObstacleAdditionArray, partXYbuild
-\EndProcedure
-\Procedure {concatfactories}{$factoryLayoutArray$,$factoryObstacleadditionArray$}
+\EndFunction
+\Function{concatfactories}\newline{$factoryLayoutArray$,$factoryObstacleadditionArray$}
 return factoryLayoutArray
-\EndProcedure
+\EndFunction
 \EndFor
-\Procedure{DisplayFactory}{$factoryLayoutArray$}
-\EndProcedure
-\EndProcedure
+\Function{DisplayFactory}\newline{$factoryLayoutArray$}
+\EndFunction
+\EndFunction
 \end{algorithmic}
  \end{algorithm} 
 
