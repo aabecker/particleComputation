@@ -248,6 +248,43 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \end{figure}
 
 
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{7tilefactory.jpg}
+\end{overpic}
+\caption{\label{fig:7tilefactory}A seven tile factory
+}
+\end{figure}
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{24tilefactory.jpg}
+\end{overpic}
+\caption{\label{fig:24tilefactory}A twenty four tile factory
+}
+\end{figure}
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{HopperDelays.jpg}
+\end{overpic}
+\caption{\label{fig:24tilefactory}Hopper with delays
+}
+\end{figure}
+
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{DownMove.jpg}
+\end{overpic}
+\caption{\label{fig:24tilefactory}Tile being attached to a three tile part by down move
+}
+\end{figure}
+
+
 
 
 
@@ -261,6 +298,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 
 
 \todo{Sheryl, add the algorithmic environment for Build Factory}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 \begin{algorithm} 
 \caption{The BuildFactory algorithm}
 \begin{algorithmic}[1]
@@ -282,9 +320,130 @@ return factoryLayoutArray
 \EndFunction
 \EndFunction
 \end{algorithmic}
- \end{algorithm} 
+\end{algorithm} 
+ 
+ 
+ 
+\begin{algorithm} 
+\caption{The factoryAddTile algorithm}
+\begin{algorithmic}[2]
+\Function{factoryAddTile}{$partXY$, $tileXY$, $dir$, $tileColor$, $numCopies$, $pos$}
+\Function{Hopper}{$tileColor$,$numCopies$,$4$,$pos$}
+\newline return hopper, hopper_size
+\EndFunction
+\If{$dir='d'$}
+$maxpartx=max(partXY(:,2));$
+\If{$tileXY(1,2)<=maxpartx$}
+\Function{downdir}{$hopper$,$partXY$,$tileXY$}
+return factoryObstacleAdditionArray, align
+\EndFunction
+\Else
+\Function{leftdir}\newline{$hopper$,$partXY$,$tileXY$}
+\newline return factoryObstacleAdditionArray, align
+\EndFunction
+\EndIf
+\EndIf
+
+\If{$dir='l'$}
+$maxparty=max(partXY(:,1));$
+\If{$tileXY(1,1)<=maxparty$}
+\Function{leftdir}\newline{$hopper$,$partXY$,$tileXY$}
+\newline return factoryObstacleAdditionArray, align
+\EndFunction
+\Else
+\Function{updir}{$hopper$,$partXY$,$tileXY$}
+return factoryObstacleAdditionArray, align
+\EndFunction
+\EndIf
+\EndIf
 
 
+\If{$dir='u'$}
+$minpartx=min(partXY(:,2));$
+\If{$tileXY(1,2)>=minpartx$}
+\Function{updir}{$hopper$,$partXY$,$tileXY$}
+return factoryObstacleAdditionArray, align
+\EndFunction
+\Else
+\Function{rightdir}{\newline $hopper$,$partXY$,$tileXY$}
+\newline return factoryObstacleAdditionArray, align
+\EndFunction
+\EndIf
+\EndIf
+
+
+\If{$dir='r'$}
+$minparty=min(partXY(:,1));$
+\If{$tileXY(1,1)>=minparty$}
+\Function{rightdir}{\newline $hopper$,$partXY$,$tileXY$}
+\newline return factoryObstacleAdditionArray, align
+\EndFunction
+\Else
+\Function{downdir}{$hopper$,$partXY$,$tileXY$}
+return factoryObstacleAdditionArray, align
+\EndFunction
+\EndIf
+\EndIf
+\newline return partXYupdated, factoryObstacleAdditionArray, align, hopper_size
+\EndFunction
+\end{algorithmic}[2]
+\end{algorithm}
+ 
+ 
+ 
+ 
+ 
+ 
+\begin{algorithm} 
+\caption{The FindBuildPath algorithm}
+\begin{algorithmic}[3]
+\Function{FindBuildPath}{$partXY$}
+\For{$m=1:partXY(:,1)$}
+\newline $Start = partXY(m,:);$
+\Function{DepthFirstSearch}{$partXY$,$Start$}
+return Output, Seq, Tmppart
+\EndFunction
+\newline $partColored = labelColor(Tmppart(:,:,1));$
+$partialAssembly = zeros(size(Tmppart(:,:,1),1),size(Tmppart(:,:,1),2));$
+$partialAssembly(Output(1,1),Output(1,2)) = 1;$
+$dirsFinal= size(partXY,1)-1;$
+\newline $dirsFinal = char(dirsFinal);$
+\newline $dirs2 = ['d';'l';'u';'r'];$
+\For{$i=2:size(Output,1)$}
+\For{$j=1:4$}
+\Function{CheckPath1Tile}{\newline$partialAssembly$,$Output(i,:)$,$dirs2(j,:)$,$partColored$}
+\newline return move
+\EndFunction
+\If{$strcmp(move,'true')$}
+$partialAssembly(Output(i,1),Output(i,2)) = 1;$
+$dirsFinal(i-1,:) = num2str(dirs2(j,:));$
+\newline $break;$
+\EndIf
+\EndFor
+\If{$strcmp(move,'false') \& m~=size(partXY,1)$}
+$clear output seq tmp_part partColored partialAssembly dirs_final;$
+$break;$
+\EndIf
+\If{$strcmp(move,'true') \& i==size(Output,1)$}
+$foundPath=true; $
+\EndIf
+\EndFor
+\If{$foundPath==true$}
+$sequence = Output;$
+$dirs = dirsFinal;$
+$partColoredArray = partColored;$
+$break;$ 
+\EndIf
+\EndFor
+\newline return foundPath, sequence, dirs, partColoredArray
+\EndFunction
+\end{algorithmic}[3]
+\end{algorithm} 
+  
+ 
+ 
+ 
+ 
 
 
 
@@ -299,6 +458,10 @@ The third shape on the right is two mirrored spirals that are connected.  This p
 \caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. The rightmost part cannot be built by additive construction. 
 }
 \end{figure} 
+
+
+
+
 
 
  A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
