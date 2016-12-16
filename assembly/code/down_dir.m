@@ -1,11 +1,14 @@
 function [partXYupdated, factoryObstacleAdditionArray, align] = down_dir(hopper,partXY,  tileXY)
  
-%Function for the tile added through downward move
-%%Authors: Sheryl Manzoor and Aaron T. Becker, Oct 19, 2016
+%Note to self: still-to-do - tile that is to be added at the right most
+%edge from top of the part is not yet catered in the code
 
 obs = 3;
 if nargin<1
-  
+   
+%    partXY = [2 1; 2 2; 2 3; 2 4; 2 5; ...
+%         3 1; 3 2; 3 3; 3 4; 3 5];
+%    tileXY = [1 3];
    partXY = [5 5; 5 4; 5 3; 5 2; 5 1];
    tileXY = [4 2];
    hopper = [3 3 3 3 3 3 3 3; ...
@@ -18,17 +21,19 @@ if nargin<1
 end
 
 
-init_hop_width = size(hopper,1); %rows of the hopper
+init_hop_width = size(hopper,1);
 % init_hop_length = size(hopper,2);
 
 part_length = abs(max(partXY(:,2) - min(partXY(:,2))))+1; %length of part
 part_width = abs(max(partXY(:,1)) - min(partXY(:,1)))+1; %width of part
 posx_obs = abs(max(partXY(:,2) - tileXY(:,2))); %Colummn position of first obstacle
 
-hopper = horzcat(hopper, zeros(size(hopper,1),posx_obs));
+%hopper = horzcat(hopper, zeros(size(hopper,1),posx_obs));
+hopper = horzcat(hopper, obs*ones(size(hopper,1),posx_obs));
 
 
 %%%%%%%%%%%Add White space to finalize the width of the hopper%%%%%
+%height_obs = abs(max(partXY(:,1) - tileXY(:,1))); %row position of the tile w.r.t part
 add_width = (2*part_width)+3+1;
 hopper = vertcat(hopper, zeros(add_width,size(hopper,2)));
 
