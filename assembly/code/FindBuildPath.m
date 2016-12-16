@@ -71,7 +71,7 @@ end
 
 
 tmpAssembly = partialAssembly.*partColored;
-G.fig = figure(50);
+G.fig = figure(50); clf;
 set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
@@ -84,12 +84,11 @@ set(gca,'Ydir','reverse');
 axis equal
 axis([ min(partXY(:,2))-2,max(partXY(:,2))+2,min(partXY(:,1))-2,max(partXY(:,1))+2])
 
-for k = 1:i
+for k = 1:i % draw each tile individually.
     s = Seq(k);
     clr = partColoredArray(Output(k,1),Output(k,2));
     rectangle('Position',[Output(k,2)-1/2,Output(k,1)-1/2,1,1],...
         'FaceColor',G.colormap(clr+2,:),'linewidth',1);
-
     
     if s > 1
     ht = text(Output(k,2),Output(k,1),[num2str(s),textarrow( dirs(s-1) )],'HorizontalAlignment','center');

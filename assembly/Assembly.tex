@@ -84,11 +84,12 @@ A.~Becker is with the  Dept.~of Electrical and Computer Engineering,  University
 
 
 \begin{abstract} 
-We present fundamental progress on parallel assembly using large swarms of micro- or nano-scale robots
-in complex environments, controlled not by individual navigation, but by a uniform global, external force.
-Consider a 2D grid world, in which all obstacles and robots are unit squares,
-and for each actuation, robots move maximally until they collide with an
-obstacle or another robot. In previous work, we demonstrated simulating  arbitrary digital circuits. In this work we describe algorithms for designing obstacles to create arbitrary 2D structures
+We present fundamental progress on parallel assembly using large swarms of micro- or nano-scale particles
+in complex environments, controlled not by individual navigation, but by a uniform global, external force with the same effect on each particle.
+Consider a 2D grid world, in which all obstacles and particles are unit squares,
+and for each actuation, robots move maximally until they collide with an obstacle or another robot. 
+ In previous work, we demonstrated simulating  arbitrary digital circuits. 
+ In this work we describe algorithms for designing obstacles to create arbitrary 2D structures
 
 \end{abstract}
 
@@ -132,15 +133,23 @@ of having to go through external computational devices.
 %order to gain insight for massively-parallel, automated assembly at the micro
 %and nano length-scales.
 
-   \begin{figure}
+\begin{figure}
    \centering
-   \href{http://youtu.be/EJSv8ny31r8}{
-\begin{overpic}[width =\columnwidth]{DSC_0093lowres.JPG}%\put(30,-7){ $m=1$, partition 1}
-\end{overpic}}
-\caption{\label{fig:prototype}
-Gravity-fed hardware implementation of  particle computation.  The reconfigurable prototype is setup as a {\sc fan-out} gate using a 2$\times$1 robot (white). This paper proves that such a gate is impossible using only 1$\times$1 robots. \href{http://youtu.be/EJSv8ny31r8}{See the demonstrations in the video attachment \url{http://youtu.be/EJSv8ny31r8}.} }
-\vspace{-1em}
+\begin{overpic}[width =\columnwidth]{7tilefactory.jpg}
+\end{overpic}
+\caption{\label{fig:7tilefactory}A seven tile factory.  Each particle is actuated simultaneously by the same global control field.  The factory (black tiles) is designed so each clockwise control input assembles another component.
+}
 \end{figure}
+
+%   \begin{figure}
+%   \centering
+%   \href{http://youtu.be/EJSv8ny31r8}{
+%\begin{overpic}[width =\columnwidth]{DSC_0093lowres.JPG}%\put(30,-7){ $m=1$, partition 1}
+%\end{overpic}}
+%\caption{\label{fig:prototype}
+%Gravity-fed hardware implementation of  particle computation.  The reconfigurable prototype is setup as a {\sc fan-out} gate using a 2$\times$1 robot (white). This paper proves that such a gate is impossible using only 1$\times$1 robots. \href{http://youtu.be/EJSv8ny31r8}{See the demonstrations in the video attachment \url{http://youtu.be/EJSv8ny31r8}.} }
+%\vspace{-1em}
+%\end{figure}
 
  \subsection{Model}
   
@@ -204,9 +213,11 @@ This resembles the results of our paper, which shows that unit-size particles ar
 \section{Construction}\label{sec:Construction}
 %###############################################################
 
+Two design factories that build arbitrary 2D shaped polyominos, we first assieng species to individual tiles of the polymonio, next discover a build path, then iteratively build factory components that add each tile to partially assembled polyomino.
+
 
 %###############################################################
-\subsection{How many species are required to build an arbitrary 2D shape?}\label{subsec:RobotSpecies}
+\subsection{Arbitrary 2D shapes require two particle species}\label{subsec:RobotSpecies}
 %###############################################################
 A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge. Polyominoes have four-point connectivity.
 
@@ -233,7 +244,18 @@ including electric charge, ionic charge, magnetic polarity, or hook-and-loop typ
 
 
 %###############################################################
-\subsection{Hopper Construction}\label{subsec:HopperConstruction}
+\subsection{Discovering a build path}
+%###############################################################
+
+\todo{move algorithm here}
+
+%###############################################################
+\subsection{Assembling tiles}
+%###############################################################
+
+
+%###############################################################
+\subsubsection{Hopper Construction}\label{subsec:HopperConstruction}
 %###############################################################
 Two-part adhesives react when the components mix.  Placing the components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
 %WIKI: harden by mixing two or more components which chemically react.
@@ -248,13 +270,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \end{figure}
 
 
-\begin{figure}
-   \centering
-\begin{overpic}[width =\columnwidth]{7tilefactory.jpg}
-\end{overpic}
-\caption{\label{fig:7tilefactory}A seven tile factory
-}
-\end{figure}
+
 
 
 \begin{figure}
@@ -293,21 +309,24 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 %###############################################################
 
 %###############################################################
-\section{Design Rules}\label{sec:DesignRules}
+\section{Comlexity handled in this paper}\label{sec:DesignRules}
 %###############################################################
 
 
 \todo{Sheryl, add the algorithmic environment for Build Factory}
-\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 \begin{algorithm} 
-\caption{The BuildFactory algorithm}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+\scriptsize
+\caption{ \sc{BuildFactory}($partXY$, $numCopies$)}
+%\Require $partXY$ is a 4-connected polyomino.  $numCopies$ is the number of parts desired.
 \begin{algorithmic}[1]
- \Function{BuildFactory}{$partXY$, $numCopies$}
- \Function{FindBuildPath}{$partXY$}
+% \Function{BuildFactory}{$partXY$, $numCopies$}
+\State $\{ IsPossible,$directions$,$partColoredArray \}$  \leftarrow$ {\sc{FindBuildPath}}($part_{xy}$)
  \If{$false=IsPossible$}
  return
  \EndIf
- \EndFunction
+ \State Add First hopper
+% \EndFunction
  \For{$i\leftarrow 2,size(sequenceXY)$}
 \Function{factoryAddTile}{\newline$partXYbuild$,$XYcoord$,$directions$,$partColoredArray$}
 return factoryObstacleAdditionArray, partXYbuild
@@ -317,7 +336,6 @@ return factoryLayoutArray
 \EndFunction
 \EndFor
 \Function{DisplayFactory}{\newline$factoryLayoutArray$}
-\EndFunction
 \EndFunction
 \end{algorithmic}
 \end{algorithm} 
