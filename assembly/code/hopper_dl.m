@@ -42,15 +42,14 @@ if mod(pos,2) ==0
     rows = 2+(tot*2)+3;
     cols = 3+ (tot+1)*2; 
     delay_h = obs*ones(rows,cols);
-    for i=1:tot
+    for i=1:tot %placing yellow delays
         numy = 4 + (i-1)*dy;
         numx = 1 + (i-1)*dx;    
         delay_h(end-starty-numy:end-starty-numy+3,numx:1+numx) = x1; 
     end
     dy = 2;
     dx = 2;
-%     starty = 0;
-    for j=1:tot-1
+    for j=1:tot-1   %placing blue delays
         numy = 3 + (j-1)*dy;
         numx = 5 + (j-1)*dx;    
         delay_h(end-numy:end-numy+3,numx:1+numx) = x2; 
@@ -68,6 +67,7 @@ if mod(pos,2) ==0
         delay_h(end-2,7:end-1)=0;
     else
         delay_h(end,end-2)=obs;
+        delay_h(:,end-3:end-2)=[];        
     end
 else
     pos=pos+1;
@@ -86,7 +86,7 @@ else
     end
     dy = 2;
     dx = 2;
-%     starty = 0;
+    starty = 0;
     for j=1:tot-1
         numy = 3 + (j-1)*dy;
         numx = 5 + (j-1)*dx;    
@@ -115,11 +115,12 @@ else
         delay_h(end-3:end,5:1+5) = obs*(1-x2); 
         delay_h(end-1,5)=obs;
         delay_h(1,end-1)=obs;
+        delay_h(:,end-5:end-2)=[];
     end
 end
 
-[rh , ~] = size(hopper);
-[rd , ~] = size(delay_h);
+[rh ch] = size(hopper);
+[rd cd] = size(delay_h);
 
 if rd-5 >0
     hopper = vertcat(obs*ones(rd-5,size(hopper,2)),hopper);
