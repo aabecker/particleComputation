@@ -39,7 +39,7 @@ hopper = vertcat(hopper, zeros(add_width,size(hopper,2)));
 
                      
 %%%%%%%%%%Add Right stop Obstacle%%%%%%%%%%%%%
-hopper(init_hop_width+1:init_hop_width+part_width,end) = obs; %obstacle added
+hopper(init_hop_width+1:init_hop_width+part_width+1,end) = obs; %obstacle added
                         %to stop the 'Right' motion of the part and add the
                         %tile. Obstacle height is same as width of the part
                       
@@ -54,10 +54,12 @@ hopper(end-1:end, 1:end) = obs; %define the bottom
                         %obstacle to stop the "downward" motion of the part
                         
 %%%%%%%%%Add Left Obstacle%%%%%%%%%
-hopper(size(hopper,1)-part_width-1-2:size(hopper,1)-2,1) = obs; 
+%hopper(size(hopper,1)-part_width-1-2:size(hopper,1)-2,1) = obs; 
+hopper(size(hopper,1)-part_width-1-2:size(hopper,1)-2,1:size(hopper,2)-part_length-3) = obs; 
 %obstacle added to stop the 'Left' motion of the part        
 
-hopper(size(hopper,1)-part_width-1-2,1:part_length+1) = obs; 
+%hopper(size(hopper,1)-part_width-1-2,1:part_length+1) = obs; 
+hopper(size(hopper,1)-part_width-1-2,size(hopper,2)-part_length-3:size(hopper,2)-part_length-2) = obs; 
 %obstacle added to stop the 'Upward' motion of the part
 
 align=size(hopper,1)-part_width-1-2;

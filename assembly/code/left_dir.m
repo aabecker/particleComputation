@@ -53,10 +53,12 @@ hopper(end-1:end, 1:end) = obs; %define the bottom
                         %obstacle to stop the "downward" motion of the part
                         
 %%%%%%%%%Add Left Obstacle%%%%%%%%%
-hopper(size(hopper,1)-part_width-1-2-height_obs:size(hopper,1)-2,1) = obs; 
+%hopper(size(hopper,1)-part_width-1-2-height_obs:size(hopper,1)-2,1) = obs; 
+hopper(size(hopper,1)-part_width-1-2-height_obs:size(hopper,1)-2,1:size(hopper,2)-part_length-4) = obs; 
 %obstacle added to stop the 'Left' motion of the part        
 
-hopper(size(hopper,1)-part_width-1-2-height_obs,1:part_length+1) = obs; 
+%hopper(size(hopper,1)-part_width-1-2-height_obs,1:part_length+1) = obs; 
+hopper(size(hopper,1)-part_width-1-2-height_obs,size(hopper,2)-part_length-4:size(hopper,2)-part_length-3) = obs; 
 %obstacle added to stop the 'Upward' motion of the part
 
 align=size(hopper,1)-part_width-1-2-height_obs;
