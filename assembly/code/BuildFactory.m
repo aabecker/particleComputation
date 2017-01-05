@@ -12,8 +12,8 @@ function [IsPossible, factoryLayoutArray]=BuildFactory(partXY,numCopies)
 %Authors: Sheryl Manzoor and Aaron T. Becker, Sep 27, 2016
 
 if nargin <1
+%     partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3];
     partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3];
-    %partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3];
 %     partXY = [5 3;4 3;4 2;3 2];
 %     partXY=[7 6;9 6;6 7;7 7;8 7;9 7;10 7;7 8;9 8;6 9;7 9;8 9;9 9;10 9;7 10;9 10];
 %     partXY=[5,2;6,2;7,2;8,2;9,2;10,2;5,3;5,4;6,4;7,4;8,4;9,4;10,4;5,5;10,5;5,6;7,6;8,6;10,6;5,7;7,7;10,7;5,8;7,8;8,8;9,8;10,8;10,9;10,10;10,11;10,12;9,10;9,12;8,10;8,12;7,10;7,12;6,10;6,12;5,10;5,11;5,12];
@@ -34,6 +34,9 @@ end
 factoryLayoutArray = [];
 align_prev = 0;
 %  1.) check for a valid build path.  If impossible, return false
+%sequenceXY = sequence coordinates(r,c) of the tiles
+%dirs =array of direction from which each tile have to be added
+%partColoredArray = matrix of tile colors 
 [IsPossible, sequenceXY, dirs, partColoredArray]=FindBuildPath(partXY);
 if false == IsPossible
     disp('No build path found by assembly one-tile-at-a-time, returning')
