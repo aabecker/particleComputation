@@ -325,53 +325,39 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
  \If{$false=IsPossible$}
  return
  \EndIf
- \State Add First hopper
 % \EndFunction
  \For{$i\leftarrow 2,size(sequenceXY)$}
-\Function{factoryAddTile}{\newline$partXYbuild$,$XYcoord$,$directions$,$partColoredArray$}
-return factoryObstacleAdditionArray, partXYbuild
-\EndFunction
-\Function{concatfactories}{\newline$factoryLayoutArray$,$factoryObstacleadditionArray$}
-return factoryLayoutArray
-\EndFunction
+\State$\{ factoryAdditionArray, $partXYbuild\}$\leftarrow${\sc{factoryAddTile}}(\newline$partXYbuild$,$XYcoord$,$directions$,$partColoredArray$)
+\State$\{ factoryLayoutArray\}\leftarrow${\sc{concatfactories}}(\newline$factoryLayoutArray$,$factoryObtacleadditionArray$)
 \EndFor
-\Function{DisplayFactory}{\newline$factoryLayoutArray$}
-\EndFunction
+\State{\sc{DisplayFactory}}($factoryLayoutArray$)
 \end{algorithmic}
 \end{algorithm} 
  
  
  
 \begin{algorithm} 
+\newcommand\algotext[2]{\end{algorithmic}#2\begin{algorithmic}[2]}
+\scriptsize
 \caption{The factoryAddTile algorithm}
 \begin{algorithmic}[2]
-\Function{factoryAddTile}{$partXY$, $tileXY$, $dir$, $tileColor$, $numCopies$, $pos$}
-\Function{Hopper}{$tileColor$,$numCopies$,$4$,$pos$}
-\newline return hopper, hopper_size
-\EndFunction
+\State$\{partXYupdated, $factoryObstacleAdditionArray$, $align$, \newline$hopper_size\}$\leftarrow${\sc{factoryAddTile}}(\newline$partXY$, $tileXY$, $dir$, $tileColor$, $numCopies$, $pos$)
+\State$\{ hopper,$hopper_size\}$\leftarrow${\sc{Hopper}}(\newline$tileColor$,$numCopies$,$4$,$pos$)
 \If{$dir='d'$}
 $maxpartx=max(partXY(:,2));$
 \If{$tileXY(1,2)<=maxpartx$}
-\Function{downdir}{$hopper$,$partXY$,$tileXY$}
-return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{downdir}}(\newline$hopper$,$partXY$,$tileXY$)
 \Else
-\Function{leftdir}\newline{$hopper$,$partXY$,$tileXY$}
-\newline return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{leftdir}}(\newline$hopper$,$partXY$,$tileXY$)
 \EndIf
 \EndIf
 
 \If{$dir='l'$}
 $maxparty=max(partXY(:,1));$
 \If{$tileXY(1,1)<=maxparty$}
-\Function{leftdir}\newline{$hopper$,$partXY$,$tileXY$}
-\newline return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{leftdir}}(\newline$hopper$,$partXY$,$tileXY$)
 \Else
-\Function{updir}{$hopper$,$partXY$,$tileXY$}
-return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{updir}}(\newline$hopper$,$partXY$,$tileXY$)
 \EndIf
 \EndIf
 
@@ -379,13 +365,9 @@ return factoryObstacleAdditionArray, align
 \If{$dir='u'$}
 $minpartx=min(partXY(:,2));$
 \If{$tileXY(1,2)>=minpartx$}
-\Function{updir}{$hopper$,$partXY$,$tileXY$}
-return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{updir}}(\newline$hopper$,$partXY$,$tileXY$)
 \Else
-\Function{rightdir}{\newline $hopper$,$partXY$,$tileXY$}
-\newline return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{rightdir}}(\newline$hopper$,$partXY$,$tileXY$)
 \EndIf
 \EndIf
 
@@ -393,17 +375,11 @@ return factoryObstacleAdditionArray, align
 \If{$dir='r'$}
 $minparty=min(partXY(:,1));$
 \If{$tileXY(1,1)>=minparty$}
-\Function{rightdir}{\newline $hopper$,$partXY$,$tileXY$}
-\newline return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{rightdir}}(\newline$hopper$,$partXY$,$tileXY$)
 \Else
-\Function{downdir}{$hopper$,$partXY$,$tileXY$}
-return factoryObstacleAdditionArray, align
-\EndFunction
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{downdir}}(\newline$hopper$,$partXY$,$tileXY$)
 \EndIf
 \EndIf
-\newline return partXYupdated, factoryObstacleAdditionArray, align, hopper_size
-\EndFunction
 \end{algorithmic}[2]
 \end{algorithm}
  
@@ -412,26 +388,24 @@ return factoryObstacleAdditionArray, align
  
  
  
-\begin{algorithm} 
+\begin{algorithm}
+\newcommand\algotext[3]{\end{algorithmic}#3\begin{algorithmic}[3]}
+\scriptsize 
 \caption{The FindBuildPath algorithm}
 \begin{algorithmic}[3]
-\Function{FindBuildPath}{$partXY$}
+\State$\{foundPath,$sequence$, $dirs$, $partColoredArray\}$\leftarrow${\sc{FindBuildPath}}($part_{xy}$)
 \For{$m=1:partXY(:,1)$}
 \newline $Start = partXY(m,:);$
-\Function{DepthFirstSearch}{$partXY$,$Start$}
-return Output, Seq, Tmppart
-\EndFunction
+\State$\{Output, $Seq$, $Tmppart\}$\leftarrow${\sc{DepthFirstSearch}}($part_{xy}$,$Start$)
 \newline $partColored = labelColor(Tmppart(:,:,1));$
 $partialAssembly = zeros(size(Tmppart(:,:,1),1),size(Tmppart(:,:,1),2));$
 $partialAssembly(Output(1,1),Output(1,2)) = 1;$
-$dirsFinal= size(partXY,1)-1;$
+\newline$dirsFinal= size(partXY,1)-1;$
 \newline $dirsFinal = char(dirsFinal);$
 \newline $dirs2 = ['d';'l';'u';'r'];$
 \For{$i=2:size(Output,1)$}
 \For{$j=1:4$}
-\Function{CheckPath1Tile}{\newline$partialAssembly$,$Output(i,:)$,$dirs2(j,:)$,$partColored$}
-\newline return move
-\EndFunction
+\State$\{move\}\leftarrow${\sc{CheckPathTile}}($partialAssembly$,\newline$Output(i,:)$,$dirs2(j,:)$,$partColored$)
 \If{$strcmp(move,'true')$}
 $partialAssembly(Output(i,1),Output(i,2)) = 1;$
 $dirsFinal(i-1,:) = num2str(dirs2(j,:));$
@@ -453,8 +427,6 @@ $partColoredArray = partColored;$
 $break;$ 
 \EndIf
 \EndFor
-\newline return foundPath, sequence, dirs, partColoredArray
-\EndFunction
 \end{algorithmic}[3]
 \end{algorithm} 
   
