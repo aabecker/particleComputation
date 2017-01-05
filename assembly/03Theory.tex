@@ -1,0 +1,257 @@
+%###############################################################
+\section{Theory}\label{sec:Theory}
+%###############################################################
+
+Two design factories that build arbitrary 2D shaped polyominos, we first assign species to individual tiles of the polyomino, next discover a build path, then iteratively build factory components that add each tile to partially assembled polyomino.
+
+
+%###############################################################
+\subsection{Arbitrary 2D shapes require two particle species}\label{subsec:RobotSpecies}
+%###############################################################
+A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge. Polyominoes have four-point connectivity.
+
+
+\begin{lemma}
+  Any polyomino can be constructed using just two species
+  \end{lemma}
+\begin{proof} 
+Label a grid with an alternating pattern like a checkerboard.  Any desired polyomino can be constructed on this checkerboard, and all joints are between dissimilar species.
+  An example shape is shown in Fig.~\ref{fig:Grid}.
+  \end{proof}
+  
+  The sufficiency of two species to construct any shape gives many options for implementation.  The two species could correspond to any gendered connection, 
+including electric charge, ionic charge, magnetic polarity, or hook-and-loop type fasteners.
+
+
+   \begin{figure}
+   \centering
+\begin{overpic}[width =.3\columnwidth]{Grid.pdf}
+\end{overpic}
+\caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species.  
+}
+\end{figure}
+
+
+%###############################################################
+\subsection{Complexity Handled in This Paper}\label{sec:ComplexityHandled}
+%###############################################################
+
+Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
+
+The third shape on the right is two mirrored spirals that are connected.  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
+
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{IncreasingDifficulty2.pdf}
+\end{overpic}
+\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. The rightmost part cannot be built by additive construction. 
+}
+\end{figure} 
+
+ A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
+
+\begin{lemma}\label{lemma:convexonjectsCanbeConstructedAdditively}
+Any convex polyomino can be constructed by adding one particle at a time
+\end{lemma}
+\begin{proof}
+Select any pixel as the \emph{seed block}, or root node.  Perform a breadth-first search starting at the seed block, labelling each block in the order they are expanded.  Constructing the shape according to the ordering ensures that the polyomino is convex at every step of construction.
+\end{proof}
+
+The proof of \ref{lemma:convexonjectsCanbeConstructedAdditively} assumes the existence of fixtures for assembly.
+\todo{describe fixtures for adding one particle at a time}
+
+Some non-convex polynominos cannot be constructed one particle at a time, as illustrated in Fig. ~\ref{fig:IncreasingDifficulty}.    For instance, a polynomino consisting of a clockwise and a counterclockwise square spiral, joined at the ends with a gap of one unit between the spirals must be constructed by first assembling each spiral, and then combining the sub assemblies.
+
+
+
+
+%###############################################################
+\subsection{Discovering a Build Path}
+%###############################################################
+
+\todo{move algorithm here}
+
+%###############################################################
+\subsection{Assembling Tiles}
+%###############################################################
+
+
+%###############################################################
+\subsubsection{Hopper Construction}\label{subsec:HopperConstruction}
+%###############################################################
+Two-part adhesives react when the components mix.  Placing the components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
+%WIKI: harden by mixing two or more components which chemically react.
+
+We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle.
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{HopperCW.pdf}
+\end{overpic}
+\caption{\label{fig:HopperCW}This hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle u,r,d,l \rangle$ releases one robot from the hopper.  \textcolor{red}{replace with new hopper design}
+}
+\end{figure}
+
+
+
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{24tilefactory.jpg}
+\end{overpic}
+\caption{\label{fig:24tilefactory}A twenty four tile factory
+}
+\end{figure}
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{HopperDelays.jpg}
+\end{overpic}
+\caption{\label{fig:24tilefactory}Hopper with delays
+}
+\end{figure}
+
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{DownMove.jpg}
+\end{overpic}
+\caption{\label{fig:24tilefactory}Tile being attached to a three tile part by down move
+}
+\end{figure}
+
+
+
+
+
+%###############################################################
+\subsection{Part Assembly Jigs}\label{subsec:PartAssemblyJigs}
+%###############################################################
+
+
+\todo{Sheryl, add the algorithmic environment for Build Factory}
+\begin{algorithm} 
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\scriptsize
+\caption{ \sc{BuildFactory}($\mathbf{P}, n$)}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino.  $n$ is the number of parts desired. 
+Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles and filled hoppers.
+\begin{algorithmic}[1]
+\State \{$\mathbf{m}$, $\mathbf{C}, \mathbf{c}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
+ \If{$\varnothing = \mathbf{m}$}
+ return
+ \EndIf
+% \EndFunction
+\State$\mathbf{F} \leftarrow \{\}$ \Comment{the factory obstacle array} 
+\State$ \mathbf{b} \leftarrow \{\}$ \Comment{the part being built} 
+
+ \For{$i\leftarrow 2, i \le  |\mathbf{m}| )$}
+\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{factoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i)$
+\State$ \mathbf{F} \leftarrow${\sc{ConcatFactories}}$(\mathbf{F},\mathbf{A})$
+\EndFor \\
+\Return  $ \mathbf{F} $
+%\State{\sc{DisplayFactory}}($factoryLayout$)
+\end{algorithmic}
+\end{algorithm} 
+ 
+ 
+ 
+ \begin{algorithm}
+\newcommand\algotext[3]{\end{algorithmic}#3\begin{algorithmic}[3]}
+\scriptsize 
+\caption{ FindBuildPath algorithm}
+\begin{algorithmic}[3]
+\State$\{foundPath,$sequence$, $dirs$, $partColoredArray\}$\leftarrow${\sc{FindBuildPath}}($part_{xy}$)
+\For{$m=1:partXY(:,1)$}
+\newline $Start = partXY(m,:);$
+\State$\{Output, $Seq$, $Tmppart\}$\leftarrow${\sc{DepthFirstSearch}}($part_{xy}$,$Start$)
+\newline $partColored = labelColor(Tmppart(:,:,1));$
+$partialAssembly = zeros(size(Tmppart(:,:,1),1),size(Tmppart(:,:,1),2));$
+$partialAssembly(Output(1,1),Output(1,2)) = 1;$
+\newline$dirsFinal= size(partXY,1)-1;$
+\newline $dirsFinal = char(dirsFinal);$
+\newline $dirs2 = ['d';'l';'u';'r'];$
+\For{$i=2:size(Output,1)$}
+\For{$j=1:4$}
+\State$\{move\}\leftarrow${\sc{CheckPathTile}}($partialAssembly$,\newline$Output(i,:)$,$dirs2(j,:)$,$partColored$)
+\If{$strcmp(move,'true')$}
+$partialAssembly(Output(i,1),Output(i,2)) = 1;$
+$dirsFinal(i-1,:) = num2str(dirs2(j,:));$
+\newline $break;$
+\EndIf
+\EndFor
+\If{$strcmp(move,'false') \& m~=size(partXY,1)$}
+\newline$clear output, seq, tmppart, partColored, partialAssembly, dirsfinal;$
+$break;$
+\EndIf
+\If{$strcmp(move,'true') \& i==size(Output,1)$}
+\newline$foundPath=true; $
+\EndIf
+\EndFor
+\If{$foundPath==true$}
+\newline$sequence = Output;$
+$dirs = dirsFinal;$
+$partColoredArray = partColored;$
+$break;$ 
+\EndIf
+\EndFor
+\end{algorithmic}[3]
+\end{algorithm} 
+  
+ 
+ 
+\begin{algorithm} 
+\newcommand\algotext[2]{\end{algorithmic}#2\begin{algorithmic}[2]}
+\scriptsize
+\caption{The factoryAddTile algorithm}
+\begin{algorithmic}[2]
+\State$\{partXYupdated, $factoryObstacleAdditionArray$, $align$, \newline$hopperSize\}$\leftarrow${\sc{factoryAddTile}}(\newline$partXY$, $tileXY$, $dir$, $tileColor$, $numCopies$, $pos$)
+\State$\{ hopper,$hopperSize\}$\leftarrow${\sc{Hopper}}(\newline$tileColor$,$numCopies$,$4$,$pos$)
+\If{$dir=d$}
+$maxpartx=max(partXY(:,2));$
+\If{$tileXY(1,2)<=maxpartx$}
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{downdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\Else
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{leftdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\EndIf
+\EndIf
+
+\If{$dir='l'$}
+$maxparty=max(partXY(:,1));$
+\If{$tileXY(1,1)<=maxparty$}
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{leftdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\Else
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{updir}}(\newline$hopper$,$partXY$,$tileXY$)
+\EndIf
+\EndIf
+
+
+\If{$dir='u'$}
+$minpartx=min(partXY(:,2));$
+\If{$tileXY(1,2)>=minpartx$}
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{updir}}(\newline$hopper$,$partXY$,$tileXY$)
+\Else
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{rightdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\EndIf
+\EndIf
+
+
+\If{$dir='r'$}
+$minparty=min(partXY(:,1));$
+\If{$tileXY(1,1)>=minparty$}
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{rightdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\Else
+\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{downdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\EndIf
+\EndIf
+\end{algorithmic}[2]
+\end{algorithm}
+ 
+ 
+ 
+ 
+ 
+ 
+
