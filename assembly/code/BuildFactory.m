@@ -106,6 +106,6 @@ end
 
 dlmwrite('factory.txt',factoryLayoutArray_m); %Writes numeric data in array factoryLayoutArray_m to n ASCII format file
 
-partFactory_test('factory.txt'); %Path is passed to this function to visualize factory layout at each move
+partFactory_test('factory.txt',numCopies,size(partXY,1) ); %Path is passed to this function to visualize factory layout at each move
 
 end
