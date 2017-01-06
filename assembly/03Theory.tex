@@ -147,106 +147,85 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 \State$\mathbf{F} \leftarrow \{\}$ \Comment{the factory obstacle array} 
 \State$ \mathbf{b} \leftarrow \{\}$ \Comment{the part being built} 
 
- \For{$i\leftarrow 2, i \le  |\mathbf{m}| )$}
-\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{factoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i)$
+ \For{$i\leftarrow 1, i \le  |\mathbf{m}| )$}
+\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{FactoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i)$
 \State$ \mathbf{F} \leftarrow${\sc{ConcatFactories}}$(\mathbf{F},\mathbf{A})$
 \EndFor \\
 \Return  $ \mathbf{F} $
 %\State{\sc{DisplayFactory}}($factoryLayout$)
-\end{algorithmic}
+\end{algorithmic}[1]
 \end{algorithm} 
  
  
  
- \begin{algorithm}
+\begin{algorithm}
 \newcommand\algotext[3]{\end{algorithmic}#3\begin{algorithmic}[3]}
-\scriptsize 
-\caption{ FindBuildPath algorithm}
+%\scriptsize 
+\caption{\sc {FindBuildPath}($\mathbf{P})$}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
+Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is an array of color labels and $\mathbf{m}$ is an array of directions.
 \begin{algorithmic}[3]
-\State$\{foundPath,$sequence$, $dirs$, $partColoredArray\}$\leftarrow${\sc{FindBuildPath}}($part_{xy}$)
-\For{$m=1:partXY(:,1)$}
-\newline $Start = partXY(m,:);$
-\State$\{Output, $Seq$, $Tmppart\}$\leftarrow${\sc{DepthFirstSearch}}($part_{xy}$,$Start$)
-\newline $partColored = labelColor(Tmppart(:,:,1));$
-$partialAssembly = zeros(size(Tmppart(:,:,1),1),size(Tmppart(:,:,1),2));$
-$partialAssembly(Output(1,1),Output(1,2)) = 1;$
-\newline$dirsFinal= size(partXY,1)-1;$
-\newline $dirsFinal = char(dirsFinal);$
-\newline $dirs2 = ['d';'l';'u';'r'];$
-\For{$i=2:size(Output,1)$}
-\For{$j=1:4$}
-\State$\{move\}\leftarrow${\sc{CheckPathTile}}($partialAssembly$,\newline$Output(i,:)$,$dirs2(j,:)$,$partColored$)
-\If{$strcmp(move,'true')$}
-$partialAssembly(Output(i,1),Output(i,2)) = 1;$
-$dirsFinal(i-1,:) = num2str(dirs2(j,:));$
-\newline $break;$
-\EndIf
-\EndFor
-\If{$strcmp(move,'false') \& m~=size(partXY,1)$}
-\newline$clear output, seq, tmppart, partColored, partialAssembly, dirsfinal;$
-$break;$
-\EndIf
-\If{$strcmp(move,'true') \& i==size(Output,1)$}
-\newline$foundPath=true; $
-\EndIf
-\EndFor
-\If{$foundPath==true$}
-\newline$sequence = Output;$
-$dirs = dirsFinal;$
-$partColoredArray = partColored;$
-$break;$ 
-\EndIf
-\EndFor
-\end{algorithmic}[3]
+%\For{$m=1:partXY(:,1)$}
+\State$\mathbf{C} \leftarrow \{\}$ 
+\State$ \mathbf{c} \leftarrow \{\}$ 
+\State$ \mathbf{m} \leftarrow \{\}$ 
+ 
+\For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
+\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}$)
+\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
+\State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
+\EndFor\\
+\Return $ \mathbf{C} $, $\mathbf{m}$, $\mathbf{c}$ 
+\end{algorithmic}[2]
 \end{algorithm} 
   
  
  
 \begin{algorithm} 
 \newcommand\algotext[2]{\end{algorithmic}#2\begin{algorithmic}[2]}
-\scriptsize
-\caption{The factoryAddTile algorithm}
+%\scriptsize
+\caption{\sc {FactoryAddTile}(($n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i)$)}
 \begin{algorithmic}[2]
-\State$\{partXYupdated, $factoryObstacleAdditionArray$, $align$, \newline$hopperSize\}$\leftarrow${\sc{factoryAddTile}}(\newline$partXY$, $tileXY$, $dir$, $tileColor$, $numCopies$, $pos$)
-\State$\{ hopper,$hopperSize\}$\leftarrow${\sc{Hopper}}(\newline$tileColor$,$numCopies$,$4$,$pos$)
-\If{$dir=d$}
-$maxpartx=max(partXY(:,2));$
-\If{$tileXY(1,2)<=maxpartx$}
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{downdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\State$\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(\mathbf{c}_i),n,4)$
+\If{$\mathbf{m}_i= d$}
+%$maxpartx=max(partXY(:,2));$
+\If{$\mathbf{C}_i(1,2)<=\sc{max}\mathbf{b}(:,2)$}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \Else
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{leftdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \EndIf
 \EndIf
 
-\If{$dir='l'$}
-$maxparty=max(partXY(:,1));$
-\If{$tileXY(1,1)<=maxparty$}
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{leftdir}}(\newline$hopper$,$partXY$,$tileXY$)
+
+\If{$\mathbf{m}_i= l$}
+%$maxpartx=max(partXY(:,2));$
+\If{$\mathbf{C}_i(1,1)<=\sc{max}\mathbf{b}(:,1)$}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \Else
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{updir}}(\newline$hopper$,$partXY$,$tileXY$)
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \EndIf
 \EndIf
 
-
-\If{$dir='u'$}
-$minpartx=min(partXY(:,2));$
-\If{$tileXY(1,2)>=minpartx$}
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{updir}}(\newline$hopper$,$partXY$,$tileXY$)
+\If{$\mathbf{m}_i= u$}
+%$maxpartx=max(partXY(:,2));$
+\If{$\mathbf{C}_i(1,2)<=\sc{min}\mathbf{b}(:,2)$}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \Else
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{rightdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \EndIf
 \EndIf
 
 
-\If{$dir='r'$}
-$minparty=min(partXY(:,1));$
-\If{$tileXY(1,1)>=minparty$}
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{rightdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\If{$\mathbf{m}_i= r$}
+%$maxpartx=max(partXY(:,2));$
+\If{$\mathbf{C}_i(1,2)<=\sc{min}\mathbf{b}(:,1)$}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \Else
-\State$\{factoryObstacleAdditionArray, $align\}$\leftarrow${\sc{downdir}}(\newline$hopper$,$partXY$,$tileXY$)
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
 \EndIf
 \EndIf
-\end{algorithmic}[2]
+\newline\Return $\mathbf{A}$, $\mathbf{b}$
+\end{algorithmic}[3]
 \end{algorithm}
  
  
