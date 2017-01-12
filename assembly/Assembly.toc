@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {I}Introduction}{2}{section.1}
 \contentsline {subsection}{\numberline {I-A}Selective Control with Global Inputs}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {I-B}Model}{2}{subsection.1.2}
-\contentsline {section}{\numberline {II}Related Work}{2}{section.2}
+\contentsline {section}{\numberline {II}Related Work}{3}{section.2}
 \contentsline {subsection}{\numberline {II-A}Sliding-Block Puzzles}{3}{subsection.2.1}
 \contentsline {subsection}{\numberline {II-B}Other Related Work on Programmable Matter}{3}{subsection.2.2}
 \contentsline {section}{\numberline {III}Theory}{3}{section.3}

@@ -163,19 +163,21 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 %\scriptsize 
 \caption{\sc {FindBuildPath}($\mathbf{P})$}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
-Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is an array of color labels and $\mathbf{m}$ is an array of directions.
+Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions.
 \begin{algorithmic}[3]
-%\For{$m=1:partXY(:,1)$}
-\State$\mathbf{C} \leftarrow \{\}$ 
-\State$ \mathbf{c} \leftarrow \{\}$ 
-\State$ \mathbf{m} \leftarrow \{\}$ 
+%\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
+\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
  
 \For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
-\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}$)
+\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
+\If{$ \{\} \ne \mathbf{C}$}
 \State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
 \State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
+\State \textbf{break}
+\EndIf
 \EndFor\\
-\Return $ \mathbf{C} $, $\mathbf{m}$, $\mathbf{c}$ 
+\Return 
+\State$\{ \mathbf{C}, \mathbf{m},\mathbf{c} \}$ 
 \end{algorithmic}[2]
 \end{algorithm} 
   
@@ -184,47 +186,53 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 \begin{algorithm} 
 \newcommand\algotext[2]{\end{algorithmic}#2\begin{algorithmic}[2]}
 %\scriptsize
-\caption{\sc {FactoryAddTile}(($n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i)$)}
+\caption{\sc {FactoryAddTile}(($n,\mathbf{b}, \mathbf{m},\mathbf{C}, \mathbf{c})$)}
 \begin{algorithmic}[2]
-\State$\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(\mathbf{c}_i),n,4)$
-\If{$\mathbf{m}_i= d$}
-%$maxpartx=max(partXY(:,2));$
-\If{$\mathbf{C}_i(1,2)<=\sc{max}\mathbf{b}(:,2)$}
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\Else
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\EndIf
+\State$\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(\mathbf{c},n,4)$
+\If{($\mathbf{m}= d$ \& $\mathbf{C}(1,2)<=\mathrm{max}\mathbf{b}(:,2)$) or ($\mathbf{m}= d$ \& $\mathbf{C}(1,2)>\mathrm{min}\mathbf{b}(:,1)$)}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
+\ElsIf{($\mathbf{m}= l$ \& $\mathbf{C}(1,1)<=\mathrm{max}\mathbf{b}(:,1)$) or ($\mathbf{m}= l$ \& $\mathbf{C}(1,2)>\mathrm{max}\mathbf{b}(:,2)$)}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
+
+\ElsIf{($\mathbf{m}= u$ \& $\mathbf{C}(1,2)<=\mathrm{min}\mathbf{b}(:,2)$) or ($\mathbf{m}= u$ \& $\mathbf{C}(1,1)>\mathrm{max}\mathbf{b}(:,1)$)}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
+
+\Else{($\mathbf{m}= r$ \& $\mathbf{C}(1,2)<=\mathrm{min}\mathbf{b}(:,1)$) or ($\mathbf{m}= u$ \& $\mathbf{C}(1,2)>\mathrm{min}\mathbf{b}(:,2)$)}
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 \EndIf
 
 
-\If{$\mathbf{m}_i= l$}
-%$maxpartx=max(partXY(:,2));$
-\If{$\mathbf{C}_i(1,1)<=\sc{max}\mathbf{b}(:,1)$}
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\Else
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\EndIf
-\EndIf
+%\If{$\mathbf{m}_i= l$}
+%\If{$\mathbf{C}_i(1,1)<=\mathrm{max}\mathbf{b}(:,1)$}
+%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
+%\Else
+%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
+%\EndIf
+%\EndIf
 
-\If{$\mathbf{m}_i= u$}
-%$maxpartx=max(partXY(:,2));$
-\If{$\mathbf{C}_i(1,2)<=\sc{min}\mathbf{b}(:,2)$}
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\Else
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\EndIf
-\EndIf
+%\If{$\mathbf{m}_i= u$}
+%%$maxpartx=max(partXY(:,2));$
+%\If{$\mathbf{C}_i(1,2)<=\mathrm{min}\mathbf{b}(:,2)$}
+%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
+%\Else
+%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
+%\EndIf
+%\EndIf
 
 
-\If{$\mathbf{m}_i= r$}
-%$maxpartx=max(partXY(:,2));$
-\If{$\mathbf{C}_i(1,2)<=\sc{min}\mathbf{b}(:,1)$}
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\Else
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-\EndIf
-\EndIf
-\newline\Return $\mathbf{A}$, $\mathbf{b}$
+%\If{$\mathbf{m}_i= r$}
+%%$maxpartx=max(partXY(:,2));$
+%\If{$\mathbf{C}_i(1,2)<=\mathrm{min}\mathbf{b}(:,1)$}
+%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
+%\Else
+%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
+%\EndIf
+%\EndIf
+%\newline\Return {$\mathbf{A}$, $\mathbf{b}$}
+%\State$\{ \mathbf{A}, \mathbf{b}\}$
 \end{algorithmic}[3]
 \end{algorithm}
  
