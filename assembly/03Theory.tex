@@ -58,7 +58,7 @@ Select any pixel as the \emph{seed block}, or root node.  Perform a breadth-firs
 \end{proof}
 
 The proof of \ref{lemma:convexonjectsCanbeConstructedAdditively} assumes the existence of fixtures for assembly.
-\todo{describe fixtures for adding one particle at a time}
+%\todo{describe fixtures for adding one particle at a time}
 
 Some non-convex polynominos cannot be constructed one particle at a time, as illustrated in Fig. ~\ref{fig:IncreasingDifficulty}.    For instance, a polynomino consisting of a clockwise and a counterclockwise square spiral, joined at the ends with a gap of one unit between the spirals must be constructed by first assembling each spiral, and then combining the sub assemblies.
 
@@ -69,8 +69,31 @@ Some non-convex polynominos cannot be constructed one particle at a time, as ill
 \subsection{Discovering a Build Path}
 %###############################################################
 
-\todo{move algorithm here}
+%\todo{move algorithm here}
 
+\begin{algorithm}
+\newcommand\algotext[3]{\end{algorithmic}#3\begin{algorithmic}[3]}
+%\scriptsize 
+\caption{\sc {FindBuildPath}($\mathbf{P})$}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
+Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions.
+\begin{algorithmic}[3]
+%\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
+\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
+ 
+\For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
+\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
+\If{$ \{\} \ne \mathbf{C}$}
+\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
+\State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
+\State \textbf{break}
+\EndIf
+\EndFor\\
+\Return 
+\State$\{ \mathbf{C}, \mathbf{m},\mathbf{c} \}$ 
+\end{algorithmic}
+\end{algorithm} 
+  
 %###############################################################
 \subsection{Assembling Tiles}
 %###############################################################
@@ -85,9 +108,9 @@ Two-part adhesives react when the components mix.  Placing the components in sep
 We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle.
    \begin{figure}
    \centering
-\begin{overpic}[width =\columnwidth]{HopperCW.pdf}
+\begin{overpic}[width =\columnwidth]{Hopper-delays1.pdf}
 \end{overpic}
-\caption{\label{fig:HopperCW}This hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle u,r,d,l \rangle$ releases one robot from the hopper.  \textcolor{red}{replace with new hopper design}
+\caption{\label{fig:HopperCW}Hopper with delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle u,r,d,l \rangle$ releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
 }
 \end{figure}
 
@@ -99,28 +122,11 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
    \centering
 \begin{overpic}[width =\columnwidth]{24tilefactory.jpg}
 \end{overpic}
-\caption{\label{fig:24tilefactory}A twenty four tile factory
+\caption{\label{fig:24tilefactory}A twenty-four tile factory
 }
 \end{figure}
 
 
-\begin{figure}
-   \centering
-\begin{overpic}[width =\columnwidth]{HopperDelays.jpg}
-\end{overpic}
-\caption{\label{fig:24tilefactory}Hopper with delays
-}
-\end{figure}
-
-
-
-\begin{figure}
-   \centering
-\begin{overpic}[width =\columnwidth]{DownMove.jpg}
-\end{overpic}
-\caption{\label{fig:24tilefactory}Tile being attached to a three tile part by down move
-}
-\end{figure}
 
 
 
@@ -131,7 +137,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 %###############################################################
 
 
-\todo{Sheryl, add the algorithmic environment for Build Factory}
+%\todo{Sheryl, add the algorithmic environment for Build Factory}
 \begin{algorithm} 
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\scriptsize
@@ -153,34 +159,12 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 \EndFor \\
 \Return  $ \mathbf{F} $
 %\State{\sc{DisplayFactory}}($factoryLayout$)
-\end{algorithmic}[1]
+\end{algorithmic}
 \end{algorithm} 
  
  
  
-\begin{algorithm}
-\newcommand\algotext[3]{\end{algorithmic}#3\begin{algorithmic}[3]}
-%\scriptsize 
-\caption{\sc {FindBuildPath}($\mathbf{P})$}
-$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
-Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions.
-\begin{algorithmic}[3]
-%\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
-\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
- 
-\For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
-\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
-\If{$ \{\} \ne \mathbf{C}$}
-\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
-\State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
-\State \textbf{break}
-\EndIf
-\EndFor\\
-\Return 
-\State$\{ \mathbf{C}, \mathbf{m},\mathbf{c} \}$ 
-\end{algorithmic}[2]
-\end{algorithm} 
-  
+
  
  
 \begin{algorithm} 
@@ -203,6 +187,9 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 \Else{($\mathbf{m}= r$ \& $\mathbf{C}(1,2)<=\mathrm{min}\mathbf{b}(:,1)$) or ($\mathbf{m}= u$ \& $\mathbf{C}(1,2)>\mathrm{min}\mathbf{b}(:,2)$)}
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 \EndIf
+
+\Return 
+\State$\{ \mathbf{A}, \mathbf{b} \}$ 
 
 
 %\If{$\mathbf{m}_i= l$}
@@ -233,7 +220,7 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 %\EndIf
 %\newline\Return {$\mathbf{A}$, $\mathbf{b}$}
 %\State$\{ \mathbf{A}, \mathbf{b}\}$
-\end{algorithmic}[3]
+\end{algorithmic}
 \end{algorithm}
  
  
