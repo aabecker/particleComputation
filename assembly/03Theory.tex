@@ -72,14 +72,14 @@ Some non-convex polynominos cannot be constructed one particle at a time, as ill
 %\todo{move algorithm here}
 
 \begin{algorithm}
-\newcommand\algotext[3]{\end{algorithmic}#3\begin{algorithmic}[3]}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\scriptsize 
-\caption{\sc {FindBuildPath}($\mathbf{P})$}
+\caption{\sc {FindBuildPath}($\mathbf{P})$   \label{alg:FindBuildPath}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
 Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions.
-\begin{algorithmic}[3]
+\begin{algorithmic}[1]
 %\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
-\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
+\State\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
  
 \For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
 \State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
@@ -89,8 +89,7 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 \State \textbf{break}
 \EndIf
 \EndFor\\
-\Return 
-\State$\{ \mathbf{C}, \mathbf{m},\mathbf{c} \}$ 
+\Return $\{ \mathbf{C},\mathbf{c}, \mathbf{m} \}$ 
 \end{algorithmic}
 \end{algorithm} 
   
@@ -141,11 +140,11 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \begin{algorithm} 
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\scriptsize
-\caption{ \sc{BuildFactory}($\mathbf{P}, n$)}
+\caption{ \sc{BuildFactory}($\mathbf{P}, n$)\label{alg:BuildFactory}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino.  $n$ is the number of parts desired. 
 Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles and filled hoppers.
 \begin{algorithmic}[1]
-\State \{$\mathbf{m}$, $\mathbf{C}, \mathbf{c}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
+\State \{$\mathbf{C},\mathbf{c}, \mathbf{m}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
  \If{$\varnothing = \mathbf{m}$}
  return
  \EndIf
@@ -168,10 +167,10 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
  
  
 \begin{algorithm} 
-\newcommand\algotext[2]{\end{algorithmic}#2\begin{algorithmic}[2]}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\scriptsize
-\caption{\sc {FactoryAddTile}(($n,\mathbf{b}, \mathbf{m},\mathbf{C}, \mathbf{c})$)}
-\begin{algorithmic}[2]
+\caption{\sc {FactoryAddTile}$(n,\mathbf{b}, \mathbf{m},\mathbf{C}, \mathbf{c})$ \label{alg:FactoryAddTile}}
+\begin{algorithmic}[1]
 \State$\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(\mathbf{c},n,4)$
 \If{($\mathbf{m}= d$ \& $\mathbf{C}(1,2)<=\mathrm{max}\mathbf{b}(:,2)$) or ($\mathbf{m}= d$ \& $\mathbf{C}(1,2)>\mathrm{min}\mathbf{b}(:,1)$)}
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
@@ -188,8 +187,7 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 \EndIf
 
-\Return 
-\State$\{ \mathbf{A}, \mathbf{b} \}$ 
+\State \Return $\{ \mathbf{A}, \mathbf{b} \}$ 
 
 
 %\If{$\mathbf{m}_i= l$}

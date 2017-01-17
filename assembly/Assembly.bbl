@@ -73,13 +73,14 @@ D.~de~Lanauze, O.~Felfoul, J.-P. Turcot, M.~Mohammadi, and S.~Martel,
 A.~Becker, E.~Demaine, S.~Fekete, G.~Habibi, and J.~McLurkin, ``Reconfiguring
   massive particle swarms with limited, global control,'' in
   \emph{International Symposium on Algorithms and Experiments for Sensor
-  Systems, Wireless Networks and Distributed Robotics (ALGOSENSORS)}, Sep.
-  2013.
+  Systems, Wireless Networks and Distributed Robotics (ALGOSENSORS)}, Sophia
+  Antipolis, France, Sep. 2013, pp. 51--66.
 
 \bibitem{Becker2014}
 A.~Becker, E.~Demaine, S.~Fekete, and J.~McLurkin, ``Particle computation:
-  Controlling robot swarms with only global signals,'' in \emph{IEEE
-  International Conference on Robotics and Automation (ICRA)}, 2014.
+  Designing worlds to control robot swarms with only global signals,'' in
+  \emph{IEEE International Conference on Robotics and Automation (ICRA)}.\hskip
+  1em plus 0.5em minus 0.4em\relax Hong Kong: IEEE, May 2014, pp. 6751--6756.
 
 \bibitem{Becker2014a}
 \BIBentryALTinterwordspacing
@@ -88,44 +89,14 @@ A.~Becker, E.~D. Demaine, S.~P. Fekete, G.~Habibi, and J.~McLurkin,
   limited, global control},'' in \emph{\BIBforeignlanguage{English}{Algorithms
   for Sensor Systems}}, ser. Lecture Notes in Computer Science, P.~Flocchini,
   J.~Gao, E.~Kranakis, and F.~Meyer auf~der Heide, Eds.\hskip 1em plus 0.5em
-  minus 0.4em\relax Springer Berlin Heidelberg, 2014, pp. 51--66. [Online].
-  Available: \url{http://dx.doi.org/10.1007/978-3-642-45346-5_5}
+  minus 0.4em\relax Springer Berlin Heidelberg, 2014, vol. 8243, pp. 51--66.
+  [Online]. Available: \url{http://dx.doi.org/10.1007/978-3-642-45346-5_5}
 \BIBentrySTDinterwordspacing
 
 \bibitem{McCourtney1999}
 S.~McCourtney, \emph{{ENIAC}, the triumphs and tragedies of the world's first
   computer}.\hskip 1em plus 0.5em minus 0.4em\relax United States of America:
   Walker Publishing, 1999.
-
-\bibitem{Adamatzky2012}
-\BIBentryALTinterwordspacing
-A.~Adamatzky and J.~Durand-Lose, ``\BIBforeignlanguage{English}{Collision-based
-  computing},'' in \emph{\BIBforeignlanguage{English}{Handbook of Natural
-  Computing}}, G.~Rozenberg, T.~B{\"a}ck, and J.~Kok, Eds.\hskip 1em plus 0.5em
-  minus 0.4em\relax Springer Berlin Heidelberg, 2012, pp. 1949--1978. [Online].
-  Available: \url{http://dx.doi.org/10.1007/978-3-540-92910-9_58}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Fredkin1982ConservativeLogic}
-\BIBentryALTinterwordspacing
-E.~Fredkin and T.~Toffoli, ``\BIBforeignlanguage{English}{Conservative
-  logic},'' \emph{\BIBforeignlanguage{English}{International Journal of
-  Theoretical Physics}}, vol.~21, no. 3-4, pp. 219--253, 1982. [Online].
-  Available: \url{http://dx.doi.org/10.1007/BF01857727}
-\BIBentrySTDinterwordspacing
-
-\bibitem{berlekamp2001winning}
-E.~R. Berlekamp, J.~H. Conway, and R.~K. Guy, \emph{Winning Ways for your
-  Mathematical Plays, 2nd edition}.\hskip 1em plus 0.5em minus 0.4em\relax A.
-  K. Peters Ltd., 2001--2004.
-
-\bibitem{Adamatzky2002}
-\BIBentryALTinterwordspacing
-A.~Adamatzky and P.~Rendell, \emph{Turing Universality of the Game of
-  Life}.\hskip 1em plus 0.5em minus 0.4em\relax Springer London, 2002, pp.
-  513--539. [Online]. Available:
-  \url{http://dx.doi.org/10.1007/978-1-4471-0129-1_18}
-\BIBentrySTDinterwordspacing
 
 \bibitem{hearn2005complexity}
 R.~A. Hearn, ``The complexity of sliding-block puzzles and plank puzzles,''
@@ -177,5 +148,10 @@ S.~P. Fekete, J.~Hendricks, M.~J. Patitz, T.~A. Rogers, and R.~T. Schweller,
   ``Universal computation with arbitrary polyomino tiles in non-cooperative
   self-assembly,'' in \emph{Proceedings of the 26th ACM-SIAM Symposium on
   Discrete Algorithms (SODA)}, 2015, to appear.
+
+\bibitem{Manzoor2017gitAssemply}
+S.~Manzoor and A.~T. Becker, ``{Particle Assembly},
+  https://github.com/aabecker/particlecomputation/tree/master/assembly,'' Feb.
+  2017.
 
 \end{thebibliography}
