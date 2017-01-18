@@ -1,0 +1,172 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4895,        163]
+NotebookOptionsPosition[      4078,        130]
+NotebookOutlinePosition[      4436,        146]
+CellTagsIndexPosition[      4393,        143]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "Minimizing the size or running time of a particle-assembly factory \n",
+ StyleBox["Sheryl Manzoor and Aaron Becker", "Text"]
+}], "Section",
+ CellChangeTimes->{{3.693740506655987*^9, 3.693740516527274*^9}, {
+  3.6937406365966063`*^9, 3.69374068249118*^9}, {3.693740764293241*^9, 
+  3.6937407656933937`*^9}, {3.693740930908079*^9, 3.693740931289394*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Functions", "Subsection",
+ CellChangeTimes->{{3.693740785441968*^9, 3.693740817934594*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"hopperWidth", "[", 
+   RowBox[{"nc_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"nc", " ", "+", "n", " "}]}]], "Input",
+ CellChangeTimes->{{3.693740822099843*^9, 3.693740855656251*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"hopperHeight", "[", 
+   RowBox[{"nc_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"nc", " ", "+", "n", " "}]}]], "Input",
+ CellChangeTimes->{{3.6937408604094687`*^9, 3.693740871602234*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"additionWidth", "[", 
+   RowBox[{"nc_", ",", "n_", ",", "dir_"}], "]"}], ":=", 
+  RowBox[{"nc", " ", "+", "n", " "}]}]], "Input",
+ CellChangeTimes->{{3.693740822099843*^9, 3.693740885105054*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"additionHeight", "[", 
+   RowBox[{"nc_", ",", "n_", ",", "dir_"}], "]"}], ":=", 
+  RowBox[{"nc", " ", "+", "n", " "}]}]], "Input",
+ CellChangeTimes->{{3.6937408604094687`*^9, 3.6937408951885843`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Minimizing Size", "Subsection",
+ CellChangeTimes->{{3.693740785441968*^9, 3.693740803150119*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"total", " ", "size", " ", "of", " ", "n"}], "+", 
+   RowBox[{"1", " ", "factory", " ", "addition"}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.693740742259058*^9, 3.6937407620615664`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"n", "=", "1"}], "N"], 
+     RowBox[{"additionWidth", "[", 
+      RowBox[{"nc", ",", "n", ",", "dir"}], "]"}]}], "+", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"n", "=", "1"}], "N"], 
+     RowBox[{"hopperWidth", "[", 
+      RowBox[{"nc", ",", "n"}], "]"}]}]}], ")"}], 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"n", "=", "1"}], "N"], 
+     RowBox[{"additionHeight", "[", 
+      RowBox[{"nc", ",", "n", ",", "dir"}], "]"}]}], "+", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"n", "=", "1"}], "N"], 
+     RowBox[{"hopperHeight", "[", 
+      RowBox[{"nc", ",", "n"}], "]"}]}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.693740902558199*^9, 3.693740920284011*^9}, {
+  3.693742333618642*^9, 3.693742396333329*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Minimizing Time", "Subsection",
+ CellChangeTimes->{{3.693740785441968*^9, 3.693740809718335*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"additionWidth", "[", 
+   RowBox[{"nc", ",", "n", ",", "dir"}], "]"}], "+", 
+  RowBox[{"hopperWidth", "[", 
+   RowBox[{"nc", ",", "n"}], "]"}], "+", 
+  RowBox[{"additionHeight", "[", 
+   RowBox[{"nc", ",", "n", ",", "dir"}], "]"}], "+", 
+  RowBox[{"hopperHeight", "[", 
+   RowBox[{"nc", ",", "n"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.693740902558199*^9, 3.693740920284011*^9}, {
+  3.693742333618642*^9, 3.693742425268238*^9}}]
+}, Open  ]],
+
+Cell["Plotting this function", "Subsection",
+ CellChangeTimes->{{3.693740785441968*^9, 3.693740809718335*^9}, {
+  3.693742440571056*^9, 3.69374244609713*^9}}]
+}, Open  ]]
+},
+WindowSize->{941, 624},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 370, 6, 83, "Section"],
+Cell[CellGroupData[{
+Cell[975, 32, 97, 1, 44, "Subsection"],
+Cell[1075, 35, 215, 5, 28, "Input"],
+Cell[1293, 42, 218, 5, 28, "Input"],
+Cell[1514, 49, 230, 5, 28, "Input"],
+Cell[1747, 56, 235, 5, 28, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2019, 66, 103, 1, 44, "Subsection"],
+Cell[2125, 69, 241, 5, 28, "Input"],
+Cell[2369, 76, 911, 27, 57, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3317, 108, 103, 1, 44, "Subsection"],
+Cell[3423, 111, 466, 11, 28, "Input"]
+}, Open  ]],
+Cell[3904, 125, 158, 2, 44, "Subsection"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
