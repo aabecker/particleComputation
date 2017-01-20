@@ -57,20 +57,14 @@
 
 
 \begin{document}
-%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
-\tableofcontents
-\setcounter{tocdepth}{3}
-\newpage
-\mbox{}
-\newpage
-%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \title{\LARGE \bf 
 Parallel Self-Assembly under Uniform Control Inputs 
 }
-\author{Sheryl Manzoor, Sam Sheckman, Hoyeon Kim, Minjun Kim, and Aaron T. Becker% <-this % stops a space
+\author{Sheryl Manzoor, Sam Sheckman, Hoyeon Kim, Jarrett Lonsford, Minjun Kim, and Aaron T. Becker% <-this % stops a space
 \thanks{*This work was supported by the National Science Foundation under Grant No.\ \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1553063}{ [IIS-1553063]} and \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1619278}{[IIS-1619278]}.}% <-this % stops a space
-\thanks{S.~Manzoor and A.~Becker are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204 USA        {\tt\small  \{smanzoor2, atbecker\}@uh.edu}
+\thanks{S.~Manzoor and A.~Becker are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204 USA        {\tt\small  \{smanzoor2, jlonsford, atbecker\}@uh.edu}
 S.~Sheckman, H.~Kim and M.~Kim are with Lyle School of Engineering,   Southern Methodist University, Dallas, TX 75205 USA        {\tt\small  \{sheckel, hoyeonk, mjkim\}@uh.edu}
 }
 }
@@ -82,8 +76,8 @@ We present fundamental progress on parallel self-assembly using large swarms of 
 in complex environments, controlled not by individual navigation, but by a uniform global, external force with the same effect on each particle.
 Consider a 2D grid world, in which all obstacles and particles are unit squares,
 and for each actuation, robots move maximally until they collide with an obstacle or another robot. 
-We present algorithms that, given an  arbitrary 2D structures, design an obstacle layout.
- When actuated, this layout generates copies of the 2D structure.
+We present algorithms that, given an arbitrary 2D structure, designs an obstacle layout.
+ When actuated, this layout generates copies of the input 2D structure.
 We analyze the spatial and time complexity of the factory layouts. 
 We present hardware results on both a macro-scale, gravity-based system and a milli-scale, magnetically actuated system.
 
@@ -107,5 +101,14 @@ We present hardware results on both a macro-scale, gravity-based system and a mi
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,../../RoboticSwarmControlLab/bib/aaronrefs,bib/assemblyrefs}
+
+
+%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
+\newpage
+\tableofcontents
+\setcounter{tocdepth}{3}
+\mbox{}
+%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \end{document}
 

@@ -144,19 +144,17 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino.  $n$ is the number of parts desired. 
 Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles and filled hoppers.
 \begin{algorithmic}[1]
-\State \{$\mathbf{C},\mathbf{c}, \mathbf{m}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
- \If{$\varnothing = \mathbf{m}$}
- return
- \EndIf
-% \EndFunction
 \State$\mathbf{F} \leftarrow \{\}$ \Comment{the factory obstacle array} 
 \State$ \mathbf{b} \leftarrow \{\}$ \Comment{the part being built} 
 
+\State \{$\mathbf{C},\mathbf{c}, \mathbf{m}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
+ \If{$ \{\} \ne \mathbf{m}$}
  \For{$i\leftarrow 1, i \le  |\mathbf{m}| )$}
-\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{FactoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i)$
+\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{FactoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i,4)$
 \State$ \mathbf{F} \leftarrow${\sc{ConcatFactories}}$(\mathbf{F},\mathbf{A})$
-\EndFor \\
-\Return  $ \mathbf{F} $
+\EndFor
+ \EndIf 
+\State \Return  $ \mathbf{F} $
 %\State{\sc{DisplayFactory}}($factoryLayout$)
 \end{algorithmic}
 \end{algorithm} 
@@ -169,13 +167,16 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 \begin{algorithm} 
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\scriptsize
-\caption{\sc {FactoryAddTile}$(n,\mathbf{b}, \mathbf{m},\mathbf{C}, \mathbf{c})$ \label{alg:FactoryAddTile}}
+\caption{\sc {FactoryAddTile}$(n,\mathbf{b}, m,C, c,w)$ \label{alg:FactoryAddTile}}
 \begin{algorithmic}[1]
-\State$\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(\mathbf{c},n,4)$
-\If{($\mathbf{m}= d$ \& $\mathbf{C}(1,2)<=\mathrm{max}\mathbf{b}(:,2)$) or ($\mathbf{m}= d$ \& $\mathbf{C}(1,2)>\mathrm{min}\mathbf{b}(:,1)$)}
+\State$
+\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(c,n,w)$
+\If{ $m = d \textbf{ and } \left(     C_y  \le \max \mathbf{b}_y   
+                         \textbf{ or }  C_y     > \min \mathbf{b}_x \right)  }$
+    
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
-\ElsIf{($\mathbf{m}= l$ \& $\mathbf{C}(1,1)<=\mathrm{max}\mathbf{b}(:,1)$) or ($\mathbf{m}= l$ \& $\mathbf{C}(1,2)>\mathrm{max}\mathbf{b}(:,2)$)}
+\ElsIf{($\mathbf{m}= l$ \& $\mathbf{C}_x  \le \mathrm{max}\mathbf{b}(:,1)$) or ($\mathbf{m}= l$ \& $\mathbf{C}(1,2)>\mathrm{max}\mathbf{b}(:,2)$)}
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
 
