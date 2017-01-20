@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     32771,        716]
-NotebookOptionsPosition[     31453,        666]
-NotebookOutlinePosition[     31889,        683]
-CellTagsIndexPosition[     31846,        680]
+NotebookDataLength[     35244,        767]
+NotebookOptionsPosition[     33820,        714]
+NotebookOutlinePosition[     34244,        730]
+CellTagsIndexPosition[     34201,        727]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -23,6 +23,55 @@ Cell[CellGroupData[{
 Cell["Image to Binary", "Section",
  CellChangeTimes->{{3.611174217421051*^9, 3.611174236197875*^9}, {
   3.6859861961821527`*^9, 3.685986200053012*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringJoin", "[", 
+  RowBox[{"\"\<[\>\"", ",", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{
+     RowBox[{"ToString", "[", 
+      RowBox[{"ImageData", "[", 
+       RowBox[{"Binarize", "[", 
+        RowBox[{"ColorNegate", "[", 
+         GraphicsBox[
+          TagBox[RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBLECOU2VJahIzkCEGxSA2BPz//5+B
+MkBFE/6TAnCZQJ6zaWECQccTYwJ+q+lpAi7Hk2QCMY6kqQkDqwB/MiA7TdLH
+BIIAvwnEA1qYQAYg1VLaAQClzZhN
+            "], {{0, 22}, {22, 0}}, {0, 255},
+            ColorFunction->RGBColor],
+           BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+           Selectable->False],
+          BaseStyle->"ImageGraphics",
+          ImageSizeRaw->{22, 22},
+          PlotRange->{{0, 22}, {0, 22}}], "]"}], "]"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<}, {\>\"", "->", "\"\<;\n\>\""}], ",", 
+       RowBox[{"\"\<, \>\"", "->", "\"\< \>\""}], ",", 
+       RowBox[{"\"\<{\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+       RowBox[{"\"\<}\>\"", "\[Rule]", "\"\<\>\""}]}], "}"}]}], "]"}], ",", 
+   "\"\<];\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.693921818140565*^9, 3.693921821309386*^9}}],
+
+Cell[BoxData["\<\"[1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\\n1 1 0 1 1 1 \
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\\n1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 \
+1;\\n1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 1 1 1 1 1 \
+1 1 1 1 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1;\\n1 1 0 1 1 \
+0 1 1 0 1 1 1 1 1 1 1 0 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 0 1 1 1 1 1 1 1 0 1 1 0 \
+1 1;\\n1 1 0 1 1 0 1 1 0 1 1 0 0 0 1 1 0 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 0 1 1 0 \
+1 0 1 1 0 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 0 1 1 0 1 0 1 1 0 1 1 0 1 1;\\n1 1 0 1 \
+1 0 1 1 0 1 1 1 1 0 1 1 0 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 0 1 1 1 1 0 1 1 0 1 1 \
+0 1 1;\\n1 1 0 1 1 0 1 1 0 0 0 0 0 0 1 1 0 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 1 1 1 \
+1 1 1 1 1 0 1 1 0 1 1;\\n1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1;\\n1 1 0 \
+1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1;\\n1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 \
+1 0 1 1;\\n1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1;\\n1 1 0 0 0 0 0 0 0 0 \
+0 0 0 0 0 0 0 0 0 0 1 1;\\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;\\n1 1 \
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];\"\>"], "Output",
+ CellChangeTimes->{3.6939218231873984`*^9}]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -170,8 +219,7 @@ Cell[BoxData[
 1:eJylkdENgDAIRJu4gU7gSo7QBbr/V60/hjzgrCkJCdAeHMdZ21W3Uso+/Bj+
 xCvWjdkUT7byAtEBsf2Gik1n+HgsBoU9UUFbgcroAa5RXj2xzt/p2bLZLfzW
 PTnfZCvQEMQ+9Qn5a6lDTUIpMEts4clkQM85FARAFH26YjdX28If
-            "], {{0, 
-            18}, {19, 0}}, {0, 255},
+            "], {{0, 18}, {19, 0}}, {0, 255},
             ColorFunction->RGBColor],
            BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
            Selectable->False],
@@ -667,8 +715,7 @@ Cell[BoxData[
 WindowSize->{1072, 623},
 WindowMargins->{{Automatic, 94}, {Automatic, 2}},
 PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
-FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
-2014)",
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -683,39 +730,43 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 151, 2, 64, "Section"],
+Cell[579, 22, 151, 2, 70, "Section"],
 Cell[CellGroupData[{
-Cell[755, 28, 1841, 39, 99, "Input"],
-Cell[2599, 69, 5384, 68, 862, "Output"]
-}, Open  ]],
-Cell[7998, 140, 532, 14, 33, "Input"],
-Cell[CellGroupData[{
-Cell[8555, 158, 1288, 30, 58, "Input"],
-Cell[9846, 190, 832, 10, 318, "Output"]
+Cell[755, 28, 1202, 28, 68, "Input"],
+Cell[1960, 58, 1138, 14, 452, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10715, 205, 1505, 34, 93, "Input"],
-Cell[12223, 241, 4004, 51, 760, "Output"]
+Cell[3135, 77, 1841, 39, 98, "Input"],
+Cell[4979, 118, 5384, 68, 1012, "Output"]
+}, Open  ]],
+Cell[10378, 189, 532, 14, 34, "Input"],
+Cell[CellGroupData[{
+Cell[10935, 207, 1275, 29, 57, "Input"],
+Cell[12213, 238, 832, 10, 372, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13082, 253, 1505, 34, 92, "Input"],
+Cell[14590, 289, 4004, 51, 892, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16276, 298, 104, 1, 64, "Section"],
+Cell[18643, 346, 104, 1, 64, "Section"],
 Cell[CellGroupData[{
-Cell[16405, 303, 12028, 281, 828, "Input"],
-Cell[28436, 586, 1204, 20, 226, "Output"],
-Cell[29643, 608, 241, 5, 21, "Print"]
+Cell[18772, 351, 12028, 281, 828, "Input"],
+Cell[30803, 634, 1204, 20, 226, "Output"],
+Cell[32010, 656, 241, 5, 21, "Print"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[29921, 618, 134, 2, 28, "Input"],
-Cell[30058, 622, 437, 8, 28, "Output"]
+Cell[32288, 666, 134, 2, 28, "Input"],
+Cell[32425, 670, 437, 8, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[30532, 635, 223, 5, 28, "Input"],
-Cell[30758, 642, 96, 1, 28, "Output"]
+Cell[32899, 683, 223, 5, 28, "Input"],
+Cell[33125, 690, 96, 1, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[30891, 648, 278, 7, 28, "Input"],
-Cell[31172, 657, 253, 5, 374, "Output"]
+Cell[33258, 696, 278, 7, 28, "Input"],
+Cell[33539, 705, 253, 5, 374, "Output"]
 }, Open  ]]
 }, Open  ]]
 }
