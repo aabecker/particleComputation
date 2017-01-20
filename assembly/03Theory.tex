@@ -176,49 +176,23 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
     
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
-\ElsIf{($\mathbf{m}= l$ \& $\mathbf{C}_x  \le \mathrm{max}\mathbf{b}(:,1)$) or ($\mathbf{m}= l$ \& $\mathbf{C}(1,2)>\mathrm{max}\mathbf{b}(:,2)$)}
+\ElsIf{ $m = l \textbf{ and } \left(     C_x  \le \max \mathbf{b}_x   
+                         \textbf{ or }  C_y     > \min \mathbf{b}_y \right)  }$
+    
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
-
-\ElsIf{($\mathbf{m}= u$ \& $\mathbf{C}(1,2)<=\mathrm{min}\mathbf{b}(:,2)$) or ($\mathbf{m}= u$ \& $\mathbf{C}(1,1)>\mathrm{max}\mathbf{b}(:,1)$)}
+\ElsIf{ $m = u \textbf{ and } \left(     C_y  \le \min \mathbf{b}_y   
+                        \textbf{ or }  C_x     > \min \mathbf{b}_x \right)  }$
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
-
-\Else{($\mathbf{m}= r$ \& $\mathbf{C}(1,2)<=\mathrm{min}\mathbf{b}(:,1)$) or ($\mathbf{m}= u$ \& $\mathbf{C}(1,2)>\mathrm{min}\mathbf{b}(:,2)$)}
+\ElsIf{ $m = r \textbf{ and } \left(     C_y  \le \min \mathbf{b}_x   
+                        \textbf{ or }  C_y     > \min \mathbf{b}_y \right)  }$
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
 \EndIf
 
 \State \Return $\{ \mathbf{A}, \mathbf{b} \}$ 
 
-
-%\If{$\mathbf{m}_i= l$}
-%\If{$\mathbf{C}_i(1,1)<=\mathrm{max}\mathbf{b}(:,1)$}
-%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-%\Else
-%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-%\EndIf
-%\EndIf
-
-%\If{$\mathbf{m}_i= u$}
-%%$maxpartx=max(partXY(:,2));$
-%\If{$\mathbf{C}_i(1,2)<=\mathrm{min}\mathbf{b}(:,2)$}
-%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-%\Else
-%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-%\EndIf
-%\EndIf
-
-
-%\If{$\mathbf{m}_i= r$}
-%%$maxpartx=max(partXY(:,2));$
-%\If{$\mathbf{C}_i(1,2)<=\mathrm{min}\mathbf{b}(:,1)$}
-%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-%\Else
-%\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C}_i)$
-%\EndIf
-%\EndIf
-%\newline\Return {$\mathbf{A}$, $\mathbf{b}$}
-%\State$\{ \mathbf{A}, \mathbf{b}\}$
 \end{algorithmic}
 \end{algorithm}
  
