@@ -18,5 +18,5 @@
 \contentsline {section}{\numberline {V}Experiment}{4}{section.5}
 \contentsline {subsection}{\numberline {V-A}Macro-scale, Gravity-Based Prototype}{4}{subsection.5.1}
 \contentsline {subsection}{\numberline {V-B}Milli-scale, Magnetic-Based Prototype}{4}{subsection.5.2}
-\contentsline {section}{\numberline {VI}Conclusion}{4}{section.6}
-\contentsline {section}{References}{4}{section*.1}
+\contentsline {section}{\numberline {VI}Conclusion}{5}{section.6}
+\contentsline {section}{References}{5}{section*.1}
