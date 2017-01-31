@@ -80,12 +80,12 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 \begin{algorithmic}[1]
 %\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
 \State\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
- 
+
+\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
 \For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
 \State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
-\If{$ \{\} \ne \mathbf{C}$}
-\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
 \State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
+\If{$ \{\} \ne \mathbf{m}$}
 \State \textbf{break}
 \EndIf
 \EndFor\\
@@ -150,7 +150,7 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 \State \{$\mathbf{C},\mathbf{c}, \mathbf{m}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
  \If{$ \{\} \ne \mathbf{m}$}
  \For{$i\leftarrow 1, i \le  |\mathbf{m}| )$}
-\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{FactoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i,4)$
+\State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{FactoryAddTile}}$(n,\mathbf{b}, \mathbf{m}_i,\mathbf{C}_i, \mathbf{c}_i,w)$
 \State$ \mathbf{F} \leftarrow${\sc{ConcatFactories}}$(\mathbf{F},\mathbf{A})$
 \EndFor
  \EndIf 
