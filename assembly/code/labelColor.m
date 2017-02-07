@@ -22,5 +22,4 @@ ArrayC=mod(1:partSize(1,2),2); % Array for coulumn of the part
 ArrayRC=+bsxfun(@eq, ArrayC, ArrayR.'); % Matrix of zeros and ones
 partColored=(1+ArrayRC).*partArray; % Final Part with labels
 
-
 end

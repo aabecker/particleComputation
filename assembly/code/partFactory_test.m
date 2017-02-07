@@ -1,26 +1,24 @@
-function [] = partFactory_test(path,numCopies,N) %#ok<INUSL>
-% Input: 'path' is the factory layout in the form of array
-% numCopies = number of polyominos to produce
-% N is number of tiles in one polyomino
-% Function displays the factory layout in form of a figure
-% After each move of up, right, down, left the figure is updated
-% Authors: Sheryl Manzoor and Aaron T. Becker, begun October 19th 2016
+function [] = partFactory_test(path)
+% Function factoryLayout = partFactory( partArray)
+% input: partArray is a 2D binary image of the desired part.  1’s are the part, 0 are freespace
+% ouput: factoryLayout, a 2D image of a factory than when actuated [up, right, down, left] produces copies of part partArray. 1’s are the boundary, 0 are freespace, 2s are 1x1 blues in the blue part hoppers, 3s are 1x1 reds in the red part hoppers.
+% Authors: Sheryl Manzoor and Aaron T. Becker
+
+
 
 G.fig = figure(2);
-set(gcf,'Color','black')
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
 G.game = flipud(dlmread(path));
 G.obstacle_pos = (G.game==1);  %%???
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
+%     hsv(numel(unique(G.game))-2);
     1,0,0;
-    0.4,0.4,1];
-%hsv(numel(unique(G.game))-2);];
+    0,0,1;];
 colormap(G.colormap);
 G.axis=imagesc(G.game);
 set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off','color',0.8*[1,1,1]);
 axis equal
-axis tight
 
 %assignin('base','P',G);
 
@@ -28,49 +26,18 @@ axis tight
 makeItemList();
 drawGameboard();
 
-maxMovement = [0,0,0,0];
-%Automatically move through N clock cycles
-for c = 1:N
-    applyMove('r');
-    applyMove('d');
-    applyMove('l');
-    applyMove('u');
-end
-display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement))])
-
- function keyhandler(src,evnt) %#ok<INUSL>
-     % maps keyboard presses to gameboard moves
+    function keyhandler(src,evnt) %#ok<INUSL>
         key = evnt.Key;
+        step = [0,0];
         if strcmp(key,'leftarrow') || strcmp(key,'-x') %-x
-           d = 'l';
-        elseif strcmp(key,'rightarrow')|| strcmp(key,'+x') %+x
-            d = 'r';
-        elseif strcmp(key,'uparrow')|| strcmp(key,'+y') %+y
-            d = 'u';
-        elseif strcmp(key,'downarrow')|| strcmp(key,'-y') %-y
-            d = 'd';
-        else
-            return
-        end
-        applyMove(d);
- end
-
-
-    function applyMove(d) 
-        % applies a global movement in direction given by d to all tiles in
-        % gameboard
-        if d=='l'
             step = -[0,1];
-        elseif d=='r' 
+        elseif strcmp(key,'rightarrow')|| strcmp(key,'+x') %+x
             step = [0,1];
-        elseif d=='u'
+        elseif strcmp(key,'uparrow')|| strcmp(key,'+y') %+y
             step = [1,0];
-        elseif d=='d'
+        elseif strcmp(key,'downarrow')|| strcmp(key,'-y') %-y
             step = -[1,0];
-        else
-            return
         end
-        steps = 0;
         drawGameboard();
         revertList = [];
         while numel(revertList) < numel(G.items)
@@ -82,14 +49,14 @@ display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement)
                     ny = G.items{i}(j,1) + int16(step(1));
                     nx = G.items{i}(j,2) + int16(step(2));
                     G.items{i}(j,1:2) =  [ny,nx];
-                    if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2)
-                        G.game(ny,nx) = i;
+                    if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2) 
+                    G.game(ny,nx) = i;
                         if  G.obstacle_pos(ny,nx)==true % if this bit hit an obstacle, make sure it is on the revertList
                             if isempty(find(revertList == i, 1))
-                                revertList(end+1) = i;
+                                revertList(end+1) = i; %#ok<AGROW>
                             end
                         end
-                    else
+                    else  
                         scEdge = 5;
                         if nx<-scEdge || ny<scEdge && ny>size(G.game,1)+scEdge || nx>size(G.game,2) +scEdge
                             if isempty(find(revertList == i, 1))
@@ -98,8 +65,9 @@ display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement)
                         end
                     end
                 end
-                
+
             end
+            
             
             % go recursively through revert list, moving them back in the image
             % and adding any shapes they collide with back to the
@@ -109,7 +77,7 @@ display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement)
                 for j = 1:size(G.items{item2revert},1)
                     G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int16(step);
                     collisionItem = G.game(G.items{item2revert}(j,1),G.items{item2revert}(j,2));
-                    if collisionItem ~= item2revert && collisionItem ~= 0
+                    if collisionItem ~= item2revert && collisionItem ~= 0 
                         if isempty(find(revertList == collisionItem, 1))
                             revertList(end+1) = collisionItem;
                         end
@@ -117,21 +85,10 @@ display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement)
                 end
                 i=i+1;
             end
-            steps = steps+1;
             drawGameboard();
             makeItemList();
         end
-        drawnow
-        %display(['move ',d,', took ',num2str(steps),' steps'])
-        if d == 'r'
-            maxMovement(1) = max(steps,maxMovement(1));
-        elseif d == 'd'
-            maxMovement(2) = max(steps,maxMovement(2));
-        elseif d == 'l'
-            maxMovement(3) = max(steps,maxMovement(3));
-        elseif d == 'u'
-            maxMovement(4) = max(steps,maxMovement(4));
-        end
+        
     end
 
     function drawGameboard()
@@ -141,14 +98,12 @@ display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement)
             for j = 1:size(G.items{i},1)
                 %%delete any components that leave the screen
                 if G.items{i}(j,1)>0 && G.items{i}(j,1)<=size(G.game,1) &&...
-                        G.items{i}(j,2)>0 && G.items{i}(j,2)<=size(G.game,2)
-                    G.game(G.items{i}(j,1),G.items{i}(j,2)) = G.items{i}(j,3);
+                   G.items{i}(j,2)>0 && G.items{i}(j,2)<=size(G.game,2)
+                G.game(G.items{i}(j,1),G.items{i}(j,2)) = G.items{i}(j,3);
                 end
             end
         end
-        colormap(G.colormap(unique(G.game)+1,:));
         set(G.axis,'CData',G.game)
-        %drawnow  %include this drawnow to show the 1-step moves (good for videos)
     end
 
 
@@ -176,7 +131,7 @@ display(['Max moves: ',num2str(maxMovement), ', sum = ',num2str(sum(maxMovement)
         if y>size(G.game,1) || y<1 ||x<1 || x>size(G.game,2)   %% what does it do if the size exceeds the gameboard
             return
         end
-        thisColor = G.game(y,x);
+        thisColor = G.game(y,x);  
         %if thisColor == color
         if (thisColor == 2 && color == 3) || (thisColor == 3 && color == 2)
             G.game(y,x) = 0;    %%???

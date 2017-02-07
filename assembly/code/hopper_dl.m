@@ -7,22 +7,37 @@ function [hopper, hopper_size] = hopper_dl(tileColor, numCopies,cols,pos)
 if nargin<1
    tileColor = 1;
    numCopies = 12; 
-   cols = 4;
+   cols = 2;
    pos=3;
 end
 
 
 
-%%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
+% %%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
+% rows = ceil(numCopies/cols);
+% hopper = obs*ones(rows+2,cols+2) ; % build boundary for hopper
+% hopper(2:1+rows,2:1+cols) = tileColor; %fillhopper with components
+% %hopper(2:end,end-1) = 0; % build output shoot for hopper
+% hopper(2,end) = 0; %connect output shoot to tiles
+% if mod(numCopies,cols)~=0
+%     hopper(end-1,2:cols-mod(numCopies,cols)+1) = 0;
+% end
+% %  replace some tiles with 0s to match numCopies    
+
+
+
+%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
 rows = ceil(numCopies/cols);
-hopper = obs*ones(rows+2,cols+2) ; % build boundary for hopper
-hopper(2:1+rows,2:1+cols) = tileColor; %fillhopper with components
+hopper = obs*ones(rows+2,cols+1) ; % build boundary for hopper
+hopper(2:1+rows,1:end-1) = tileColor; %fillhopper with components
 %hopper(2:end,end-1) = 0; % build output shoot for hopper
 hopper(2,end) = 0; %connect output shoot to tiles
 if mod(numCopies,cols)~=0
     hopper(end-1,2:cols-mod(numCopies,cols)+1) = 0;
 end
 %  replace some tiles with 0s to match numCopies    
+
+
 
 x1 = [0 0; ...
         0 obs; ...
@@ -39,9 +54,9 @@ if mod(pos,2) ==0
     dy = 2;
     dx = 2;
     starty = 1;
-    rows = 2+(tot*2)+3;
-    cols = 3+ (tot+1)*2; 
-    delay_h = obs*ones(rows,cols);
+    rowss = 2+(tot*2)+3;
+    colss = 3+ (tot+1)*2; 
+    delay_h = obs*ones(rowss,colss);
     for i=1:tot %placing yellow delays
         numy = 4 + (i-1)*dy;
         numx = 1 + (i-1)*dx;    
@@ -76,9 +91,9 @@ else
     dy = 2;
     dx = 2;
     starty = 1;
-    rows = 2+(tot*2)+3;
-    cols = 3+ (tot+1)*2; 
-    delay_h = obs*ones(rows,cols);
+    rowss = 2+(tot*2)+3;
+    colss = 3+ (tot+1)*2; 
+    delay_h = obs*ones(rowss,colss);
     for i=1:tot
         numy = 4 + (i-1)*dy;
         numx = 1 + (i-1)*dx;    
@@ -86,7 +101,7 @@ else
     end
     dy = 2;
     dx = 2;
-    starty = 0;
+%     starty = 0;
     for j=1:tot-1
         numy = 3 + (j-1)*dy;
         numx = 5 + (j-1)*dx;    
@@ -119,18 +134,29 @@ else
     end
 end
 
-[rh ch] = size(hopper);
-[rd cd] = size(delay_h);
+[rh , ~] = size(hopper);
+[rd, ~] = size(delay_h);
 
 if rd-5 >0
+%if rd-(rows+2) >0
     hopper = vertcat(obs*ones(rd-5,size(hopper,2)),hopper);
 end
-if rh-5 >0
-    delay_h = vertcat(delay_h,obs*ones(rh-5,size(delay_h,2)));
+[rh , ~] = size(hopper);
+
+if rh>rd
+    %delay_h = vertcat(delay_h,obs*ones(rh-rd,size(delay_h,2)));
+    copy = delay_h(size(delay_h,1),1:size(delay_h,2));
+    copyn = repmat(copy,rh-rd,1);
+    delay_h = vertcat(delay_h,copyn);
 end
 
+
+% if rh-5 >0
+%     delay_h = vertcat(delay_h,obs*ones(rh-5,size(delay_h,2)));
+% end
+
 hopper = horzcat(hopper,delay_h);
-%hopper(1:end,end-1) = 0;
+%hopper(end,end-1) = 0;
 
 hopper_size = size(hopper,1);
 

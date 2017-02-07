@@ -22,7 +22,7 @@ hopper = vertcat(hopper, obs*ones(2,size(hopper,2))); %define the bottom
 
 hopper(end-3:end-2,1:end-3) = obs; 
 %obstacle added to stop the 'Left' motion of the part
-
+hopper(end-2,1:end) = obs; 
 
 factoryObstacleAdditionArray = hopper; %Array with hopper, freespace and obstacles
 partXYupdated =0;

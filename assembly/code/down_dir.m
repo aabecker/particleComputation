@@ -24,9 +24,14 @@ end
 init_hop_width = size(hopper,1);
 % init_hop_length = size(hopper,2);
 
+
 part_length = abs(max(partXY(:,2) - min(partXY(:,2))))+1; %length of part
 part_width = abs(max(partXY(:,1)) - min(partXY(:,1)))+1; %width of part
 posx_obs = abs(max(partXY(:,2) - tileXY(:,2))); %Colummn position of first obstacle
+
+partXYt = [partXY;tileXY];
+part_lengtht = abs(max(partXYt(:,2) - min(partXYt(:,2))))+1; %length of part
+part_widtht = abs(max(partXYt(:,1)) - min(partXYt(:,1)))+1; %width of part
 
 %hopper = horzcat(hopper, zeros(size(hopper,1),posx_obs));
 hopper = horzcat(hopper, obs*ones(size(hopper,1),posx_obs));
@@ -34,7 +39,8 @@ hopper = horzcat(hopper, obs*ones(size(hopper,1),posx_obs));
 
 %%%%%%%%%%%Add White space to finalize the width of the hopper%%%%%
 %height_obs = abs(max(partXY(:,1) - tileXY(:,1))); %row position of the tile w.r.t part
-add_width = (2*part_width)+3+1;
+%add_width = (2*part_width)+3+1;
+add_width = (part_width+part_widtht)+3;
 hopper = vertcat(hopper, zeros(add_width,size(hopper,2)));
 
                      
@@ -52,17 +58,26 @@ end
 %%%%%%%%%%Add Bottom stop Obstacle%%%%%%%%%%%%%
 hopper(end-1:end, 1:end) = obs; %define the bottom 
                         %obstacle to stop the "downward" motion of the part
+
+
+
+                                             
                         
+
 %%%%%%%%%Add Left Obstacle%%%%%%%%%
-%hopper(size(hopper,1)-part_width-1-2:size(hopper,1)-2,1) = obs; 
-hopper(size(hopper,1)-part_width-1-2:size(hopper,1)-2,1:size(hopper,2)-part_length-3) = obs; 
+d = mould(partXY,tileXY);                                   
+%hopper(size(hopper,1)-part_widtht-1-2:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-1) = obs; 
+hopper(size(hopper,1)-part_widtht-2:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-1) = obs; 
+for i=1:size(d,1)
+ hopper(size(hopper,1)-2-(i-1),1:size(hopper,2)-(2*part_lengtht)-1+d(i,1)) = obs;    
+end
 %obstacle added to stop the 'Left' motion of the part        
 
-%hopper(size(hopper,1)-part_width-1-2,1:part_length+1) = obs; 
-hopper(size(hopper,1)-part_width-1-2,size(hopper,2)-part_length-3:size(hopper,2)-part_length-2) = obs; 
+
+hopper(size(hopper,1)-part_widtht-2,size(hopper,2)-(2*part_lengtht)-1:size(hopper,2)-part_lengtht-1) = obs; 
 %obstacle added to stop the 'Upward' motion of the part
 
-align=size(hopper,1)-part_width-1-2;
+align=size(hopper,1)-part_widtht-2;
 
 
 factoryObstacleAdditionArray = hopper;

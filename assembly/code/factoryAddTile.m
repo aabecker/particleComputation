@@ -1,4 +1,4 @@
-function [partXYupdated, factoryObstacleAdditionArray, align, hopper_size] = factoryAddTile(partXY,  tileXY, dir, tileColor,numCopies,pos) 
+function [partXYupdated, factoryObstacleAdditionArray, align, hopper_size] = factoryAddTile(partXY,  tileXY, dir, tileColor,numCopies,pos,cols) 
 % Constructs a part of the
 % factory that slides a tile of color tileColor in direction dir to
 % location tileXY of partXY, by sliding the tile out of a part-hopper (and
@@ -41,17 +41,19 @@ if nargin< 1
         numCopies = 10;
         dir = 'd';
         pos=5;
+        cols=4;
        
 end
 
+%cols = 5;
 
 %%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
 %hopper2 = hopper_ml(tileColor, numCopies,4,pos);
-[hopper2, hopper_size] = hopper_dl(tileColor, numCopies,4,pos);
+[hopper2, hopper_size] = hopper_dl(tileColor, numCopies,cols,pos);
 %%%%%%%%%%%%ends%%%%%%%%%%%%%%%%%%%%%%%%
 if dir == 'd'
-    max_partx = max(partXY(:,2));   %If the new tile is to be added after last column of the part then direction is changed to left
-    if  tileXY(1,2) <= max_partx
+    max_partx = max(partXY(:,2));   %If the new tile is to be added after last column of the part then direction is changed to left ;tile added from right to left
+    if  tileXY(1,2) <= max_partx    %column of the tile to be added is compared to the last column of the assembled part
         [~, factoryObstacleAdditionArray, align] = down_dir(hopper2,partXY,tileXY);
     else
         [~, factoryObstacleAdditionArray, align] = left_dir(hopper2,partXY,tileXY);
