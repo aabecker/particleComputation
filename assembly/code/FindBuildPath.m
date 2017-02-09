@@ -15,7 +15,7 @@ clc
 
 format compact
 if nargin <1  
-partXY= TestFindBuildPath();
+partXY = TestFindBuildPath();
 % partXY=BigPartTry();
 % partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
 
@@ -43,18 +43,18 @@ for m=1:size(partXY,1)
     for i=2:size(Output,1) 
         for j=1:4
             move = CheckPath1Tile(partialAssembly,Output(i,:),dirs2(j,:),partColored);  
-            if strcmp(move,'true')
+            if move
                partialAssembly(Output(i,1),Output(i,2)) = 1;
                dirsFinal(i-1,:) = num2str(dirs2(j,:));
                break;
             end
         end
-        if strcmp(move,'false') && m~=size(partXY,1)
+        if ~move && m~=size(partXY,1)
             clear output seq tmp_part partColored partialAssembly dirs_final;
             break;
         end
 
-        if strcmp(move,'true') && i==size(Output,1)  %If all the moves are true until the loop runs for size of the part then there is a valid path
+        if move && i==size(Output,1)  %If all the moves are true until the loop runs for size of the part then there is a valid path
            foundPath=true; 
         end
     end
@@ -87,7 +87,7 @@ end
     
 
 
-G.fig = figure(50);
+G.fig = figure(50);clf;
 set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
