@@ -1,6 +1,9 @@
 function [foundPath, sequence, dirs, partColoredArray]=FindBuildPathDecompose(partXY)
 % Given a polyomino part, searches for a valid build path described by
 % order sequence and move direcions dirs.
+% Finds the build path by iteratively removing tiles.
+%Decomposition : Worst case is 1/2 n (1 + n), best base is n
+% Composition Worst case is n!, best case is n
 % returns foundPath == true if a path is found, false else.
 %Initialize a part with yx
 % positions Passes the part and start node to Depth_firstsearch function to
@@ -9,16 +12,12 @@ function [foundPath, sequence, dirs, partColoredArray]=FindBuildPathDecompose(pa
 % l,r,u,d direction
 %
 %Authors: Sheryl Manzoor, smanzoor2@uh.edu and Aaron T. Becker, atbecker@uh.edu, Sep 27, 2016
-
 clc
-%clear all
-
 format compact
 if nargin <1
     partXY = TestFindBuildPath();
     % partXY=BigPartTry();
     % partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
-    
 end
 % Returned variables
 foundPath = false;  % no valid path has been found yet
@@ -32,31 +31,6 @@ partAr = zeros(max(partXY));
 partAr(IND) = 1;
 partColoredArray = labelColor(partAr); %label color to each item in part
 dirs2 = ['d';'l';'u';'r'];
-count = 0;
-
-% %%%% DRAW THE PART FOR DEBUGGING
-% G.fig = figure(52);clf;
-% set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
-% G.colormap = [  1,1,1; %Empty = white
-%     0,0,0; %obstacle
-%     1,0,0;
-%     %     0.4,0.4,1
-%     0,0,1];
-% colormap(G.colormap);
-% set(gca,'Ydir','reverse');
-% axis equal
-% axis([ min(partXY(:,2))-2,max(partXY(:,2))+2,min(partXY(:,1))-2,max(partXY(:,1))+2])
-% for k = 1:size(partXY,1)
-%     x = partXY(k,1);
-%     y = partXY(k,2);
-%     clr = partColoredArray(x,y);
-%     rectangle('Position',[y-1/2,x-1/2,1,1],...
-%         'FaceColor',G.colormap(clr+2,:),'linewidth',1);
-%     ht = text(y,x,num2str(k) ,'HorizontalAlignment','center');
-%     set(ht, 'color','k')
-% end
-% drawnow
-% %%%%%
 
 while size(remPartXY,1) > 1
     successfulRemove = false;
@@ -73,19 +47,18 @@ while size(remPartXY,1) > 1
             moveOK = CheckPath1Tile(partialAssembly,startPart,dirs2(j),partColoredArray);
             % find a particle that can be successfully removed
             if moveOK
-                n = bwconncomp(partialAssembly,4);
+                n = bwconncomp(partialAssembly,4); %TODO: SLOWEST PART OF ALGORITHM
                 if n.NumObjects == 1  %ensure it does not generate 2 components
                     % remove the particle from remPartXY, and add it to revSequence & revDirs
                     remPartXY = restXY;
-                    sequence(end-count,:) = startPart; %store removal order in reverse
-                    dirs(end-count) = dirs2(j);%store directions in reverse
-                    count = count+1;
+                    sequence(size(remPartXY,1)+1,:) = startPart; %store removal order in reverse
+                    dirs(size(remPartXY,1)+1) = dirs2(j);%store directions in reverse
                     successfulRemove = true;
                     if size(remPartXY,1) == 1
                         foundPath = true;
                         sequence(1,:) = remPartXY;
                     end
-                    break
+                    break %exit FOR loop
                 end %endif
             end %end if
         end %endfor (try moving in each direction)
@@ -96,12 +69,12 @@ while size(remPartXY,1) > 1
     end
 end  %endwhile (repeat until all tiles removed)
 
+%%% Draw the polyomino
 G.fig = figure(51);clf;
 set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
     1,0,0;
-    %     0.4,0.4,1
     0,0,1];
 colormap(G.colormap);
 set(gca,'Ydir','reverse');
