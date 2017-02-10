@@ -1,13 +1,13 @@
 \contentsline {section}{\numberline {I}Introduction}{1}{section.1}
 \contentsline {subsection}{\numberline {I-A}Selective Control with Global Inputs}{1}{subsection.1.1}
 \contentsline {subsection}{\numberline {I-B}Model}{1}{subsection.1.2}
-\contentsline {section}{\numberline {II}Related Work}{2}{section.2}
-\contentsline {subsection}{\numberline {II-A}Microscale Biomanufacturing}{2}{subsection.2.1}
+\contentsline {section}{\numberline {II}Related Work}{1}{section.2}
+\contentsline {subsection}{\numberline {II-A}Microscale Biomanufacturing}{1}{subsection.2.1}
 \contentsline {subsection}{\numberline {II-B}Control Microrobotic Swarms Using Only Global Signals}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {II-C}Microrobot Based Microassembly}{2}{subsection.2.3}
 \contentsline {section}{\numberline {III}Theory}{2}{section.3}
 \contentsline {subsection}{\numberline {III-A}Arbitrary 2D shapes require two particle species}{2}{subsection.3.1}
-\contentsline {subsection}{\numberline {III-B}Complexity Handled in This Paper}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {III-B}Complexity Handled in This Paper}{2}{subsection.3.2}
 \contentsline {subsection}{\numberline {III-C}Discovering a Build Path}{3}{subsection.3.3}
 \contentsline {subsection}{\numberline {III-D}Assembling Tiles}{3}{subsection.3.4}
 \contentsline {subsubsection}{\numberline {III-D.1}Hopper Construction}{3}{subsubsection.3.4.1}
