@@ -2,7 +2,8 @@
 \section{Theory}\label{sec:Theory}
 %###############################################################
 
-Two design factories that build arbitrary 2D shaped polyominos, we first assign species to individual tiles of the polyomino, next discover a build path, then iteratively build factory components that add each tile to partially assembled polyomino.
+This section explains how to design factories that build arbitrary 2D shaped polyominos.
+ We first assign species to individual tiles of the polyomino, second discover a build path, and finally build an assembly line of factory components that each add one tile to partially assembled polyomino and pass the polyomino to the next component.
 
 
 %###############################################################
@@ -36,9 +37,16 @@ including electric charge, ionic charge, magnetic polarity, or hook-and-loop typ
 \subsection{Complexity Handled in This Paper}\label{sec:ComplexityHandled}
 %###############################################################
 
-Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows three parts of varying complexity.  The part of the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
+Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows four parts of varying complexity. 
+Label the first particle in the assembly process the seed particle. 
+ The part on the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
 
-The third shape on the right is two mirrored spirals that are connected.  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
+The third shape is the combination of a left-handed and a right-handed spiral.
+ This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  
+ Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.The fourth shape contains compound overhangs, and may be impossible to construct with additive manufacturing.
+ The algorithms in this paper detect if the desired shape can be constructed one particle at a time.  
+ If so, a build order is provided, and a factory layout is designed.
+
 
    \begin{figure}
    \centering
@@ -48,19 +56,19 @@ The third shape on the right is two mirrored spirals that are connected.  This p
 }
 \end{figure} 
 
- A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
+% A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
+%
+%\begin{lemma}\label{lemma:convexonjectsCanbeConstructedAdditively}
+%Any convex polyomino can be constructed by adding one particle at a time
+%\end{lemma}
+%\begin{proof}
+%Select any pixel as the \emph{seed block}, or root node.  Perform a breadth-first search starting at the seed block, labelling each block in the order they are expanded.  Constructing the shape according to the ordering ensures that the polyomino is convex at every step of construction.
+%\end{proof}
 
-\begin{lemma}\label{lemma:convexonjectsCanbeConstructedAdditively}
-Any convex polyomino can be constructed by adding one particle at a time
-\end{lemma}
-\begin{proof}
-Select any pixel as the \emph{seed block}, or root node.  Perform a breadth-first search starting at the seed block, labelling each block in the order they are expanded.  Constructing the shape according to the ordering ensures that the polyomino is convex at every step of construction.
-\end{proof}
-
-The proof of \ref{lemma:convexonjectsCanbeConstructedAdditively} assumes the existence of fixtures for assembly.
+%The proof of \ref{lemma:convexonjectsCanbeConstructedAdditively} assumes the existence of fixtures for assembly.
 %\todo{describe fixtures for adding one particle at a time}
 
-Some non-convex polynominos cannot be constructed one particle at a time, as illustrated in Fig. ~\ref{fig:IncreasingDifficulty}.    For instance, a polynomino consisting of a clockwise and a counterclockwise square spiral, joined at the ends with a gap of one unit between the spirals must be constructed by first assembling each spiral, and then combining the sub assemblies.
+%Some non-convex polynominos cannot be constructed one particle at a time, as illustrated in Fig. ~\ref{fig:IncreasingDifficulty}.    For instance, a polynomino consisting of a clockwise and a counterclockwise square spiral, joined at the ends with a gap of one unit between the spirals must be constructed by first assembling each spiral, and then combining the sub assemblies.
 
 
 
@@ -68,6 +76,10 @@ Some non-convex polynominos cannot be constructed one particle at a time, as ill
 %###############################################################
 \subsection{Discovering a Build Path}
 %###############################################################
+
+Given a polyomino, Alg.~\ref{alg:FindBuildPath} determines if the polyomino can be built by adding one component at a time.
+ The forward problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may be violate the constraints give in Section \label{subsc:model}.  Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite species of tile, and terminates in a mating configuration with an opposite species tile.
+As in many robotics problem, the inverse problem is easier.  The inverse problem of deconstruction simply checks (1) if any of the polyomino tiles can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile, and (2) that its removal does not fragment the remaining polyomino into more than one piece. This algorithm requires at most  $1/2 n (1 + n)$ terations, becasue there are $n$ particles to remove, and each iteration  considers one less particle than the previous iteration.
 
 %\todo{move algorithm here}
 
