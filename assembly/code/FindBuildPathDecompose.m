@@ -34,25 +34,20 @@ dirs2 = ['d';'l';'u';'r'];
 
 while size(remPartXY,1) > 1
     successfulRemove = false;
-    m=0; %counter to check each remaining tile to find a removeable one
-    while ~successfulRemove && m < size(remPartXY,1)
-        m=m+1;  %try removing each particle
-        startPart = remPartXY(m,:);
+    for m = 1:size(remPartXY,1)%check each remaining tile to find a removeable one
+        startPart = remPartXY(m,:);%try removing each particle
         restXY = [remPartXY(1:m-1,:);remPartXY(m+1:end,:)];
+        partAr(startPart(1),startPart(2)) = 0; % remove this tile from BW array
         for j=1:4 %try taking this particle out in all 4 directions
-            % draw the 2D array
-            IND = sub2ind(size(partColoredArray),restXY(:,1),restXY(:,2));
-            partialAssembly = zeros(size(partColoredArray));
-            partialAssembly(IND) = 1;
-            moveOK = CheckPath1Tile(partialAssembly,startPart,dirs2(j),partColoredArray);
+            moveOK = CheckPath1Tile(partAr,startPart,dirs2(j),partColoredArray);
             % find a particle that can be successfully removed
             if moveOK
-                n = bwconncomp(partialAssembly,4); %TODO: SLOWEST PART OF ALGORITHM
+                n = bwconncomp(partAr,4); %TODO: SLOWEST PART OF ALGORITHM
                 if n.NumObjects == 1  %ensure it does not generate 2 components
                     % remove the particle from remPartXY, and add it to revSequence & revDirs
                     remPartXY = restXY;
                     sequence(size(remPartXY,1)+1,:) = startPart; %store removal order in reverse
-                    dirs(size(remPartXY,1)+1) = dirs2(j);%store directions in reverse
+                    dirs(size(remPartXY,1)) = dirs2(j);%store directions in reverse
                     successfulRemove = true;
                     if size(remPartXY,1) == 1
                         foundPath = true;
@@ -62,7 +57,12 @@ while size(remPartXY,1) > 1
                 end %endif
             end %end if
         end %endfor (try moving in each direction)
-    end %endwhile (try removing each existing tile until you can remove one)
+        if ~successfulRemove
+            partAr(startPart(1),startPart(2)) = 1; % replace this tile
+        else
+            break
+        end
+    end %endfor (try removing each existing tile until you can remove one)
     if successfulRemove == false
         display('no way to remove a particle, ==> there is no solution')
         break 
