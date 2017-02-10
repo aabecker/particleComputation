@@ -93,61 +93,9 @@ A.~Becker, E.~D. Demaine, S.~P. Fekete, G.~Habibi, and J.~McLurkin,
   [Online]. Available: \url{http://dx.doi.org/10.1007/978-3-642-45346-5_5}
 \BIBentrySTDinterwordspacing
 
-\bibitem{McCourtney1999}
-S.~McCourtney, \emph{{ENIAC}, the triumphs and tragedies of the world's first
-  computer}.\hskip 1em plus 0.5em minus 0.4em\relax United States of America:
-  Walker Publishing, 1999.
-
-\bibitem{hearn2005complexity}
-R.~A. Hearn, ``The complexity of sliding-block puzzles and plank puzzles,''
-  \emph{Tribute to a Mathemagician}, pp. 173--183, 2005.
-
-\bibitem{Demaine2009}
-\BIBentryALTinterwordspacing
-E.~D. Demaine and R.~A. Hearn, \emph{Games of No Chance 3}.\hskip 1em plus
-  0.5em minus 0.4em\relax Mathematical Sciences Research Institute
-  Publications, Cambridge University Press, 2009, vol.~56, ch. Playing Games
-  with Algorithms: Algorithmic Combinatorial Game Theory, pp. 3--56. [Online].
-  Available: \url{http://arXiv.org/abs/cs.CC/0106019}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Winf98}
-E.~Winfree, ``Algorithmic self-assembly of {D}{N}{A},'' Ph.D. dissertation,
-  California Institute of Technology, June 1998.
-
-\bibitem{WLWS98}
-E.~Winfree, F.~Liu, L.~Wenzler, and N.~Seeman, ``Design and self-assembly of
-  two-dimensional {DNA} crystals,'' \emph{Nature}, vol. 394, pp. 539--544,
-  1998.
-
-\bibitem{LaWiRe99}
-T.~LaBean, E.~Winfree, and J.~Reif, ``Experimental progress in computation by
-  self-assembly of {DNA} tilings,'' \emph{{DNA} Based Computers}, vol.~5, pp.
-  123--140, 1999.
-
-\bibitem{LSAT1}
-D.~Doty, M.~J. Patitz, and S.~M. Summers, ``Limitations of self-assembly at
-  temperature 1,'' in \emph{Proceedings of The Fifteenth International Meeting
-  on {D}{N}{A} Computing and Molecular Programming (Fayetteville, Arkansas,
-  USA, June 8-11, 2009)}, 2009, pp. 283--294.
-
-\bibitem{ManuchTemp1}
-J.~Ma\v{n}uch, L.~Stacho, and C.~Stoll, ``Two lower bounds for self-assemblies
-  at temperature 1,'' \emph{Journal of Computational Biology}, vol.~17, no.~6,
-  pp. 841--852, 2010.
-
-\bibitem{IUNeedsCoop}
-P.-E. Meunier, M.~J. Patitz, S.~M. Summers, G.~Theyssier, A.~Winslow, and
-  D.~Woods, ``Intrinsic universality in tile self-assembly requires
-  cooperation,'' in \emph{Proceedings of the ACM-SIAM Symposium on Discrete
-  Algorithms (SODA 2014), (Portland, OR, USA, January 5-7, 2014)}, 2014, pp.
-  752--771.
-
-\bibitem{fhp+-ucapt-15}
-S.~P. Fekete, J.~Hendricks, M.~J. Patitz, T.~A. Rogers, and R.~T. Schweller,
-  ``Universal computation with arbitrary polyomino tiles in non-cooperative
-  self-assembly,'' in \emph{Proceedings of the 26th ACM-SIAM Symposium on
-  Discrete Algorithms (SODA)}, 2015, to appear.
+\bibitem{chang2005therapeutic}
+T.~M.~S. Chang, ``Therapeutic applications of polymeric artificial cells,''
+  \emph{Nature Reviews Drug Discovery}, vol.~4, no.~3, pp. 221--235, 2005.
 
 \bibitem{Manzoor2017gitAssemply}
 S.~Manzoor and A.~T. Becker, ``{Particle Assembly},
