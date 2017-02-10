@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-%###############################################################
-\section{Related Work}\label{sec:RelatedWork}
-%###############################################################
-Our efforts have similarities with \emph{mechanical computers},  computers
-constructed from mechanical, not electrical components. For a fascinating
-nontechnical review, see \cite{McCourtney1999}.  These devices have a rich
-history, from the \emph{Pascaline}, an adding machine invented in 1642 by a
-nineteen-year old Blaise Pascal; Herman Hollerith's punch-card tabulator in
-1890; to the mechanical devices of IBM culminating in the 1940s.  These devices
-used precision gears, pulleys, or electric motors to carry out calculations.
-Though our {\sc Grid-World} implementations are rather basic, 
-we require none of these precision elements---merely unit-size obstacles and particles.
-%Can we call these robots? Indeed, the ENIAC itself was labelled a robot by the
-%associated press when it was announced in the 1940s. 
-
-\subsection{Sliding-Block Puzzles}
-Sliding-block puzzles use rectangular tiles that are constrained to move in a 2D workspace. The objective is to move one or more tiles to desired locations. They have a long history.
-Hearn \cite{hearn2005complexity} and Demaine \cite{Demaine2009} showed tiles can be arranged to create logic gates, and used this technique to prove {\sc pspace} complexity for a variety of sliding-block puzzles.  Hearn expressed the idea of building computers from the sliding blocks---many of the logic gates could be connected together, and the user could propagate a signal from one gate to the next by sliding intermediate tiles.  This requires the user to know precisely which sequence of gates to enable/disable.  In contrast to such a hands-on approach, with our architecture we can build circuits, store parameters in memory, and then actuate the entire system in parallel using a global control signal.
-
-\subsection{Other Related Work on Programmable Matter}
-Clearly there is a wide range of interesting scenarios for developing approaches to programmable matter.
-One such model is the \emph{abstract Tile-Assembly Model} (aTAM) by Winfree~\cite{Winf98,WLWS98,LaWiRe99}, which has 
-sparked a wide range of theoretical and practical research. In this model, unit-sized pixels (``tiles'')
-interact and bond with the help of differently labeled edges, eventually composing complex assemblies.
-Even though the operations and final objectives in this model are quite different from our particle computation with global
-inputs (e.g., key features of the aTAM are that tiles can have a wide range of different edge types, and
-that they keep sticking together after bonding), there is
-a remarkable geometric parallelism to a key result of our present paper:
-While it is widely believed that at the most basic level of interaction (called {\em temperature 1}),
-computational universality {\em cannot be achieved}~\cite{LSAT1,ManuchTemp1,IUNeedsCoop} in the aTAM with only unit-sized pixels, 
-very recent work~\cite{fhp+-ucapt-15} shows that computational universality {\em can be achieved} as soon as even slightly bigger tiles are used. 
-This resembles the results of our paper, which shows that unit-size particles are insufficient for universal computation, while employing bigger particles suffices
-
-=======
 %###############################################################
 \section{Related Work}\label{sec:RelatedWork}
 %###############################################################
