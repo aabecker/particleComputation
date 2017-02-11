@@ -79,10 +79,13 @@ The fourth shape contains compound overhangs, and may be impossible to construct
 %###############################################################
 
 Given a polyomino, Alg.~\ref{alg:FindBuildPath} determines if the polyomino can be built by adding one component at a time.
- The forward problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may be violate the constraints give in Section \label{subsc:model}.  Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite species of tile, and terminates in a mating configuration with an opposite species tile.
-As in many robotics problem, the inverse problem is easier.  The inverse problem of deconstruction simply checks (1) if any of the polyomino tiles can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile, and (2) that its removal does not fragment the remaining polyomino into more than one piece. This algorithm requires at most  $1/2 n (1 + n)$ terations, becasue there are $n$ particles to remove, and each iteration  considers one less particle than the previous iteration.
-
-%\todo{move algorithm here}
+ The forward problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may be violate the constraints give in Section \label{subsc:model}.  
+ Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite species of tile, and terminates in a mating configuration with an opposite species tile.
+As in many robotics problem, the inverse problem is easier.  
+The inverse problem of deconstruction maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
+ In the inner for loop at line  \ref{alg:line:forloopTotryremovinEachTile}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$.
+This loop simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtile}, and (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedComp}. 
+This algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
@@ -91,20 +94,58 @@ As in many robotics problem, the inverse problem is easier.  The inverse problem
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
 Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions for assembly.
 \begin{algorithmic}[1]
-%\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
-\State\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
 
-\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
-\For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
-\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
-\State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
-\If{$ \{\} \ne \mathbf{m}$}
+\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
+\State $\mathbf{d} \gets\{u,d,l,r\}, \mathbf{R} \gets \mathbf{P}$
+\For{$i\leftarrow 1, i <  |\mathbf{P}| $}
+
+\For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
+\State  \emph{successRemove} $\gets$ {\sc False}
+\State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
+
+\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTile} }
+\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$)} \label{alg:line:checkpathtile}
+
+\If{$1 = \text{\sc NumConnectedComp}(\mathbf{T})$  \label{alg:line:NumConnectedComp}}
+\State  $\mathbf{R} \gets \mathbf{T}$,   \emph{successRemove} $\gets$ {\sc True}
+\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
 \State \textbf{break}
 \EndIf
-\EndFor\\
-\Return $\{ \mathbf{C},\mathbf{c}, \mathbf{m} \}$ 
+\EndIf
+\EndFor
+\EndFor
+\If {  \emph{successRemove} $=$ {\sc False}}
+\State  \hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
+\State \textbf{break}
+\EndIf
+\EndFor
+\If {$ |\mathbf{R}| = 1$}
+\State  $\mathbf{C}_{ 1} \gets \mathbf{R}_1 $
+\EndIf
+\State \Return $\{ \mathbf{C},\mathbf{c}, \mathbf{m} \}$ 
 \end{algorithmic}
 \end{algorithm} 
+
+%\begin{algorithm}
+%\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%%\scriptsize 
+%\caption{\sc {FindBuildPath}($\mathbf{P})$   \label{alg:FindBuildPath}}
+%$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
+%Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions for assembly.
+%\begin{algorithmic}[1]
+%%\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
+%\State\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
+%\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
+%\For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
+%\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
+%\State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
+%\If{$ \{\} \ne \mathbf{m}$}
+%\State \textbf{break}
+%\EndIf
+%\EndFor\\
+%\Return $\{ \mathbf{C},\mathbf{c}, \mathbf{m} \}$ 
+%\end{algorithmic}
+%\end{algorithm} 
   
 %###############################################################
 \subsection{Assembling Tiles}
