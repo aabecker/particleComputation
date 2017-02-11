@@ -43,7 +43,8 @@ Label the first particle in the assembly process the seed particle.
 
 The third shape is the combination of a left-handed and a right-handed spiral.
  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  
- Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.The fourth shape contains compound overhangs, and may be impossible to construct with additive manufacturing.
+ Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
+The fourth shape contains compound overhangs, and may be impossible to construct with additive manufacturing.
  The algorithms in this paper detect if the desired shape can be constructed one particle at a time.  
  If so, a build order is provided, and a factory layout is designed.
 
@@ -119,7 +120,7 @@ Two-part adhesives react when the components mix.  Placing the components in sep
 We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle.
    \begin{figure}
    \centering
-\begin{overpic}[width =\columnwidth]{Hopper-delays1.pdf}
+\begin{overpic}[width =80mm]{hopperdirections.pdf}
 \end{overpic}
 \caption{\label{fig:HopperCW}Hopper with delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle u,r,d,l \rangle$ releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
 }
@@ -131,7 +132,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 
 \begin{figure}
    \centering
-\begin{overpic}[width =\columnwidth]{24tilefactory.jpg}
+\begin{overpic}[width =\columnwidth]{24tilefactory.pdf}
 \end{overpic}
 \caption{\label{fig:24tilefactory}A twenty-four tile factory
 }
