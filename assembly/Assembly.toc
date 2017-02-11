@@ -2,24 +2,27 @@
 \contentsline {subsection}{\numberline {I-A}Selective Control with Global Inputs}{1}{subsection.1.1}
 \contentsline {subsection}{\numberline {I-B}Model}{1}{subsection.1.2}
 \contentsline {section}{\numberline {II}Related Work}{1}{section.2}
-\contentsline {subsection}{\numberline {II-A}Microscale Biomanufacturing}{1}{subsection.2.1}
-\contentsline {subsection}{\numberline {II-B}Control Microrobotic Swarms Using Only Global Signals}{2}{subsection.2.2}
-\contentsline {subsection}{\numberline {II-C}Microrobot Based Microassembly}{2}{subsection.2.3}
-\contentsline {section}{\numberline {III}Theory}{2}{section.3}
-\contentsline {subsection}{\numberline {III-A}Arbitrary 2D shapes require two particle species}{2}{subsection.3.1}
-\contentsline {subsection}{\numberline {III-B}Complexity Handled in This Paper}{2}{subsection.3.2}
-\contentsline {subsection}{\numberline {III-C}Discovering a Build Path}{3}{subsection.3.3}
-\contentsline {subsection}{\numberline {III-D}Assembling Tiles}{3}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {III-D.1}Hopper Construction}{3}{subsubsection.3.4.1}
-\contentsline {subsection}{\numberline {III-E}Part Assembly Jigs}{4}{subsection.3.5}
-\contentsline {section}{\numberline {IV}Analysis}{4}{section.4}
-\contentsline {subsection}{\numberline {IV-A}Running Time}{4}{subsection.4.1}
-\contentsline {subsection}{\numberline {IV-B}Space Required}{4}{subsection.4.2}
-\contentsline {subsection}{\numberline {IV-C}Simulation Results}{4}{subsection.4.3}
-\contentsline {section}{\numberline {V}Experiment}{4}{section.5}
-\contentsline {subsection}{\numberline {V-A}Macro-scale, Gravity-Based Prototype}{4}{subsection.5.1}
-\contentsline {subsection}{\numberline {V-B}Milli-scale, Magnetic-Based Prototype}{4}{subsection.5.2}
-\contentsline {paragraph}{\numberline {V-B.0.a}Experimental setup}{4}{figure.8}
-\contentsline {paragraph}{\numberline {V-B.0.b}Experimental result}{5}{paragraph.5.2.0.2}
-\contentsline {section}{\numberline {VI}Conclusion}{5}{section.6}
-\contentsline {section}{References}{5}{section*.1}
+\contentsline {subsection}{\numberline {II-A}Sliding-Block Puzzles}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {II-B}Other Related Work on Programmable Matter}{2}{subsection.2.2}
+\contentsline {section}{\numberline {III}Related Work}{2}{section.3}
+\contentsline {subsection}{\numberline {III-A}Microscale Biomanufacturing}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {III-B}Control Microrobotic Swarms Using Only Global Signals}{2}{subsection.3.2}
+\contentsline {subsection}{\numberline {III-C}Microrobot Based Microassembly}{3}{subsection.3.3}
+\contentsline {section}{\numberline {IV}Theory}{3}{section.4}
+\contentsline {subsection}{\numberline {IV-A}Arbitrary 2D shapes require two particle species}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {IV-B}Complexity Handled in This Paper}{3}{subsection.4.2}
+\contentsline {subsection}{\numberline {IV-C}Discovering a Build Path}{3}{subsection.4.3}
+\contentsline {subsection}{\numberline {IV-D}Assembling Tiles}{4}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {IV-D.1}Hopper Construction}{4}{subsubsection.4.4.1}
+\contentsline {subsection}{\numberline {IV-E}Part Assembly Jigs}{5}{subsection.4.5}
+\contentsline {section}{\numberline {V}Analysis}{5}{section.5}
+\contentsline {subsection}{\numberline {V-A}Running Time}{5}{subsection.5.1}
+\contentsline {subsection}{\numberline {V-B}Space Required}{5}{subsection.5.2}
+\contentsline {subsection}{\numberline {V-C}Simulation Results}{5}{subsection.5.3}
+\contentsline {section}{\numberline {VI}Experiment}{5}{section.6}
+\contentsline {subsection}{\numberline {VI-A}Macro-scale, Gravity-Based Prototype}{5}{subsection.6.1}
+\contentsline {subsection}{\numberline {VI-B}Milli-scale, Magnetic-Based Prototype}{5}{subsection.6.2}
+\contentsline {paragraph}{\numberline {VI-B.0.a}Experimental setup}{5}{figure.9}
+\contentsline {paragraph}{\numberline {VI-B.0.b}Experimental result}{5}{paragraph.6.2.0.2}
+\contentsline {section}{\numberline {VII}Conclusion}{6}{section.7}
+\contentsline {section}{References}{6}{section*.1}
