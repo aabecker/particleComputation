@@ -1,4 +1,4 @@
-function [foundPath, sequence, dirs, partColoredArray]=FindBuildPathDecompose(partXY)
+function [foundPath, sequence, dirs, partColoredArray]=OLDFindBuildPathDecompose(partXY)
 % Given a polyomino part, searches for a valid build path described by
 % order sequence and move direcions dirs.
 % Finds the build path by iteratively removing tiles.

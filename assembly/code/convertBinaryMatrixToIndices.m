@@ -5,11 +5,12 @@ if nargin<1
     
         m = [...
 0 0 0 0 0 0 0 0 ;
-0 1 0 1 1 1 1 0 ;
-0 1 0 1 0 0 1 0 ;
-0 1 0 1 0 0 1 0 ;
+0 1 1 1 1 1 1 0 ;
+0 1 0 0 1 0 1 0 ;
+0 1 0 0 1 0 1 0 ;
+0 1 1 1 0 0 1 0 ;
 0 1 0 0 0 0 1 0 ;
-0 1 1 0 1 1 1 0 ;
+0 1 1 1 1 1 1 0 ;
 0 0 0 0 0 0 0 0 ;]; 
     
 %     m = [...
@@ -57,5 +58,5 @@ partXY = [x,y];
 
 outputString1 = sprintf('%d, ', x);
 outputString2 = sprintf('%d, ', y);
-outputString = sprintf('[%s;...\n%s]'';', outputString1, outputString2);
+outputString = sprintf('partXY =[%s;...\n%s]'';', outputString1, outputString2);
 display(outputString)
