@@ -19,7 +19,7 @@
 \contentsline {section}{\numberline {V}Experiment}{5}{section.5}
 \contentsline {subsection}{\numberline {V-A}Macro-scale, Gravity-Based Prototype}{5}{subsection.5.1}
 \contentsline {subsection}{\numberline {V-B}Milli-scale, Magnetic-Based Prototype}{5}{subsection.5.2}
-\contentsline {paragraph}{\numberline {V-B.0.a}Experimental setup}{6}{figure.9}
-\contentsline {paragraph}{\numberline {V-B.0.b}Experimental result}{6}{paragraph.5.2.0.2}
+\contentsline {paragraph}{\numberline {V-B.0.a}Experimental setup}{5}{figure.9}
+\contentsline {paragraph}{\numberline {V-B.0.b}Experimental result}{5}{paragraph.5.2.0.2}
 \contentsline {section}{\numberline {VI}Conclusion}{6}{section.6}
 \contentsline {section}{References}{6}{section*.1}
