@@ -35,10 +35,13 @@ The space required by a factory is a function of the size of individual sub asse
 
 
 $$
-height(nth)=
+height(n)=
 \begin{cases}
-\ceil[\big]{nc/w} + \ceil[\big]{(n/2))+2} + ((2\timespartrows)+2)   , \\
-x(n-1)
+\left \lceil{nc/w}\right \rceil+2((\left \lceil{n/2}\right \rceil+1)+(partrows+1))    , 
+& \text{for m=l or d}\\
+\left \lceil{nc/w}\right \rceil+2((\left \lceil{n/2}\right \rceil+1)+(partrows+2))    , 
+& \text{for m=l or d}
+
 \end{cases}
 $$
 
