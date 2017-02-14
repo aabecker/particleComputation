@@ -42,7 +42,7 @@ Algorithms  \ref{alg:FindBuildPath}, \ref{alg:BuildFactory}, and \ref{alg:Factor
 
 This section examines experiments that generate actual running time and space required for different parts. As shown in Fig.~\ref{fig:timeplot}, the  \todo{what do we learn?}.
 
-As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos, and is $O(n^3)$ ????.
+As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos, and is $O(n^2)$.
 
 
 \begin{figure}
@@ -60,9 +60,7 @@ As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by colu
 \begin{overpic}[width =1\columnwidth]{facsizeplot.pdf}
 \end{overpic}
 \caption{\label{fig:sizeplot}
-Factory size grows quadratically (???) with the number of tiles, and is upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos.
-%Sheryl -- this caption is obviousFactory size (rows$\cdot$columns) plotted against number of tiles ($n$).  
-%
+Factory size grows quadratically with the number of tiles, and is upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos.
 }
 \end{figure}
 
