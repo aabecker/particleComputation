@@ -53,7 +53,7 @@ The fourth shape contains compound overhangs, and may be impossible to construct
    \centering
 \begin{overpic}[width =\columnwidth]{IncreasingDifficulty2.pdf}
 \end{overpic}
-\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. The rightmost part cannot be built by additive construction. 
+\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. The right parts  cannot be built by additive construction. 
 }
 \end{figure} 
 
@@ -89,6 +89,7 @@ This algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\begin{algorithmic}[1]
 %\scriptsize 
 \caption{\sc {FindBuildPath}($\mathbf{P})$   \label{alg:FindBuildPath}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino that has at least a 1-tile empty border.
@@ -121,18 +122,18 @@ Returns $ \mathbf{C} $, and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence 
 \State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
 
 \For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTile} }
-\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$)} \label{alg:line:checkpathtile}
-
-\If{$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedComp}}
-\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
+\If{{ ( \sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtile} \textbf{and }
+\\ \textbf{~~~~~~~~~~~~ }
+$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedComp}}
 \State $\{\mathbf{C2},\mathbf{m2} \}= ${\sc {Decompose}}$(\mathbf{T},\mathbf{c})$
 \If {$\mathbf{C2}  \ne \{\}$}
+\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
 \State $\mathbf{C}_{1:|\mathbf{C2}|} \gets \mathbf{C2}, \mathbf{m}_{1:|\mathbf{m2}|} \gets \mathbf{m2}$
 \State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
 \EndIf
 \State \textbf{break}
 \EndIf
-\EndIf
+%\EndIf
 \EndFor
 \EndFor
 \State $\mathbf{C} \gets \{\}, \mathbf{m} \gets \{\}$
@@ -158,9 +159,9 @@ Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where 
 \State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
 
 \For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTile} }
-\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$)} \label{alg:line:checkpathtile}
-
-\If{$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedComp}}
+\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtile} \textbf{and}
+\\ \textbf{~~~~~~~~~~~~~~}
+$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedComp}}
 \If{$w = |\text{\sc 8-ConnComp}(\neg\mathbf{T})|$  \label{alg:line:Num8ConnectedComp}}
 
 \State  $\mathbf{R} \gets \mathbf{T}$,   \emph{successRemove} $\gets$ {\sc True}
@@ -168,7 +169,6 @@ Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where 
 \Else { $  \mathbf{\ell} \gets \textrm{\sc True}$}
 \EndIf
 \State \textbf{break}
-\EndIf
 \EndIf
 \EndFor
 \EndFor
