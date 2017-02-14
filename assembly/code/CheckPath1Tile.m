@@ -22,14 +22,9 @@ if nargin<2
         0,0,0,0,0;
         0,0,0,0,0;];
     direction = 'l';
-<<<<<<< HEAD
-    loc = [3,5];
-    partColored=[ 0 1 0 1 0;
-=======
     loc = [2,5];
     partColored=[ ...
         0 1 0 1 0;
->>>>>>> origin/master
         1 2 1 2 1;
         0 1 0 1 2;
         0 0 0 0 0;
