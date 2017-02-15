@@ -330,19 +330,12 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
 \ElsIf{ $m = u \textbf{ and } \left(     C_y  > \max \mathbf{b}_y   
-<<<<<<< HEAD
+
                         \textbf{ or }  C_x     \geq \min \mathbf{b}_x \right)  }$
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
 \ElsIf{ $m = r \textbf{ and } \left(     C_x  < \min \mathbf{b}_x   
                         \textbf{ or }  C_y     \geq \min \mathbf{b}_y \right)  }$
-=======
-                        \textbf{ or }  C_x     \ge \min \mathbf{b}_x \right)  }$
-\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
-
-\ElsIf{ $m = r \textbf{ and } \left(     C_x  < \min \mathbf{b}_x   
-                        \textbf{ or }  C_y    \ge \min \mathbf{b}_y \right)  }$
->>>>>>> origin/master
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
 
 \EndIf
