@@ -328,15 +328,15 @@ Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles 
                          \textbf{ or }  C_x     > \max \mathbf{b}_x \right)  }$
     
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
-
-\ElsIf{ $m = u \textbf{ and } \left(     C_y  > \max \mathbf{b}_y   
-
-                        \textbf{ or }  C_x     \geq \min \mathbf{b}_x \right)  }$
+\ElsIf{ $m = l \textbf{ and} \left(     C_x  \ge \max \mathbf{b}_x   
+                         \textbf{ or }  C_y     > \max \mathbf{b}_y \right)  }$
+    
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
-
-\ElsIf{ $m = r \textbf{ and } \left(     C_x  < \min \mathbf{b}_x   
-                        \textbf{ or }  C_y     \geq \min \mathbf{b}_y \right)  }$
+\ElsIf{ $m = r \textbf{ and } \left(     C_y     \ge \min \mathbf{b}_y   
+                       \textbf{ or }  C_x  < \min \mathbf{b}_x   \right)  }$
 \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
+
 
 \EndIf
 
