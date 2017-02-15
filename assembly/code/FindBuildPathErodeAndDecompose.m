@@ -36,14 +36,27 @@ partXY = [x,y];
 
 %%% Draw the polyomino
 G.fig = figure(51);clf;
-set(G.fig,'Name',['Colored Part with n = ',num2str(size(partXY,1)),' tiles'])
+set(gcf,'color','w');
+set(G.fig,'Name',['Colored Part, n = ',num2str(size(partXY,1)),' tiles'])
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
     1,0,0;
     0,0,1];
 colormap(G.colormap);
+% set(G.fig, 'MenuBar', 'none');
+% set(G.fig, 'ToolBar', 'none');
+set(G.fig,'numbertitle','off');
 set(gca,'Ydir','reverse');
+
 axis equal
+axis tight
+set(gca,'xcolor','w','ycolor','w');
+set(gca,'xtick',[],'ytick',[]);
+axes('position', [0 0 1 1])
+axis equal
+axis tight
+set(gca,'xtick',[],'ytick',[]);
+set(gca,'xcolor','w','ycolor','w');
 axis([ min(partXY(:,2))-2,max(partXY(:,2))+2,min(partXY(:,1))-2,max(partXY(:,1))+2])
 if ~foundPath
     sequence = partXY;

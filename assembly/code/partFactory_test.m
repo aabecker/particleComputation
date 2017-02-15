@@ -7,6 +7,7 @@ function [] = partFactory_test(path)
 
 
 G.fig = figure(2);
+set(gcf,'color','k');
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
 G.game = flipud(dlmread(path));
 G.obstacle_pos = (G.game==1);  %%???
@@ -19,7 +20,7 @@ colormap(G.colormap);
 G.axis=imagesc(G.game);
 set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off','color',0.8*[1,1,1]);
 axis equal
-
+axis tight
 %assignin('base','P',G);
 
 % build list of items
@@ -86,6 +87,7 @@ drawGameboard();
                 i=i+1;
             end
             drawGameboard();
+            drawnow
             makeItemList();
         end
         
