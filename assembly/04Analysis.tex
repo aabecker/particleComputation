@@ -53,20 +53,20 @@ height(n)=
 
 
 \begin{equation}
-hopper_{width}=w+(2\left \lceil{n/2}\right \rceil+8),  n \geq 2
+(hopper+delays)_{width}=w+(2\left \lceil{n/2}\right \rceil+8),  n \geq 2
 \end{equation}
 
 \begin{align}
 width(n)=
 \begin{cases}
-hopper_{width}+(\mathbf{b}_x-column_{loc}),&\\ 
-\text{for } m = d \text{ and } \mathbf{b}_x < hopper_{width}&\\
+(hopper+delays)_{width}+(\mathbf{b}_x-column_{loc}),&\\ 
+\text{for } m = d \text{ and } \mathbf{b}_x < (hopper+delays)_{width}&\\
 \mathbf{b}_x + 1,&\\ 
-\text{for } m = d \text{ and } \mathbf{b}_x \geq hopper_{width}&\\
-hopper_{width},&\\ 
-\text{for } m \neq d  \text{ and } \mathbf{b}_x < hopper_{width}&\\
+\text{for } m = d \text{ and } \mathbf{b}_x \geq (hopper+delays)_{width}&\\
+(hopper+delay)_{width},&\\ 
+\text{for } m \neq d  \text{ and } \mathbf{b}_x < (hopper+delays)_{width}&\\
 \mathbf{b}_x + 3,&\\ 
-\text{for } m \neq d \text{ and } \mathbf{b}_x \geq hopper_{width}&\\
+\text{for } m \neq d \text{ and } \mathbf{b}_x \geq (hopper+delays)_{width}&\\
 \end{cases}
 \end{align}
 
