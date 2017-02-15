@@ -2,7 +2,7 @@
 \section{Theory}\label{sec:Theory}
 %###############################################################
 
-This section explains how to design factories that build arbitrary 2D shaped polyominos.
+This section explains how to design factories that build arbitrary-shaped 2D polyominoes.
  We first assign species to individual tiles of the polyomino, second discover a build path, and finally build an assembly line of factory components that each add one tile to partially assembled polyomino and pass the polyomino to the next component.
 
 
@@ -19,10 +19,6 @@ A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal 
 Label a grid with an alternating pattern like a checkerboard.  Any desired polyomino can be constructed on this checkerboard, and all joints are between dissimilar species.
   An example shape is shown in Fig.~\ref{fig:Grid}.
   \end{proof}
-  
-  The sufficiency of two species to construct any shape gives many options for implementation.  The two species could correspond to any gendered connection, 
-including electric charge, ionic charge, magnetic polarity, or hook-and-loop type fasteners.
-
 
    \begin{figure}
    \centering
@@ -31,6 +27,12 @@ including electric charge, ionic charge, magnetic polarity, or hook-and-loop typ
 \caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species.  
 }
 \end{figure}
+
+  
+  The sufficiency of two species to construct any shape gives many options for implementation.  The two species could correspond to any gendered connection, 
+including electric charge, ionic charge, magnetic polarity, or hook-and-loop type fasteners.
+
+
 
 
 %###############################################################
@@ -81,15 +83,15 @@ Shape 4 is the combination of a left-handed and a right-handed spiral.
 Given a polyomino, Alg.~\ref{alg:FindBuildPath} determines if the polyomino can be built by adding one component at a time.
  The  problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may  violate the constraints given in Section \ref{subsec:model}.  
  Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite species of tile, and terminates in a mating configuration with an opposite species tile.
-As in many robotics problem, the inverse problem of deconstruction is easier than the forward problem of construction.  
+However, as in many robotics problem, the inverse problem of deconstruction is easier than the forward problem of construction.  
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\begin{algorithmic}[1]
 %\scriptsize 
 \caption{\sc {FindBuildPath}($\mathbf{P})$   \label{alg:FindBuildPath}}
-$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino that has at least a 1-tile empty border.
-Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions for assembly.
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. % that has at least a 1-tile empty border.
+Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels, and $\mathbf{m}$ is a vector of directions for assembly.
 \begin{algorithmic}[1]
 
 \State\hbox{$ \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
@@ -106,22 +108,22 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 }
 \end{figure} 
 
-Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polynomial a color, then calls the recursive function {\sc {Decompose}}$(\mathbf{P},\mathbf{c})$, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
-{\sc {Decompose}} calls the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace.  If there is more than one connected component, the polynomial contains loops.  
+Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polynomial a color, then calls the recursive function {\sc {Decompose}}, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
+{\sc {Decompose}} starts by calls the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace.  If there is more than one connected component, the polynomial contains loops.  
  {\sc {Erode}} maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
  In the inner for loop at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$.
 This for loop simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtileERODE},  (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedCompERODE}, and (3) that its removal does not break a loop in line \ref{alg:line:Num8ConnectedCompERODE}. 
 If no loops are present, this algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
 Polynomials with loops require care, because decomposing them in the wrong order can make disassembly impossible, as shown in Fig.~\ref{fig:DeconstructionOrderMatters}.
-If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The function calls required are proportional to the factorial of the number of loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
+If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The worst-case number of function calls of  {\sc {Decompose}}  are proportional to the factorial of the number of loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
 %\scriptsize 
 \caption{\sc {Erode}($\mathbf{P},\mathbf{c})$   \label{alg:Erode}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino  and $ \mathbf{c} $ is a vector of color labels.
-Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were detected.
+Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered.
 \begin{algorithmic}[1]
 
 \State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}$}
@@ -171,7 +173,7 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE
 %\scriptsize 
 \caption{\sc {Decompose}($\mathbf{P},\mathbf{c})$   \label{alg:Decompose}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino and $ \mathbf{c} $ is a vector of color labels.
-Returns $ \mathbf{C} $, and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly.
+Returns $ \mathbf{C} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly.
 \begin{algorithmic}[1]
 
 \State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
@@ -187,7 +189,7 @@ Returns $ \mathbf{C} $, and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence 
 \If{{ ( \sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtileDecompose} \textbf{and }
 \\ \textbf{~~~~~~~~~~~~ }
 $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDecompose}}
-\State $\{\mathbf{C2},\mathbf{m2} \}= ${\sc {Decompose}}$(\mathbf{T},\mathbf{c})$
+\State $\{\mathbf{C2},\mathbf{m2} \}\gets ${\sc {Decompose}}$(\mathbf{T},\mathbf{c})$
 \If {$\mathbf{C2}  \ne \{\}$}
 %\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
 \State $\mathbf{C}_{1:|\mathbf{C2}|+1} \gets \{\mathbf{C2},\mathbf{p}\}$
@@ -274,9 +276,10 @@ Assembly is an iterative procedure.
 A factory layout is generated by  {\sc{BuildFactory}}($\mathbf{P}, n_c$), described in Alg.~\ref{alg:BuildFactory}. This function takes a 2D polyomino $\mathbf{P}$ and, if $\mathbf{P}$ has a valid build path, designs an obstacle layout to generate $n_c$ copies of the polyomino. A polyomino is composed of $|\mathbf{P}| = n$ tiles.  
 
 For each tile, the function 
- {\sc{FactoryAddTile}}$(n,\mathbf{b}, m,C, c,w)$ described in  Alg.~\ref{alg:FactoryAddTile}
+ {\sc{FactoryAddTile}} $(n_c,\mathbf{b}, m,C, c,w)$
+  described in  Alg.~\ref{alg:FactoryAddTile}
 is called to generates an obstacle configuration $\mathbf{A}$.
-$\mathbf{A}$  forms a hopper that releases a particle each iteration and a chamber that temporarily holds the partially-assembled polyomino $\mathbf{b}$ and guides the new particle $C$ to the correct mating position. A 24-tile factory is shown in  Fig.~\ref{alg:FactoryAddTile}.
+$\mathbf{A}$  forms a hopper that releases a particle each iteration and a chamber that temporarily holds the partially-assembled polyomino $\mathbf{b}$ and guides the new particle $C$ to the correct mating position. A 24-tile factory is shown in  Fig.~\ref{fig:24tilefactory}.
 
 
 %\todo{Sheryl, add the algorithmic environment for Build Factory}

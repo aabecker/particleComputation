@@ -12,25 +12,25 @@ This section analyzes the time and space required for a factory and gives simula
 \subsection{Running Time}\label{sec:runningTime}
 %###############################################################
 Running a factory simulation has three phases, ramp up, production, and wind down.
-During the $n-1$ \emph{ramp up}  cycles, the first polyomino is being constructed one tile at a time and no polyominos are produced.
+During the $n-1$ \emph{ramp up}  cycles, the first polyomino is being constructed one tile at a time and no polyominoes are produced.
 Clever design of delays in the part hoppers ensures no unconnected tiles are released.
 During \emph{production} cycles, one  polyomino is finished each cycle.
-Once the first part hopper empties, the $m-1$ \emph{wind down}  cycles each produce a complete polynomino as successive hoppers also empty.
+Once the first part hopper empties, the $n-1$ \emph{wind down}  cycles each produce a complete polyomino as each successive hopper empties.
  This section analyzes running time, defined as the time required for each commanded move until all tiles are stopped.  
  We assume all tiles move unit distance in unit time.
- There are two results, the \emph{construction time}, the time required to assemble a single polynomino from scratch, and
+ There are two results, the \emph{construction time}, the time required to assemble a single polyomino from scratch, and
  the \emph{cycle time}, the time required during production cycles to advance all partial assemblies one cycle.
  Since a polyomino contains $n$ tiles, the \emph{construction time} during production cycles is $n \cdot$ \emph{cycle time}.
  
 Cycle time is the sum of the maximum distances moved in each direction.
- As shown in Fig.~\ref{fig:timeplot}, polyominos shaped as a $n\times 1$ row require the longest time of $4n+16$.
-Polyominos shaped as a $1\times n$ column require the least time of $2n+16$.
+ As shown in Fig.~\ref{fig:timeplot}, polyominoes shaped as a $n\times 1$ row require the longest time of $4n+16$.
+Polyominoes shaped as a $1\times n$ column require the least time of $2n+16$.
  Construction time therefore requires $O(n^2)$ time.
  \begin{figure}
    \centering
 \begin{overpic}[width =1\columnwidth]{maxcycleplot.pdf}
 \end{overpic}
-\caption{\label{fig:timeplot}Cycle time plotted against number of tiles $n$.  The cycle time is the sum time to move in the $r,d,l,u$ moves each cycle. Cycle time increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction time for a particle is $n \cdot $ cycle time.  
+\caption{\label{fig:timeplot}Cycle time plotted against number of tiles $n$.  The cycle time is the sum time to move during the $r,d,l,u$ moves each cycle. Cycle time increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction time for a particle is $n \cdot $ cycle time.  
 }
 \end{figure}
 
@@ -40,22 +40,18 @@ Polyominos shaped as a $1\times n$ column require the least time of $2n+16$.
 %###############################################################
 The space required by a factory is a function of the size of individual sub-assemblies.
 
-<<<<<<< HEAD
- \todo{tell us the big-Oh for  \emph{r} $\cdot$ \emph{c}.  Is it $n^2$ or $n^3$?}
- 
 
 
-$$
+\begin{align}
 height(n)=
 \begin{cases}
-\left \lceil{nc/w}\right \rceil+2((\left \lceil{n/2}\right \rceil+1)+(partrows+1))    , 
-& \text{for m=l or d}\\
-\left \lceil{nc/w}\right \rceil+2((\left \lceil{n/2}\right \rceil+1)+(partrows+2))    , 
-& \text{for m=l or d}
-
+\left \lceil{\frac{n_c}{w}}\right \rceil+2(\left \lceil{\frac{n}{2}}\right \rceil+2+partrows) 
+& m \in \{l, d\}\\
+\left \lceil{\frac{n_c}{w}}\right \rceil+2(\left \lceil{\frac{n}{2}}\right \rceil+3+partrows) 
+&  m \in \{r, u\} 
 \end{cases}
-$$
-=======
+\end{align}
+
 Because a factory requires $O(n)$ rows and $O(n)$ columns, the total requires space is $O(n^2)$.
 As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos, and is $O(n^2)$.
 
@@ -67,7 +63,6 @@ As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by colu
 Factory size grows quadratically with the number of tiles, and is upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos.
 }
 \end{figure}
->>>>>>> origin/master
 
 
 %###############################################################
