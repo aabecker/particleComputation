@@ -114,7 +114,7 @@ This for loop simply checks (1) if the $j$th tile can be removed along a straigh
 If no loops are present, this algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
 Polynomials with loops require care, because decomposing them in the wrong order can make disassembly impossible, as shown in Fig.~\ref{fig:DeconstructionOrderMatters}.
-If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The function calls required are proportional to the factorial of the number loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
+If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The function calls required are proportional to the factorial of the number of loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
