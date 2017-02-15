@@ -6,7 +6,7 @@ One of the exciting new directions of robotics is the design and development
 of micro- and nanorobot systems, with the goal of letting a massive swarm of robots
 perform complex operations in a complicated environment. Due to scaling 
 issues, individual control of the involved robots becomes physically impossible:
-while energy storage capacity drops with the third power of robot size,
+while energy storage capacity drops with the third power of robot length,
 medium resistance decreases much slower. As a consequence,
 current micro- and nanorobot systems with many robots are steered and
 directed by an external force that acts as a common control signal~\cite{Donald2013,Chiang2011,Hsi-Wen2012,Diller2013,Jing2013,Ou2013,Lanauze2013}.
@@ -14,8 +14,8 @@ These common control signals include global magnetic or electric fields,
 chemical gradients, and turning a light source on and off.  
 
  \subsection{Selective Control with Global Inputs}
-Clearly, having only one global signal that uniformly affects all robots at once
-poses a strong restriction on the ability of the swarm to perform complex operations.
+Having only one global signal that uniformly affects all robots at once
+limits the swarm's ability to perform complex operations.
 This control symmetry can be broken using interactions between the robot swarm
 and obstacles in the environment. 
 This paper builds on the techniques for controlling many simple particles with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, where
@@ -29,14 +29,14 @@ we demonstrated how such a system could  implement digital computation.
 \newline
 \subfloat[]{\includegraphics[width=3.1in]{fig1b1.pdf}}
 \label{fig:fig2}
-\caption{(a) A milli-scale magnetic based prototype.
+\caption{(a) A micro-scale magnetic based prototype.
  (b) A seven tile factory. Each particle is actuated simultaneously by the same global field. The factory is designed so each clockwise control input assembles another component.}
 \label{fig:1} 
 \end{figure}
 
 
 
- \subsection{Model}\label{subsc:model}
+ \subsection{Model}\label{subsec:model}
 Assume the following rules:
 \begin{enumerate}
 \item A planar  grid \emph{workspace} $W$ is filled with a number of unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a particle may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
