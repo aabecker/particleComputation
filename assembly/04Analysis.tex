@@ -41,45 +41,40 @@ Polyominoes shaped as a $1\times n$ column require the least time of $2n+16$.
 The space required by a factory is a function of the size of individual sub-assemblies.
 
 \begin{align}
-height(n)=
+height(i)=
 \begin{cases}
-\left \lceil{   \frac{n_c}{w}}\right \rceil+2((\left \lceil{\frac{n}{2}}\right \rceil+1)+(\mathbf{b}_y+1)),&\\ 
-\text{for } m = l \text{ or } d, n \geq 2&\\
-\left \lceil{   \frac{n_c}{w}}\right \rceil+(2(\left \lceil{\frac{n}{2}}\right \rceil+1)+\mathbf{b}_y)+3),&\\ 
-\text{for } m = l \text{ or } d, C_y  < \min \mathbf{b}_y, n \geq 2&\\
-\left \lceil{   \frac{n_c}{w}}\right \rceil+(2(\left \lceil{\frac{n}{2}}\right \rceil+1)+\mathbf{b}_y)+5),&\\ 
-\text{for } m = u \text{ or } r, n \geq 2&\\
+\left \lceil{   \frac{n_c}{w}}\right \rceil+2((\left \lceil{\frac{i}{2}}\right \rceil+1)+(\mathbf{b}_y+1)),&\\ 
+\text{for } m = l \text{ or } d, i \geq 2&\\
+\left \lceil{   \frac{n_c}{w}}\right \rceil+(2(\left \lceil{\frac{i}{2}}\right \rceil+1)+\mathbf{b}_y)+5),&\\ 
+\text{for } m = u \text{ or } r, i \geq 2&\\
 \end{cases}
 \end{align}
 
 
 
 \begin{equation}
-(hopper+delays)_{width}=w+(2\left \lceil{n/2}\right \rceil+8),  n \geq 2
+(hopper+delays)_{width}=w+(2\left \lceil{i/2}\right \rceil+8),  i \geq 2
 \end{equation}
 
 \begin{align}
-width(n)=
+width(i)=
 \begin{cases}
 (hopper+delays)_{width}+(\mathbf{b}_x-column_{loc}),&\\ 
-\text{for } m = d \text{ and } \mathbf{b}_x < (hopper+delays)_{width}&\\
-\mathbf{b}_x + 1,&\\ 
-\text{for } m = d \text{ and } \mathbf{b}_x \geq (hopper+delays)_{width}&\\
-(hopper+delay)_{width},&\\ 
-\text{for } m \neq d  \text{ and } \mathbf{b}_x < (hopper+delays)_{width}&\\
-\mathbf{b}_x + 3,&\\ 
-\text{for } m \neq d \text{ and } \mathbf{b}_x \geq (hopper+delays)_{width}&\\
+\text{for } m = d &\\
+(hopper+delays)_{width},&\\ 
+\text{for } m \neq d &\\
 \end{cases}
 \end{align}
 
 The first sub-assembly is constructed separately and it does not have any delay.
-Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $n$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$.
+Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $n$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
 The width of the sub-assembly can be calculated similarly. 
-If the length of partially assembled polyomino is greater than the length of hopper and delays then width depends on $\mathbf{b}_x$. 
-If a tile is added to a sub-assembled polyomino using a down move, width also depends on the location of the column $column_{loc}$ to which the tile is added.  
+In a case where twice of $\mathbf{b}_x$ is greater than $(hopper+delays)_{width}$ then additional columns are added to the left of sub-assembly. 
+When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$ to which the tile is added.  
+  
 
 Because a factory requires $O(n)$ rows and $O(n)$ columns, the total requires space is $O(n^2)$.
-As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos, and is $O(n^2)$.
+As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominoes and lower bounded by row-shaped polyominoes, and is $O(n^2)$.
 
 \begin{figure}
    \centering
