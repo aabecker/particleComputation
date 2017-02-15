@@ -44,19 +44,20 @@ The space required by a factory is a function of the size of individual sub-asse
 \begin{align}
 height(n)=
 \begin{cases}
-\left \lceil{n_c/w}\right \rceil+2((\left \lceil{n/2}\right \rceil+1)+(\mathbf{b}_y+1)),&\\ 
+\left \lceil{   \frac{n_c}{w}}\right \rceil+2((\left \lceil{\frac{n}{2}}\right \rceil+1)+(\mathbf{b}_y+1)),&\\ 
 \text{for } m = l \text{ or } d, n \geq 2&\\
-\left \lceil{n_c/w}\right \rceil+2((\left \lceil{n/2}\right \rceil+1)+(\mathbf{b}_y+2)),&\\ 
+\left \lceil{\frac{n_c}{w}}\right \rceil+2((\left \lceil{\frac{n}{2}}\right \rceil+1)+(\mathbf{b}_y+2)),&\\ 
 \text{for } m = u \text{ or } r, n\geq 2&\\
-
 \end{cases}
-$$
+\end{align}
+
+
 
 \begin{equation}
 hopper_{width}=w+(2\left \lceil{n/2}\right \rceil+8),  n \geq 2
 \end{equation}
 
-$$
+\begin{align}
 width(n)=
 \begin{cases}
 hopper_{width}+(\mathbf{b}_x-column_{loc}),&\\ 
@@ -68,12 +69,13 @@ hopper_{width},&\\
 \mathbf{b}_x + 3,&\\ 
 \text{for } m \neq d \text{ and } \mathbf{b}_x \geq hopper_{width}&\\
 \end{cases}
-$$
+\end{align}
 
-First sub-assembly is constructed separately and it does not have any delay.
-Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $n$ and the rows of the sub-assembled polyomino $\mathbf{b}_y$.
-Similarly, width of the sub-assembly can also be calculated. If the length of partially assembled polyomino is greater than the length of hopper and delays then width depends on $\mathbf{b}_x$ . For tile added to a sub-assembled polyomino on down move, width also depends on the location of the column $column_{loc}$ to which tile is added.  
-
+The first sub-assembly is constructed separately and it does not have any delay.
+Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $n$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$.
+The width of the sub-assembly can be calculated similarly. 
+If the length of partially assembled polyomino is greater than the length of hopper and delays then width depends on $\mathbf{b}_x$. 
+If a tile is added to a sub-assembled polyomino using a down move, width also depends on the location of the column $column_{loc}$ to which the tile is added.  
 
 Because a factory requires $O(n)$ rows and $O(n)$ columns, the total requires space is $O(n^2)$.
 As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos, and is $O(n^2)$.
