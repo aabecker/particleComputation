@@ -35,10 +35,12 @@ We designed a custom magnetic control stage to generate the global control input
 This stage generates a magnetic drag force by moving a permanent magnet. 
 This permanent magnet can translate in $x$ and $y$-axes, actuated by stepper motors and moving on linear rails. 
 The neodymium permanent magnet field strength is 433 mT and dimensions are 25.4$\times$25.4 mm$^2$. 
-The assembly workspace is laser cut into PDMS to a depth of   XXXX mm and then filled with motility buffer. 
+ The assembly workspace is made of PDMS that is cured in a 3D-printed PLA mold.
+The mold channels are 500 $\mu$m wide and 800 $\mu$m deep. 
+Channels are then filled with motility buffer. 
 All microrobots used for these experiments are loaded alginate paramagnetic hydrogels, otherwise known as artificial cells. 
 The alginate microrobots were fabricated using a centrifugal method, as described in previous work \cite{ ali2016fabrication}.
- The average microrobot size is 300 $\mu$m, and were composed of a concentration of 5\% (w/v) Alginate-Na and 5\% (w/v) concentration of CaCl$_2$, and then impregnated with nano-paramagnetic particles. 
+ The average microrobot size is 300 $\mu$m, and were composed of a concentration of 5\% (w/v) Alginate-Na and 5\% (w/v) concentration of CaCl$_2$, and then impregnated with 5\% (w/v)  nano-paramagnetic particles (Iron oxide, Sigma-Aldrich). 
 
 
 After the alginate microrobots were loaded at each hopper in the microfluidic factory layout, the experimental channel was placed at the center of the stage. 
@@ -47,7 +49,7 @@ This position was saved as the home position for the permanent magnet.
 Stepper motors controlled the stage position. 
 An Arduino UNO programmed in C++ commanded these stepper motors using a 2Hz control loop. 
 After a command was initiated, such as each direction in the $ \langle u,r,d,l \rangle$ sequence, the permanent magnet was returned to the home position to better control the distribution of the magnetic gradient.  
-The layout was observed through a stereomicroscope and the installed camera (Motion Pro X3) captured the procedure at 30 fps. Using ??? magnification in the stereomicroscope, the observed field of view is 23.6 $\times$ 18.9 mm$^2$.
+The layout was observed through a stereomicroscope and the installed camera (Motion Pro X3) captured the procedure at 30 fps. Using 0.65x magnification in the stereomicroscope, the observed field of view is 23.6 $\times$ 18.9 mm$^2$.
   A system schematic is shown in Fig.~\ref{fig:Magneticstage}. 
 
 
