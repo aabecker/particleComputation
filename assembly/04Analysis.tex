@@ -67,7 +67,7 @@ width(i)=
 \end{align}
 
 The first sub-assembly is constructed separately and it does not have any delay.
-Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $n$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
+Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
 The width of the sub-assembly can be calculated similarly. 
 In a case where twice of $\mathbf{b}_x$ is greater than $(hopper+delays)_{width}$ then additional columns are added to the left of sub-assembly. 
 When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$ to which the tile is added.  
