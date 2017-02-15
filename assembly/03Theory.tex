@@ -26,7 +26,7 @@ including electric charge, ionic charge, magnetic polarity, or hook-and-loop typ
 
    \begin{figure}
    \centering
-\begin{overpic}[width =.3\columnwidth]{Grid.pdf}
+\begin{overpic}[width =.8\columnwidth]{Grid2.pdf}
 \end{overpic}
 \caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species.  
 }
@@ -37,30 +37,25 @@ including electric charge, ionic charge, magnetic polarity, or hook-and-loop typ
 \subsection{Complexity Handled in This Paper}\label{sec:ComplexityHandled}
 %###############################################################
 
-Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows four parts of varying complexity. 
-Label the first particle in the assembly process the seed particle. 
- The part on the left is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
-
-The third shape is the combination of a left-handed and a right-handed spiral.
- This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  
- Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
-The fourth shape contains compound overhangs, and may be impossible to construct with additive manufacturing.
- The algorithms in this paper detect if the desired shape can be constructed one particle at a time.  
- If so, a build order is provided, and a factory layout is designed.
-
-\todo{talk about loops.  If no loop, n^2 time, if loops, n^2 * (number of loops)!}
-
-
-\todo{simplify fig 3, ad fig 4 for loops}
-
+Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows parts with increasing  complexity. 
 
    \begin{figure}
    \centering
-\begin{overpic}[width =\columnwidth]{IncreasingDifficulty2.pdf}
+\begin{overpic}[width =\columnwidth]{IncreasingDifficulty3.pdf}
 \end{overpic}
-\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. The right parts  cannot be built by additive construction. 
+\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. Parts 4 and 5 cannot be built by additive construction. 
 }
 \end{figure} 
+Label the first particle in the assembly process the \emph{seed particle}. 
+ Part 1 is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
+The third shape is contains a loop, and the interior must be finished before the loop is closed.
+Shape 4 is the combination of a left-handed and a right-handed spiral.
+ This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  
+ Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
+ Shape 5 contains compound overhangs, and may be impossible to construct with additive manufacturing.
+ The algorithms in this paper detect if the desired shape can be constructed one particle at a time.  
+ If so, a build order is provided, and a factory layout is designed.
+
 
 % A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
 %
@@ -84,13 +79,9 @@ The fourth shape contains compound overhangs, and may be impossible to construct
 %###############################################################
 
 Given a polyomino, Alg.~\ref{alg:FindBuildPath} determines if the polyomino can be built by adding one component at a time.
- The forward problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may be violate the constraints give in Section \label{subsc:model}.  
+ The  problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may  violate the constraints given in Section \ref{subsec:model}.  
  Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite species of tile, and terminates in a mating configuration with an opposite species tile.
-As in many robotics problem, the inverse problem is easier.  
-The inverse problem of deconstruction maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
- In the inner for loop at line  \ref{alg:line:forloopTotryremovinEachTile}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$.
-This loop simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtile}, and (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedComp}. 
-This algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
+As in many robotics problem, the inverse problem of deconstruction is easier than the forward problem of construction.  
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
@@ -107,45 +98,23 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 \end{algorithmic}
 \end{algorithm} 
 
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{DeconstructionOrderMattersSlide.pdf}
+\end{overpic}
+\caption{\label{fig:DeconstructionOrderMatters} Deconstruction order matters if loops are present.  Loops occur when the 8-connected freespace has more than one connected component.  In the top row, the green tile is removed first, resulting in a polyomino that cannot be decomposed. However, if the bottom right tile is removed first, deconstruction is possible.
+}
+\end{figure} 
 
+Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polynomial a color, then calls the recursive function {\sc {Decompose}}$(\mathbf{P},\mathbf{c})$, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
+{\sc {Decompose}} calls the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace.  If there is more than one connected component, the polynomial contains loops.  
+ {\sc {Erode}} maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
+ In the inner for loop at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$.
+This for loop simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtileERODE},  (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedCompERODE}, and (3) that its removal does not break a loop in line \ref{alg:line:Num8ConnectedCompERODE}. 
+If no loops are present, this algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
-\begin{algorithm}
-\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
-%\scriptsize 
-\caption{\sc {Decompose}($\mathbf{P},\mathbf{c})$   \label{alg:Decompose}}
-$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino and $ \mathbf{c} $ is a vector of color labels.
-Returns $ \mathbf{C} $, and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly.
-\begin{algorithmic}[1]
-
-\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
-\If {$|  \mathbf{R} | = 0 \textbf{ or } \neg \ell$}
-\State \Return $\{ \mathbf{C},\mathbf{m} \}$ 
-\EndIf
-
-\State $\mathbf{d} \gets\{u,d,l,r\}, \mathbf{R} \gets \mathbf{P}$
-\For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
-\State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
-
-\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTile} }
-\If{{ ( \sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtile} \textbf{and }
-\\ \textbf{~~~~~~~~~~~~ }
-$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedComp}}
-\State $\{\mathbf{C2},\mathbf{m2} \}= ${\sc {Decompose}}$(\mathbf{T},\mathbf{c})$
-\If {$\mathbf{C2}  \ne \{\}$}
-\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
-\State $\mathbf{C}_{1:|\mathbf{C2}|} \gets \mathbf{C2}, \mathbf{m}_{1:|\mathbf{m2}|} \gets \mathbf{m2}$
-\State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
-\EndIf
-\State \textbf{break}
-\EndIf
-%\EndIf
-\EndFor
-\EndFor
-\State $\mathbf{C} \gets \{\}, \mathbf{m} \gets \{\}$
-\State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
-\end{algorithmic}
-\end{algorithm} 
-
+Polynomials with loops require care, because decomposing them in the wrong order can make disassembly impossible, as shown in Fig.~\ref{fig:DeconstructionOrderMatters}.
+If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The function calls required are proportional to the factorial of the number loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
 
 \begin{algorithm}
 \newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
@@ -157,17 +126,17 @@ Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where 
 
 \State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}$}
 \State $\mathbf{d} \gets\{u,d,l,r\}, \mathbf{R} \gets \mathbf{P}$
-\State $w \gets |\text{\sc 8-ConnComp}|(\neg\mathbf{R})$ 
+\State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$ 
 \For{$i\leftarrow 1, i <  |\mathbf{P}| $}
 \State  \emph{successRemove} $\gets$ {\sc False}
 \For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
 \State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
 
-\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTile} }
-\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtile} \textbf{and}
+\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTileERODE} }
+\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtileERODE} \textbf{and}
 \\ \textbf{~~~~~~~~~~~~~~}
-$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedComp}}
-\If{$w = |\text{\sc 8-ConnComp}(\neg\mathbf{T})|$  \label{alg:line:Num8ConnectedComp}}
+$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE}}
+\If{$w = |\text{\sc 8-ConnComp}(\neg\mathbf{T})|$  \label{alg:line:Num8ConnectedCompERODE}}
 
 \State  $\mathbf{R} \gets \mathbf{T}$,   \emph{successRemove} $\gets$ {\sc True}
 \State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
@@ -188,6 +157,53 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedComp}}
 \State \Return $\{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \}$ 
 \end{algorithmic}
 \end{algorithm} 
+
+
+
+
+
+
+
+
+
+\begin{algorithm}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\scriptsize 
+\caption{\sc {Decompose}($\mathbf{P},\mathbf{c})$   \label{alg:Decompose}}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino and $ \mathbf{c} $ is a vector of color labels.
+Returns $ \mathbf{C} $, and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly.
+\begin{algorithmic}[1]
+
+\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
+\If {$|  \mathbf{R} | = 0 \textbf{ or } \neg \ell$}
+\State \Return $\{ \mathbf{C},\mathbf{m} \}$ 
+\EndIf
+
+\State $\mathbf{d} \gets\{u,d,l,r\}, \mathbf{R} \gets \mathbf{P}$
+\For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
+\State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
+
+\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTileDecompose} }
+\If{{ ( \sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtileDecompose} \textbf{and }
+\\ \textbf{~~~~~~~~~~~~ }
+$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDecompose}}
+\State $\{\mathbf{C2},\mathbf{m2} \}= ${\sc {Decompose}}$(\mathbf{T},\mathbf{c})$
+\If {$\mathbf{C2}  \ne \{\}$}
+%\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
+\State $\mathbf{C}_{1:|\mathbf{C2}|+1} \gets \{\mathbf{C2},\mathbf{p}\}$
+\State $ \mathbf{m}_{1:|\mathbf{m2}|+1} \gets \{\mathbf{m2},\mathbf{d}_k\}$
+\State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
+\EndIf
+\State \textbf{break}
+\EndIf
+%\EndIf
+\EndFor
+\EndFor
+\State $\mathbf{C} \gets \{\}, \mathbf{m} \gets \{\}$
+\State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
+\end{algorithmic}
+\end{algorithm} 
+
 
 
 %\begin{algorithm}
@@ -222,9 +238,7 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedComp}}
 Two-part adhesives react when the components mix.  Placing the components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
 %WIKI: harden by mixing two or more components which chemically react.
 
-We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle.
-
-\todo{discuss delays}
+We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle. Delay blocks are used to ensure the $n$th part hopper does not start releasing particles until cycle $n$.
 
    \begin{figure}
    \centering
