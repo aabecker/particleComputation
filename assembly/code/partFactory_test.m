@@ -105,6 +105,26 @@ drawGameboard();
                 end
             end
         end
+        
+        
+%         %DRAW VECTOR DRAWING
+% G.Rects = zeros(size(G.game));
+% for cd = 1:size(G.game,1)
+%     for rd = 1:size(G.game,2)
+%         if G.game(cd,rd) == 1
+%             G.Rects(cd,rd) =  rectangle('Position',[rd-1/2,cd-1/2,1,1],'FaceColor',[0.1,0.1,0.1],'linewidth',1);
+%         elseif G.game(cd,rd) == 2
+%             G.Rects(cd,rd) =  rectangle('Position',[rd-1/2,cd-1/2,1,1],'FaceColor',[1,0,0],'linewidth',1);
+% elseif G.game(cd,rd) == 3
+%             G.Rects(cd,rd) =  rectangle('Position',[rd-1/2,cd-1/2,1,1],'FaceColor',[0,0,1],'linewidth',1);
+%         end
+%     end
+% end
+% 
+
+
+        
+% %DRaw bitmap        
         set(G.axis,'CData',G.game)
     end
 

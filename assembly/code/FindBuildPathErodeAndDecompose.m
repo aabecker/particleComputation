@@ -56,10 +56,9 @@ set(gca,'xtick',[],'ytick',[]);
 axes('position', [0 0 1 1])
 set(gca,'Ydir','reverse');
 axis equal
-axis tight
 set(gca,'xtick',[],'ytick',[]);
 set(gca,'xcolor','w','ycolor','w');
-axis([ min(partXY(:,2))-2,max(partXY(:,2))+2,min(partXY(:,1))-2,max(partXY(:,1))+2])
+%axis([ min(partXY(:,2))-2,max(partXY(:,2))+2,min(partXY(:,1))-2,max(partXY(:,1))+2])
 if ~foundPath
     sequence = partXY;
 end

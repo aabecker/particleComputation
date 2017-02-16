@@ -30,6 +30,7 @@ Polyominoes shaped as a $1\times n$ column require the least time of $2n+16$.
    \centering
 \begin{overpic}[width =1\columnwidth]{maxcycleplot.pdf}
 \end{overpic}
+\vspace{-2em}
 \caption{\label{fig:timeplot}Cycle time plotted against number of tiles $n$.  The cycle time is the sum time to move during the $r,d,l,u$ moves each cycle. Cycle time increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction time for a particle is $n \cdot $ cycle time.  
 }
 \end{figure}
@@ -49,13 +50,9 @@ height(i)=
 \text{for } m = u \text{ or } r, i \geq 2&\\
 \end{cases}
 \end{align}
-
-
-
 \begin{equation}
 (hopper+delays)_{width}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2
 \end{equation}
-
 \begin{align}
 width(i)=
 \begin{cases}
@@ -80,6 +77,7 @@ As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by colu
    \centering
 \begin{overpic}[width =1\columnwidth]{facsizeplot1.pdf}
 \end{overpic}
+\vspace{-2em}
 \caption{\label{fig:sizeplot}
 Factory size grows quadratically with the number of tiles, and is upper bounded by column-shaped polynominos and lower bounded by row-shaped polyominos.
 }
