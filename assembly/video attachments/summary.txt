@@ -1,0 +1,4 @@
+Video attachment for “Parallel Self-Assembly under Uniform Control Inputs”
+by Sheryl Manzoor, Sam Sheckman, Jarrett Lonsford, Hoyeon Kim, Minjun Kim, and Aaron T. Becker.
+
+Video a simulated particle assembly factory that generates multiple copies of a polyomino.  Next a macro-scale hardware demonstration using gravity as the global input shows assembly using magnetic attraction between particles.  The final clip shows micro-scale assembly using magnetically controlled particles.
