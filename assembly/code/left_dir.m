@@ -45,12 +45,15 @@ hopper(init_hop_width+1:init_hop_width+part_width+1,end-2) = obs;
                         %obstacle to stop the right motion
                         %Obstacle height is same as width of the part
                         
-hopper(init_hop_width+1:init_hop_width+part_width+1,end) = obs; 
+hopper(init_hop_width+1:init_hop_width+part_width+1,end) = obs; %to make a corridor next to the
+                                                                %mouth of
+                                                                %hopper
 
 %%%%add zeros to the left of hopper 
-if (2*part_length)+1 >= size(hopper,2)-3 
-    cols2add =  (2*part_length)+1  - (size(hopper,2)-3);
+if (2*part_length)+1 >= size(hopper,2)-4 
+    cols2add =  (2*part_length)+1  - (size(hopper,2)-4);
     hopper = horzcat(zeros(size(hopper,1),cols2add),hopper);
+    hopper(1:init_hop_width,1:cols2add) = obs*ones(init_hop_width,cols2add);
 end
 
 %%%%%%%%%%Add Bottom stop Obstacle%%%%%%%%%%%%%
@@ -69,6 +72,7 @@ end
 hopper(size(hopper,1)-part_widtht-2-height_obs,size(hopper,2)-(2*part_lengtht)-2:size(hopper,2)-part_lengtht-2) = obs; 
 %obstacle added to stop the 'Upward' motion of the part
 
+%align=size(hopper,1)-part_widtht-2-height_obs;
 align=size(hopper,1)-part_widtht-2-height_obs;
 
 

@@ -53,6 +53,7 @@ hopper(init_hop_width+1:init_hop_width+part_width+1,end) = obs; %obstacle added
 if (2*part_length)+1 >= size(hopper,2)-1 
     cols2add =  (2*part_length)+1  - (size(hopper,2)-1);
     hopper = horzcat(zeros(size(hopper,1),cols2add),hopper);
+    hopper(1:init_hop_width,1:cols2add) = obs*ones(init_hop_width,cols2add);
 end
 
 %%%%%%%%%%Add Bottom stop Obstacle%%%%%%%%%%%%%
