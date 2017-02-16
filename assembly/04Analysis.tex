@@ -43,9 +43,9 @@ The space required by a factory is a function of the widths of individual sub-as
 \begin{align}
 height(i)=
 \begin{cases}
-\left \lceil{   \frac{n_c}{w}}\right \rceil+2 \left( \left(\left \lceil{\frac{i}{2}}\right \rceil+1\right)+\left(\mathbf{b}_y+1\right)\right),&\\ 
+\left \lceil{   \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+4,&\\ 
 \text{for } m = l \text{ or } d, i \geq 2&\\
-\left \lceil{   \frac{n_c}{w}}\right \rceil+(2(\left \lceil{\frac{i}{2}}\right \rceil+1)+\mathbf{b}_y)+5),&\\ 
+\left \lceil{   \frac{n_c}{w}}\right \rceil+2(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y)+7,&\\ 
 \text{for } m = u \text{ or } r, i \geq 2&\\
 \end{cases}
 \end{align}
