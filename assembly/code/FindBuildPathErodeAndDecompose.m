@@ -19,7 +19,7 @@ if nargin <1
     % partXY=BigPartTry();
     % partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
 %      partXY=[5 5;6 5;6 6;6 7;5 7;4 7;3 7;3 6;3 5;3 4;3 3;4 3;5 3;6 3;7 3;8 3;8 4;8 5;8 6;8 7;8 8;8 9;7 9;6 9];%spiral inner node
-  %  partXY=double(coordinates);
+    partXY=double(coordinates);
 end
 
 % color the part
@@ -40,8 +40,9 @@ set(gcf,'color','w');
 set(G.fig,'Name',['Colored Part, n = ',num2str(size(partXY,1)),' tiles'])
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
+    0,0,1;
     1,0,0;
-    0,0,1];
+    ];
 colormap(G.colormap);
 % set(G.fig, 'MenuBar', 'none');
 % set(G.fig, 'ToolBar', 'none');
