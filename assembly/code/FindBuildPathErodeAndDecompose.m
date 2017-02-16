@@ -15,11 +15,11 @@ function [foundPath, sequence, dirs, partColoredArray,partXY]=FindBuildPathErode
 clc
 format compact
 if nargin <1
-%     partXY = TestFindBuildPath();
+     partXY = TestFindBuildPath();
     % partXY=BigPartTry();
     % partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
 %      partXY=[5 5;6 5;6 6;6 7;5 7;4 7;3 7;3 6;3 5;3 4;3 3;4 3;5 3;6 3;7 3;8 3;8 4;8 5;8 6;8 7;8 8;8 9;7 9;6 9];%spiral inner node
-    partXY=double(coordinates);
+  %  partXY=double(coordinates);
 end
 
 % color the part
@@ -53,6 +53,7 @@ axis tight
 set(gca,'xcolor','w','ycolor','w');
 set(gca,'xtick',[],'ytick',[]);
 axes('position', [0 0 1 1])
+set(gca,'Ydir','reverse');
 axis equal
 axis tight
 set(gca,'xtick',[],'ytick',[]);

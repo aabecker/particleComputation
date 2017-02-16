@@ -50,6 +50,8 @@ align_prev = 0;
 %dirs =array of direction from which each tile has to be added
 %partColoredArray = matrix of tile colors 
 [IsPossible, sequenceXY, dirs, partColoredArray]=FindBuildPathErodeAndDecompose(partXY);
+
+%[IsPossible, sequenceXY, dirs, partColoredArray]=FindBuildPath(partXY);
 if false == IsPossible
     disp('No build path found by assembly one-tile-at-a-time, returning')
     return
