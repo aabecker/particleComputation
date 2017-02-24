@@ -1,20 +1,23 @@
-function  [Output,seq,tmpPart] = DepthFirstSearch(part,start)
-
-%  gives a possible build sequence to assemble a part
-%
+function  [Output,seq,tmpPart] = DepthFirstSearch(partXY,start)
+% DEPTHFIRSTSEARCH gives a possible build sequence to assemble a part
 % A DFS expansion, checks d, r, u, l
 % each check marks the node as visited
 % assumes: part is an array (x,y)
-% Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu, Sep 30, 2016
+% Inputs: partXY and starting node (start)
+% Outputs: Output (coordinate sequence), seq (number sequence of tiles) and
+% tmpPart
+% Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if nargin==0
-    part=[5,2;6,2;7,2;8,2;9,2;10,2;5,3;5,4;6,4;7,4;8,4;9,4;10,4;5,5;10,5;5,6;7,6;8,6;10,6;5,7;7,7;10,7;5,8;7,8;
+    partXY=[5,2;6,2;7,2;8,2;9,2;10,2;5,3;5,4;6,4;7,4;8,4;9,4;10,4;5,5;10,5;5,6;7,6;8,6;10,6;5,7;7,7;10,7;5,8;7,8;
         8,8;9,8;10,8;10,9;10,10;10,11;10,12;9,10;9,12;8,10;8,12;7,10;7,12;6,10;6,12;5,10;5,11;5,12];
     start=[5,2];
 end
 
     
 
-    pos = part(:,1:2);
+    pos = partXY(:,1:2);
     tmpPart = zeros(max(pos(:,1)),max(pos(:,2)),3); %create 3D space for 
                                                     %[yx,label,visitorflag]
     for i=1:size(pos,1)
@@ -32,19 +35,19 @@ end
     
     
     for i=1:400 % running for 400 iterations to find the sequence
-        validNN = FindNextNode(curr, tmpPart(:,:,:)); %next node that has not been visited
-        if validNN(1,1)==0 && countOutput==size(part,1)
+        validNN = FindNextNode(curr, tmpPart(:,:,:)); % find next node that has not been visited
+        if validNN(1,1)==0 && countOutput==size(partXY,1)  %if complete part is searched then output the sequence
             seq=[];
             for j=1:size(Output,1)
                 seq(j,:) = tmpPart(Output(j,1),Output(j,2),2);
             end
             break;
-        elseif validNN(1,1)==0 && countOutput~=size(part,1)  % reached the end e.g B; it needs to go back to A to reach S
+        elseif validNN(1,1)==0 && countOutput~=size(partXY,1)  % start backtracking if no next node found and output array isn't equal to size of partXY
 
             countStack = countStack - 1;
             curr = stack(countStack,:);
         else
-            curr = validNN;
+            curr = validNN; %add next node to output and stack
             stack(countStack+1,:) = curr;
             countStack = countStack + 1;
             Output(end+1,:) = curr;

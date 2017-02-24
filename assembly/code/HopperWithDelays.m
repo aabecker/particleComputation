@@ -108,7 +108,6 @@ else
     delay_h(1:end,end-1)=0;
     
     if pos>4
-        
         delay_h(end-3,5:6)=obs;
         delay_h(end-1:end,5:6)=obs;
         delay_h(end-2,5:end-2)=obs;

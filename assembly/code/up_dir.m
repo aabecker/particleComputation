@@ -5,11 +5,8 @@ function [factoryObstacleAdditionArray, align] = up_dir(hopper,partXY,  tileXY)
 % Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 obs = 3;
 if nargin<1
-   
    partXY = [2 1; 2 2; 2 3; 2 4; 2 5; ...
         3 1; 3 2; 3 3; 3 4; 3 5];
    tileXY = [4 5];
@@ -19,7 +16,6 @@ if nargin<1
             3 1 1 1 1 3 0 3; ...
             3 1 1 0 0 3 0 3; ...
             3 3 3 3 3 3 0 3];
-   
 end
 
 hopper_width = size(hopper,1);
@@ -64,7 +60,6 @@ hopper(end-3,size(hopper,2)-(2*part_lengtht)-3+open1+1) = 0;
 hopper(end-2,size(hopper,2)-(2*part_lengtht)-3+open1) = obs;
 
 %%%%%%%%%Add Left Obstacle for Part%%%%%%%%%
-%hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1) = obs; 
 mould(partXY,tileXY);
 hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-3) = obs; 
 
