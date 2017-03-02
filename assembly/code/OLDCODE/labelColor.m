@@ -1,9 +1,10 @@
 function [partColored]=labelColor(partArray)
-% labelColor
-% Input: a binary, 2D array part  (0= empty, 1 = filled)
-% Output: a 2D array with each filled cell labeled 1 or 2 (0=empty, 1= red, 2 = blue)
-%
-% Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu, Sep 27, 2016
+% LABELCOLOR
+% Input: partArray, a binary 2D array part  (0= empty, 1 = filled)
+% Output: partColored, a 2D array with each filled cell labeled 1 or 2 (0=empty, 1= red, 2 = blue)
+% Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if nargin==0  
     partArray = [...

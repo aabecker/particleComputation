@@ -81,6 +81,7 @@ end
 end
 
 function [remPartXY,partAr,sequence, dirs,foundPath,loops]=ErodePoly(remPartXY,partAr,partColoredArray)
+%TODO: add comments.
 sequence = zeros(size(remPartXY));  % the order to build the part (computed in reverse )
 dirs = char(zeros(1,size(remPartXY,1)-1));      % the directions to compose the part
 foundPath = false;
@@ -134,6 +135,7 @@ end  %endwhile (repeat until all tiles removed)
 end
 
 function [foundPath, sequence, dirs]=FindBuildPath(partXY,partAr,partColoredArray)
+%TODO: add comments.
 % Returned variables
 dirs2 = ['d';'l';'u';'r'];
 % call ERODE
