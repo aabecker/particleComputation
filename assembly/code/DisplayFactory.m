@@ -1,12 +1,11 @@
 function [] = DisplayFactory(path)
 % DISPLAYFACTORY function displays complete factory with hopper, tiles and obstacles.
+% [] = DisplayFactory(path)
 % input: path, a 2D array which has the hopper, tiles and obstacles.
 % ouput: factoryLayout, a 2D image of a factory than when actuated [up, right, down, left] produces copies of part partArray. 1’s are the boundary, 0 are freespace, 2s are 1x1 blues in the blue part hoppers, 3s are 1x1 reds in the red part hoppers.
 % Authors: Sheryl Manzoor, smanzoor2@uh.edu and Aaron T. Becker, atbecker@uh.edu
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 if nargin<1    
+%Test inputs if no arguments are provided
 path=[1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1   1   1;  
      1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     1     1     1   1   1;
      1     1     1     1     1     1     1     1     1     1     1     1     1     0     1     1     0     1     1     1   1   1;
@@ -21,7 +20,6 @@ path=[1     1     1     1     1     1     1     1     1     1     1     1     1 
      1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1   1   1;
      1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1   1   1];
 end
-
 G.fig = figure(2);
 set(gcf,'color','k');
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');

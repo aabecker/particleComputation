@@ -14,27 +14,24 @@ function [foundPath, sequence, dirs, partColoredArray,partXY]=FindBuildPathErode
 % tile will be added (dirs) and labelled matrix (partColoredArray)
 %
 %Authors: Sheryl Manzoor, smanzoor2@uh.edu and Aaron T. Becker, atbecker@uh.edu
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 format compact
 if nargin <1
+       %Test inputs if no arguments are provided
        partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
-%      partXY=convertBinaryMatrixToIndices();
+%      partXY=ConvertBinaryMatrixToIndices();
 end
-
 % color the part
 IND = sub2ind(max(partXY),partXY(:,1),partXY(:,2));
 partAr = zeros(max(partXY));
 partAr(IND) = 1;
 %ensure the part has 0 on all sides
 partAr = padarray(partAr,[1 1]); %adds zeros on all sides
-partColoredArray = labelColor(partAr); %label color to each item in part
+partColoredArray = LabelColor(partAr); %label color to each item in part
 [x,y] = find(partAr==1);
 partXY = [x,y];
 % Call the recursive function
 [foundPath, sequence, dirs]=FindBuildPath(partXY,partAr,partColoredArray);
-
 %%% Draw the polyomino
 G.fig = figure(51);clf;
 set(gcf,'color','w');

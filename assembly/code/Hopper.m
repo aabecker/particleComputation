@@ -1,21 +1,17 @@
 function [hopper] = Hopper(tileColor, numCopies,cols)
 % HOPPER function builds hopper in a sub-assembly
+% [hopper] = Hopper(tileColor, numCopies,cols)
 % Inputs: Color of tiles in the hopper (tileColor), Number of copies of
 % part (numCopies), width of hopper (cols)
 % Outputs: hopper with tiles (hopper)
 % Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 obs = 3; %Define Obstacle
-
 if nargin<1
+   %Test inputs if no arguments are provided
    tileColor = 1;
    numCopies = 10; 
    cols = 4;
 end
-
-
-
 %%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
 rows = ceil(numCopies/cols); % Find rows of the hopper
 hopper = obs*ones(rows+2,cols+4) ; % build boundary for hopper

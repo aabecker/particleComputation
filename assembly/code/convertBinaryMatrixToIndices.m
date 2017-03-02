@@ -1,12 +1,10 @@
-function partXY = convertBinaryMatrixToIndices()
+function partXY = ConvertBinaryMatrixToIndices()
 %CONVERTBINARYMATRIXTOINDICES function converts binary matrix to partXY coordinates 
 %Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu,
-if nargin<1
-    
-
-    
+if nargin<1  
+% Test inputs if no arguments are provided
 %         m = [...
-% 0 0 0 0 0 0 0 0 ;
+% 0 0 0 0 0 0 0 0 ; 
 % 0 1 1 1 1 1 1 0 ;
 % 0 1 0 0 1 0 1 0 ;
 % 0 1 0 0 1 0 1 0 ;
@@ -14,7 +12,6 @@ if nargin<1
 % 0 1 0 0 0 0 1 0 ;
 % 0 1 1 1 1 1 1 0 ;
 % 0 0 0 0 0 0 0 0 ;]; 
-
         m = [...
 0 0 0 0 0 0 0 0 0 0 0;
 0 1 1 1 1 1 1 1 1 1 1;
@@ -25,9 +22,7 @@ if nargin<1
 0 1 1 1 1 1 1 0 0 1 1;
 0 1 0 0 0 0 0 0 1 0 1 ;
 0 1 0 0 0 0 0 0 1 0 1 ;
-0 1 1 1 1 1 1 1 1 1 1;]; 
-
-    
+0 1 1 1 1 1 1 1 1 1 1;];     
 %     m = [...
 % 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 % 0 0 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0;
@@ -40,8 +35,7 @@ if nargin<1
 % 0 0 1 0 1 1 1 1 1 1 0 1 0 0 0 0 0;
 % 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0;
 % 0 0 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0;
-% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0];   
-    
+% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0];       
 % m = [1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
 % 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
 % 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1;
@@ -65,13 +59,12 @@ if nargin<1
 % 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
 % 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
 end
-
 [x,y] = find(m==1);  %Find 1's in the matrix
 format compact
 numel(x)
 partXY = [x,y];
-
 outputString1 = sprintf('%d, ', x);
 outputString2 = sprintf('%d, ', y);
 outputString = sprintf('partXY =[%s;...\n%s]'';', outputString1, outputString2);
 display(outputString) %Output the coordinates array
+end

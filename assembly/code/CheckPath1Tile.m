@@ -11,8 +11,7 @@ function moveValid = CheckPath1Tile(partialAssembly, loc, direction, partColored
 % location
 %           otherwise, moveValid = false
 %
-% Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu, Sep 27, 2016
-
+% Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu
 if nargin<2
     % test inputs if no arguments are given
     partialAssembly = [...
@@ -30,9 +29,7 @@ if nargin<2
         0 0 0 0 0;
         0 0 0 0 0];
 end
-
 [r,c] = size(partialAssembly);
-
 Color = partColored(loc(1,1),loc(1,2));
 tmpAssembly = partialAssembly.*partColored;
 % rearrange shape so part is always entering from right
@@ -49,7 +46,6 @@ elseif direction == 'd' %tile is moving down
     tmpAssembly = rot90(tmpAssembly,3);
 end
 c = size(tmpAssembly,2);
-
 rowForAssembly = tmpAssembly(Location(:,1),Location(:,2):c);
 if sum(rowForAssembly) > 0
     moveValid = false; %There's a blocking tile in the row/column in which this tile must move
