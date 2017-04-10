@@ -1,0 +1,110 @@
+The major contribution to this paper are new algorithms for planar
+assembly of parts using uniform control inputs.
+
+The paper presents lots of good work but is confusing to read due to
+its presentations style.  For example, Section 1.B. should be moved to
+the beginning of the "Theory" section to help define the problem. 
+Section II on related work can be combined into Section I. Section IV.C
+is just one sentence long and does not deserve its own section.
+
+
+There is a large body of work in the area of automated sequence
+planning that is not referenced here.  Some of it is very relevant and
+could be leveraged. See the following refs for some examples:
+
+Su, Q., 2007. “Computer aided geometric feasible assembly
+sequence planning and optimizing”. The International
+Journal of Advanced Manufacturing Technology, 33(1-2),
+pp. 48–57.
+
+Rashid, M., and Akella, S., 2012. “A review on assembly
+sequence planning and assembly line balancing optimisation
+using soft computing approaches”. The International
+Journal of Advanced Manufacturing Technology, PP(99),
+pp. 1–13.
+
+Ghandi, S., and Masehian, E., 2015. “A breakout local
+search (BLS) method for solving the assembly sequence
+planning problem”. Engineering Applications of Artificial
+Intelligence, 39, pp. 245–266.
+
+Seymour J, Cappelleri DJ., 2016. "Automated Microassembly Sequence
+Planning With Sub-Assemblies". ASME International Design Engineering
+Technical Conferences and Computers and Information in Engineering
+Conference, doi:10.1115/DETC2016-59736. 
+
+Some specific comments/questions on the paper are listed below:
+
+You use both milli-scale and micro-scale to describe the same
+experiment.  These are not the same thing.  Since your feature sizes
+are
+mostly on the micro-scale, you can probably just use that description.
+
+Fig.1a needs some labels and some better explanation. It may be better
+to save this for later in the paper since the reader will not be able
+to understand it where it is in the paper.
+
+Fig.1b:  the assembly in the inset is not labeled or described
+anywhere.  In fact, I cannot find any references to Figure 1 in the
+paper.	The numbers inside the colored boxes and arrows are not
+described anywhere either.
+
+There are few instances where "polyomino" is spelled as "polynomial"
+
+To be consistent with the explanation of the problem, I think you
+should assign "species types" instead of a colors to each block or
+mention somewhere that the colors correspond to different species of
+blocks.
+
+When describing "for loops" in the paper, italicize the text so it is
+easier to understand that you are talking about parts of an algorithm.
+
+Fig.5: make images bigger
+
+Fig.6:	This is not helpful to the reader at all. Can you zoom in a
+some particular regions in more detail?  Also, the numbers and arrows
+in the actual assembly are not described.
+
+Do you need a hopper for each tile of the assembly?  This seems a bit
+inefficient.  Since there are only two types of robots, ideally there
+would just be 2 hoppers.  Please discuss.
+
+Section 3.E: Fig.9 --> Fig.6
+
+Eq.1 to 3 are confusing.  Maybe showing some values for these entities
+for a simple example will help clarify things.	
+
+Why would the row parts and column parts of the same size give you
+different cycle times?	If you are just making a straight line part in
+either direction it should take the same amount of time.
+
+Section 5.A.c:	Fig.1b(b) --> should this be Fig.3(5)?
+
+Do the "stop blocks" prevent you from making any assemblies?
+
+The results from the macro-scale prototype are not clear.  Do you have
+any quantitative data from the experiments?  How many experiments did
+you do?  what types of assemblies did you try?	success/failure rates?
+
+
+Mill-scale --> Micro-scale
+
+For 5.B:  It seems like all these robots are of the same species here. 
+Is this correct?  It seems to contradict what is done with your
+algorithms.  
+
+More details on these experiments are needed.  How many robots did you
+have in each hopper?  How did you determine this number to put there?
+How are they not all sticking together all the time? How did you make
+different species of them?  What shape are the robots?	How does this
+affect the assemblies? Can you control the robot shape?
+
+The biggest issue at this scale has to do with the surface force
+interactions.  You state there were issues with this and that's it. 
+What do you proposed to do to overcome this?  Are there experiments you
+can design to help you figure this out?  Much more discussion on this
+key topic area is needed to convince the reader that this is feasible
+at the micro-scale.
+
+There is an extra sentence at the top of the last paragraph of the
+conclusion that should be deleted.

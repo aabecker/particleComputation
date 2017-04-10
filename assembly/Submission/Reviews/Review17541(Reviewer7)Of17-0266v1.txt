@@ -1,0 +1,65 @@
+The authors present a part assembly method that uses a set of obstacle
+courses (i.e. factory) to guide the constituent parts under the
+influence of a global force field. The method is suitable for 2D
+assembly of milli and micro scale parts which can be controlled with a
+global force such as a magnetic field. The contributions of the paper
+are the formalization of the factory design process through algorithms
+and analysis of the complexity of these algorithms and the factory
+layout. Overall, the subject is very interesting and covered to a
+satisfactory depth with a demonstration in the macro scale as well as
+an example for the implementation of the method in the micro-scale. The
+significance of the paper lies in its potential applicability to
+micro-assembly problems as an alternative to other methods such as
+multi-scale robotic micro-assembly and cell manipulation. 
+
+The title of the paper suggests that the proposed method is a "parallel
+self-assembly" technique. It is stated in the paper that the process
+adds one particle at a time to the assembly which is inherently a
+serial process. However, the very nature of the factory layout allows
+construction of multiple assemblies at the same time. Therefore, the
+method is a combination of serial and parallel processes and it would
+be nice to identify where the efficiency of this method stands with
+respect to a purely serial and purely parallel process. Also, what
+aspect of this method qualifies it as a self-assembly process is left
+unmentioned. Therefore, the authors should consider adding some
+discussion about it.
+
+The presentation of the material can be improved by
+- Properly cross referencing each and every figure (e.g. Fig. 1) and
+algorithm, and providing sufficient amount of explanation for each.
+- Defining terms like "4-connected polyomino" and "8-connected
+freespace" before using them for those readers who are not familiar
+with polyominos.
+- Revising sections which do not connect with or relate to the rest of
+the discussion such as:
+"In this paper, we seek to combine the use of microscale hybrid
+organic/inorganic actuators along with novel swarm control algorithms
+for mask free programmable patterning and micro-assembly."
+- Shortening the discussion in V-A on the details of the macro-scale
+prototype. That prototype illustrates the idea very well but its
+construction details are not that interesting. The provided video is
+helpful and mostly sufficient to explain that prototype.
+- Allowing more space for the discussion of the milli-scale prototype.
+For instance, how was the micro-fluidic factory fabricated and
+constructed? How can the stiction of particles to the factory walls be
+handled?
+
+Some of the strongest points of the paper are 
+- Fig. 8 where the size of the factory is bounded with respect to the
+complexity of the assembly being made.
+- Analysis of the required factory space and assembly time in section
+IV.
+
+Including some discussion on the following would improve the soundness
+of this paper:
+- How fast can a tile factory operate? What are the challenges for
+increasing speed in milli/micro-scale?
+- How is precision controlled in milli/micro-scale? How does the
+proposed method compare with the related methods existing in the
+literature in terms of cost and precision?
+- How does the proposed method overlap with MEMS and how can they
+benefit from each other?
+- Loading the particles in the hoppers would be a significant part of a
+practical micro/milli-scale application. What are the ways to load the
+particles and how can that process be accounted for in the system
+complexity and overall assembly time analyses?

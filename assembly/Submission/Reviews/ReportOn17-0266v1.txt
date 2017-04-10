@@ -1,0 +1,4 @@
+The paper has received three important reviews which all see an
+interest and acontribution in the paper. They have raised however some
+comments (technical or request in most of them) to be accounted for
+before this paper can go further for IEEE-RAL journal. 

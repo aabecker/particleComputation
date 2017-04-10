@@ -1,0 +1,61 @@
+The paper presents an interesting and rather original approach to
+distributed assembly of 2D structures that makes joint use of a single
+global control signal and a specifically designed factory whose
+geometry enforces the coordinated motion of the modules to assemble at
+the right time and sequentially. As the authors mention, this approach
+goes in the direction of showing how a predictable assembly outcome
+from a single global control signal can be engineered, with interesting
+possible applications in the control of large ensembles of particles
+and small-scale "robots". The text is overall clearly written. 
+The authors however 1) should try to get a better demonstration of the
+implementation of their algorithm at microscale, 2) should improve the
+presentation of the content, and finally 3) should clear out some
+important issues.
+
+In particular:
+a) Figure 1 and its caption are hardly appropriate. A generic picture
+explaining the algorithm may serve much better, and even (b) should
+anyway appear before (a).
+b) The motivation of the work is explicitly mentioned in the text only
+at the very end of section II. Those last 2 sentences would better
+serve in section I.A
+c) In section I.A, do the authors explicitly have homogeneous sets of
+robots in mind? The symmetry can be alternatively and perhaps as easily
+be broken by having a heterogeneous population of robots, each robot
+type reaction differently to the same global signal. Please clarify and
+specify.
+d) In the section on related work, all attention is on the microscale
+applications; however, the authors present a (successful) macroscopic
+demo of their algorithm as well. They should consider to add a small
+section on related macroscopic assembly approaches, citing for instance
+the work of Martinoli's group at EPFL on fluidic assembly of
+polyominoes (Mermoud et al, ICRA 2012; Mastrangeli et al, ICRA 2014),
+also using a single global signal. More generally, component sorting
+and palletizing at macroscopic scale is still hugely relevant in
+manufacturing, so that an application of the authors' approach in that
+sense may be conceived.
+e) Until much later, in the text it is not mentioned why one needs
+Lemma 1, and in fact why the authors need two species of components.
+Indeed, one can in principle assemble all proposed polyominoes with a
+single component type (the authors do mention that the condition is
+only sufficient), which in fact happens to be the case in the
+microscale implementation proposed by the authors. And so, one may be
+puzzled to read in section III.C that tiles should not slide past an
+opposite species of tile. Please amend and clarify.
+f) Section III.B and caption of Fig. 3: the construction
+difficulty/impossibility is only referred to the proposed algorithm,
+and eventually only to some assembly approaches that cannot access the
+third dimension, but this is not explicited. Please amend.
+g) In section V.B: should the section not be titled "microscale"?
+Second paragraph: how are the alginate microrobots loaded in teh
+hoppers? And, how does the return of the permanent magnet to its home
+position after each instruction not reverse the effect of the action
+itself?
+Third paragraph: does "typical movement ... was hindered" actually
+imply that typically the process did not work? As mentioned earlier, it
+would really help that the authors could show in fig. 11 a result of
+the process in (c) that matches the expectation in (a).
+h) Several typos are scattered in the text. Starting from page 3,
+oftentimes "polyominoes" is replaced by "polynomials" (bad
+autocorrection?). On page 4, reference to fig. 9 is wrong (should be
+fig. 6). Please check and amend.
