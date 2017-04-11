@@ -50,7 +50,7 @@ Different 2D part geometries are more difficult to construct than others.  Fig.~
 \end{figure} 
 Label the first particle in the assembly process the \emph{seed particle}. 
  Part 1 is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
-The third shape is contains a loop, and the interior must be finished before the loop is closed.
+The third shape contains a loop, and the interior must be finished before the loop is closed.
 Shape 4 is the combination of a left-handed and a right-handed spiral.
  This part cannot be assembled by adding one particle at a time, because each spiral must be constructed from the inside-out.  
  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
@@ -108,14 +108,14 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 }
 \end{figure} 
 
-Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polynomial a color, then calls the recursive function {\sc {Decompose}}, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
-{\sc {Decompose}} starts by calls the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace.  If there is more than one connected component, the polynomial contains loops.  
+Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polyomino a color, then calls the recursive function {\sc {Decompose}}, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
+{\sc {Decompose}} starts by calling the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace.  If there is more than one connected component, the polyomino contains loops.  
  {\sc {Erode}} maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
  In the inner for loop at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$.
 This for loop simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtileERODE},  (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedCompERODE}, and (3) that its removal does not break a loop in line \ref{alg:line:Num8ConnectedCompERODE}. 
 If no loops are present, this algorithm requires at most  $1/2 n (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
-Polynomials with loops require care, because decomposing them in the wrong order can make disassembly impossible, as shown in Fig.~\ref{fig:DeconstructionOrderMatters}.
+Polyominoes with loops require care, because decomposing them in the wrong order can make disassembly impossible, as shown in Fig.~\ref{fig:DeconstructionOrderMatters}.
 If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The worst-case number of function calls of  {\sc {Decompose}}  are proportional to the factorial of the number of loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
 
 \begin{algorithm}
@@ -260,7 +260,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \end{overpic}
 \begin{overpic}[width =\columnwidth]{Spiraltilefactory.pdf}
 \end{overpic}
-\caption{\label{fig:24tilefactory}A twenty-four tile factory for a `\#' shape and a twenty-one tile factory for a spiral (full resolution -- zoom in for details).
+\caption{\label{fig:24Tilefactory}A twenty-four tile factory for a `\#' shape and a twenty-one tile factory for a spiral (full resolution -- zoom in for details).
 }
 \end{figure}
 
@@ -281,7 +281,7 @@ For each tile, the function
  {\sc{FactoryAddTile}} $(n_c,\mathbf{b}, m,C, c,w)$
   described in  Alg.~\ref{alg:FactoryAddTile}
 is called to generate an obstacle configuration $\mathbf{A}$.
-$\mathbf{A}$  forms a hopper that releases a particle each iteration and a chamber that temporarily holds the partially-assembled polyomino $\mathbf{b}$ and guides the new particle $C$ to the correct mating position. A 24-tile factory is shown in  Fig.~\ref{fig:24tilefactory}.
+$\mathbf{A}$  forms a hopper that releases a particle each iteration and a chamber that temporarily holds the partially-assembled polyomino $\mathbf{b}$ and guides the new particle $C$ to the correct mating position. A 24-tile factory is shown in  Fig.~\ref{fig:24Tilefactory}.
 
 
 %\todo{Sheryl, add the algorithmic environment for Build Factory}
