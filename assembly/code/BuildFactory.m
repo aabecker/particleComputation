@@ -13,7 +13,9 @@ function [IsPossible, factoryLayoutArray]=BuildFactory(partXY,numCopies)
 % Authors: Sheryl Manzoor <smanzoor2@uh.edu> and Aaron T. Becker, atbecker@uh.edu
 if nargin <1
     %Test inputs if no arguments are provided
-      partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3];
+     % partXY = [1,1;1,2;1,3;1,4]; %row 
+      partXY = [1,1;2,1;3,1;4,1];%column
+%    partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3];
 %     partXY = [5 3;4 3;4 4;5 4];
 %     partXY = [5 3;4 3;4 2;3 2];
 %     partXY=[7 6;9 6;6 7;7 7;8 7;9 7;10 7;10 8;11 8];
