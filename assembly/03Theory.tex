@@ -26,7 +26,7 @@ A \emph{move sequence} $\bm{m}$ consists of an ordered sequence of moves $m_k$, 
 %###############################################################
 \subsection{Arbitrary 2D shapes require two particle species}\label{subsec:RobotSpecies}
 %###############################################################
-A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge. Polyominoes have four-point connectivity.
+A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge. Polyominoes have four-point connectivity. Four-connected square is a neighbor to every square that shares an edge with it.
 
 
 \begin{lemma}
@@ -34,7 +34,7 @@ A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal 
   \end{lemma}
 \begin{proof} 
 Label a grid with an alternating pattern like a checkerboard.  Any desired polyomino can be constructed on this checkerboard, and all joints are between dissimilar species.
-  An example shape is shown in Fig.~\ref{fig:Grid}.
+  An example shape is shown in Fig.~\ref{fig:Grid}. Red and blue colors are used to indicate particles of different species.
   \end{proof}
 
    \begin{figure}
