@@ -20,7 +20,7 @@ This control symmetry can be broken using interactions between the robot swarm
 and obstacles in the environment. 
 This paper builds on the techniques for controlling many simple particles with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, where
 we demonstrated how such a system could  implement digital computation.
-Fig.~\ref{fig:TS}
+Fig.~\ref{fig:TS} illustrates the main contribution of this paper: algorithms to produce a factory that uses global inputs to assemble arbitrary polyominoes.
 
 
 %\begin{figure}
@@ -40,16 +40,16 @@ Fig.~\ref{fig:TS}
 
 \begin{figure}
 \centering
-\subfloat[unit moves = 0\label{cw_10}]{%
+\subfloat[Factory to generate seven-tile polyomino at left, 0 commanded moves, 0 unit steps \label{cw_10}]{%
   \includegraphics[width=0.45\textwidth]{fig1b2.pdf}%
   }\par
-\subfloat[unit moves = 18\label{cw_25}]{%
+\subfloat[Same factory, 18 commanded moves, ?? unit steps\label{cw_25}]{%
   \includegraphics[width=0.45\textwidth]{NewFig1b1.pdf}%
   }\par        
-\subfloat[unit moves = 28. Parallel Assembly\label{cw_50}]{%
+\subfloat[Parallel assembly with three factories, 28 commanded moves, ?? unit steps\label{cw_50}]{%
   \includegraphics[width=0.45\textwidth]{Fig1c3.pdf}%
   }
-\caption{A seven tile factory. Each particle is actuated simultaneously by the same global field. The factory is designed so each clockwise control input assembles another component.}
+\caption{Factory schematics for assembling the seven-tile polyomino in (a).  Numbers and arrows on the polyomino show the build order and direction for build. All particles are actuated simultaneously by the same global field. Each factory is designed so at full production every clockwise control input completes another polyomino.}
 \label{TS}
 \end{figure}
 
@@ -77,6 +77,7 @@ While these new types of large-population, small-sized, robotic systems have man
 Due to  current limitations in fabrication, micro- and nanorobots have little-to-no onboard computation, along with limited computation and communication ability~\cite{chiang2011toward, chowdhury2015controlling, donald2013planning}.  
 These limitations make controlling swarms of these robots individually impractical. 
 Thus, these robotic systems are often controlled by a uniform global external signal (e.g. chemical gradients, electric and magnetic fields), which makes motion planning for large robotic populations in tortuous environments difficult. 
+In [mermoud] and [Mastrangeli] automated control of water floating devices and fluidic self-assembly are presented respectively but they are stochastic processes. 
 We recently demonstrated that obstacles present in the workspace can break the symmetry of approximately identical robotic swarms, enabling positional configuration of robots~\cite{becker2013massive}. 
  Given a large-enough free space, a single obstacle is sufficient for positional control over $N$ particles.  
 This method can be used to form complex assemblies out of large swarms of mobile microrobotic building blocks, using only a single global input signal.
@@ -86,8 +87,14 @@ The ability to create microrobots, and control algorithms capable of autonomous 
 To address this challenge, teams of microrobotic systems must work together intelligently to coordinate manipulation tasks in novel environments. 
 While several microrobots capable of performing simple manipulation and assembly tasks have been reported~\cite{prakash2007artificial,chang2007artificial,weibel2007microfabrication,abbott2007robotics,yi2006microfluidics,castillo2009manipulation}, few have shown the ability to pattern intricate designs or assemble complex multi-component parts. 
 Recently, some groups have begun to develop cell-safe magnetically actuated microrobotic systems for cell patterning, yet their method is limited in that these systems are manually controlled, not automated, and suffer from low spatial resolution~\cite{tasoglu2014untethered,tasoglu2014guided}. 
+There have been some efforts made for automated micro-assembly using sub-assemblies [Cappelleri] but they require improvement in success rate for complex assemblies and reduction in the computation time it takes to plan the assembly sequence.
 In this paper, we seek to combine the use of microscale hybrid organic/inorganic actuators along with novel swarm control algorithms for mask free programmable patterning and micro-assembly. 
 Specifically, this paper applies swarm control and particle logic computations to magnetically actuate artificial cells, to use them as micro-scale robotic swarms that create complex, high resolution, 2D patterns and assemblies.
+
+
+\subsection{Assembly Planning}
+Algorithm techniques for optimizing assembly operations have a rich history, see review article [].
+Our paper must determine if a polyomino has a feasible assembly sequence, similar to the sequence planning in [].
 
 
 
