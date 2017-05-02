@@ -10,7 +10,7 @@ This section analyzes the time and space required for a factory and gives simula
 %###############################################################
 \subsection{Running Time}\label{sec:runningTime}
 %###############################################################
-Running a factory simulation has three phases, ramp up, production, and wind down.
+Running a factory simulation has three phases: ramp up, production, and wind down.
 During the $n-1$ \emph{ramp up}  cycles, the first polyomino is being constructed one tile at a time and no polyominoes are produced.
 Clever design of delays in the part hoppers ensures no unconnected tiles are released.
 During \emph{production} cycles, one  polyomino is finished each cycle.
@@ -27,7 +27,7 @@ Polyominoes shaped as a $1\times n$ column require the least time of $2n+16$.
  Construction time therefore requires $O(n^2)$ time.
  \begin{figure}
    \centering
-\begin{overpic}[width =1\columnwidth]{cycleplot.pdf}
+\begin{overpic}[width =1\columnwidth]{moveplotnew.pdf}
 \end{overpic}
 \vspace{-2em}
 \caption{\label{fig:timeplot}Cycle time plotted against number of tiles $n$.  The cycle time is the sum time to move during the $r,d,l,u$ moves each cycle. Cycle time increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction time for a particle is $n \cdot $ cycle time.  
@@ -40,7 +40,15 @@ Polyominoes shaped as a $1\times n$ column require the least time of $2n+16$.
 %###############################################################
 The space required by a factory is a function of the widths of individual sub-assemblies and height of the last sub-assembly.
 
-\begin{align}
+
+The first sub-assembly is constructed separately and it does not have any delay.
+Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$ as in equation \ref{eq:1}. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
+The width of the sub-assembly can be calculated similarly as in equations \ref{eq:2} and \ref{eq:3} . 
+In a case where twice of $\mathbf{b}_x$ is greater than $width_{hopper+delays}$ then additional columns are added to the left of sub-assembly. 
+When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$ to which the tile is added.  
+
+
+\begin{align}\label{eq:1}
 height(i)=
 \begin{cases}
 \left \lceil{   \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+4,&\\ 
@@ -49,24 +57,18 @@ height(i)=
 \text{for } m = u \text{ or } r, i \geq 2&\\
 \end{cases}
 \end{align}
-\begin{equation}
-(hopper+delays)_{width}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2
+\begin{equation}\label{eq:2}
+width_{hopper+delays}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2
 \end{equation}
-\begin{align}
+\begin{align}\label{eq:3}
 width(i)=
 \begin{cases}
-(hopper+delays)_{width}+(\mathbf{b}_x-column_{loc}),&\\ 
+width_{hopper+delays}+(\mathbf{b}_x-column_{loc}),&\\ 
 \text{for } m = d &\\
-(hopper+delays)_{width},&\\ 
+width_{hopper+delays},&\\ 
 \text{for } m \neq d &\\
 \end{cases}
 \end{align}
-
-The first sub-assembly is constructed separately and it does not have any delay.
-Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
-The width of the sub-assembly can be calculated similarly. 
-In a case where twice of $\mathbf{b}_x$ is greater than $(hopper+delays)_{width}$ then additional columns are added to the left of sub-assembly. 
-When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$ to which the tile is added.  
   
 
 Because a factory requires $O(n)$ rows and $O(n)$ columns, the total requires space is $O(n^2)$.
@@ -74,7 +76,7 @@ As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by colu
 
 \begin{figure}
    \centering
-\begin{overpic}[width =1\columnwidth]{sizeplot.pdf}
+\begin{overpic}[width =1\columnwidth]{factorysize.pdf}
 \end{overpic}
 \vspace{-2em}
 \caption{\label{fig:sizeplot}
