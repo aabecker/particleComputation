@@ -55,6 +55,19 @@ G.cmdMoves = 0;  % commanded moves
 makeItemList();
 drawGameboard();
 
+%automatically advance
+for k = 1:4
+    src= 1;
+    evnt.Key = '+x';
+    keyhandler(src,evnt);
+    evnt.Key = '-y';
+    keyhandler(src,evnt);
+    evnt.Key = '-x';
+    keyhandler(src,evnt);
+    evnt.Key = '+y';
+    keyhandler(src,evnt);  
+end
+
     function keyhandler(src,evnt) %#ok<INUSL>
         key = evnt.Key;
         step = [0,0];
@@ -131,10 +144,10 @@ drawGameboard();
             G.unitMoves = G.unitMoves-1;
         end
         drawGameboard();
-        %drawnow
+        %drawnow  %uncomment to animate every step
         makeItemList();  
         end
-                drawnow
+                drawnow %only use this to show just maximal moves
     end
 
     function drawGameboard()
