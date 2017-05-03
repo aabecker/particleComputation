@@ -51,8 +51,8 @@ E.~Diller, J.~Giltinan, and M.~Sitti, ``Independent control of multiple
 
 \bibitem{Jing2013}
 W.~Jing, N.~Pagano, and D.~Cappelleri, ``A tumbling magnetic microrobot with
-  flexible operating modes,'' in \emph{Robotics and Automation (ICRA), 2013
-  IEEE International Conference on}, May 2013, pp. 5514--5519.
+  flexible operating modes,'' in \emph{IEEE International Conference on
+  Robotics and Automation}, May 2013, pp. 5514--5519.
 
 \bibitem{Ou2013}
 Y.~Ou, D.~H. Kim, P.~Kim, M.~J. Kim, and A.~A. Julius, ``Motion control of
@@ -171,9 +171,9 @@ Y.-H. Lin, Y.-W. Yang, Y.-D. Chen, S.-S. Wang, Y.-H. Chang, and M.-H. Wu, ``The
 
 \bibitem{rubenstein2012kilobot}
 M.~Rubenstein, C.~Ahler, and R.~Nagpal, ``Kilobot: A low cost scalable robot
-  system for collective behaviors,'' in \emph{Robotics and Automation (ICRA),
-  2012 IEEE International Conference on}.\hskip 1em plus 0.5em minus
-  0.4em\relax IEEE, 2012, pp. 3293--3298.
+  system for collective behaviors,'' in \emph{IEEE International Conference on
+  Robotics and Automation}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2012,
+  pp. 3293--3298.
 
 \bibitem{ou2013motion}
 Y.~Ou, D.~H. Kim, P.~Kim, M.~J. Kim, and A.~A. Julius, ``Motion control of
@@ -214,9 +214,9 @@ M.~Mastrangeli, F.~Schill, J.~Goldowsky, H.~Knapp, J.~Brugger, and
 \bibitem{becker2013massive}
 A.~Becker, G.~Habibi, J.~Werfel, M.~Rubenstein, and J.~McLurkin, ``Massive
   uniform manipulation: Controlling large populations of simple robots with a
-  common input signal,'' in \emph{Intelligent Robots and Systems (IROS), 2013
-  IEEE/RSJ International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2013, pp. 520--527.
+  common input signal,'' in \emph{IEEE/RSJ International Conf. on Intelligent
+  Robots and Systems}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp.
+  520--527.
 
 \bibitem{tasoglu2014untethered}
 S.~Tasoglu, E.~Diller, S.~Guven, M.~Sitti, and U.~Demirci, ``Untethered
@@ -246,10 +246,5 @@ Q.~Su, ``Computer aided geometric feasible assembly sequence planning and
 S.~Manzoor and A.~T. Becker, ``{Particle Assembly},
   https://github.com/aabecker/particlecomputation/tree/master/assembly,'' Feb.
   2017.
-
-\bibitem{ali2016fabrication}
-J.~Ali, U.~K. Cheang, Y.~Liu, H.~Kim, L.~Rogowski, S.~Sheckman, P.~Patel,
-  W.~Sun, and M.~J. Kim, ``Fabrication and magnetic control of alginate-based
-  rolling microrobots,'' \emph{AIP Advances}, vol.~6, no.~12, p. 125205, 2016.
 
 \end{thebibliography}
