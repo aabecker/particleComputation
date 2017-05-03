@@ -19,7 +19,7 @@ Once the first part hopper empties, the $n-1$ \emph{wind down}  cycles each prod
  We assume all tiles move unit distance in unit time.
  There are two results, the \emph{construction time}, the time required to assemble a single polyomino from scratch, and
  the \emph{cycle time}, the time required during production cycles to advance all partial assemblies one cycle.
- Since a polyomino contains $n$ tiles, the \emph{construction time} during production cycles is $n \cdot$ \emph{cycle time}.
+ Since a polyomino contains $n$ tiles, the \emph{construction time} during production cycles is $n\cdot$\emph{cycle time}.
  
 Cycle time is the sum of the maximum distances moved in each direction.
  As shown in Fig.~\ref{fig:timeplot}, polyominoes shaped as a $n\times 1$ row require the longest time of $4n+16$.
@@ -30,11 +30,9 @@ Polyominoes shaped as a $1\times n$ column require the least time of $2n+16$.
 \begin{overpic}[width =1\columnwidth]{moveplotnew.pdf}
 \end{overpic}
 \vspace{-2em}
-\caption{\label{fig:timeplot}Cycle time plotted against number of tiles $n$.  The cycle time is the sum time to move during the $r,d,l,u$ moves each cycle. Cycle time increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction time for a particle is $n \cdot $ cycle time.  
+\caption{\label{fig:timeplot}Cycle time plotted against number of tiles $n$.  The cycle time is the sum time to move during the $r,d,l,u$ moves each cycle. Cycle time increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction time for a particle is $n\cdot$cycle time.  
 }
 \end{figure}
-
-
 %###############################################################
 \subsection{Space Required}\label{sec:requiredSpace}
 %###############################################################
@@ -42,17 +40,19 @@ The space required by a factory is a function of the widths of individual sub-as
 
 
 The first sub-assembly is constructed separately and it does not have any delay.
-Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$ as in equation \ref{eq:1}. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
-The width of the sub-assembly can be calculated similarly as in equations \ref{eq:2} and \ref{eq:3}. 
-In a case where twice of $\mathbf{b}_x$ is greater than $width_{hopper+delays}$ then additional columns are added to the left of sub-assembly. 
-When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$ to which the tile is added.  
+Beginning from the second sub-assembly, height can be computed as a function of the number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and rows of the sub-assembled polyomino $\mathbf{b}_y$ as in \eqref{eq:1}. If a tile is added before the top row of $\mathbf{b}$, then an additional row is added to the height.
+The width of the sub-assembly can be calculated similarly as in \eqref{eq:2} and \eqref{eq:3}. 
+In a case where twice of $\mathbf{b}_x$ is greater than $width_{hopper+delays}$ then additional columns are added to the left of the subassembly. 
+When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$, to which the tile is added.  
 \begin{align}
 h&eight(i) = \nonumber\\
 &\begin{cases}
 \left \lceil{   \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+4,&\text{for } m = l \text{ or } d, i \geq 2\\
 \left \lceil{   \frac{n_c}{w}}\right \rceil+2(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y)+7,&\text{for } m = u \text{ or } r, i \geq 2 \label{eq:1}
-\end{cases}\\
-w&idth_{hopper+delays}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2 \label{eq:2} \\
+\end{cases}\end{align}
+\begin{align}
+w&idth_{hopper+delays}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2 \label{eq:2} \end{align}
+\begin{align}
 w&idth(i)=width_{hopper+delays} +\nonumber\\
 &\begin{cases}
 (\mathbf{b}_x-column_{loc}),&\text{for } m = d \\
@@ -61,7 +61,7 @@ w&idth(i)=width_{hopper+delays} +\nonumber\\
 \end{align}
   
 
-Because a factory requires $O(n)$ rows and $O(n)$ columns, the total requires space is $O(n^2)$.
+Because a factory requires $O(n)$ rows and $O(n)$ columns, the total required space is $O(n^2)$.
 As shown in Fig.~\ref{fig:sizeplot}, the required size is  upper bounded by column-shaped polynominoes and lower bounded by row-shaped polyominoes, and is $O(n^2)$.
 
 \begin{figure}
