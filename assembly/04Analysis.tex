@@ -45,19 +45,19 @@ The width of the sub-assembly can be calculated similarly as in \eqref{eq:2} and
 In a case where twice of $\mathbf{b}_x$ is greater than $width_{hopper+delays}$ then additional columns are added to the left of the subassembly. 
 When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$, to which the tile is added.  
 \begin{align}
-h&eight(i) = \left \lceil{ \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+ \nonumber \\
+height(i) &= \left \lceil{ \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+ \nonumber \\
 &\begin{cases}
   4,&\text{for } m = l \text{ or } d, i \geq 2\\
 7,&\text{for } m = u \text{ or } r, i \geq 2 
 \end{cases}\label{eq:1} \\
 %\end{align}
 %\begin{align}
-w&idth_{hopper+delays}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2 \label{eq:2} \end{align}
+width_{hopper+delays}&=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2 \label{eq:2} \end{align}
 \begin{align}
-w&idth(i)=width_{hopper+delays} +\nonumber\\
+width(i)=&~width_{hopper+delays} +\nonumber\\
 &\begin{cases}
 (\mathbf{b}_x-column_{loc}),&\text{for } m = d \\
-0 &\text{for } m \neq d \\ \label{eq:3}
+0 &\text{for } m \neq d  \label{eq:3}
 \end{cases}
 \end{align}
   
