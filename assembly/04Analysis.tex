@@ -43,30 +43,20 @@ The space required by a factory is a function of the widths of individual sub-as
 
 The first sub-assembly is constructed separately and it does not have any delay.
 Beginning from the second sub-assembly, height can be computed as a function of number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and the rows of the sub-assembled polyomino $\mathbf{b}_y$ as in equation \ref{eq:1}. If a tile is added before top row of $\mathbf{b}$, then an additional row is added to the height.
-The width of the sub-assembly can be calculated similarly as in equations \ref{eq:2} and \ref{eq:3} . 
+The width of the sub-assembly can be calculated similarly as in equations \ref{eq:2} and \ref{eq:3}. 
 In a case where twice of $\mathbf{b}_x$ is greater than $width_{hopper+delays}$ then additional columns are added to the left of sub-assembly. 
 When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$ to which the tile is added.  
-
-
-\begin{align}\label{eq:1}
-height(i)=
-\begin{cases}
-\left \lceil{   \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+4,&\\ 
-\text{for } m = l \text{ or } d, i \geq 2&\\
-\left \lceil{   \frac{n_c}{w}}\right \rceil+2(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y)+7,&\\ 
-\text{for } m = u \text{ or } r, i \geq 2&\\
-\end{cases}
-\end{align}
-\begin{equation}\label{eq:2}
-width_{hopper+delays}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2
-\end{equation}
-\begin{align}\label{eq:3}
-width(i)=
-\begin{cases}
-width_{hopper+delays}+(\mathbf{b}_x-column_{loc}),&\\ 
-\text{for } m = d &\\
-width_{hopper+delays},&\\ 
-\text{for } m \neq d &\\
+\begin{align}
+h&eight(i) = \nonumber\\
+&\begin{cases}
+\left \lceil{   \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+4,&\text{for } m = l \text{ or } d, i \geq 2\\
+\left \lceil{   \frac{n_c}{w}}\right \rceil+2(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y)+7,&\text{for } m = u \text{ or } r, i \geq 2 \label{eq:1}
+\end{cases}\\
+w&idth_{hopper+delays}=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2 \label{eq:2} \\
+w&idth(i)=width_{hopper+delays} +\nonumber\\
+&\begin{cases}
+(\mathbf{b}_x-column_{loc}),&\text{for } m = d \\
+0 &\text{for } m \neq d \\ \label{eq:3}
 \end{cases}
 \end{align}
   
