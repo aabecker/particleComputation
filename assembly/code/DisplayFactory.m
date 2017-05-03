@@ -55,18 +55,18 @@ G.cmdMoves = 0;  % commanded moves
 makeItemList();
 drawGameboard();
 
-%automatically advance
-for k = 1:4
-    src= 1;
-    evnt.Key = '+x';
-    keyhandler(src,evnt);
-    evnt.Key = '-y';
-    keyhandler(src,evnt);
-    evnt.Key = '-x';
-    keyhandler(src,evnt);
-    evnt.Key = '+y';
-    keyhandler(src,evnt);  
-end
+% %automatically advance
+% for k = 1:4
+%     src= 1;
+%     evnt.Key = '+x';
+%     keyhandler(src,evnt);
+%     evnt.Key = '-y';
+%     keyhandler(src,evnt);
+%     evnt.Key = '-x';
+%     keyhandler(src,evnt);
+%     evnt.Key = '+y';
+%     keyhandler(src,evnt);  
+% end
 
     function keyhandler(src,evnt) %#ok<INUSL>
         key = evnt.Key;
