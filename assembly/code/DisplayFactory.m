@@ -119,7 +119,10 @@ drawGameboard();
                 end
             end
         end
-        
+
+    %handle if display only doesn't have all shapes
+    colormap(G.colormap(1+unique(G.game),:));
+
         
 %         %DRAW VECTOR DRAWING
 % G.Rects = zeros(size(G.game));
