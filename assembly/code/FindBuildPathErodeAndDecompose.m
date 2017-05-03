@@ -72,7 +72,7 @@ end
         else
             ht = text(y,x,num2str(k) ,'HorizontalAlignment','center');
         end
-        set(ht, 'color','k')
+        set(ht, 'color','w','fontsize',28,'FontWeight','bold')
         end
     end
 if ~foundPath

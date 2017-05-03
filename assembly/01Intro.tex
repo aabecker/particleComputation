@@ -13,6 +13,19 @@ directed by an external force that acts as a common control signal~\cite{Donald2
 These common control signals include global magnetic or electric fields,
 chemical gradients, and turning a light source on and off. 
 
+\begin{figure}
+\centering
+\subfloat[Seven-tile polyomino factory, 0 commanded moves, 0 unit steps \label{cw_10}]{%
+  \includegraphics[width=0.45\textwidth]{fig1b1.pdf}%
+  }  \\ \vspace{-.8em}
+\subfloat[Same factory, 18 commanded moves, 136 unit steps\label{cw_25}]{%
+  \includegraphics[width=0.45\textwidth]{fig1b1move18.pdf}%
+  } \\ \vspace{-.8em}      
+\subfloat[Parallel assembly with three factories, 28 commanded moves, 221 unit steps, three complete polyominoes\label{cw_50}]{%
+  \includegraphics[width=0.45\textwidth]{fig1b1move28.pdf}%
+  } 
+\caption{\label{fig:factorySchematics}Factory schematics for assembling the seven-tile polyomino in (a).  Numbers and arrows on the polyomino show the build order and direction for build. All particles are actuated simultaneously by the same global field. Each factory is designed so at full production every clockwise control input completes another polyomino.}
+\end{figure}
  
 Having only one global signal that uniformly affects all robots at once
 limits the swarm's ability to perform complex operations.
@@ -20,7 +33,9 @@ Independent control is possible by designing heterogeneous particles that respon
 and obstacles in the environment. 
 This paper builds on the techniques for controlling many simple particles with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, where
 we demonstrated how such a system could  implement digital computation.
-Fig.~\ref{fig:TS} illustrates the main contribution of this paper: algorithms to produce a factory that uses global inputs to assemble arbitrary polyominoes.
+Fig.~\ref{fig:factorySchematics} illustrates the main contribution of this paper: algorithms to produce a factory that uses global inputs to assemble arbitrary polyominoes.
+
+
 
 
 In this paper, we seek to use of microscale hybrid organic/inorganic particles along with novel swarm control algorithms for mask-free programmable patterning and micro-assembly. 
@@ -42,19 +57,6 @@ Specifically, this paper applies swarm control and particle logic computations t
 
 
 
-\begin{figure}\label{TS}
-\centering
-\subfloat[Factory to generate seven-tile polyomino at left, 0 commanded moves, 0 unit steps \label{cw_10}]{%
-  \includegraphics[width=0.45\textwidth]{fig1b2.pdf}%
-  }\par
-\subfloat[Same factory, 18 commanded moves, ?? unit steps\label{cw_25}]{%
-  \includegraphics[width=0.45\textwidth]{NewFig1b1.pdf}%
-  }\par        
-\subfloat[Parallel assembly with three factories, 28 commanded moves, ?? unit steps, three complete polyominoes\label{cw_50}]{%
-  \includegraphics[width=0.45\textwidth]{Fig1c3.pdf}%
-  }
-\caption{Factory schematics for assembling the seven-tile polyomino in (a).  Numbers and arrows on the polyomino show the build order and direction for build. All particles are actuated simultaneously by the same global field. Each factory is designed so at full production every clockwise control input completes another polyomino.}
-\end{figure}
 
 
 

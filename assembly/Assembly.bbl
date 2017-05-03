@@ -198,6 +198,19 @@ B.~R. Donald, C.~G. Levey, I.~Paprotny, and D.~Rus, ``Planning and control for
   \emph{The International journal of robotics research}, vol.~32, no.~2, pp.
   218--246, 2013.
 
+\bibitem{mermoud2012real}
+G.~Mermoud, M.~Mastrangeli, U.~Upadhyay, and A.~Martinoli, ``Real-time
+  automated modeling and control of self-assembling systems,'' in \emph{2012
+  IEEE International Conference on Robotics and Automation (ICRA)}.\hskip 1em
+  plus 0.5em minus 0.4em\relax IEEE, 2012, pp. 4266--4273.
+
+\bibitem{mastrangeli2014automated}
+M.~Mastrangeli, F.~Schill, J.~Goldowsky, H.~Knapp, J.~Brugger, and
+  A.~Martinoli, ``Automated real-time control of fluidic self-assembly of
+  microparticles,'' in \emph{Robotics and Automation (ICRA), 2014 IEEE
+  International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
+  2014, pp. 5860--5865.
+
 \bibitem{becker2013massive}
 A.~Becker, G.~Habibi, J.~Werfel, M.~Rubenstein, and J.~McLurkin, ``Massive
   uniform manipulation: Controlling large populations of simple robots with a
@@ -214,6 +227,20 @@ S.~Tasoglu, E.~Diller, S.~Guven, M.~Sitti, and U.~Demirci, ``Untethered
 S.~Tasoglu, C.~Yu, H.~Gungordu, S.~Guven, T.~Vural, and U.~Demirci, ``Guided
   and magnetic self-assembly of tunable magnetoceptive gels,'' \emph{Nature
   communications}, vol.~5, 2014.
+
+\bibitem{rashid2012review}
+M.~F.~F. Rashid, W.~Hutabarat, and A.~Tiwari, ``A review on assembly sequence
+  planning and assembly line balancing optimisation using soft computing
+  approaches,'' \emph{The International Journal of Advanced Manufacturing
+  Technology}, vol.~59, no.~1, pp. 335--349, 2012.
+
+\bibitem{Su2007}
+\BIBentryALTinterwordspacing
+Q.~Su, ``Computer aided geometric feasible assembly sequence planning and
+  optimizing,'' \emph{The International Journal of Advanced Manufacturing
+  Technology}, vol.~33, no.~1, pp. 48--57, 2007. [Online]. Available:
+  \url{http://dx.doi.org/10.1007/s00170-006-0447-0}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Manzoor2017gitAssemply}
 S.~Manzoor and A.~T. Becker, ``{Particle Assembly},

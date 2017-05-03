@@ -14,13 +14,13 @@ function [IsPossible, factoryLayoutArray]=BuildFactory(partXY,numCopies)
 if nargin <1
     %Test inputs if no arguments are provided
      % partXY = [1,1;1,2;1,3;1,4]; %row 
-      partXY = [1,1;2,1;3,1;4,1];%column
-%    partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3];
+     % partXY = [1,1;2,1;3,1;4,1];%column
+%    partXY = [5 3;4 3;4 2;3 2;2 2;1 2;1 3]; %figure 1 image (7 tiles)
 %     partXY = [5 3;4 3;4 4;5 4];
 %     partXY = [5 3;4 3;4 2;3 2];
 %     partXY=[7 6;9 6;6 7;7 7;8 7;9 7;10 7;10 8;11 8];
 %     partXY = [5 5;5 4;5 3;5 2;5 1;4 3]; %for down, down, down....
-%     partXY=[7 5;5 7;9 5;11 7;11 9;9 11;7 11;5 9;7 6;9 6;6 7;7 7;8 7;9 7;10 7;7 8;9 8;6 9;7 9;8 9;9 9;10 9;7 10;9 10]; % # part
+     partXY=[7 5;5 7;9 5;11 7;11 9;9 11;7 11;5 9;7 6;9 6;6 7;7 7;8 7;9 7;10 7;7 8;9 8;6 9;7 9;8 9;9 9;10 9;7 10;9 10]; % # part
 %     partXY=[7 6;9 6;6 7;7 7;8 7;9 7;10 7;7 8;9 8;6 9;7 9;8 9;9 9;10 9;7 10;9 10]; % # part
 %     partXY = [1 2;2 2;3 2;4 3;5 3;4 2]; %contains the item positions for the zigzag Part 
 %     partXY=[5 5;6 5;6 6;6 7;5 7;4 7;3 7;3 6;3 5;3 4;3 3;4 3;5 3;6 3;7 3;8 3;8 4;8 5;8 6;8 7;8 8];%spiral inner node
@@ -47,7 +47,7 @@ for i = 2:size(sequenceXY,1) %Build one sub-assembly each iteration
         factoryLayoutArray = FirstFactory(hopper2);    
     end    
     if i==2
-        factoryLayoutArray = vertcat(obs*ones(2,size(factoryLayoutArray,2)),factoryLayoutArray);
+        factoryLayoutArray = vertcat(obs*ones(2,size(factoryLayoutArray,2)),factoryLayoutArray); %#ok<AGROW>
     end
     factoryLayoutArray = ConcatenateFactories(factoryLayoutArray,factoryObstacleAdditionArray, align_prev,hopper_size); %Concatenates previous sub-assemblies with new one
     if align_prev ==0
@@ -74,7 +74,6 @@ for i=1:size(factoryLayoutArray,1) % labels of 1 and 2 are changed to 2 and 3; o
            factoryLayoutArray_m(i,j) = 1;
        else
            factoryLayoutArray_m(i,j) = factoryLayoutArray(i,j);
-           
        end
    end
 end
