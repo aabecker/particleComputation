@@ -1,5 +1,6 @@
 %###############################################################
-\section{Theory of Globally Controlled Polyomino Assembly}\label{sec:Theory}
+%\section{Theory of Globally Controlled Polyomino Assembly}\label{sec:Theory}
+\section{Theory: Polyomino Assembly by Global Control}\label{sec:Theory}
 %###############################################################
 
 This section explains how to design factories that build arbitrary-shaped 2D polyominoes.
@@ -231,7 +232,7 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDeco
 %###############################################################
 \subsubsection{Hopper Construction}\label{subsec:HopperConstruction}
 %###############################################################
-Two-part adhesives react when the components mix.  Placing the components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
+Two-part adhesives react when components mix.  Placing components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
 %WIKI: harden by mixing two or more components which chemically react.
 
 We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle. Delay blocks are used to ensure the $n$th part hopper does not start releasing particles until cycle $n$. For ease of exposition, this paper has a unique hopper for each tile position. This enables precise positioning of different materials, but a particle logic system could use just two hoppers, similar to the systems in [9].
