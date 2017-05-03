@@ -9,18 +9,18 @@ This section explains how to design factories that build arbitrary-shaped 2D pol
 
 \subsection{Model}\label{subsec:model}
 Assume the following rules:
-\begin{enumerate}
-\item A planar  grid \emph{workspace} $W$ is filled with a number of unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a particle may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
-\item All particles are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
-\item Particles all move until they 
-	\begin{enumerate}
-		\item hit an obstacle 
-		\item hit a stationary particle. 
-		\item share an edge with a compatible particle
-	\end{enumerate}
-	If a particle shares an edge with a compatible robot the two robots bond and from then on move as a unit.
+%\begin{enumerate}
+1.) A planar  grid \emph{workspace} $W$ is filled with a number of unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a particle may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
+2.) All particles are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
+3.) Particles all move until they  hit an obstacle, hit a stationary particle, or share an edge with a compatible particle.
+	%\begin{enumerate}
+%		\item hit an obstacle 
+%		\item hit a stationary particle
+%		\item share an edge with a compatible particle
+%	\end{enumerate}
+If a particle shares an edge with a compatible robot the two robots bond and from then on move as a unit.
 A \emph{move sequence} $\bm{m}$ consists of an ordered sequence of moves $m_k$, where each $m_k\in\{u,d,r,l\}$  A representative move sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the robots to reach their maximum extent.
-\end{enumerate}
+%\end{enumerate}
 
 
 %###############################################################
@@ -61,7 +61,7 @@ Different 2D part geometries are more difficult to construct than others.  Fig.~
    \begin{figure}
    \centering
 \begin{overpic}[width =\columnwidth]{IncreasingDifficulty3.pdf}
-\end{overpic}
+\end{overpic}\vspace{-2em}
 \caption{\label{fig:IncreasingDifficulty}Polyomino parts. Difficulty increases from left to right. Parts 4 and 5 cannot be built by additive construction. 
 }
 \end{figure} 
@@ -120,7 +120,7 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
    \begin{figure}
    \centering
 \begin{overpic}[width =\columnwidth]{DeconstructionOrderMattersSlide.pdf}
-\end{overpic}
+\end{overpic}\vspace{-2em}
 \caption{\label{fig:DeconstructionOrderMatters} Deconstruction order matters if loops are present.  Loops occur when the 8-connected freespace has more than one connected component.  In the top row, the green tile is removed first, resulting in a polyomino that cannot be decomposed. However, if the bottom right tile is removed first, deconstruction is possible.
 }
 \end{figure} 
@@ -140,11 +140,10 @@ If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {
 %\scriptsize 
 \caption{\sc {Erode}($\mathbf{P},\mathbf{c})$   \label{alg:Erode}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino  and $ \mathbf{c} $ is a vector of color labels.
-Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered.
+Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered. $\mathbf{d} \gets\{u,d,l,r\}$
 \begin{algorithmic}[1]
 
-\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}$}
-\State $\mathbf{d} \gets\{u,d,l,r\}, \mathbf{R} \gets \mathbf{P}$
+\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}, \mathbf{R} \gets \mathbf{P}$}
 \State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$ 
 \For{$i\leftarrow 1, i <  |\mathbf{P}| $}
 \State  \emph{successRemove} $\gets$ {\sc False}
@@ -190,7 +189,7 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE
 %\scriptsize 
 \caption{\sc {Decompose}($\mathbf{P},\mathbf{c})$   \label{alg:Decompose}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino and $ \mathbf{c} $ is a vector of color labels.
-Returns $ \mathbf{C} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly.
+Returns $ \mathbf{C} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly. $\mathbf{d} \gets\{u,d,l,r\}$
 \begin{algorithmic}[1]
 
 \State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
@@ -198,7 +197,6 @@ Returns $ \mathbf{C} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence o
 \State \Return $\{ \mathbf{C},\mathbf{m} \}$ 
 \EndIf
 
-\State $\mathbf{d} \gets\{u,d,l,r\}$
 \For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
 \State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
 
@@ -224,27 +222,6 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDeco
 \end{algorithm} 
 
 
-
-%\begin{algorithm}
-%\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
-%%\scriptsize 
-%\caption{\sc {FindBuildPath}($\mathbf{P})$   \label{alg:FindBuildPath}}
-%$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. 
-%Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels and $\mathbf{m}$ is a vector of directions for assembly.
-%\begin{algorithmic}[1]
-%%\State$\mathbf{C} \leftarrow \{\}$,\State$ \mathbf{c} \leftarrow \{\}$, \State$ \mathbf{m} \leftarrow \{\}$
-%\State\hbox{$\mathbf{C} \leftarrow \{\},\mathbf{c} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
-%\State$\mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)
-%\For{$m\leftarrow 1, m \le  |\mathbf{P}| )$}
-%\State$\mathbf{C}\leftarrow${\sc{DepthFirstSearch}}($\mathbf{P}_m$,$\mathbf{P}$)
-%\State$ \mathbf{m}\leftarrow${\sc{CheckPathTile}}($\mathbf{C}$, $\mathbf{c}$)
-%\If{$ \{\} \ne \mathbf{m}$}
-%\State \textbf{break}
-%\EndIf
-%\EndFor\\
-%\Return $\{ \mathbf{C},\mathbf{c}, \mathbf{m} \}$ 
-%\end{algorithmic}
-%\end{algorithm} 
   
 %###############################################################
 \subsection{Assembling Tiles}
@@ -261,14 +238,11 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 
    \begin{figure}
    \centering
-\begin{overpic}[width =\columnwidth]{hopperdir1.pdf}
-\end{overpic}
-\caption{\label{fig:HopperCW}Hopper with delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle u,r,d,l \rangle$ releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
+\begin{overpic}[width =\columnwidth]{hopperV4.pdf}
+\end{overpic}\\ \vspace{-1em}
+\caption{\label{fig:HopperCW}Hopper with five delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle l,u,r,d \rangle$ releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
 }
 \end{figure}
-
-
-
 
 
 \begin{figure}
@@ -276,7 +250,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \begin{overpic}[width =\columnwidth]{24tilefactory.pdf}
 \end{overpic}
 \begin{overpic}[width =\columnwidth]{Spiraltilefactory.pdf}
-\end{overpic}
+\end{overpic}\\ \vspace{-1em}
 \caption{\label{fig:24Tilefactory}A twenty-four tile factory for a `\#' shape and a twenty-one tile factory for a spiral (this is a vector graphic -- zoom in for details).
 }
 \end{figure}
