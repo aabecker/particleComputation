@@ -47,11 +47,14 @@ hopper(end-3, 1:end-2) = obs; %define the bottom
                         %obstacle to stop the "downward" motion of the part
 open1 = abs(min(partXY(:,2)) - tileXY(:,2)); 
 hopper(end-3,size(hopper,2)-(2*part_lengtht)-3+open1+1) = 0;
-hopper(end-2,size(hopper,2)-(2*part_lengtht)-3+open1) = obs;
+%hopper(end-2,size(hopper,2)-(2*part_lengtht)-3+open1) = obs;
+hopper(end-2,size(hopper,2)-(2*part_lengtht)-3:size(hopper,2)-(2*part_lengtht)-3+open1) = obs;
+%hopper(end-2,size(hopper,2)-(2*part_lengtht)-4+open1:size(hopper,2)-(2*part_lengtht)-3+open1) = obs;
 %%%%%%%%%Add Left Obstacle for Part%%%%%%%%%
 %hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1) = obs; 
 Mold(partXY,tileXY);
 hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-3) = obs; 
+%hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-3) = obs; 
 %%%%%%%%%%Add Upward Stop Obstacle for Part%%%%%%%%%
 hopper(size(hopper,1)-part_widtht-2-2,size(hopper,2)-(2*part_lengtht)-3:size(hopper,2)-part_lengtht-3) = obs;
 %obstacle added to stop the 'Upward' motion of the part

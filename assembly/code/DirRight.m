@@ -53,7 +53,8 @@ hopper(size(hopper,1)-part_widtht-2-2,size(hopper,2)-(2*part_lengtht)-3:size(hop
 %obstacle added to stop the 'Upward' motion of the part
 %%%%%%%%%Stop Upward motion of Tile%%%%%%%%%
 open1 = abs(min(partXY(:,1)) - tileXY(:,1)); 
-hopper(size(hopper,1)-(part_widtht)-2-2+open1,size(hopper,2)-(2*part_lengtht)-2) = obs; %stop upward motion of the tile
+n = abs((size(hopper,1)-part_widtht-2-2) - (size(hopper,1)-(part_widtht)-2-2+open1))+1; 
+hopper(size(hopper,1)-(part_widtht)-2-n+open1:size(hopper,1)-(part_widtht)-2-2+open1,size(hopper,2)-(2*part_lengtht)-2) = obs; %stop upward motion of the tile
 hopper(size(hopper,1)-(part_widtht)-2-2+open1+1,size(hopper,2)-(2*part_lengtht)-1) = 0; %define opening in the next column
 align = size(hopper,1)-part_widtht-2-2;
 factoryObstacleAdditionArray = hopper;
