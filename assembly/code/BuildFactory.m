@@ -31,8 +31,8 @@ if nargin <1
 % 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, ]';
 
      
-     numCopies = 8;  %TODO: errors if < 9
-    cols = 2;       %TODO: define this variable
+     numCopies = 20;  %TODO: errors if < 9
+    cols = 4;       %TODO: define this variable
     obs=3;          %TODO: define this variable
 end
 factoryLayoutArray = [];
