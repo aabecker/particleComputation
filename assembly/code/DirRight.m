@@ -33,8 +33,8 @@ hopper(hopper_width+1:hopper_width+part_width+1,end-2) = obs;
                         %Obstacle height is same as width of the part                        
 hopper(hopper_width+1:hopper_width+part_width+1,end) = obs; 
 %%%%add zeros to the left of hopper 
-if (2*part_length)+1 >= size(hopper,2)-6 
-    cols2add =  (2*part_length)+1  - (size(hopper,2)-6);
+if (part_length+part_lengtht)+1 >= size(hopper,2)-6 
+    cols2add =  (part_length+part_lengtht)+1  - (size(hopper,2)-6);
     hopper = horzcat(zeros(size(hopper,1),cols2add),hopper);
     hopper(1:hopper_width,1:cols2add) = obs*ones(hopper_width,cols2add);
 end
@@ -45,17 +45,21 @@ hopper(end-1:end, 1:end) = obs; %define the bottom
 hopper(end-3, 3:end-2) = obs; %define the bottom 
                         %obstacle to stop the "downward" motion of the part                        
 %%%%%%%%%Add Left Obstacle for Part%%%%%%%%%
-hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-3) = obs;
-hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2, size(hopper,2)-(2*part_lengtht)-2) = 0;
-hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2-2, size(hopper,2)-(2*part_lengtht)-1) = obs;
+hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2,1:size(hopper,2)-(part_length+part_length)-5) = obs;
+hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2, size(hopper,2)-(part_length+part_length)-4) = 0;
+hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-2-2, size(hopper,2)-(part_length+part_length)-3) = obs;
+
 %%%%%%%%%Stop Upward Motion of Part%%%%%%%%%
-hopper(size(hopper,1)-part_widtht-2-2,size(hopper,2)-(2*part_lengtht)-3:size(hopper,2)-part_lengtht-2) = obs;
+%hopper(size(hopper,1)-part_widtht-2-2,size(hopper,2)-(2*part_lengtht)-3:size(hopper,2)-part_lengtht-2) = obs;
+hopper(size(hopper,1)-part_widtht-2-2,size(hopper,2)-(part_length+part_lengtht)-3: size(hopper,2)-part_length-3) = obs;
 %obstacle added to stop the 'Upward' motion of the part
+
 %%%%%%%%%Stop Upward motion of Tile%%%%%%%%%
 open1 = abs(min(partXY(:,1)) - tileXY(:,1)); 
-n = abs((size(hopper,1)-part_widtht-2-2) - (size(hopper,1)-(part_widtht)-2-2+open1))+1; 
-hopper(size(hopper,1)-(part_widtht)-2-n+open1:size(hopper,1)-(part_widtht)-2-2+open1,size(hopper,2)-(2*part_lengtht)-2) = obs; %stop upward motion of the tile
-hopper(size(hopper,1)-(part_widtht)-2-2+open1+1,size(hopper,2)-(2*part_lengtht)-1) = 0; %define opening in the next column
+hopper(size(hopper,1)-part_widtht-2-2:size(hopper,1)-(part_widtht)-2-2+open1,size(hopper,2)-(part_length+part_length)-4) = obs; %stop upward motion of the tile
+hopper(size(hopper,1)-(part_widtht)-2-2+open1+1,size(hopper,2)-(part_length+part_length)-3) = 0; %define opening in the next column
 align = size(hopper,1)-part_widtht-2-2;
+
+
 factoryObstacleAdditionArray = hopper;
 end

@@ -37,8 +37,8 @@ hopper(hopper_width+1:hopper_width+part_width+1,end) = obs; %to make a corridor 
                                                                 %mouth of
                                                                 %hopper
 %%%%add zeros to the left of hopper 
-if (2*part_length)+1 >= size(hopper,2)-4 
-    cols2add =  (2*part_length)+1  - (size(hopper,2)-4);
+if (part_lengtht+part_length)+1 >= size(hopper,2)-4 
+    cols2add =  (part_lengtht+part_length)+1  - (size(hopper,2)-4);
     hopper = horzcat(zeros(size(hopper,1),cols2add),hopper);
     hopper(1:hopper_width,1:cols2add) = obs*ones(hopper_width,cols2add);
 end
@@ -47,12 +47,12 @@ hopper(end-1:end, 1:end) = obs; %define the bottom
                         %obstacle to stop the "downward" motion of the part                        
 %%%%%%%%%Add Left Obstacle%%%%%%%%%
 d = Mold(partXY,tileXY);
-hopper(size(hopper,1)-part_widtht-2-height_obs:size(hopper,1)-2,1:size(hopper,2)-(2*part_lengtht)-2) = obs; 
+hopper(size(hopper,1)-part_widtht-2-height_obs:size(hopper,1)-2,1:size(hopper,2)-(part_length+part_lengtht)-3) = obs; 
 for i=1:size(d,1)
- hopper(size(hopper,1)-2-(i-1),1:size(hopper,2)-(2*part_lengtht)-2+d(i,1)) = obs;    
+ hopper(size(hopper,1)-2-(i-1),1:size(hopper,2)-(part_length+part_lengtht)-3+d(i,1)) = obs;    
 end
 %obstacle added to stop the 'Left' motion of the part        
-hopper(size(hopper,1)-part_widtht-2-height_obs,size(hopper,2)-(2*part_lengtht)-2:size(hopper,2)-part_lengtht-2) = obs; 
+hopper(size(hopper,1)-part_widtht-2-height_obs,size(hopper,2)-(part_length+part_lengtht)-3:size(hopper,2)-part_length-3) = obs; 
 %obstacle added to stop the 'Upward' motion of the part
 align=size(hopper,1)-part_widtht-2-height_obs;
 factoryObstacleAdditionArray = hopper;
