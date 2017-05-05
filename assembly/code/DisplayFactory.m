@@ -55,18 +55,18 @@ G.cmdMoves = 0;  % commanded moves
 makeItemList();
 drawGameboard();
 
-%automatically advance
-for k = 1:16
-    src= 1;
-    evnt.Key = '+x';
-    keyhandler(src,evnt);
-    evnt.Key = '-y';
-    keyhandler(src,evnt);
-    evnt.Key = '-x';
-    keyhandler(src,evnt);
-    evnt.Key = '+y';
-    keyhandler(src,evnt);  
-end
+% %uncomment to automatically advance k clockwise sequences
+% for k = 1:16
+%     src= 1;
+%     evnt.Key = '+x';
+%     keyhandler(src,evnt);
+%     evnt.Key = '-y';
+%     keyhandler(src,evnt);
+%     evnt.Key = '-x';
+%     keyhandler(src,evnt);
+%     evnt.Key = '+y';
+%     keyhandler(src,evnt);
+% end
 
     function keyhandler(src,evnt) %#ok<INUSL>
         key = evnt.Key;
@@ -97,57 +97,57 @@ end
         revertList = [];
         
         while numel(revertList) < numel(G.items)
-        %move everything: check for collisions, make list of objects that must be reverted
-        G.game = zeros(size(G.obstacle_pos));
-        revertList = [];
-        G.unitMoves = G.unitMoves+1;
-        for i = 1:numel(G.items)
-            for j = 1:size(G.items{i},1)
-                ny = G.items{i}(j,1) + int16(step(1));
-                nx = G.items{i}(j,2) + int16(step(2));
-                G.items{i}(j,1:2) =  [ny,nx];
-                if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2)
-                    G.game(ny,nx) = i;
-                    if  G.obstacle_pos(ny,nx)==true % if this bit hit an obstacle, make sure it is on the revertList
-                        if isempty(find(revertList == i, 1))
-                            revertList(end+1) = i; %#ok<AGROW>
+            %move everything: check for collisions, make list of objects that must be reverted
+            G.game = zeros(size(G.obstacle_pos));
+            revertList = [];
+            G.unitMoves = G.unitMoves+1;
+            for i = 1:numel(G.items)
+                for j = 1:size(G.items{i},1)
+                    ny = G.items{i}(j,1) + int16(step(1));
+                    nx = G.items{i}(j,2) + int16(step(2));
+                    G.items{i}(j,1:2) =  [ny,nx];
+                    if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2)
+                        G.game(ny,nx) = i;
+                        if  G.obstacle_pos(ny,nx)==true % if this bit hit an obstacle, make sure it is on the revertList
+                            if isempty(find(revertList == i, 1))
+                                revertList(end+1) = i; %#ok<AGROW>
+                            end
                         end
-                    end
-                else
-                    scEdge = 5;
-                    if nx<-scEdge || ny<scEdge && ny>size(G.game,1)+scEdge || nx>size(G.game,2) +scEdge
-                        if isempty(find(revertList == i, 1))
-                            revertList(end+1) = i; %#ok<AGROW>
+                    else
+                        scEdge = 5;
+                        if nx<-scEdge || ny<scEdge && ny>size(G.game,1)+scEdge || nx>size(G.game,2) +scEdge
+                            if isempty(find(revertList == i, 1))
+                                revertList(end+1) = i; %#ok<AGROW>
+                            end
                         end
                     end
                 end
             end
-        end
-        
-        % go recursively through revert list, moving them back in the image
-        % and adding any shapes they collide with back to the image
-        i = 1;
-        while i<=numel(revertList)  
-            item2revert = revertList(i);
-            for j = 1:size(G.items{item2revert},1)
-                G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int16(step);
-                collisionItem = G.game(G.items{item2revert}(j,1),G.items{item2revert}(j,2));
-                if collisionItem ~= item2revert && collisionItem ~= 0
-                    if isempty(find(revertList == collisionItem, 1))
-                        revertList(end+1) = collisionItem; %#ok<AGROW>
+            
+            % go recursively through revert list, moving them back in the image
+            % and adding any shapes they collide with back to the image
+            i = 1;
+            while i<=numel(revertList)
+                item2revert = revertList(i);
+                for j = 1:size(G.items{item2revert},1)
+                    G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int16(step);
+                    collisionItem = G.game(G.items{item2revert}(j,1),G.items{item2revert}(j,2));
+                    if collisionItem ~= item2revert && collisionItem ~= 0
+                        if isempty(find(revertList == collisionItem, 1))
+                            revertList(end+1) = collisionItem; %#ok<AGROW>
+                        end
                     end
                 end
+                i=i+1;
             end
-            i=i+1;
+            if numel(revertList) == numel(G.items)
+                G.unitMoves = G.unitMoves-1;
+            end
+            drawGameboard();
+            drawnow  %uncomment to animate every step
+            makeItemList();
         end
-        if numel(revertList) == numel(G.items)
-            G.unitMoves = G.unitMoves-1;
-        end
-        drawGameboard();
-        %drawnow  %uncomment to animate every step
-        makeItemList();  
-        end
-                drawnow %only use this to show just maximal moves
+        %        drawnow %only use this to show just maximal moves
     end
 
     function drawGameboard()
@@ -157,8 +157,8 @@ end
             for j = 1:size(G.items{i},1)
                 %%delete any components that leave the screen
                 if G.items{i}(j,1)>0 && G.items{i}(j,1)<=size(G.game,1) &&...
-                        G.items{i}(j,2)>0 && G.items{i}(j,2)<=size(G.game,2)   
-                    G.game(G.items{i}(j,1),G.items{i}(j,2)) = G.items{i}(j,3);  
+                        G.items{i}(j,2)>0 && G.items{i}(j,2)<=size(G.game,2)
+                    G.game(G.items{i}(j,1),G.items{i}(j,2)) = G.items{i}(j,3);
                 end
             end
         end
