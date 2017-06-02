@@ -11,7 +11,7 @@ This section explains how to design factories that build arbitrary-shaped 2D pol
 \subsection{Model}\label{subsec:model}
 Assume the following rules:
 %\begin{enumerate}
-1.) A planar  grid \emph{workspace} $W$ is filled with a number of unit-square robots (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a particle may occupy or \emph{obstacle} which a robot may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
+1.) A planar  grid \emph{workspace} $W$ is filled with a number of unit-square particles (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a particle may occupy or \emph{obstacle} which a particle may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
 2.) All particles are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
 3.) Particles all move until they  hit an obstacle, hit a stationary particle, or share an edge with a compatible particle.
 	%\begin{enumerate}
@@ -19,15 +19,15 @@ Assume the following rules:
 %		\item hit a stationary particle
 %		\item share an edge with a compatible particle
 %	\end{enumerate}
-If a particle shares an edge with a compatible robot the two robots bond and from then on move as a unit.
-A \emph{move sequence} $\bm{m}$ consists of an ordered sequence of moves $m_k$, where each $m_k\in\{u,d,r,l\}$  A representative move sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the robots to reach their maximum extent.
+If a particle shares an edge with a compatible particle the two particles bond and from then on move as a unit.
+A \emph{move sequence} $\bm{m}$ consists of an ordered sequence of moves $m_k$, where each $m_k\in\{u,d,r,l\}$  A representative move sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the particles to reach their maximum extent.
 %\end{enumerate}
 
 
 %###############################################################
 \subsection{Arbitrary 2D shapes require two particle species}\label{subsec:RobotSpecies}
 %###############################################################
-A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge. Polyominoes have \emph{four-point connectivity}: a 4-connected square is a neighbor to every square that shares an edge with it.
+Polyominoes have \emph{four-point connectivity}: a 4-connected square is a neighbor to every square that shares an edge with it.
 
 
 \begin{lemma}
@@ -58,7 +58,7 @@ including ionic charge, magnetic polarity, or hook-and-loop type fasteners. Larg
 \subsection{Complexity Handled in This Paper}\label{sec:ComplexityHandled}
 %###############################################################
 
-Different 2D part geometries are more difficult to construct than others.  Fig.~\ref{fig:IncreasingDifficulty} shows parts with increasing  complexity. 
+2D part geometries vary in difficulty.  Fig.~\ref{fig:IncreasingDifficulty} shows parts with increasing  complexity. 
 
    \begin{figure}
    \centering
