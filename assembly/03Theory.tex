@@ -20,7 +20,7 @@ Assume the following rules:
 %		\item share an edge with a compatible particle
 %	\end{enumerate}
 If a particle shares an edge with a compatible particle the two particles bond and from then on move as a unit.
-A \emph{move sequence} $\bm{m}$ consists of an ordered sequence of moves $m_k$, where each $m_k\in\{u,d,r,l\}$  A representative move sequence is $\langle u,r,d,l,d,r,u,\ldots\rangle$. We assume the area of $W$ is finite and issue each command long enough for the particles to reach their maximum extent.
+This paper uses \emph{cycles} of movement commands in the order $\langle l,u,r,d \rangle$. We assume the area of $W$ is finite and issue each command long enough for the particles to reach their maximum extent.
 %\end{enumerate}
 
 
@@ -130,7 +130,7 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
 Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polyomino a color, then calls the recursive function {\sc {Decompose}}, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
 {\sc {Decompose}} starts by calling the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace. An 8-connected square is a neighbor to every square that shares an edge or vertex with it. If there is more than one connected component, the polyomino contains loops.  
  {\sc {Erode}} maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
- In the inner \textit{for loop} at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$.
+ In the inner \textit{for loop} at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$ sorted by the number of neighbors so a tile with one neighbor is checked before one with two or three.
 This \textit{for loop} simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtileERODE},  (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedCompERODE}, and (3) that its removal does not break a loop in line \ref{alg:line:Num8ConnectedCompERODE}. 
 If no loops are present, this algorithm requires at most  $n/2 (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
@@ -142,10 +142,13 @@ If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {
 %\scriptsize 
 \caption{\sc {Erode}($\mathbf{P},\mathbf{c})$   \label{alg:Erode}}
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino  and $ \mathbf{c} $ is a vector of color labels.
-Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered. $\mathbf{d} \gets\{u,d,l,r\}$
+Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered. $\mathbf{d} \gets\{r,d,l,u\}$
 \begin{algorithmic}[1]
 
-\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}, \mathbf{R} \gets \mathbf{P}$}
+%\State\hbox{$ \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
+%\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
+\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}$}
+\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{P}$)}
 \State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$ 
 \For{$i\leftarrow 1, i <  |\mathbf{P}| $}
 \State  \emph{successRemove} $\gets$ {\sc False}
@@ -157,8 +160,8 @@ Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where 
 \\ \textbf{~~~~~~~~~~~~~~}
 $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE}}
 \If{$w = |\text{\sc 8-ConnComp}(\neg\mathbf{T})|$  \label{alg:line:Num8ConnectedCompERODE}}
-
-\State  $\mathbf{R} \gets \mathbf{T}$,   \emph{successRemove} $\gets$ {\sc True}
+\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{T}$)}
+\State\emph{successRemove} $\gets$ {\sc True}
 \State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
 \Else { $  \mathbf{\ell} \gets \textrm{\sc True}$}
 \EndIf
@@ -242,7 +245,7 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
    \centering
 \begin{overpic}[width =\columnwidth]{hopperV4.pdf}
 \end{overpic}\\ \vspace{-1em}
-\caption{\label{fig:HopperCW}Hopper with five delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command sequence $\langle l,u,r,d \rangle$ releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
+\caption{\label{fig:HopperCW}Hopper with five delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command cycle releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
 }
 \end{figure}
 

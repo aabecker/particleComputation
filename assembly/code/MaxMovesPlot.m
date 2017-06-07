@@ -8,7 +8,7 @@ y1=[23 27 31 35 39 59 79 99 119 139 159 179 199 219 239 259];%Column Part
 % y1=log(y1);
 plot(x,y,'m',x,y1,'r','LineWidth',2)
 xlabel('Number of Tiles (\it{n})')
-ylabel('Maximum Cycle Time (unit distance moves)')
+ylabel('Maximum Cycle Distance (unit distance moves)')
 %title('Maximum Cycle Plot')
 axis tight
 hold on
