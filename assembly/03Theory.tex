@@ -43,13 +43,13 @@ Label a grid with an alternating pattern like a checkerboard.  Any desired polyo
    \vspace{0.2em}
 \begin{overpic}[width =.8\columnwidth]{Grid2.pdf}
 \end{overpic}
-\caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species.  
+\caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species, shown here with red and blue tiles.  
 }
 \end{figure}
 
   
   The sufficiency of two species to construct any shape gives many options for implementation.  The two species could correspond to any gendered connection, 
-including ionic charge, magnetic polarity, or hook-and-loop type fasteners. Large populations of these two species can then be stored, like two-part epoxy, in separate hoppers, and only assemble when dissimilar particles come in contact.
+including ionic charge, magnetic polarity, or hook-and-loop type fasteners. Large populations of these two species can then be stored in separate hoppers and, like two-part epoxy,  only assemble when dissimilar particles come in contact.
 
 
 
@@ -123,14 +123,14 @@ Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ con
    \centering
 \begin{overpic}[width =\columnwidth]{DeconstructionOrderMattersSlide.pdf}
 \end{overpic}\vspace{-2em}
-\caption{\label{fig:DeconstructionOrderMatters} Deconstruction order matters if loops are present.  Loops occur when the 8-connected freespace has more than one connected component.  In the top row, the green tile is removed first, resulting in a polyomino that cannot be decomposed. However, if the bottom right tile is removed first, deconstruction is possible.
+\caption{\label{fig:DeconstructionOrderMatters} Deconstruction order matters if loops are present.  Loops occur when the 8-connected freespace has more than one connected component.  In the top row the green tile is removed first, resulting in a polyomino that cannot be decomposed. However, if the bottom right tile is removed first, deconstruction is possible.
 }
 \end{figure} 
 
 Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polyomino a color, then calls the recursive function {\sc {Decompose}}, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
 {\sc {Decompose}} starts by calling the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace. An 8-connected square is a neighbor to every square that shares an edge or vertex with it. If there is more than one connected component, the polyomino contains loops.  
  {\sc {Erode}} maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
- In the inner \textit{for loop} at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$ sorted by the number of neighbors so a tile with one neighbor is checked before one with two or three.
+ In the inner \textit{for loop} at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$ sorted by the number of neighbors so a tile with one neighbor is checked before tiles with two or three.
 This \textit{for loop} simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite species of tile in line \ref{alg:line:checkpathtileERODE},  (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedCompERODE}, and (3) that its removal does not break a loop in line \ref{alg:line:Num8ConnectedCompERODE}. 
 If no loops are present, this algorithm requires at most  $n/2 (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
 
@@ -148,7 +148,7 @@ Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where 
 %\State\hbox{$ \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
 %\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
 \State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}$}
-\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{P}$)}
+\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{P}$)} \Comment{sort by number of neighbors}
 \State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$ 
 \For{$i\leftarrow 1, i <  |\mathbf{P}| $}
 \State  \emph{successRemove} $\gets$ {\sc False}

@@ -5,7 +5,7 @@
 %###############################################################
 \section{Analysis}\label{sec:Analysis}
 %###############################################################
-This section analyzes the travel distance in and space required for a factory and gives simulation results. Algorithms  \ref{alg:FindBuildPath} through \ref{alg:FactoryAddTile}  were coded in {\sc Matlab} and are available at \cite{Manzoor2017gitAssemply}.  
+This section analyzes the travel distance and space required for a factory and gives simulation results. Algorithms  \ref{alg:FindBuildPath}---\ref{alg:FactoryAddTile}  were coded in {\sc Matlab} and are available at \cite{Manzoor2017gitAssemply}.  
 
 %###############################################################
 \subsection{Maximum Distance Travelled}\label{sec:runningTime}
@@ -16,9 +16,9 @@ Clever design of delays in the part hoppers ensures no unconnected tiles are rel
 During \emph{production} cycles, one  polyomino is finished each cycle.
 Once the first part hopper empties, the $n-1$ \emph{wind down}  cycles each produce a complete polyomino as each successive hopper empties.
  This section analyzes maximum distance, defined as the maximum distance any tile must move. 
- There are two results, the \emph{construction distance}, its the maximum distance required to assemble a single polyomino from scratch, and
- the \emph{cycle distance}, the maximum distance required during production cycles to advance all partial assemblies one cycle.
- Since a polyomino contains $n$ tiles, the \emph{construction distance} during production cycles is $n\cdot$\emph{cycle distance}.
+ There are two results, \emph{construction distance}, the maximum distance required to assemble a single polyomino from scratch, and
+  \emph{cycle distance}, the maximum distance required during production cycles to advance all partial assemblies one cycle.
+ Since a polyomino contains $n$ tiles, the \emph{construction distance} during production cycles is $n\cdot$(\emph{cycle distance}).
  
 Cycle distance is the sum of the maximum distances moved in each direction.
  As shown in Fig.~\ref{fig:timeplot}, polyominoes shaped as a $n\times 1$ row require the longest distance of $4n+16$.
@@ -29,7 +29,7 @@ Polyominoes shaped as a $1\times n$ column require the least distance of $2n+16$
 \begin{overpic}[width =1\columnwidth]{Distanceplot.pdf}
 \end{overpic}
 \vspace{-2em}
-\caption{\label{fig:timeplot}Cycle distance plotted against number of tiles $n$.  The cycle distance is the sum of distances to move during the $r,d,l,u$ moves each cycle. Cycle distance increases linearly and is upper bounded by row parts and lower bounded by column parts.  Total construction distance for a particle is $n\cdot$cycle distance.  
+\caption{\label{fig:timeplot}Worst-case cycle distance plotted as a function of polyomino size $n$.  The cycle distance is the sum of distances to move during the $r,d,l,u$ moves each cycle. Cycle distance increases linearly with polyomino size and is upper bounded by row parts and lower bounded by column parts.  Total construction distance for a particle is $n\cdot$cycle distance.  
 }
 \end{figure}
 %###############################################################
@@ -41,8 +41,8 @@ The space required by a factory is a function of the widths of individual sub-as
 The first sub-assembly is constructed separately and it does not have any delay.
 Beginning from the second sub-assembly, height can be computed as a function of the number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and rows of the sub-assembled polyomino $\mathbf{b}_y$ as in \eqref{eq:1}. If a tile is added before the top row of $\mathbf{b}$, then an additional row is added to the height.
 The width of the sub-assembly can be calculated similarly as in \eqref{eq:2} and \eqref{eq:3}. 
-In a case where twice of $\mathbf{b}_x$ is greater than $width_{hopper+delays}$ then additional columns are added to the left of the subassembly. 
-When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{loc}$, to which the tile is added.  
+In a case where twice of $\mathbf{b}_x$ is greater than $width_{\mathrm{hopper}+\mathrm{delays}}$ then additional columns are added to the left of the subassembly. 
+When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{\mathrm{loc}}$, to which the tile is added.  
 \begin{align}
 height(i) &= \left \lceil{ \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+ \nonumber \\
 &\begin{cases}
@@ -51,11 +51,11 @@ height(i) &= \left \lceil{ \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac
 \end{cases}\label{eq:1} \\
 %\end{align}
 %\begin{align}
-width_{hopper+delays}&=w+(2\left \lceil{ \frac{i}{2}}\right \rceil+8),  i \geq 2 \label{eq:2} \end{align}
+width_{\mathrm{hopper}+\mathrm{delays}}&=w+2\left \lceil{ \frac{i}{2}}\right \rceil+16,  i \geq 2 \label{eq:2} \end{align}
 \begin{align}
-width(i)=&~width_{hopper+delays} +\nonumber\\
+width(i)=&~width_{\mathrm{hopper}+\mathrm{delays}} +\nonumber\\
 &\begin{cases}
-(\mathbf{b}_x-column_{loc}),&\text{for } m = d \\
+(\mathbf{b}_x-column_{\mathrm{loc}}),&\text{for } m = d \\
 0 &\text{for } m \neq d  \label{eq:3}
 \end{cases}
 \end{align}

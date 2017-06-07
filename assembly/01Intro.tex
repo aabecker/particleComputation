@@ -24,7 +24,7 @@ chemical gradients, and turning a light source on and off.
 \subfloat[Parallel assembly with three factories, 28 commanded moves, 221 unit steps, three complete polyominoes.\label{cw_50}]{%
   \includegraphics[width=0.45\textwidth]{fig1b1move28.pdf}%
   } 
-\caption{\label{fig:factorySchematics}Factory schematics for assembling the seven-tile polyomino in (a).  Numbers and arrows on the polyomino show the build order and direction for build. All tiles are actuated simultaneously by the same global field. Red and blue tiles represent two different species that join when brought near each other. Each factory is designed so at full production every clockwise control input sequence completes another polyomino.}
+\caption{\label{fig:factorySchematics}Factory schematics for assembling the seven-tile polyomino in (a).  Numbers and arrows on the polyomino show the build order and direction for build. All tiles are actuated simultaneously by the same global field. Red and blue tiles represent two different species that join when brought near each other. Each factory is designed so at full production every clockwise cycle of control input moves completes another polyomino. See video attachment for animation.}
 \end{figure}
  
 Having only one global signal that uniformly affects all robots at once
@@ -59,8 +59,8 @@ While these new types of large-population, small-sized, robotic systems have man
 Due to  current limitations in fabrication, micro- and nanorobots have little-to-no onboard computation, along with limited computation and communication ability~\cite{chiang2011toward, chowdhury2015controlling, donald2013planning}.  
 These limitations make controlling swarms of these robots individually impractical. 
 Thus, these robotic systems are often controlled by a uniform global external signal (e.g. chemical gradients, electric and magnetic fields), which makes motion planning for large robotic populations in tortuous environments difficult.
-At the macro-scale, automated control of devices floating in water in~\cite{mermoud2012real} and fluidic self assembly in~\cite{mastrangeli2014automated} were presented, but as stochastic processes that can be controlled by turning a global signal on and off.
-We recently demonstrated that obstacles present in the workspace can deterministically break the symmetry of approximately identical robotic swarms, enabling positional configuration of robots~\cite{becker2013massive}. 
+At the macro-scale, automated control of devices floating in water in~\cite{mermoud2012real} and fluidic self assembly in~\cite{mastrangeli2014automated} were presented, but as \emph{stochastic} processes that can be controlled by turning a global signal on and off.
+We recently demonstrated that obstacles present in the workspace can \emph{deterministically} break the symmetry of approximately identical robotic swarms, enabling positional configuration of robots~\cite{becker2013massive}. 
  Given sufficient free space, a single obstacle is sufficient for positional control over $N$ particles.  
 This method can be used to form complex assemblies out of large swarms of mobile microrobotic building blocks, using only a single global input signal.
 
