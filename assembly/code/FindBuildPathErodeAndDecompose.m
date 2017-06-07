@@ -18,9 +18,14 @@ clc
 format compact
 if nargin <1
        %Test inputs if no arguments are provided
-       partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
+%        partXY = [5 3;4 3;4 2;3 2;2 2;1 2];
+%        partXY =[6 11;4 8;3 8;3 7;3 6;4 6;5 6;6 6;7 6;7 7;7 8;7 9;6 9;6 10;6 12;6 13;6 14;6 15;7 15;8 15;9 15;9 14;9 13;8 13;5 10;5 11;5 12];
+%        partXY=[5 11;7 8;8 8;8 7;8 6;7 6;6 6;5 6;4 6;4 7;4 8;4 9;5 9;5 10;6 10;6 11;5 12;6 12;5 13;5 14;5 15;4 15;3 15;2 15;2 14;2 13;3 13];
+ %      partXY=[6 10;8 8;9 8;9 7;9 6;8 6;7 6;6 6;6 7;6 8;6 9;5 9;5 10;5 11;6 11;6 12;7 13;7 14;7 15;6 15;5 15;4 15;3 15;3 14;3 13;4 13;7 12];
+       partXY=[4 4;4 3;3 3;2 3;2 4;2 5;2 6;2 7;3 7;4 7;5 7;5 6;6 5;6 6;7 5;7 6;8 5;8 6;9 6;10 6;11 6;11 7;11 8;11 9;10 9;9 9;9 8];     
 %      partXY=ConvertBinaryMatrixToIndices();
 end
+
 % color the part
 IND = sub2ind(max(partXY),partXY(:,1),partXY(:,2));
 partAr = zeros(max(partXY));
@@ -72,7 +77,7 @@ end
         else
             ht = text(y,x,num2str(k) ,'HorizontalAlignment','center');
         end
-        set(ht, 'color','w','fontsize',15,'FontWeight','bold')
+        set(ht, 'color','w','fontsize',28,'FontWeight','bold')
         end
     end
 if ~foundPath
@@ -88,9 +93,12 @@ loops = false;
 dirs2 = ['d';'l';'u';'r'];
 p = bwconncomp(1-partAr,8); %the number of white connected components
 initwhiteObj = p.NumObjects;
+%remPartXY=SortPartXY(remPartXY);
 while size(remPartXY,1) > 1
     successfulRemove = false;
+    remPartXY=SortPartXY(remPartXY);
     for m = 1:size(remPartXY,1)%check each remaining tile to find a removeable one
+        remPartXY=SortPartXY(remPartXY);
         startPart = remPartXY(m,:);%try removing each particle
         restXY = [remPartXY(1:m-1,:);remPartXY(m+1:end,:)];
         partAr(startPart(1),startPart(2)) = 0; % remove this tile from BW array
@@ -104,7 +112,7 @@ while size(remPartXY,1) > 1
                         loops = true;
                     else
                         %ensure it does not generate 2 components & no loops are broken
-                        % remove the particle from remPartXY, and add it to revSequence & revDirs
+                        % remove the particle from remPartXY, and add it to revSequence & revDirs                       
                         remPartXY = restXY;
                         sequence(size(remPartXY,1)+1,:) = startPart; %store removal order in reverse
                         dirs(size(remPartXY,1)) = dirs2(j);%store directions in reverse
@@ -184,7 +192,3 @@ else
     dirText = '\leftarrow';
 end
 end
-
-
-
-
