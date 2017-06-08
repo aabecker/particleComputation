@@ -10,14 +10,29 @@ obs = 3; %Define Obstacle
 if nargin<1
     %Test inputs if no arguments are provided
    tileColor = 1;
-   numCopies = 12; 
-   cols = 2;
+   numCopies = 5; 
+   cols = 4;
    pos=3;
 end
 %%%%%%%%%%%define a hopper%%%%%%%%%%%%%
 rows = ceil(numCopies/cols);
+rows_tmp = rows;
+if rows <=2
+   rows = 3; 
+end
+
 hopper = obs*ones(rows+2,cols+1) ; % build boundary for hopper
 hopper(2:1+rows,1:end-1) = tileColor; %fillhopper with components
+
+if rows_tmp < 3
+   if rows_tmp == 2
+       hopper(end-3,1:end-1) = 0;
+   end
+   if rows_tmp == 1
+       hopper(end-3:end-2,1:end-1) = 0;
+   end
+end
+
 hopper(2,end) = 0; %connect output shoot to tiles
 if mod(numCopies,cols)~=0
     hopper(end-1,2:cols-mod(numCopies,cols)+1) = 0;  %  replace some tiles with 0s to match numCopies    

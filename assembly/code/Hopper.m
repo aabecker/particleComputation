@@ -14,8 +14,24 @@ if nargin<1
 end
 %%%%%%%%%%%%define a hopper%%%%%%%%%%%%%
 rows = ceil(numCopies/cols); % Find rows of the hopper
+
+rows_tmp = rows;
+if rows <=2
+   rows = 3; 
+end
+
 hopper = obs*ones(rows+2,cols+4) ; % build boundary for hopper
 hopper(2:1+rows,2:1+cols) = tileColor; %fillhopper with components
+
+if rows_tmp < 3
+   if rows_tmp == 2
+       hopper(end-3,2:end-1) = 0;
+   end
+   if rows_tmp == 1
+       hopper(end-3:end-2,2:end-1) = 0;
+   end
+end
+
 hopper(2:end,end-1) = 0; % build output shoot for hopper
 hopper(2,end-2) = 0; %connect output shoot to tiles
 if mod(numCopies,cols)~=0
