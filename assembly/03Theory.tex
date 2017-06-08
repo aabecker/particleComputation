@@ -144,14 +144,14 @@ If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino  and $ \mathbf{c} $ is a vector of color labels.
 Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered. $\mathbf{d} \gets\{r,d,l,u\}$
 \begin{algorithmic}[1]
-
 %\State\hbox{$ \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
 %\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
-\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False}$}
-\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{P}$)} \Comment{sort by number of neighbors}
-\State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$ 
-\For{$i\leftarrow 1, i <  |\mathbf{P}| $}
+\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False},  \mathbf{R}\leftarrow \mathbf{P}$}
+\State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$
+
+\While{$1 <  |\mathbf{R}|  $}
 \State  \emph{successRemove} $\gets$ {\sc False}
+\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{R}$)} \Comment{sort by number of neighbors}
 \For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
 \State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
 
@@ -160,8 +160,7 @@ Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where 
 \\ \textbf{~~~~~~~~~~~~~~}
 $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE}}
 \If{$w = |\text{\sc 8-ConnComp}(\neg\mathbf{T})|$  \label{alg:line:Num8ConnectedCompERODE}}
-\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{T}$)}
-\State\emph{successRemove} $\gets$ {\sc True}
+\State $ \mathbf{R}\leftarrow   \mathbf{T}$, \emph{successRemove} $\gets$ {\sc True}
 \State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
 \Else { $  \mathbf{\ell} \gets \textrm{\sc True}$}
 \EndIf
@@ -173,7 +172,7 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE
 \State  \hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
 \State \textbf{break}
 \EndIf
-\EndFor
+\EndWhile 
 \If {$ |\mathbf{R}| = 1$}
 \State  $\mathbf{C}_{ 1} \gets \mathbf{R}_1 $
 \EndIf
