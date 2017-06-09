@@ -35,13 +35,13 @@ Polyominoes shaped as a $1\times n$ column require the least distance of $2n+16$
 %###############################################################
 \subsection{Space Required}\label{sec:requiredSpace}
 %###############################################################
-The space required by a factory is a function of the widths of individual sub-assemblies and height of the last sub-assembly.
+The space required by a factory is a function of the widths of individual sub-factories and height of the last sub-factory.
 
 
-The first sub-assembly is constructed separately and it does not have any delay.
-Beginning from the second sub-assembly, height can be computed as a function of the number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-assembly $i$, and rows of the sub-assembled polyomino $\mathbf{b}_y$ as in \eqref{eq:1}. If a tile is added before the top row of $\mathbf{b}$, then an additional row is added to the height.
-The width of the sub-assembly can be calculated similarly as in \eqref{eq:2} and \eqref{eq:3}. 
-In a case where twice of $\mathbf{b}_x$ is greater than $width_{\mathrm{hopper}+\mathrm{delays}}$ then additional columns are added to the left of the subassembly. 
+The first sub-factory is constructed separately and it does not have any delay.
+Beginning from the second sub-factory, height can be computed as a function of the number of copies $n_c$ of the polyomino, width of the hopper $w$, position of the sub-factory $i$, and rows of the sub-assembled polyomino $\mathbf{b}_y$ as in \eqref{eq:1}. If a tile is added before the top row of $\mathbf{b}$, then an additional row is added to the height.
+The width of the sub-factory can be calculated similarly as in \eqref{eq:2} and \eqref{eq:3}. 
+In a case where twice of $\mathbf{b}_x$ is greater than $width_{\mathrm{hopper}+\mathrm{delays}}$ then additional columns are added to the left of the sub-factory. 
 When a tile is added to $\mathbf{b}$ using a down move, width also depends on the location of the column, $column_{\mathrm{loc}}$, to which the tile is added.  
 \begin{align}
 height(i) &= \left \lceil{ \frac{n_c}{w}}\right \rceil+2\left(\left \lceil{\frac{i}{2}}\right \rceil+\mathbf{b}_y\right)+ \nonumber \\
