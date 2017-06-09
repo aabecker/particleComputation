@@ -195,15 +195,12 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE
 $\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino and $ \mathbf{c} $ is a vector of color labels.
 Returns $ \mathbf{C} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly. $\mathbf{d} \gets\{u,d,l,r\}$
 \begin{algorithmic}[1]
-
 \State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
 \If {$|  \mathbf{R} | = 0 \textbf{ or } \neg \ell$}
 \State \Return $\{ \mathbf{C},\mathbf{m} \}$ 
 \EndIf
-
 \For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
 \State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
-
 \For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTileDecompose} }
 \If{{ ( \sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtileDecompose} \textbf{and }
 \\ \textbf{~~~~~~~~~~~~ }
@@ -220,20 +217,18 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDeco
 %\EndIf
 \EndFor
 \EndFor
-\State $\mathbf{C} \gets \{\}, \mathbf{m} \gets \{\}$
-\State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
+%\State $\mathbf{C} \gets \{\}, \mathbf{m} \gets \{\}$
+\State \Return $\{ \mathbf{C}\gets \{\}, \mathbf{m}\gets \{\} \}$ 
 \end{algorithmic}
 \end{algorithm} 
-
-
   
 %###############################################################
-\subsection{Assembling Tiles}
+%\subsection{Assembling Tiles}
 %###############################################################
 
 
 %###############################################################
-\subsubsection{Hopper Construction}\label{subsec:HopperConstruction}
+\subsection{Hopper Construction}\label{subsec:HopperConstruction}
 %###############################################################
 Two-part adhesives react when components mix.  Placing components in separate containers prevents mixing.  Similarly, storing many particles of a single species in separate containers allows controlled mixing.
 %WIKI: harden by mixing two or more components which chemically react.
@@ -241,6 +236,7 @@ Two-part adhesives react when components mix.  Placing components in separate co
 We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle. Delay blocks are used to ensure the $n$th part hopper does not start releasing particles until cycle $n$. For ease of exposition, this paper has a unique hopper for each tile position. This enables precise positioning of different materials, but a particle logic system could use just two hoppers, similar to our particle logic systems in [9].
 
    \begin{figure}
+    \vspace{-1em}
    \centering
 \begin{overpic}[width =\columnwidth]{hopperV4.pdf}
 \end{overpic}\\ \vspace{-1em}
@@ -258,10 +254,6 @@ We can design \emph{part hoppers}, containers that store similarly labelled part
 \caption{\label{fig:24Tilefactory}A twenty-four tile factory, step 82 for a `\#' shape and a twenty-one tile factory, step 66 for a spiral (zoom in for details in this vector graphic).
 }
 \end{figure}
-
-
-
-
 
 
 

@@ -2,15 +2,24 @@
 % -- load our code onto Matlab Central.
 % % gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH      -sOutputFile=CompressedAssembly.pdf Assembly.pdf
 \pdfobjcompresslevel=0  % I had adobe error 131, and this removed it: http://tex.stackexchange.com/questions/64448/how-to-overcome-acrobat-reader-error-131-with-a-pdflatex-doc
-\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\documentclass[letterpaper, 10 pt, journal, twoside]{ieeetran} 
+
+% Paper headers 
+\markboth{IEEE Robotics and Automation Letters. Preprint Version. Accepted May, 2017}
+{Manzoor \MakeLowercase{\textit{et al.}}: Parallel Self-Assembly of Polyominoes under Uniform Control Inputs}  
+
 \IEEEoverridecommandlockouts
 \usepackage{calc}
 \usepackage{url}
 \usepackage{hyperref}
+\usepackage[usenames, dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,0.5}
 \hypersetup{
   colorlinks =true,
-  urlcolor = black,
-  linkcolor = black
+  urlcolor = darkblue,
+  linkcolor = darkblue,
+  citecolor =darkblue
 }
 \usepackage{graphicx}
 \usepackage[cmex10]{amsmath}
@@ -21,7 +30,8 @@
 \usepackage{nicefrac}
 \usepackage{cite}
 \usepackage[caption=false,font=footnotesize]{subfig}
-\usepackage[usenames, dvipsnames]{color}
+\usepackage{amsthm} % for proofs
+
 \usepackage{colortbl}
 \usepackage{overpic}
 \graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
@@ -61,13 +71,13 @@
 \begin{document}
 
 
-\title{\LARGE \bf 
-Parallel Self-Assembly of Polyominoes under Uniform Control Inputs 
-}
-\author{Sheryl Manzoor, Samuel Sheckman, Jarrett Lonsford, Hoyeon Kim, Min Jun Kim, and Aaron T. Becker% <-this % stops a space
-\thanks{*This work was supported by the National Science Foundation under Grant No.\ \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1553063}{ [IIS-1553063]}, \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1619278}{[IIS-1619278]}, and \href{https://nsf.gov/awardsearch/showAward?AWD_ID=1712088}{[IIS-1712088]}.}% <-this % stops a space
-\thanks{S.~Manzoor, J Lonsford, and  A.~Becker are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204 USA        {\tt\small  \{smanzoor2, jllonsford, atbecker\}@uh.edu}. S.~Sheckman, H.~Kim and M.J.~Kim are with Lyle School of Engineering,   Southern Methodist University, Dallas, TX 75205 USA        {\tt\small  \{ssheckman, hoyeonk, mjkim\}@smu.edu}.%
-}
+\title{Parallel Self-Assembly of Polyominoes under Uniform Control Inputs}
+\author{Sheryl Manzoor$^{1}$, Samuel Sheckman$^{2}$, Jarrett Lonsford$^{1}$, Hoyeon Kim$^{2}$, Min Jun Kim$^{2}$, and Aaron T. Becker$^{1}$% <-this % stops a space
+\thanks{Manuscript received: Feb., 15, 2017; Revised May, 3, 2017; Accepted May, 26, 2017.}%Use only for final RAL version
+\thanks{This paper was recommended for publication by Editor Yu Sun upon evaluation of the Associate Editor and Reviewers' comments. *This work was supported by the National Science Foundation under Grant No.\ \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1553063}{ [IIS-1553063]}, \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1619278}{[IIS-1619278]}, and \href{https://nsf.gov/awardsearch/showAward?AWD_ID=1712088}{[IIS-1712088]}.}%Use only for final RAL version
+\thanks{$^{1}$S.~Manzoor, J Lonsford, and  A.~Becker are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204 USA        {\tt\small  \{smanzoor2, jllonsford, atbecker\}@uh.edu}}%
+\thanks{$^{2} $S.~Sheckman, H.~Kim and M.J.~Kim are with Lyle School of Engineering,   Southern Methodist University, Dallas, TX 75205 USA        {\tt\small  \{ssheckman, hoyeonk, mjkim\}@smu.edu}}%
+\thanks{Digital Object Identifier (DOI): see top of this page.}
 }
 \maketitle
 
@@ -80,9 +90,10 @@ We present algorithms that, given an arbitrary 2D structure, design an obstacle 
  When actuated, this layout generates copies of the input 2D structure.
 We analyze the movement and spatial complexity of the factory layouts. 
 We present hardware results on both a macro-scale, gravity-based system and a micro-scale, magnetically-actuated system.
-
-
 \end{abstract}
+\begin{IEEEkeywords}
+Automation at Micro-Nano Scales; Additive Manufacturing; Underactuated Robots
+\end{IEEEkeywords}
 
 %%% The paper
 \input{01Intro}
