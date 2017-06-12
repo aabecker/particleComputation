@@ -1,0 +1,341 @@
+%###############################################################
+%\section{Theory of Globally Controlled Polyomino Assembly}\label{sec:Theory}
+\section{Theory: Polyomino Assembly by Global Control}\label{sec:Theory}
+%###############################################################
+
+This section explains how to design factories that build arbitrary-shaped 2D polyominoes.
+ We first assign species to individual tiles of the polyomino, second discover a build path, and finally build an assembly line of factory components that each add one tile to a partially assembled polyomino and pass the polyomino to the next component.
+
+
+
+\subsection{Model}\label{subsec:model}
+Assume the following rules:
+%\begin{enumerate}
+1.) A planar  grid \emph{workspace} $W$ is filled with a number of unit-square particles (each occupying one cell of the grid)  and some fixed unit-square blocks.  Each unit square in the workspace is either  \emph{free}, which a particle may occupy or \emph{obstacle} which a particle may not occupy.  Each square in the grid can be referenced by its Cartesian coordinates $\bm{x}=(x,y)$.
+2.) All particles are commanded in unison: the valid commands are  ``Go Up" ($u$), ``Go Right" ($r$), ``Go Down" ($d$), or ``Go Left" ($l$).  
+3.) Particles all move until they  hit an obstacle, hit a stationary particle, or share an edge with a compatible particle.
+	%\begin{enumerate}
+%		\item hit an obstacle 
+%		\item hit a stationary particle
+%		\item share an edge with a compatible particle
+%	\end{enumerate}
+If a particle shares an edge with a compatible particle the two particles bond and from then on move as a unit.
+This paper uses \emph{cycles} of movement commands in the order $\langle r,d,l,u \rangle$. We assume the area of $W$ is finite and issue each command long enough for the particles to reach their maximum extent.
+%\end{enumerate}
+
+
+%###############################################################
+\subsection{Arbitrary 2D shapes require two particle species}\label{subsec:RobotSpecies}
+%###############################################################
+Polyominoes have \emph{four-point connectivity}: a 4-connected square is a neighbor to every square that shares an edge with it.
+
+
+\begin{lemma}
+  Any polyomino can be constructed using just two species
+  \end{lemma}
+\begin{proof} 
+Label a grid with an alternating pattern like a checkerboard.  Any desired polyomino can be constructed on this checkerboard, and all joints are between dissimilar species.
+  An example shape is shown in Fig.~\ref{fig:Grid}. Red and blue colors are used to indicate particles of different species.
+  \end{proof}
+
+   \begin{figure}
+   \centering
+   \vspace{0.2em}
+\begin{overpic}[width =.8\columnwidth]{Grid2.pdf}
+\end{overpic}
+\caption{\label{fig:Grid}Any polyomino can be constructed with two compatible robot species, shown here with red and blue tiles.  
+}
+\end{figure}
+
+  
+  The sufficiency of two species to construct any shape gives many options for implementation.  The two species could correspond to any gendered connection, 
+including ionic charge, magnetic polarity, or hook-and-loop type fasteners. Large populations of these two species can then be stored in separate hoppers and, like two-part epoxy,  only assemble when dissimilar particles come in contact.
+
+
+
+
+%###############################################################
+\subsection{Complexity Handled in This Paper}\label{sec:ComplexityHandled}
+%###############################################################
+
+2D part geometries vary in difficulty.  Fig.~\ref{fig:IncreasingDifficulty} shows parts with increasing  complexity. 
+
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{IncreasingDifficulty3.pdf}
+\end{overpic}\vspace{-2em}
+\caption{\label{fig:IncreasingDifficulty}Polyomino parts. Assembly difficulty increases from left to right.
+}
+\end{figure} 
+Label the first particle in the assembly process the \emph{seed particle}. 
+ Part 1 is shaped as a `\#' symbol.  Though it has an interior hole, any of the 16 particles could serve as the seed particle, and the shape could be constructed around it.  The second shape is a spiral, and must be constructed from the inside-out.  If the outer spiral was completed first, there would be no path to add particles to finish the interior because added particles would have to slide past compatible particles.  Increasing the number of species would not solve this problem, because there is a narrow passage through the spiral that forces incoming parts to slide past the edges of all the bonded particles.
+The third shape contains a loop, and the interior must be finished before the loop is closed.
+Shape 4 is the combination of a left-handed and a right-handed spiral.
+Adding one particle at a time in 2D cannot assemble this part, because each spiral must be constructed from the inside-out.  
+ Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
+ Shape 5 contains compound overhangs, and may be impossible to construct with additive 2D manufacturing using only two species.
+ The algorithms in this paper detect if the desired shape can be constructed one particle at a time.  
+ If so, a build order is provided, and a factory layout is designed.
+
+
+% A polyomino is said to be \emph{column convex} if each column has no holes. Similarly, a polyomino is said to be row convex if each row has no holes. A polyomino is said to be \emph{convex} if it is row and column convex.
+%
+%\begin{lemma}\label{lemma:convexonjectsCanbeConstructedAdditively}
+%Any convex polyomino can be constructed by adding one particle at a time
+%\end{lemma}
+%\begin{proof}
+%Select any pixel as the \emph{seed block}, or root node.  Perform a breadth-first search starting at the seed block, labelling each block in the order they are expanded.  Constructing the shape according to the ordering ensures that the polyomino is convex at every step of construction.
+%\end{proof}
+
+%The proof of \ref{lemma:convexonjectsCanbeConstructedAdditively} assumes the existence of fixtures for assembly.
+%\todo{describe fixtures for adding one particle at a time}
+
+%Some non-convex polynominos cannot be constructed one particle at a time, as illustrated in Fig. ~\ref{fig:IncreasingDifficulty}.    For instance, a polynomino consisting of a clockwise and a counterclockwise square spiral, joined at the ends with a gap of one unit between the spirals must be constructed by first assembling each spiral, and then combining the sub assemblies.
+
+
+
+
+%###############################################################
+\subsection{Discovering a Build Path}
+%###############################################################
+
+Given a polyomino, Alg.~\ref{alg:FindBuildPath} determines if the polyomino can be built by adding one component at a time.
+ The  problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may  violate the constraints given in Section \ref{subsec:model}.  
+ Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite specie tile, and terminates in a mating configuration with an opposite specie tile.
+However, as in many robotics problems, the inverse problem of deconstruction is easier than the forward problem of construction.  
+
+\begin{algorithm}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\begin{algorithmic}[1]
+%\scriptsize 
+\caption{\sc {FindBuildPath}($\mathbf{P})$   \label{alg:FindBuildPath}}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino. % that has at least a 1-tile empty border.
+Returns $ \mathbf{C} $, $ \mathbf{c} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates, $ \mathbf{c} $ is a vector of color labels, and $\mathbf{m}$ is a vector of directions for assembly.
+\begin{algorithmic}[1]
+
+\State\hbox{$ \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
+\State $\{\mathbf{C},\mathbf{m} \}= ${\sc {Decompose}}$(\mathbf{P},\mathbf{c})$
+\State \Return $\{ \mathbf{C},\mathbf{c}, \mathbf{m} \} $ 
+\end{algorithmic}
+\end{algorithm} 
+
+   \begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{DeconstructionOrderMattersSlide.pdf}
+\end{overpic}\vspace{-2em}
+\caption{\label{fig:DeconstructionOrderMatters} Deconstruction order matters if loops are present.  Loops occur when the 8-connected freespace has more than one connected component.  In the top row the green tile is removed first, resulting in a polyomino that cannot be decomposed. However, if the bottom right tile is removed first, deconstruction is possible.
+}
+\end{figure} 
+
+Alg.~\ref{alg:FindBuildPath}  first assigns each tile in the polyomino a color, then calls the recursive function {\sc {Decompose}}, which returns either a build order of polyomino coordinates and the directions to build, or an empty list if the part cannot be constructed.  
+{\sc {Decompose}} starts by calling the function {\sc {Erode}}.  {\sc {Erode}} first counts the number of components in the 8-connected freespace. An 8-connected square is a neighbor to every square that shares an edge or vertex with it. If there is more than one connected component, the polyomino contains loops.  
+ {\sc {Erode}} maintains an array of the remaining tiles in the polyomino $\mathbf{R}$. 
+ In the inner \textit{for loop} at line  \ref{alg:line:forloopTotryremovinEachTileERODE}, a temporary array $\mathbf{T}$ is generated that contains all but the $j$th tile in $\mathbf{R}$ sorted by the number of neighbors so a tile with one neighbor is checked before tiles with two or three.
+This \textit{for loop} simply checks (1) if the $j$th tile can be removed along a straight-line path without  colliding with any other particle or sliding past an opposite specie tile in line \ref{alg:line:checkpathtileERODE},  (2) that its removal does not fragment the remaining polyomino into more than one piece in line \ref{alg:line:NumConnectedCompERODE}, and (3) that its removal does not break a loop in line \ref{alg:line:Num8ConnectedCompERODE}. 
+If no loops are present, this algorithm requires at most  $n/2 (1 + n)$ iterations, because there are $n$ particles to remove, and each iteration considers one less particle than the previous iteration.
+
+Polyominoes with loops require care, because decomposing them in the wrong order can make disassembly impossible, as shown in Fig.~\ref{fig:DeconstructionOrderMatters}.
+If loops exist then  {\sc {Erode}} may return only a partial decomposition, so {\sc {Decompose}} must then try every possible break point and recursively call {\sc {Decompose}} until either a solution is found, or all possible decomposition orders have been tested.  The worst-case number of function calls of  {\sc {Decompose}}  are proportional to the factorial of the number of loops, $O( |\text{\sc 8-ConnComp}(\neg\mathbf{P})| !)$. Though large, this is much less than $O(n!)$.
+
+\begin{algorithm}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\scriptsize 
+\caption{\sc {Erode}($\mathbf{P},\mathbf{c})$   \label{alg:Erode}}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino  and $ \mathbf{c} $ is a vector of color labels.
+Returns $ \mathbf{R} $, $ \mathbf{C} $, $\mathbf{m}$, and $\mathbf{\ell}$ where $ \mathbf{R} $  is a list of coordinates of the remaining polyomino, $ \mathbf{C} $ contains sequence of tile coordinates that were removed,   $\mathbf{m}$ is a vector of directions for assembly, and $\mathbf{\ell}$ if loops were encountered. $\mathbf{d} \gets\{r,d,l,u\}$
+\begin{algorithmic}[1]
+%\State\hbox{$ \mathbf{c}\leftarrow${\sc{LabelColor}}($\mathbf{P}$)}
+%\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
+\State\hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}, \mathbf{\ell} \gets \textrm{\sc False},  \mathbf{R}\leftarrow \mathbf{P}$}
+\State $w \gets |\text{\sc 8-ConnComp}(\neg\mathbf{R})|$
+
+\While{$1 <  |\mathbf{R}|  $}
+\State  \emph{successRemove} $\gets$ {\sc False}
+\State\hbox{$ \mathbf{R}\leftarrow${\sc{Sort}}($\mathbf{R}$)} \Comment{sort by number of neighbors}
+\For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
+\State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
+
+\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTileERODE} }
+\If{{\sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtileERODE} \textbf{and}
+\\ \textbf{~~~~~~~~~~~~~~}
+$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$  \label{alg:line:NumConnectedCompERODE}}
+\If{$w = |\text{\sc 8-ConnComp}(\neg\mathbf{T})|$  \label{alg:line:Num8ConnectedCompERODE}}
+\State $ \mathbf{R}\leftarrow   \mathbf{T}$, \emph{successRemove} $\gets$ {\sc True}
+\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
+\Else { $  \mathbf{\ell} \gets \textrm{\sc True}$}
+\EndIf
+\State \textbf{break}
+\EndIf
+\EndFor
+\EndFor
+\If {  \emph{successRemove} $=$ {\sc False}}
+\State  \hbox{$\mathbf{C} \leftarrow \{\}, \mathbf{m} \leftarrow \{\}$}
+\State \textbf{break}
+\EndIf
+\EndWhile 
+\If {$ |\mathbf{R}| = 1$}
+\State  $\mathbf{C}_{ 1} \gets \mathbf{R}_1 $
+\EndIf
+\State \Return $\{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \}$ 
+\end{algorithmic}
+\end{algorithm} 
+
+
+
+
+
+
+
+
+\vspace{10em}
+\begin{algorithm}
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\scriptsize 
+\caption{\sc {Decompose}($\mathbf{P},\mathbf{c})$   \label{alg:Decompose}}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino and $ \mathbf{c} $ is a vector of color labels.
+Returns $ \mathbf{C} $ and $\mathbf{m}$ where $ \mathbf{C} $ contains sequence of polyomino coordinates and $\mathbf{m}$ is a vector of directions for assembly. $\mathbf{d} \gets\{u,d,l,r\}$
+\begin{algorithmic}[1]
+\State $ \{ \mathbf{R},\mathbf{C}, \mathbf{m}, \ell \} \gets ${\sc {Erode}}$(\mathbf{P},\mathbf{c})$
+\If {$|  \mathbf{R} | = 0 \textbf{ or } \neg \ell$}
+\State \Return $\{ \mathbf{C},\mathbf{m} \}$ 
+\EndIf
+\For{$j\leftarrow 1, j \le  |\mathbf{R}| $}
+\State $\mathbf{p} \gets \mathbf{R}_j,  \mathbf{T} \gets  \mathbf{R}  \backslash   \mathbf{R}_j$
+\For{$ k \leftarrow 1, k \le  4$   \label{alg:line:forloopTotryremovinEachTileDecompose} }
+\If{{ ( \sc CheckPathTile}($\mathbf{T},\mathbf{p}, \mathbf{d}_k, \mathbf{c}$) \label{alg:line:checkpathtileDecompose} \textbf{and }
+\\ \textbf{~~~~~~~~~~~~ }
+$1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDecompose}}
+\State $\{\mathbf{C2},\mathbf{m2} \}\gets ${\sc {Decompose}}$(\mathbf{T},\mathbf{c})$
+\If {$\mathbf{C2}  \ne \{\}$}
+%\State  $\mathbf{C}_{ 1+|\mathbf{R}|} \gets \mathbf{p},  \mathbf{m}_{ |\mathbf{R}|}  \gets \mathbf{d}_k$
+\State $\mathbf{C}_{1:|\mathbf{C2}|+1} \gets \{\mathbf{C2},\mathbf{p}\}$
+\State $ \mathbf{m}_{1:|\mathbf{m2}|+1} \gets \{\mathbf{m2},\mathbf{d}_k\}$
+\State \Return $\{ \mathbf{C}, \mathbf{m} \}$ 
+\EndIf
+\State \textbf{break}
+\EndIf
+%\EndIf
+\EndFor
+\EndFor
+%\State $\mathbf{C} \gets \{\}, \mathbf{m} \gets \{\}$
+\State \Return $\{ \mathbf{C}\gets \{\}, \mathbf{m}\gets \{\} \}$ 
+\end{algorithmic}
+\end{algorithm} 
+  
+%###############################################################
+%\subsection{Assembling Tiles}
+%###############################################################
+
+
+%###############################################################
+\subsection{Hopper Construction}\label{subsec:HopperConstruction}
+%###############################################################
+Two-part adhesives react when components mix.  Placing components in separate containers prevents mixing.  Similarly, storing many particles of a single specie in separate containers allows controlled mixing.
+%WIKI: harden by mixing two or more components which chemically react.
+
+We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle. Delay blocks are used to ensure the $n$th part hopper does not start releasing particles until cycle $n$. For ease of exposition, this paper has a unique hopper for each tile position. This enables precise positioning of different materials, but a particle logic system could use just two hoppers, similar to our particle logic systems in [9].
+
+   \begin{figure}
+  %  \vspace{-1em}
+   \centering
+\begin{overpic}[width =\columnwidth]{hopperV4.pdf}
+\end{overpic}\\ \vspace{-1em}
+\caption{\label{fig:HopperCW}Hopper with five delays. The hopper is filled with similarly-labelled robots that will not combine.  Every clockwise command cycle releases one robot from the hopper.  %\textcolor{red}{replace with new hopper design}
+}
+\end{figure}
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{24tilefactory.pdf}
+\end{overpic}
+\begin{overpic}[width =\columnwidth]{Spiraltilefactory.pdf}
+\end{overpic}\\ \vspace{-1em}
+\caption{\label{fig:24Tilefactory}A twenty-four tile factory, step 82 for a `\#' shape and a twenty-one tile factory, step 66 for a spiral (zoom in for details in this vector graphic).
+}
+\end{figure}
+
+
+
+%###############################################################
+\subsection{Part Assembly Jigs}\label{subsec:PartAssemblyJigs}
+%###############################################################
+
+Assembly is an iterative procedure.  
+A factory layout is generated by  {\sc{BuildFactory}}($\mathbf{P}, n_c$), described in Alg.~\ref{alg:BuildFactory}. This function takes a 2D polyomino $\mathbf{P}$ and, if $\mathbf{P}$ has a valid build path, designs an obstacle layout to generate $n_c$ copies of the polyomino. A polyomino is composed of $|\mathbf{P}| = n$ tiles.  
+
+For each tile, the function 
+ {\sc{FactoryAddTile}} $(n_c,\mathbf{b}, m,C, c,w)$
+  described in  Alg.~\ref{alg:FactoryAddTile}
+is called to generate an obstacle configuration $\mathbf{A}$.
+$\mathbf{A}$  forms a hopper that releases a particle each iteration and a chamber that temporarily holds the partially-assembled polyomino $\mathbf{b}$ and guides the new particle $C$ to the correct mating position. A 24-tile factory is shown in  Fig.~\ref{fig:24Tilefactory}.
+
+
+%\todo{Sheryl, add the algorithmic environment for Build Factory}
+\begin{algorithm} 
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\scriptsize
+\caption{ \sc{BuildFactory}($\mathbf{P}, n_c$)\label{alg:BuildFactory}}
+$\mathbf{P}$ is the $x,y$ coordinates of a 4-connected polyomino.  $n_c$ is the number of parts desired. 
+Returns a two dimensional array $ \mathbf{F} $ containing the factory obstacles and filled hoppers.
+\begin{algorithmic}[1]
+\State$\mathbf{F} \leftarrow \{\}$ \Comment{the factory obstacle array} 
+
+\State \{$\mathbf{C},\mathbf{c}, \mathbf{m}$\} $  \leftarrow$ {\sc{FindBuildPath}}($\mathbf{P}$)
+ \If{$ \{\} = \mathbf{m}$}
+ \State \Return  $ \mathbf{F} $
+ \EndIf 
+ \State$\{ \mathbf{A}, \mathbf{b} \}\leftarrow${\sc{FactoryFirstTile}}$(n_c, \mathbf{c}_i,w)$
+ \For{$i\leftarrow 2, i \le  |\mathbf{c}| )$}
+ \State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{FactoryAddTile}}$(n_c,\mathbf{b}, \mathbf{m}_{i-1},\mathbf{C}_i, \mathbf{c}_i,w)$
+ \State$ \mathbf{F} \leftarrow${\sc{ConcatFactories}}$(\mathbf{F},\mathbf{A})$
+\EndFor
+\State \Return  $ \mathbf{F} $
+%\State{\sc{DisplayFactory}}($factoryLayout$)
+\end{algorithmic}
+\end{algorithm} 
+ 
+ 
+ 
+
+ 
+ 
+\begin{algorithm} 
+\newcommand\algotext[1]{\end{algorithmic}#1\begin{algorithmic}[1]}
+%\scriptsize
+\caption{\sc {FactoryAddTile}$(n_c,\mathbf{b}, m,C, c,w)$ \label{alg:FactoryAddTile}}
+\begin{algorithmic}[1]
+\State$
+\{ \mathbf{hopper}\}\leftarrow${\sc{Hopper}}$(c,n_c,w)$
+\If{ $m = d \textbf{ and } \left(     C_x  \le \max \mathbf{b}_x   
+                         \textbf{ or }  C_y     < \min \mathbf{b}_y \right)  }$
+    
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{downdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
+\ElsIf{ $m = l \textbf{ and} \left(     C_y  \le \max \mathbf{b}_y   
+                         \textbf{ or }  C_x     > \max \mathbf{b}_x \right)  }$
+    
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{leftdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+\ElsIf{ $m = l \textbf{ and} \left(     C_x  \ge \max \mathbf{b}_x   
+                         \textbf{ or }  C_y     > \max \mathbf{b}_y \right)  }$
+    
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{updir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+\ElsIf{ $m = r \textbf{ and } \left(     C_y     \ge \min \mathbf{b}_y   
+                       \textbf{ or }  C_x  < \min \mathbf{b}_x   \right)  }$
+\State$\{\mathbf{A},\mathbf{b}\}\leftarrow${\sc{rightdir}}$(\mathbf{hopper},\mathbf{b},\mathbf{C})$
+
+
+
+\EndIf
+
+\State \Return $\{ \mathbf{A}, \mathbf{b} \}$ 
+
+\end{algorithmic}
+\end{algorithm}
+ 
+ 
+ 
+ 
+ 
+ 
+

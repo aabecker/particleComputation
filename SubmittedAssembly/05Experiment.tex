@@ -1,0 +1,81 @@
+%###############################################################
+\section{Experiment}\label{sec:Experiment}
+%###############################################################
+To demonstrate  Algs.~\ref{alg:FindBuildPath}--\ref{alg:FactoryAddTile}, we developed two platforms at two size scales, a macro-scale demonstration board using gravity as the external force and magnetic attraction between red and blue particles for assembly, and a micro-scale magnetic control stage with alginate micro-particles.
+
+\subsection{Macro-scale, Gravity-Based Prototype}
+
+The gravity-based model shown in Fig.~\ref{fig:24tilefactory} uses a white workspace, red sliders for particles with magnetic north out, blue sliders for particles with magnetic south out, and black stop blocks for workspace obstacles. This model uses gravity as a global input to manipulate the red and blue sliders.
+
+
+\paragraph{Construction and assembly} The macro-scale, reconfigurable, gravity-based model used to demonstrate parallel assembly was manufactured from laser cut acrylic, plastic dowel rods, and 3.2$\times$3.2$\times$1.6 mm$^3$ neodymium magnets. The workspace was made from a 0.6 by 0.3 meter sheet of 6.35 mm thick white acrylic. A laser cutter was used to make a grid of slider tracks 3.25 mm deep and 3.25 mm wide in the workspace as well as four holes with a diameter of 3.2 mm around each intersection of the grid for stop blocks to be securely placed. The stop blocks are made of similar black acrylic with four plastic dowel rods so they may be securely placed onto the workspace. The particles were made from similar red and blue acrylic sheets and are approximately 25 mm in diameter. The sliders have eight laser cut slots to house the magnets and have a small plastic dowel rod inserted in the center to ensure the sliders follow the tracks of the workspace.
+
+\begin{figure}
+   \centering
+   \vspace{.2em}
+\begin{overpic}[width =\columnwidth]{Macroscale3.pdf}
+\end{overpic}\\
+\vspace{-1em}
+\caption{\label{fig:24tilefactory}A macro-scale demonstration of particle assembly using gravity as the external force and magnetic attraction between red and blue particles for assembly. Inset shows details of the magnetic sliders with magnets of opposite polarity facing outwards. See video attachment for a demonstration.
+}
+\end{figure}
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{MacroResult3.pdf}
+\end{overpic}
+\vspace{-2em}
+\caption{\label{fig:macroresults}Results from assembly of  macro-scale, three tile row and column polyominoes. Each data point represents 10 trials.
+}
+\end{figure}
+
+\paragraph{Forces Involved} When the macro-scale demonstration is tilted at an angle of 20$^{\circ}$ most of the sliders will break free from the average static friction force of 0.0074 N and move across the workspace. At this angle the average force of weight contributing to the motion of the sliders is 0.0092 N, just enough to overcome the friction. Since the average magnetic breaking strength of the sliders is 0.1 N, sliders of opposite charge should be able to connect and overcome the force of motion of the sliders. However, there are instances where this connection does not overcome the force of motion due to a high tilt angle needed to break static friction.
+\paragraph{Macro Scale Results}
+Fig.~\ref{fig:macroresults} shows results of experimentation for a three tile row and column polyominoes.  Success rate is high when the number of sliders in each hopper is small. This is because the system was designed for a small number of particles and the magnetic repulsion of like particles can misalign the sliders.
+%\paragraph{Modifications for real world model} When using the large-scale demo to assemble a part with an overhang, such as the part shown in Fig.~\ref{fig:fig1b}(b), certain adjustments need to be made to the workspace to ensure that the overhanging particle will connect to the correct particle. Due to the gravitational forces involved in the large scale demonstration there are instances where a slider could miss its initial connection point and slide into a connection with another particle along the assembly. To prevent this error, the workspace of the large-scale demonstration was redesigned from the original computer simulation by a trial and error process. This redesign ensured that sliders connecting to one another in a horizontal fashion during a $d$ command remained on the same row of the workspace by placing stop blocks below each slider's destination. Similarly, when moving an assembled row of three sliders, at least two of them must come to rest against a stop block to ensure the assembled piece retains its shape and proper position.
+%
+%\paragraph{Scaling} A larger scale model of this demonstration could be built, although some limitations include the size availability of magnets to use within the sliders and a person’s ability to properly handle the size and weight of a larger workspace. To circumvent this second issue a mechanism could be built specifically to handle the workspace. In the case of reducing the scale of this Gravity-Based demonstration, it would be difficult to do so as manufacturing smaller sliders with the same internal magnet arrangement would pose many challenges. However, a smaller scale demonstration has been successful when using magnetic force as the global input rather than gravitational force.
+\subsection{Micro-scale, Magnetic-Based Prototype}
+We designed a custom magnetic control stage to generate the global control inputs. This stage generates a magnetic drag force by moving a permanent magnet. 
+\paragraph{Experimental setup}
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{Figure11a.pdf}
+\end{overpic}
+\vspace{-2em}
+\caption{\label{fig:Magneticstage}Experimental platform.  %\todo{describe the system}
+}
+\end{figure}
+Figure~\ref{fig:Magneticstage} shows a system schematic.
+The permanent magnet can translate in $x$ and $y$-axes, actuated by stepper motors and moving on linear rails. The neodymium permanent magnet field strength is 1.32 T and dimensions are 50.8 $\times$ 50.8 mm$^2$ (K\&J Magnetics). 
+The microfluidic factory layout produced for this experiment was fabricated through traditional photolithography methods. A silicon wafer was selected as the microfabrication substrate. SU-8 2150 photoresist (MicroChem) was then spin coated onto the substrate, giving a thickness of 300 $\mu$m. The channel width is 500 $\mu$m.  
+Channels were then filled with motility buffer composed of Dionized Water and 10\% Tween 20. All microrobots used for these experiments were loaded alginate paramagnetic hydrogels, otherwise known as artificial cells. Alginate microrobots can encapsulate both organic and non-organic materials, which makes them the best suited form of microrobots to create different types of species. The alginate microrobots were fabricated using a centrifugal method, using the following equation \cite{tasoglu2014guided} to generate particles of diameter $d_p$:
+\begin{align}
+d_p = \sqrt[\leftroot{-2}\uproot{2}3]{(6 d_n \sigma_p)/(\rho_p g)}\label{eq:particleDiameter}
+\end{align}
+where $d_n$, $\sigma_p$, $\rho_p$, and $g$ are the diameter of the nozzle, surface tension of the alginate solution, density of alginate solution, and the applied gravitational force, respectively. The surface tension of alginate is 65.46 mN/m, and a density of 1.1 g/cm$^3$. 
+The average microrobot size is 300 $\mu$m, and were composed of a concentration of 5\% (w/v) Alginate-Na and 5\% (w/v) concentration of CaCl2, and then encapsulated with 10\% (w/v) nano-paramagnetic particles (Iron oxide, Sigma-Aldrich).
+Alginate microrobots were transported at each hopper in the microfluidic factory layout, by way of a pipette.  To show the process, one alginate particle was loaded in each hopper. The experimental channel was placed at the center of the stage with the magnet centered beneath the microfluidic factory layout. This position was saved as the home position for the permanent magnet. Stepper motors controlled the stage position. An Arduino UNO programmed in C++ commanded these motors using a 2 Hz control loop. After a command was initiated, such as each direction in the $\langle r,d,l,u \rangle$ cycle, the permanent magnet returned to the home position. A non-zero magnetic gradient in the horizontal plane is only generated when the magnet moves out of its home position. The layout was observed through a stereomicroscope and the installed camera (Motion Pro X3) captured the procedure at 30 fps. The observed field of view at 0.65$\times$ magnification is 23.6$\times$18.9 mm$^2$. 
+
+\paragraph{Experimental result}
+Using a factory layout generated by Alg.~\ref{alg:BuildFactory}, we demonstrated micro-scale assembly using multiple alginate microrobots. 
+ The initial scene is shown in Fig.~\ref{fig:Construction}(a). The first assembly operation was then orchestrated by moving the magnet in a clockwise direction, following the $ \langle r,d,l,u \rangle$ cycle as indicated in Fig. ~\ref{fig:Construction}(b-d). Each input was applied sufficiently long to ensure all alginate microrobots touched a wall. Completion of the square polyomino is shown in Fig.~\ref{fig:Construction}(e). 
+
+
+\begin{figure}
+   \centering
+\begin{overpic}[width =\columnwidth]{Fig11.jpg}
+\end{overpic}
+\vspace{-2em}
+\caption{\label{fig:Construction}
+Experimental results of Alg.~\ref{alg:BuildFactory}. 
+(a) shows individual alginate particles in initial positions. 
+(b) After initial movements of $\langle r,d,l,u,r,d \rangle$, the alginate microrobots move to the position shown. 
+(c) After $\langle l,u \rangle$ inputs, the system produces the first multi-microrobot polyomino. 
+(d) Shows the next three microrobot polyomino after applying multiple $\langle r,d,l,u \rangle$ cycles. 
+(e) After the alginate microrobots have moved through the microfluidic factory layout, the final 4-particle polyomino is generated.
+}
+\end{figure}

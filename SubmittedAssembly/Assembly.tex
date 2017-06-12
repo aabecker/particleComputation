@@ -1,0 +1,121 @@
+% TODO: 
+% -- load our code onto Matlab Central.
+% % gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH      -sOutputFile=CompressedAssembly.pdf Assembly.pdf
+\pdfobjcompresslevel=0  % I had adobe error 131, and this removed it: http://tex.stackexchange.com/questions/64448/how-to-overcome-acrobat-reader-error-131-with-a-pdflatex-doc
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\documentclass[letterpaper, 10 pt, journal, twoside]{ieeetran} 
+
+% Paper headers 
+\markboth{IEEE Robotics and Automation Letters. Preprint Version. Accepted May, 2017}
+{Manzoor \MakeLowercase{\textit{et al.}}: Parallel Self-Assembly of Polyominoes under Uniform Control Inputs}  
+
+\IEEEoverridecommandlockouts
+\usepackage{calc}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[usenames, dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\hypersetup{
+  colorlinks =true,
+  urlcolor = darkblue,
+  linkcolor = darkblue,
+  citecolor =darkblue
+}
+\usepackage{graphicx}
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{amsthm} % for proofs
+
+\usepackage{colortbl}
+\usepackage{overpic}
+\graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
+\usepackage{breqn} %for breaking equations automatically
+\usepackage[ruled]{algorithm}
+%\usepackage{float}
+%\newfloat{algorithm}{htb}{lop}
+%\usepackage[noend]{algorithmic}
+%\usepackage{algorithmicext}
+%\usepackage{ifthen}
+\usepackage{algpseudocode}
+\algtext*{EndWhile}% Remove "end while" text
+\algtext*{EndIf}% Remove "end if" text
+\algtext*{EndFor}% Remove "end if" text
+\usepackage{multirow}
+
+
+
+\usepackage{bm}   % boldface math type
+\usepackage{soul}  % for highlighting
+\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent \framebox{\begin{minipage}[c]{0.98 \columnwidth} \ttfamily\flushleft \textcolor{red}{#1}\end{minipage}}\vspace{5 mm}\par}
+% uncomment this to hide all red todos
+%\renewcommand{\todo}{}
+
+%% ABBREVIATIONS
+\newcommand{\figwid}{0.22\columnwidth}
+\DeclareMathOperator{\atan2}{atan2}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+
+
+
+
+
+
+\begin{document}
+
+
+\title{Parallel Self-Assembly of Polyominoes under Uniform Control Inputs}
+\author{Sheryl Manzoor$^{1}$, Samuel Sheckman$^{2}$, Jarrett Lonsford$^{1}$, Hoyeon Kim$^{2}$, Min Jun Kim$^{2}$, and Aaron T. Becker$^{1}$% <-this % stops a space
+\thanks{Manuscript received: Feb., 15, 2017; Revised May, 3, 2017; Accepted May, 26, 2017.}%Use only for final RAL version
+\thanks{This paper was recommended for publication by Editor Yu Sun upon evaluation of the Associate Editor and Reviewers' comments. *This work was supported by the National Science Foundation under Grant No.\ \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1553063}{ [IIS-1553063]}, \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1619278}{[IIS-1619278]}, and \href{https://nsf.gov/awardsearch/showAward?AWD_ID=1712088}{[IIS-1712088]}.}%Use only for final RAL version
+\thanks{$^{1}$S.~Manzoor, J Lonsford, and  A.~Becker are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204 USA        {\tt\small  \{smanzoor2, jllonsford, atbecker\}@uh.edu}}%
+\thanks{$^{2} $S.~Sheckman, H.~Kim and M.J.~Kim are with Lyle School of Engineering,   Southern Methodist University, Dallas, TX 75205 USA        {\tt\small  \{ssheckman, hoyeonk, mjkim\}@smu.edu}}%
+\thanks{Digital Object Identifier (DOI): see top of this page.}
+}
+\maketitle
+
+
+\begin{abstract} 
+We present fundamental progress on parallel self-assembly using large swarms of micro-scale particles in complex environments, controlled not by individual navigation, but by a uniform, global, external force with the same effect on each particle.
+Consider a 2D grid world, in which all obstacles and particles are unit squares,
+and for each actuation, robots move maximally until they collide with an obstacle or another robot. 
+We present algorithms that, given an arbitrary 2D structure, design an obstacle layout.
+ When actuated, this layout generates copies of the input 2D structure.
+We analyze the movement and spatial complexity of the factory layouts. 
+We present hardware results on both a macro-scale, gravity-based system and a micro-scale, magnetically-actuated system.
+\end{abstract}
+\begin{IEEEkeywords}
+Automation at Micro-Nano Scales; Additive Manufacturing; Underactuated Robots
+\end{IEEEkeywords}
+
+%%% The paper
+\input{01Intro}
+\input{02RelatedWork}
+\input{03Theory}
+\input{04Analysis}
+\input{05Experiment}
+\input{06Conclusion}
+%%
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,../../RoboticSwarmControlLab/bib/aaronrefs,./bib/assemblyrefs}
+
+
+%%%%%%%%%%%%%% For debugging purposes, I like to display the TOC
+%\newpage
+%\tableofcontents
+%\setcounter{tocdepth}{3}
+%\mbox{}
+%%%%%% END TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
