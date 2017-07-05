@@ -1,0 +1,50 @@
+- When you say "We assume all tiles move unit distance in unit time."
+this may not be a valid assumption in the micro-scale because of the
+surface forces and stiction. As also evident from the micro-assembly
+video, the typical stiction phenomena of the micro-particles  to the
+obstacles is observed and the motion of the particles is jerky. That
+is, the particles generally either get stuck or snap across the maximal
+distance in almost no time. It may be argued that under a certain
+global force field, the time it takes to move a particle a certain
+distance is statistically linearly related to the distance.
+Alternatively, it may be argued that this time is a function of how
+fast the global force can be applied (turned on, changed direction
+etc.). The former argument may hold in the case with weaker force
+fields whereas the latter may hold in the case with stronger force
+fields that overcome stiction more easily. Therefore, the difference
+between the cycle time of different shapes in Figure 7 can be
+attributed to the former case. Otherwise, the difference would diminish
+and cycle time (“the time required during production cycles to advance
+all partial assemblies one cycle”) would not be a function of distance
+but rather a function of how fast the global force field can be
+applied. Even another alternative is as mentioned in IV-B where “Each
+input was applied sufficiently long to ensure all alginate microrobots
+touched a wall.” which means the cycle time was fixed in this
+particular experiment. So, the future work of reducing the assembly
+time partly requires investigating what the cycle time is dependent on.
+ 
+- Although the concept of "cycle" was not defined formally, it is
+understood that every clockwise command sequence is a cycle. Then, the
+time it takes to do that is the cycle time, assuming all tiles move
+unit distance in unit time. The definition of cycle time (“the time
+required during production cycles to advance all partial assemblies one
+cycle") indicates that the cycle time is the sum distance traveled by a
+tile in each cycle (which is greater than the distance the sub-assembly
+travels). Also, “Maximum Cycle Time” in Figure 7 means that it is the
+time taken by the last hopper cycle in an assembly which has the
+longest path for a tile. With this understanding, Figure 7 makes sense
+as to why the maximum cycle time is a linear function of the number of
+tiles in an assembly. Therefore, it would make Figure 7 clearer if the
+axes titles were “Cycle Time” versus “Hopper/Tile No” which would
+indicate that the next tile had a longer cycle time than the previous
+tile.
+- In II-A, particle and robot were used interchangeably in the same
+sentence. It would be better to stick with one term, at least in a
+single sentence.
+- You may want to revise this sentence to clarify it: "Different 2D
+part geometries are more difficult to construct than others."
+- Just an idea: Instead of using delay blocks, MEMS actuators could
+potentially be used in Silicon based factories to block the motion of
+tiles. Trade-offs might be saving real estate on the wafer by getting
+rid of delay blocks in return for creating a more complex
+electromechanical design.

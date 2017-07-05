@@ -1,0 +1,25 @@
+The authors have done a good job of answering my previous comments
+along with the comments of the other reviewers. However, many of the
+explanation in the rebuttal document did not make it into the final
+version of the paper. Incorporating them into the final version of the
+paper will help clarify many points.
+
+Some specific comments on this version are the following:
+
+Please define "polyominoe" in the introduction where it is first
+mentioned.
+
+Fig.11 - label the magnet in this figure.
+
+In the video for the micro-scale experiments, it seems like the
+particles move over the borders of the factory walls.  Can you explain
+this?  Also, the attachments of the particles keep changing although
+they are not designed to do so.  It just so happens in the end that
+they end up in the desired configuration.  It would be helpful to show
+more than one experiment here to get some idea of the robustness of the
+system.
+
+Finally, for the assembly shown in Fig.1 - would something like this
+actually be possible at the microscale?  How can you get part 7 to stop
+precisely at the top and attach to part 6 instead of moving down and
+attach to part 4 or 2?
