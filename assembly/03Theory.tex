@@ -20,7 +20,7 @@ Assume the following rules:
 %		\item share an edge with a compatible particle
 %	\end{enumerate}
 If a particle shares an edge with a compatible particle the two particles bond and from then on move as a unit.
-This paper uses \emph{cycles} of movement commands in the order $\langle r,d,l,u \rangle$. We assume the area of $W$ is finite and issue each command long enough for the particles to reach their maximum extent.
+This letter uses \emph{cycles} of movement commands in the order $\langle r,d,l,u \rangle$. We assume the area of $W$ is finite and issue each command long enough for the particles to reach their maximum extent.
 %\end{enumerate}
 
 
@@ -55,7 +55,7 @@ including ionic charge, magnetic polarity, or hook-and-loop type fasteners. Larg
 
 
 %###############################################################
-\subsection{Complexity Handled in This Paper}\label{sec:ComplexityHandled}
+\subsection{Complexity Handled in This Letter}\label{sec:ComplexityHandled}
 %###############################################################
 
 2D part geometries vary in difficulty.  Fig.~\ref{fig:IncreasingDifficulty} shows parts with increasing  complexity. 
@@ -74,7 +74,7 @@ Shape 4 is the combination of a left-handed and a right-handed spiral.
 Adding one particle at a time in 2D cannot assemble this part, because each spiral must be constructed from the inside-out.  
  Instead, this part must be divided into sub-assemblies that are each constructed, and then combined.
  Shape 5 contains compound overhangs, and may be impossible to construct with additive 2D manufacturing using only two species.
- The algorithms in this paper detect if the desired shape can be constructed one particle at a time.  
+ The algorithms in this letter detect if the desired shape can be constructed one particle at a time.  
  If so, a build order is provided, and a factory layout is designed.
 
 
@@ -101,7 +101,7 @@ Adding one particle at a time in 2D cannot assemble this part, because each spir
 
 Given a polyomino, Alg.~\ref{alg:FindBuildPath} determines if the polyomino can be built by adding one component at a time.
  The  problem of determining a build order is difficult because there are $O(n!)$ possible build orders, and many of them may  violate the constraints given in Section \ref{subsec:model}.  
- Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other particle, does not slide past an opposite specie tile, and terminates in a mating configuration with an opposite specie tile.
+ Each new tile must have a straight-line path to its goal position in the polyomino that does not collide with any other tile, does not slide past an opposite specie tile, and terminates in a mating configuration with an opposite specie tile.
 However, as in many robotics problems, the inverse problem of deconstruction is easier than the forward problem of construction.  
 
 \begin{algorithm}
@@ -233,7 +233,7 @@ $1 = |\text{\sc 4-ConnComp}(\mathbf{T})|$)  \label{alg:line:NumConnectedCompDeco
 Two-part adhesives react when components mix.  Placing components in separate containers prevents mixing.  Similarly, storing many particles of a single specie in separate containers allows controlled mixing.
 %WIKI: harden by mixing two or more components which chemically react.
 
-We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle. Delay blocks are used to ensure the $n$th part hopper does not start releasing particles until cycle $n$. For ease of exposition, this paper has a unique hopper for each tile position. This enables precise positioning of different materials, but a particle logic system could use just two hoppers, similar to our particle logic systems in [9].
+We can design \emph{part hoppers}, containers that store similarly labelled particles.  These particles will not bond with each other.  The hopper shown in Fig.~\ref{fig:HopperCW} releases one particle every cycle. Delay blocks are used to ensure the $n$th part hopper does not start releasing particles until cycle $n$. For ease of exposition, this letter has a unique hopper for each tile position. This enables precise positioning of different materials, but a particle logic system could use just two hoppers, similar to our particle logic systems in [9].
 
    \begin{figure}
   %  \vspace{-1em}

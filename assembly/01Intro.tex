@@ -2,7 +2,8 @@
 \section{Introduction}\label{sec:Intro}
 %###############################################################
 
-\IEEEPARstart{O}{ne} of the exciting new directions of robotics is the design and development
+%\IEEEPARstart{O}{ne} 
+One of the exciting new directions of robotics is the design and development
 of micro- and nanorobot systems, with the goal of letting a massive swarm of robots
 perform complex operations in a complicated environment. Due to scaling 
 issues, individual control of the involved robots becomes physically impossible:
@@ -29,15 +30,15 @@ chemical gradients, and turning a light source on and off.
  
 Having only one global signal that uniformly affects all robots at once
 limits the swarm's ability to perform complex operations.
-Independent control is possible by designing heterogeneous particles that respond differently to the global input, but this approach requires precise differences in each particle and is best suited for small populations. 
+Independent control is possible by designing heterogeneous particles that respond differently to the global input, but this approach requires precise differences in each robot and is best suited for small populations. 
 Alternatively, control symmetry can be broken using interactions between the robot swarm and obstacles in the environment. 
-This paper builds on the techniques for controlling many simple particles with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, where
+This letter builds on the techniques for controlling many simple particles with uniform control inputs presented in \cite{Becker2013f,Becker2014,Becker2014a}, where
 we demonstrated how such a system could  implement digital computation.
-Fig.~\ref{fig:factorySchematics} illustrates the main contribution of this paper: algorithms to produce a factory that uses global inputs to assemble arbitrary polyominoes.
+Fig.~\ref{fig:factorySchematics} illustrates the main contribution of this letter: algorithms to produce a factory that uses global inputs to assemble arbitrary polyominoes.
 A \emph{polyomino} is a 2D geometric figure formed by joining one or more equal squares edge to edge.
 
-This paper combines microscale hybrid organic/inorganic particles with novel swarm control algorithms for mask-free programmable patterning and micro-assembly. 
-Specifically, this paper applies swarm control and particle logic computations to magnetically actuate artificial cells, to use them as micro-scale robotic swarms that create complex, high resolution, 2D patterns and assemblies.
+This letter combines microscale hybrid organic/inorganic particles with novel swarm control algorithms for mask-free programmable patterning and micro-assembly. 
+Specifically, this letter applies swarm control and particle logic computations to magnetically actuate artificial cells, to use them as micro-scale robotic swarms that create complex, high resolution, 2D patterns and assemblies.
 
 \paragraph{Microscale Biomanufacturing}
 Naturally derived biomaterials as building blocks for functional materials and devices are increasingly desired because they are often environmentally and biologically safer than purely synthetic materials. 
@@ -69,13 +70,13 @@ The ability to create microrobots, and control algorithms capable of autonomous 
 %To address this challenge, teams of microrobotic systems must work together intelligently to coordinate manipulation tasks in novel environments. 
 While several microrobots capable of performing simple manipulation and assembly tasks have been reported~\cite{prakash2007artificial,chang2007artificial,weibel2007microfabrication,abbott2007robotics,yi2006microfluidics,castillo2009manipulation}, few have shown the ability to pattern intricate designs or assemble complex multi-component parts. 
 Recently, groups have begun to develop cell-safe magnetically-actuated microrobotic systems for cell patterning, yet their method is limited in that these systems are manually controlled, not automated, and suffer from low spatial resolution~\cite{tasoglu2014untethered,tasoglu2014guided}. 
-For recent advances in automated micro-assembly, see~\cite{seymour2016automated}, but these techniques focus on a set of micro manipulators assembling one component at a time. This paper focuses on parallelizable techniques.
+For recent advances in automated micro-assembly, see~\cite{seymour2016automated}, but these techniques focus on a set of micro manipulators assembling one component at a time. This letter focuses on parallelizable techniques.
 %but they require improvement in success rate for complex assemblies and reduction in the computation time it takes to plan the assembly sequence.
 
 
 \paragraph{Assembly Planning}
 Algorithm techniques for optimizing assembly operations have a rich history, see review article~\cite{rashid2012review}.
-Our paper determines if a polyomino has a feasible assembly sequence, similar to the planning in~\cite{Su2007}.
+Our letter determines if a polyomino has a feasible assembly sequence, similar to the planning in~\cite{Su2007}.
 
 
 
