@@ -2,7 +2,7 @@ function [] = UP_DIR (parts_matrix,part1_length,part1_width,part2_length,part2_w
 %Function joins two polyominoes by 'UP' move
 %part1_length = length of part entering from first inlet
 %part1_width = width of part entering from first inlet
-%alignment = horizonatl distance between left corners of the two parts
+%alignment = horizontal distance between left corners of the two parts
 if nargin <1
 parts_matrix=[1 1 1 1 1 1 1;
               1 2 3 2 3 0 0;
@@ -18,7 +18,7 @@ part1_length = 2; %part entering from the first inlet
 part1_width = 4; 
 part2_length = 2; %part entering from the second inlet
 part2_width = 2;
-alignment=3; % horizontal distance between the left corners of both the parts
+alignment=4; % horizontal distance between the left corners of both the parts
 
 end
 rows=6+((part1_length+part2_length)*2)+part2_length; %initialize rows and columns of the subfactory from the lengths & widths of the parts
