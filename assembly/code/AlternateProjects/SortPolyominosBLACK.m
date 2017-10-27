@@ -43,7 +43,7 @@ if nargin<1
         1,1,0;
         1,0,0;
         0,0,0;];
-    
+    cnt = 2;
     
     path=[...
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,
@@ -159,7 +159,10 @@ drawGameboard();
         if  length(key)==1 && int32(key)>= 49 && int32(key)<=57
             drawGameboard();
             pval = flipud(G.game);
-            pval(8:10,48:50) = (1+str2num(key))*parts(:,:,str2num(key));
+%           pval(8:10,48:50) = (1+str2num(key))*parts(:,:,str2num(key));
+            cnt = cnt + 1;
+            pval(8:10,48:50) = (cnt)*parts(:,:,str2num(key));
+            G.colormap(end+1,:) = rand(1,3);
             G.game = flipud(pval);
             makeItemList();
             drawGameboard();
