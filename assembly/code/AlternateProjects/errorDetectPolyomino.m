@@ -132,6 +132,9 @@ drawGameboard();
             drawGameboard();
             pval = flipud(G.game);
             pval(1:3,3:5)= (1+str2num(key))*parts(:,:,str2num(key));
+            
+            
+            
             G.game = flipud(pval);
             makeItemList();
             drawGameboard();
@@ -221,7 +224,7 @@ drawGameboard();
         
         set(G.fig ,'Name',['AssemblyBlocks moves: ',num2str( G.cmdMoves) ,' unit steps ',num2str( G.unitMoves)] );
         %handle if display only doesn't have all shapes
-        colormap(G.colormap(1+unique(G.game),:));
+       colormap(G.colormap(1+unique(G.game),:));
         
         % %Draw bitmap
         set(G.axis,'CData',G.game)

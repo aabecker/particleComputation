@@ -66,7 +66,7 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts] = ddXORgate;
 %[G.obstacle_pos,RobotPts] = SAFEddCNTgate;
 %[G.obstacle_pos,RobotPts] = ONEWAY_SAFEddCNTgate;
-%[G.obstacle_pos,RobotPts] = XORgate;  %Long pattern, but can ONLY get output if only 1 input exists
+[G.obstacle_pos,RobotPts] = XORgate;  %Long pattern, but can ONLY get output if only 1 input exists
 %[G.obstacle_pos,RobotPts] = NOTgate; %broken
 %[G.obstacle_pos,RobotPts] = FANOUTgate; %works -- single rail with supply
 %[G.obstacle_pos,RobotPts] = ddANDgate();
@@ -87,7 +87,7 @@ strTitle = ''; %#ok<NASGU>
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcwV2();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4v2();
-[G.obstacle_pos,RobotPts,strTitle] = memoryJarrettv02();
+%[G.obstacle_pos,RobotPts,strTitle] = memoryJarrettv02();
 
 %[G.obstacle_pos,RobotPts,strTitle] = ddFANOUTcw4();  % CW fan-out gate
 %[G.obstacle_pos,RobotPts] = ddXORgatecw; %sum bit
@@ -432,7 +432,7 @@ function [blk,RobotPts,strTitle] = memoryJarrettv02
             ];
         for i = 1:numel(RobotPts(:,1))
             RobotPts(i,3) = i;
-            RobotPts(i,4) = i;
+            RobotPts(i,4) = 1;
         end
         %   x x'
         %     blk=[1 1 1 0 1 0 1 1 1 0 1 1

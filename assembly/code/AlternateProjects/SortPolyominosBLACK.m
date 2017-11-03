@@ -1,4 +1,4 @@
-function [] = SortPolyominos(path)
+function [] = SortPolyominosBLACK(path)
 % SortPolyominos function displays complete factory with hopper, tiles and obstacles.
 % [] = DisplayFactory(path)
 % input: path, a 2D array which has the hopper, tiles and obstacles.
@@ -43,7 +43,7 @@ if nargin<1
         1,1,0;
         1,0,0;
         0,0,0;];
-    cnt = 2;
+
     
     path=[...
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,
@@ -87,13 +87,17 @@ if nargin<1
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0];
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0]; %#ok<*COMNL>
 
 path(8:10,48:50)= 2*parts(:,:,1);
 
     for k = 1:9
         path(2:4,(9+4*k)+(1:3)) = path(2:4,(9+4*k)+(1:3))+ k*parts(:,:,k);
     end
+    
+        G.cnt = numel(unique(path));
+    G.colorList = 1:G.cnt;
+    
 end
 G.fig = figure(2);
 set(gcf,'color','w');
@@ -101,7 +105,7 @@ set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
 % G.game = flipud(dlmread(path));
 G.game = flipud(path);
 G.obstacle_pos = (G.game==1);
-G.colormap = [  1,1,1; %Empty = white
+G.colormapKey = [  1,1,1; %Empty = white
     0,0,0; %obstacle
     .8,.8,0;
     0,0,1;
@@ -112,6 +116,8 @@ G.colormap = [  1,1,1; %Empty = white
     1,.5,0;
     153/255,76/255,0;
     1,51/255,153/255];
+G.colormap = G.colormapKey;
+
 colormap(G.colormap);
 G.axis=imagesc(G.game);
 set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off','color',0.8*[1,1,1]);
@@ -124,6 +130,7 @@ G.processingMove = false;
 % build list of items
 makeItemList();
 drawGameboard();
+
 
 % %uncomment to automatically advance k clockwise sequences
 % for k = 1:16
@@ -159,10 +166,11 @@ drawGameboard();
         if  length(key)==1 && int32(key)>= 49 && int32(key)<=57
             drawGameboard();
             pval = flipud(G.game);
-%           pval(8:10,48:50) = (1+str2num(key))*parts(:,:,str2num(key));
-            cnt = cnt + 1;
-            pval(8:10,48:50) = (cnt)*parts(:,:,str2num(key));
-            G.colormap(end+1,:) = rand(1,3);
+         % pval(8:10,48:50) = (1+str2num(key))*parts(:,:,str2num(key));
+            G.cnt = G.cnt + 1;
+            G.colorList(G.cnt) = 2+str2num(key);
+            pval(8:10,48:50) = (G.cnt)*parts(:,:,str2num(key)); %#ok<ST2NM>
+            %G.colormap(end+1,:) = rand(1,3);
             G.game = flipud(pval);
             makeItemList();
             drawGameboard();
@@ -255,7 +263,12 @@ drawGameboard();
         
         set(G.fig ,'Name',['AssemblyBlocks moves: ',num2str( G.cmdMoves) ,' unit steps ',num2str( G.unitMoves)] );
         %handle if display only doesn't have all shapes
-        colormap(G.colormap(1+unique(G.game),:));
+        colormap(G.colormapKey(G.colorList,:));
+        
+ 
+        %G.colorList
+        
+        
         
         % %Draw bitmap
         set(G.axis,'CData',G.game)
