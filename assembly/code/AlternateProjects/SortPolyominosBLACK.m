@@ -169,7 +169,7 @@ drawGameboard();
          % pval(8:10,48:50) = (1+str2num(key))*parts(:,:,str2num(key));
             G.cnt = G.cnt + 1;
             G.colorList(G.cnt) = 2+str2num(key);
-            pval(8:10,48:50) = (G.cnt)*parts(:,:,str2num(key)); %#ok<ST2NM>
+            pval(8:10,48:50) = (G.cnt-1)*parts(:,:,str2num(key)); %#ok<ST2NM>
             %G.colormap(end+1,:) = rand(1,3);
             G.game = flipud(pval);
             makeItemList();
