@@ -1,24 +1,29 @@
-function [] = fillability()
+function [fill] = fillability()
+%The function fills a white region of 6 rows and 6 columns and finds the
+%maximum number of red particles which can be filled after placing an
+%obstacle at one of the 36 possible locations.
 % Authors: Sheryl Manzoor, smanzoor2@uh.edu and Aaron T. Becker, atbecker@uh.edu
 
-obs_row=9;
-obs_col=1;
+obs_row=9; %the obstacle poistion in the region starts from ninth row 
+obs_col=1; %Start column position from first column
+fill=zeros(1,36); %this array saves the maximum number of red particles in the white space for each obstacle position
+cnt=1; %Counter for the fill array
 
 for totalitr=1:36 %obstacle has 36 locations
 
-obs_col=obs_col+1;
-if obs_col==8
+obs_col=obs_col+1; %Add one to the column because the obstacle's first column position is two
+if obs_col==8 %if the column position of the obstacle becomes 8 then, make it 2 and add one to the row position
  obs_col=2;
  obs_row=obs_row+1;
 end
 
 
-path = ones(15,8); %Make the region
-path(2:7,2:5) = 2;
-path(2:8,6:7) = 0;
+path = ones(15,8); %Make a region of 15 rows and 8 columns
+path(2:7,2:5) = 2; %Put red particles in the top six rows of the region
+path(2:8,6:7) = 0; 
 path(3:8,6) = 1;
-path(9:14,2:7) = 0;
-path(obs_row,obs_col)=1;
+path(9:14,2:7) = 0; %Make white free space to be filled
+path(obs_row,obs_col)=1; %Place the obstacle at a location inside white space
 
 
 
@@ -40,10 +45,10 @@ axis tight
 % build list of items
 makeItemList();
 drawGameboard();
-count=0;
-for increment=1:60
+count=0; %count is the number of red particles in the white space; start from zero
+for increment=1:24 %this is the number of red particles in the top region
     previtrcount=count;
-    for autonum=1:4
+    for autonum=1:4 %One clockwise cycle of right, down , left, up
         step=[0,0];
         if autonum==1
            step=[0,1];
@@ -103,15 +108,17 @@ for increment=1:60
             end
             drawGameboard();
             drawnow
-            makeItemList();
+%             makeItemList();
         end
        autonum=autonum+1; 
     end
     autonum = 1;
     increment = increment+1;
-    region = G.game(2:7,2:7);
+    region = G.game(2:7,2:7); %White space region in which the red particles need to be counted.
     count = numel(region(region==2)); %count number of red particles in the region
-    if count==previtrcount
+    if count==previtrcount %if the count of this iteration is equal to previous iteration's count then break the loop
+    fill(1,cnt)=previtrcount;
+    cnt=cnt+1;
     break;
     end
    
@@ -121,7 +128,7 @@ totalitr=totalitr+1;
 clear G.game;
 clear path;
 
-pause(1);
+pause(1); %Pause for 1 sec before changing the obstacle location 
 
 end
 
