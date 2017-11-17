@@ -1,9 +1,10 @@
-function [fill] = fillability()
+function [fill] = fillability(nRows)
 %The function fills a white region of 6 rows and 6 columns and finds the
 %maximum number of red particles which can be filled after placing an
 %obstacle at one of the 36 possible locations.
 % Authors: Sheryl Manzoor, smanzoor2@uh.edu and Aaron T. Becker, atbecker@uh.edu
-
+format compact
+nRows = 6;
 obs_row=9; %the obstacle poistion in the region starts from ninth row 
 obs_col=1; %Start column position from first column
 fill=zeros(1,36); %this array saves the maximum number of red particles in the white space for each obstacle position
@@ -107,7 +108,7 @@ for increment=1:24 %this is the number of red particles in the top region
                 i=i+1;
             end
             drawGameboard();
-            drawnow
+            %drawnow
 %             makeItemList();
         end
        autonum=autonum+1; 
@@ -121,17 +122,16 @@ for increment=1:24 %this is the number of red particles in the top region
     cnt=cnt+1;
     break;
     end
-   
 end
 
 totalitr=totalitr+1;
 clear G.game;
 clear path;
 
-pause(1); %Pause for 1 sec before changing the obstacle location 
-
+%pause(0.5); %Pause for 1 sec before changing the obstacle location\
+drawnow
 end
-
+fill = reshape(fill,nRows,nRows)';
 
 
 
