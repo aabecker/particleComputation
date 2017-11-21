@@ -5,7 +5,7 @@ function [fill] = fillability(nRows)
 % Authors: Sheryl Manzoor, smanzoor2@uh.edu and Aaron T. Becker, atbecker@uh.edu
 format compact
 nRows = 6;
-obs_row=9; %the obstacle poistion in the region starts from ninth row 
+obs_row=9; %the obstacle position in the region starts from ninth row 
 obs_col=1; %Start column position from first column
 fill=zeros(1,36); %this array saves the maximum number of red particles in the white space for each obstacle position
 cnt=1; %Counter for the fill array
