@@ -1,4 +1,4 @@
-function [Fill,fill_rowarray] = FillabilityTwoObs()
+function [Fill] = FillabilityTwoObs()
 %The function fills a white region of 6 rows and 6 columns and finds the
 %maximum number of red particles which can be filled after placing an
 %obstacle at one of the 36 possible locations.
@@ -8,13 +8,11 @@ nRows = 6;
 white_col=4;
 blk_col1=white_col-1;
 blk_col2=white_col+1;
-%blk_col1=3;
-%blk_col2=5;
-fill_rowarray=zeros(1,36*36); %saves sum for each second obstacle location.
-cnt2=1; %Counter for fill_rowarray 
+% fill_rowarray=zeros(1,36*36); %saves sum for each second obstacle location.
+% cnt2=1; %Counter for fill_rowarray 
 
 
-for col_position=1:1 %For six different positions of drop down column
+for col_position=1:6 %For six different positions of drop down column
     
 obs_row1=10; %the obstacle position in the region starts from tenth row 
 obs_col1=3; %Start column position from fourth column
@@ -166,15 +164,15 @@ fill=sum(fill);
 fill1(1,cnt1)=fill; %For displaying the sums for each inlet point.
 cnt1=cnt1+1; %Counter for fill1 array
 
-fill_rowarray(1,cnt)=fill;
-cnt2=cnt2+1;
+% fill_rowarray(1,cnt)=fill; %fill_rowarray saves the sum in the form of a row array so it's easier to sort it.
+% cnt2=cnt2+1;
 
 
-if(fill<70) %Value can be determined only after looking at the sums array
-path(15,9) = 0;
+if(fill>415) %Value can be determined only after looking at the sums array
+% path(15,9) = 0;
 G.fig = figure(cnt1);
 set(gcf,'color','k');
-set(G.fig ,'Name',strcat('col# ',num2str(fill)));
+set(G.fig ,'Name',strcat('Sum =  ',num2str(fill)));
 G.game = flipud(path);
 G.obstacle_pos = (G.game==1);  
 G.colormap = [  1,1,1; %Empty = white
@@ -191,8 +189,9 @@ drawGameboard();
 for p=1:6
     for m=1:6
         ht = text(3+p,1+m,num2str(fill_text(7-m,p)) ,'HorizontalAlignment','center');
+        set(ht, 'color','b');
     end
-    set(ht, 'color','k');
+%     set(ht, 'color','k');
 end
 
 end
@@ -207,7 +206,7 @@ blk_col1=blk_col1+1;
 blk_col2=blk_col2+1;
 end
 Fill = fill_all; %6*6*number of inlets
-fill_rowarray=sort(fill_rowarray,'ascend');
+% fill_rowarray=sort(fill_rowarray,'ascend');
 
 
     function drawGameboard()

@@ -8,8 +8,6 @@ nRows = 6;
 white_col=4;
 blk_col1=white_col-1;
 blk_col2=white_col+1;
-%blk_col1=3;
-%blk_col2=5;
 
 for col_position=1:6 %For six different positions of drop down column
 
@@ -34,9 +32,7 @@ obs_col=3; %Start column position from third column
         path(3:9,blk_col2) = 1;
         path(10:15,4:9) = 0; %Make white free space to be filled
         path(obs_row,obs_col)=1; %Place the obstacle at a location inside white space
-       % path(12,6)=1; %Place the obstacle at a location inside white space
-
-%         path_tmp = path;
+    
 
         G.fig = figure(col_position);
         set(gcf,'color','k');
@@ -63,16 +59,15 @@ obs_col=3; %Start column position from third column
                 previtrcount=count;
                 %for autonum=1:4 %One clockwise cycle of right, down , left, up
                 for autonum=1:4 %One clockwise cycle of up, right, down , left
-                     step=[0,0];
-                  if autonum==1
-                     step=[0,1];
-                  elseif autonum==2
-                     step= -[1,0];
-                  elseif autonum==3
-                     step= -[0,1];
-                  elseif autonum==4
-                  step= [1,0];
-                  end
+                   if autonum==2
+                       step=[0,1]; %right
+                    elseif autonum==3
+                       step= -[1,0]; %down
+                    elseif autonum==4
+                        step= -[0,1]; %left
+                    elseif autonum==1
+                        step= [1,0]; %up
+                    end
                     %drawGameboard();
                     revertList = [];
                     while numel(revertList) < numel(G.items)
@@ -142,7 +137,7 @@ obs_col=3; %Start column position from third column
         drawnow
     end
 fill = reshape(fill,nRows,nRows)';
-path(15,9) = 0; %Removes the obstacle for the black text to be visible.
+% path(15,9) = 0; %Removes the obstacle for the black text to be visible.
 G.fig = figure(col_position);
 set(gcf,'color','k');
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name',strcat('col# ',num2str(white_col)));
@@ -162,8 +157,9 @@ drawGameboard();
 for p=1:6
     for m=1:6
         ht = text(3+p,1+m,num2str(fill(7-m,p)) ,'HorizontalAlignment','center');
+        set(ht, 'color','b');
     end
-    set(ht, 'color','k');
+%     set(ht, 'color','g');
 end
 
 fill_all(:,:, col_position) = fill;  
