@@ -11,7 +11,7 @@ if nargin<1
         0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1];
 end
 G.fig = figure(2);
-set(gcf,'color','k');
+set(gcf,'color','w');
 set(G.fig ,'KeyPressFcn',@keyhandler,'Name','AssemblyBlocks');
 % G.game = flipud(dlmread(path));
 G.game = flipud(path);
@@ -68,8 +68,8 @@ drawGameboard();
         G.unitMoves = G.unitMoves+1;
         for i = 1:numel(G.items)
             for j = 1:size(G.items{i},1)
-                ny = G.items{i}(j,1) + int16(step(1));
-                nx = G.items{i}(j,2) + int16(step(2));
+                ny = G.items{i}(j,1) + int32(step(1));
+                nx = G.items{i}(j,2) + int32(step(2));
                 G.items{i}(j,1:2) =  [ny,nx];
                 if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2)
                     G.game(ny,nx) = i;
@@ -95,7 +95,7 @@ drawGameboard();
         while i<=numel(revertList)  
             item2revert = revertList(i);
             for j = 1:size(G.items{item2revert},1)
-                G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int16(step);
+                G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int32(step);
                 collisionItem = G.game(G.items{item2revert}(j,1),G.items{item2revert}(j,2));
                 if collisionItem ~= item2revert && collisionItem ~= 0
                     if isempty(find(revertList == collisionItem, 1))
@@ -109,7 +109,7 @@ drawGameboard();
             G.unitMoves = G.unitMoves-1;
         end
         drawGameboard();
-        %drawnow
+        drawnow % uncomment to show
         makeItemList();  
         end
                 drawnow
@@ -117,7 +117,7 @@ drawGameboard();
 
     function drawGameboard()
         %draw obstacles
-        G.game = uint16(G.obstacle_pos);  % This caused the problem
+        G.game = uint32(G.obstacle_pos);  % This caused the problem
         for i = 1:numel(G.items)
             for j = 1:size(G.items{i},1)
                 %%delete any components that leave the screen
@@ -172,7 +172,7 @@ drawGameboard();
                 if G.game(y,x)>1
                     num = numel(G.items)+1;
                     color = G.game(y,x);
-                    G.items{num}(1,:) = int16([y,x,color]);
+                    G.items{num}(1,:) = int32([y,x,color]);
                     addItems(y+1,x,color,num);
                     addItems(y-1,x,color,num);
                     addItems(y,x+1,color,num);
@@ -192,7 +192,7 @@ drawGameboard();
         if (thisColor == 2 && color == 3) || (thisColor == 3 && color == 2) %if opposite species, they are connected
             G.game(y,x) = 0;% set to zero
             %                          y,x,color
-            G.items{num}(end+1,:) = int16([y,x,thisColor]);
+            G.items{num}(end+1,:) = int32([y,x,thisColor]);
             addItems(y+1,x,thisColor,num);
             addItems(y-1,x,thisColor,num);
             addItems(y,x+1,thisColor,num);
