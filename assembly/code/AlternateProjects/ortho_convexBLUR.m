@@ -64,10 +64,10 @@ G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
     1,0,0;
     0,0,1;
-    1,.9,.9; %light red
-    .9,.9,1; %light blue
-    1,.95,.95; %light red
-    .95,.95,1; %light blue
+    1,.7,.7; %light red
+     .7,.7,1; %light blue
+%     1,.95,.95; %light red
+%     .95,.95,1; %light blue
     ];
 colormap(G.colormap);
 G.axis=imagesc(G.game);
