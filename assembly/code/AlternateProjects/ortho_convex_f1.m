@@ -7,19 +7,16 @@ function [] = ortho_convex_f1(path)
 if nargin<1
     %Test inputs if no arguments are provided
  path=[...
-        0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
-        1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1;
+        0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0;
+        0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 0;
+        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0;
+        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0;
+        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+        0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0;
+        1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0;
         1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 1 0 0 0 0 1 0 1 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0;
         1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 1 0 0 0 0 1 0 1 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0;
         1 0 0 2 2 1 0 0 1 0 0 3 3 1 0 1 0 0 2 2 1 0 1 0 0 3 3 1 0 1 0 0 0 0 0 0 0 0 0 0;
@@ -46,7 +43,12 @@ G.obstacle_pos = (G.game==1);
 G.colormap = [  1,1,1; %Empty = white
     0,0,0; %obstacle
     1,0,0;
-    0,0,1;];
+    0,0,1;
+    1,.7,.7; %light red
+     .7,.7,1; %light blue
+%     1,.95,.95; %light red
+%     .95,.95,1; %light blue
+    ];
 colormap(G.colormap);
 G.axis=imagesc(G.game);
 set(gca,'box','off','xTick',[],'ytick',[],'ydir','normal','Visible','off','color',0.8*[1,1,1]);
@@ -55,7 +57,12 @@ axis tight
 G.unitMoves = 0; %unit step moves
 G.cmdMoves = 0;  % commanded moves
 %assignin('base','P',G);
-
+        G.blur1 = G.game;
+        G.blur2 = G.game;
+        G.blur3 = G.game;
+        G.blur4 = G.game;
+        G.blur5 = G.game;
+        G.blur6 = G.game;
 % build list of items
 makeItemList();
 drawGameboard();
@@ -88,6 +95,13 @@ drawGameboard();
         drawGameboard();
         revertList = [];
         
+         G.blur1 = G.game;
+         G.blur2 = G.game;
+         G.blur3 = G.game;
+         G.blur4 = G.game;
+         G.blur5 = G.game;
+         G.blur6 = G.game;
+        
         while numel(revertList) < numel(G.items)
         %move everything: check for collisions, make list of objects that must be reverted
         G.game = zeros(size(G.obstacle_pos));
@@ -95,8 +109,8 @@ drawGameboard();
         G.unitMoves = G.unitMoves+1;
         for i = 1:numel(G.items)
             for j = 1:size(G.items{i},1)
-                ny = G.items{i}(j,1) + int32(step(1));
-                nx = G.items{i}(j,2) + int32(step(2));
+                ny = G.items{i}(j,1) + int16(step(1));
+                nx = G.items{i}(j,2) + int16(step(2));
                 G.items{i}(j,1:2) =  [ny,nx];
                 if nx>0 && ny>0 && ny<=size(G.game,1) && nx<=size(G.game,2)
                     G.game(ny,nx) = i;
@@ -122,7 +136,7 @@ drawGameboard();
         while i<=numel(revertList)  
             item2revert = revertList(i);
             for j = 1:size(G.items{item2revert},1)
-                G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int32(step);
+                G.items{item2revert}(j,1:2) =  G.items{item2revert}(j,1:2)-int16(step);
                 collisionItem = G.game(G.items{item2revert}(j,1),G.items{item2revert}(j,2));
                 if collisionItem ~= item2revert && collisionItem ~= 0
                     if isempty(find(revertList == collisionItem, 1))
@@ -136,15 +150,32 @@ drawGameboard();
             G.unitMoves = G.unitMoves-1;
         end
         drawGameboard();
-        drawnow % uncomment to show
+        drawnow   %% draws each movement step
+        G.blur6 = G.blur5;
+        G.blur5 = G.blur4;
+        G.blur4 = G.blur3;
+        G.blur3 = G.blur2;
+        G.blur2 = G.blur1;
+        G.blur1 = G.game;
+  
         makeItemList();  
         end
-                drawnow
+        for i = 1:5
+            G.blur6 = G.blur5;
+            G.blur5 = G.blur4;
+            G.blur4 = G.blur3;
+            G.blur3 = G.blur2;
+            G.blur2 = G.blur1;
+            G.blur1 = G.game;
+            drawGameboard();
+            drawnow
+        end
+        % fade the motion blur
     end
 
     function drawGameboard()
         %draw obstacles
-        G.game = uint32(G.obstacle_pos);  % This caused the problem
+        G.game = uint16(G.obstacle_pos);  % This caused the problem
         for i = 1:numel(G.items)
             for j = 1:size(G.items{i},1)
                 %%delete any components that leave the screen
@@ -157,10 +188,36 @@ drawGameboard();
         
         set(G.fig ,'Name',['AssemblyBlocks moves: ',num2str( G.cmdMoves) ,' unit steps ',num2str( G.unitMoves)] );
         %handle if display only doesn't have all shapes
-        colormap(G.colormap(1+unique(G.game),:));
+        %BLUR
+        dispVal = G.game;
+        for i = 1:numel(G.game(:))
+            if  G.game(i) == 0 
+                if   G.blur1(i) > 1 
+                    dispVal(i) = G.blur1(i)+2;
+                elseif G.blur2(i) > 1 
+                    dispVal(i) = G.blur2(i)+2;
+                elseif G.blur3(i) > 1 
+                    dispVal(i) = G.blur3(i)+2;
+                elseif G.blur4(i) > 1 
+                    dispVal(i) = G.blur4(i)+2;
+                elseif G.blur5(i) > 1  
+                    dispVal(i) = G.blur5(i)+2;
+                elseif G.blur6(i) > 1  
+                    dispVal(i) = G.blur6(i)+2;
+                end
+            end
+                
+        end
+        colormap(G.colormap(1+unique(dispVal),:));
         
         % %Draw bitmap
-        set(G.axis,'CData',G.game)
+        set(G.axis,'CData',dispVal)
+            
+        
+%         colormap(G.colormap(1+unique(G.game),:));
+%         
+%         % %Draw bitmap
+%         set(G.axis,'CData',G.game)
     end
 
     function drawVectorGameboard()
@@ -199,7 +256,7 @@ drawGameboard();
                 if G.game(y,x)>1
                     num = numel(G.items)+1;
                     color = G.game(y,x);
-                    G.items{num}(1,:) = int32([y,x,color]);
+                    G.items{num}(1,:) = int16([y,x,color]);
                     addItems(y+1,x,color,num);
                     addItems(y-1,x,color,num);
                     addItems(y,x+1,color,num);
@@ -219,7 +276,7 @@ drawGameboard();
         if (thisColor == 2 && color == 3) || (thisColor == 3 && color == 2) %if opposite species, they are connected
             G.game(y,x) = 0;% set to zero
             %                          y,x,color
-            G.items{num}(end+1,:) = int32([y,x,thisColor]);
+            G.items{num}(end+1,:) = int16([y,x,thisColor]);
             addItems(y+1,x,thisColor,num);
             addItems(y-1,x,thisColor,num);
             addItems(y,x+1,thisColor,num);
