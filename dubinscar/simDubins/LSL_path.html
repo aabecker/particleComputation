@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Dubins LSL Path</title>
+ <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+
+<body>
+<h1>Dubin's LSL Path segments</h1>
+<div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<script type="text/javascript">
+
+// Function for LSL Dubins Path
+
+function lsl() {
+var r=2;  // radius of curvature
+var p1=[];
+p1=[0,0,(Math.PI)/2]; //starting point
+var p2=[]; 
+p2=[0.001,0,(Math.PI)/2];  //Goal point
+var dx = p2[0] - p1[0];
+var dy = p2[1] - p1[1];
+var D = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
+var d = D / r;
+
+var theta = (Math.atan2(dy,dx))%(2*Math.PI);
+var alpha = (((p1[2] - theta)%(2*Math.PI)) + (2*Math.PI))% (2*Math.PI);
+var beta  = (((p2[2] - theta)%(2*Math.PI)) + (2*Math.PI)) % (2*Math.PI);  // ((n%m) + m)%m; calculate modulus in javascript
+
+
+var tmp0 = d + Math.sin(alpha) - Math.sin(beta);
+var p_squared = 2 + (d*d) -(2*Math.cos(alpha - beta)) + (2*d*(Math.sin(alpha) - Math.sin(beta)));
+
+var tmp1 = Math.atan2( (Math.cos(beta)-Math.cos(alpha)), tmp0 );
+var t = (((-alpha + tmp1 )% (2*Math.PI))+(2*Math.PI))%(2*Math.PI);
+var p = Math.sqrt( p_squared );
+var q = (((beta - tmp1 ) % (2*Math.PI))+(2*Math.PI))%(2*Math.PI);
+
+var arrray = [];
+array = [t, p, q];
+return array;
+
+}
+
+var myResult=lsl();
+document.write("Path segments are " + myResult);
+
+
+// Function for calculating total length
+function length(array, r) {
+var length = array[0];
+length=length + array[1];
+length=length + array[2];
+length=length * r;
+return length;
+
+}
+
+//document.write("\nSum is = " + length([4.7124,0.0005,1.5708],2));
+
+// Function for calculating three points in the segment
+
+function dubins_segment(seg_param, seg_init,n) {
+var seg_end=[];
+if(n===1){
+seg_end[0]=seg_init[0] + Math.sin(seg_init[2]+seg_param) - Math.sin(seg_init[2]);
+seg_end[1]=seg_init[1] - Math.cos(seg_init[2]+seg_param) + Math.cos(seg_init[2]);
+seg_end[2]=seg_init[2] + seg_param;
+}
+else if(n===3){
+seg_end[0]=seg_init[0] - Math.sin(seg_init[2]-seg_param) + Math.sin(seg_init[2]);
+seg_end[1]=seg_init[1] + Math.cos(seg_init[2]-seg_param) - Math.cos(seg_init[2]);
+seg_end[2]=seg_init[2] - seg_param;
+}
+else{
+seg_end[0]=seg_init[0] + Math.cos(seg_init[2])*seg_param;
+seg_end[1]=seg_init[1] + Math.sin(seg_init[2])*seg_param;
+seg_end[2]=seg_init[2];
+}
+return seg_end;
+
+}
+
+//var myResult=length(array);
+//document.write("\nSum is = " + dubins_segment(0.5,[1,2,3],3));
+
+
+// Function for calculating samples
+function dubins_path_sample(array,r,t) {
+var end_pt=[];
+var tprime=t/r;
+var p_init = [0, 0, array[2]];
+var param1 = array[0];
+var param2 = array[1];
+var mid_pt1 = dubins_segment( param1, p_init, 1);
+var mid_pt2 = dubins_segment( param2, mid_pt1, 2);
+
+if( tprime < param1 ){ 
+end_pt = dubins_segment( tprime, p_init, 1);
+}
+else if( tprime < (param1+param2) ) {
+end_pt = dubins_segment( (tprime-param1), mid_pt1, 3);
+}
+else{ 
+end_pt = dubins_segment( (tprime-param1-param2), mid_pt2, 1);
+}
+
+ end_pt[0] = end_pt[0] * r + array[0];
+ end_pt[1] = end_pt[1] * r + array[1];
+ end_pt[2] = (((end_pt[2])% (2*Math.PI))+(2*Math.PI))%(2*Math.PI);
+
+
+return end_pt;
+
+}
+//document.write("\nSum is = " + dubins_path_sample([1,2,3],2,1));
+
+//plot the result
+var trace1={
+  x:[1,2,3,4],
+  y:[10, 15, 13, 17],
+  type:'scatter'
+  };
+
+ var trace2={
+  x:[1,2,3,4],
+  y:[16, 5, 11, 9],
+  type:'scatter'
+  };
+
+var data=[trace1, trace2];
+Plotly.newPlot('myDiv', data);
+ </script>
+</body>
+
+</html>
+
+
