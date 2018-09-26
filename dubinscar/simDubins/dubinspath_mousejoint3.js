@@ -96,7 +96,7 @@ function init() {
         fixDef.restitution = 0.2;
         var body = world.CreateBody(bodyDef);
         var polys = [
-            [{ x: -0.5, y: -0.5 }, { x: 0.5, y: -0.5 }, { x: 0.5, y: 0.5 }, { x: -0.5, y: 0.5 }], // box
+            [{ x: -0.5, y: -0.45 }, { x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.5, y: 0.45 }], // box
             [{ x: 0.5, y: -4.0 }, { x: 1.5, y: -4.0 }, { x: 1.5, y: 4.0 }, { x: 0.5, y: 4.0 }]
         ]
 
@@ -105,7 +105,7 @@ function init() {
             var vecs = [];
             for (var i = 0; i < points.length; i++) {
                 var vec = new b2Vec2();
-                vec.Set(points[i].x, points[i].y);
+                vec.Set(.5+points[i].x, points[i].y);
                 vecs[i] = vec;
             }
             fixDef.shape = new b2PolygonShape;
@@ -125,8 +125,8 @@ function init() {
         var body = world.CreateBody(bodyDef);
         var polys = [
             [{ x: 0.5, y: -4.0 }, { x: 1.5, y: -4.0 }, { x: 1.5, y: 4.0 }, { x: 0.5, y: 4.0 }],
-            [{ x: 1.5, y: -4.0 }, { x: 2.5, y: -4.0 }, { x: 2.5, y: -0.5 }, { x: 1.5, y: -0.5 }],
-            [{ x: 1.5, y: 4.0 }, { x: 2.5, y: 4.0 }, { x: 2.5, y: 0.5 }, { x: 1.5, y: 0.5 }]
+            [{ x: 1.5, y: -4.0 }, { x: 2.5, y: -4.0 }, { x: 2.5, y: -0.75 }, { x: 1.5, y: -0.5 }],
+            [{ x: 1.5, y: 4.0 }, { x: 2.5, y: 4.0 }, { x: 2.5, y: 0.75 }, { x: 1.5, y: 0.5 }]
         ]
 
         for (var j = 0; j < polys.length; j++) {
@@ -134,7 +134,7 @@ function init() {
             var vecs = [];
             for (var i = 0; i < points.length; i++) {
                 var vec = new b2Vec2();
-                vec.Set(points[i].x, points[i].y);
+                vec.Set(-1.5+points[i].x, points[i].y);
                 vecs[i] = vec;
             }
             fixDef.shape = new b2PolygonShape;
@@ -388,7 +388,7 @@ function init() {
                     //measure the distance between goal and start. print assembled
                     var distance = Math.sqrt(Math.pow((goal[1] - start[1]), 2) + Math.pow((goal[0] - start[0]), 2));
                     //var distance = 5+3;
-                    if (distance < 70) {
+                    if (distance < 10) {
                         ctx.textAlign = 'left';
                         //ctx.fillText(distance.toFixed(2), 50, 100);
                         ctx.fillText('ASSEMBLED!', 50, 100);
