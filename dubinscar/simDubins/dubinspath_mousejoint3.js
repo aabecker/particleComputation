@@ -96,7 +96,8 @@ function init() {
         fixDef.restitution = 0.2;
         var body = world.CreateBody(bodyDef);
         var polys = [
-            [{ x: -0.5, y: -0.45 }, { x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.5, y: 0.45 }], // box
+            //[{ x: -0.5, y: -0.45 }, { x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.5, y: 0.45 }], // box
+            [{ x: -0.5, y: -0.01 }, { x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.5, y: 0.01 }],
             [{ x: 0.5, y: -4.0 }, { x: 1.5, y: -4.0 }, { x: 1.5, y: 4.0 }, { x: 0.5, y: 4.0 }]
         ]
 
@@ -105,7 +106,7 @@ function init() {
             var vecs = [];
             for (var i = 0; i < points.length; i++) {
                 var vec = new b2Vec2();
-                vec.Set(.5+points[i].x, points[i].y);
+                vec.Set(0.5 + points[i].x, points[i].y);
                 vecs[i] = vec;
             }
             fixDef.shape = new b2PolygonShape;
@@ -124,9 +125,12 @@ function init() {
         fixDef.restitution = 0.2;
         var body = world.CreateBody(bodyDef);
         var polys = [
-            [{ x: 0.5, y: -4.0 }, { x: 1.5, y: -4.0 }, { x: 1.5, y: 4.0 }, { x: 0.5, y: 4.0 }],
-            [{ x: 1.5, y: -4.0 }, { x: 2.5, y: -4.0 }, { x: 2.5, y: -0.75 }, { x: 1.5, y: -0.5 }],
-            [{ x: 1.5, y: 4.0 }, { x: 2.5, y: 4.0 }, { x: 2.5, y: 0.75 }, { x: 1.5, y: 0.5 }]
+            //[{ x: 1.5, y: -4.0 }, { x: 2.5, y: -4.0 }, { x: 2.5, y: -0.75 }, { x: 1.5, y: -0.5 }],
+            //[{ x: 1.5, y: 4.0 }, { x: 2.5, y: 4.0 }, { x: 2.5, y: 0.75 }, { x: 1.5, y: 0.5 }],
+            //[{ x: 0.5, y: -4.0 }, { x: 1.5, y: -4.0 }, { x: 1.5, y: 4.0 }, { x: 0.5, y: 4.0 }]
+
+            [{ x: 0.5, y: -5.0 }, { x: 2.5, y: -5.0 }, { x: 2.5, y: -1.75 }, { x: 1.5, y: -1.0 }, { x: 0.5, y: -1.0 }],
+            [{ x: 0.5, y: -1.0 }, { x: 1.5, y: -1.0 }, { x: 2.5, y: -0.25 }, { x: 2.5, y: 3.0 }, { x: 0.5, y: 3.0 }]
         ]
 
         for (var j = 0; j < polys.length; j++) {
@@ -134,7 +138,7 @@ function init() {
             var vecs = [];
             for (var i = 0; i < points.length; i++) {
                 var vec = new b2Vec2();
-                vec.Set(-1.5+points[i].x, points[i].y);
+                vec.Set(-1.5 + points[i].x, 1.0 + points[i].y);
                 vecs[i] = vec;
             }
             fixDef.shape = new b2PolygonShape;
@@ -143,6 +147,94 @@ function init() {
             body.m_angularDamping = 8000.0;
             body.m_linearDamping = 8000.0;
         }
+
+        var fixDef = new b2FixtureDef;
+        fixDef.shape = new b2CircleShape(0.5);
+        fixDef.density = 1.0;
+        fixDef.friction = 500.0;
+        fixDef.restitution = 0.001;  //bouncing value
+        var m_Robot = new Array();
+
+        //body defs
+        var bodyDef = new b2BodyDef;
+        bodyDef.type = b2Body.b2_dynamicBody;
+
+        var numrobots = 20;
+        var robotrad = 0.5;
+        var rowLength = 5;
+
+        for (var i = 0; i < numrobots; ++i) {
+            bodyDef.userData = 'robot';
+            //bodyDef.position.x = 40 - i * 2;
+            //bodyDef.position.y = 40 - i;
+            //bodyDef.linearVelocity.y = .05;
+            bodyDef.position.x = 40 + (i % rowLength) * 2 * robotrad;
+            bodyDef.position.y = 30 - Math.floor(i / rowLength) * 2 * robotrad;
+            m_Robot[i] = world.CreateBody(bodyDef);
+            m_Robot[i].CreateFixture(fixDef);
+
+        }
+
+        //Listener and keycode switch for intended velocity change
+        window.addEventListener("keydown", onKeyDown, false);
+        window.addEventListener("keyup", onKeyUp, false);
+        function onKeyDown(e) {
+            switch (e.keyCode) {
+                case 37:
+                    for (var i = 0; i < numrobots; ++i) {
+                        //m_Robot[i].SetLinearVelocity(new b2Vec2(-1, 0));
+                        var direction = new b2Vec2(-50, 0);
+                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
+                    }
+                    break;
+                case 38:
+                    for (var i = 0; i < numrobots; ++i) {
+                        //m_Robot[i].SetLinearVelocity(new b2Vec2(0, -1));
+                        var direction = new b2Vec2(0, 50);
+                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
+                    }
+                    break;
+                case 39:
+                    for (var i = 0; i < numrobots; ++i) {
+                        //m_Robot[i].SetLinearVelocity(new b2Vec2(1, 0));
+                        var direction = new b2Vec2(50, 0);
+                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
+                    }
+                    break;
+                case 40:
+                    for (var i = 0; i < numrobots; ++i) {
+                        //m_Robot[i].SetLinearVelocity(new b2Vec2(0, 1));
+                        var direction = new b2Vec2(0, -50);
+                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
+                    }
+                    break;
+            }
+        }
+        function onKeyUp(e) {
+            switch (e.keyCode) {
+                case 37:
+                    for (var i = 0; i < numrobots; ++i) {
+                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
+                    }
+                    break;
+                case 38:
+                    for (var i = 0; i < numrobots; ++i) {
+                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
+                    }
+                    break;
+                case 39:
+                    for (var i = 0; i < numrobots; ++i) {
+                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
+                    }
+                    break;
+                case 40://down
+                    for (var i = 0; i < numrobots; ++i) {
+                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
+                    }
+                    break;
+            }
+        }
+
 
 
 
@@ -351,8 +443,8 @@ function init() {
         ctx.textAlign = 'center';
         ctx.fillStyle = '#555';
         ctx.fillText('Box2d MouseJoint example with Dubins paths', canvas_width / 2, 40);
-        ctx.fillText('LSL is pink, RSR is yellow, RSL is light blue, LSR is black, LRL is red, RLR is green ', canvas_width / 2, 70);
-        ctx.fillText('Starting point is red and goal point is green', canvas_width / 2, 100);
+        //ctx.fillText('LSL is pink, RSR is yellow, RSL is light blue, LSR is black, LRL is red, RLR is green ', canvas_width / 2, 70);
+        ctx.fillText('Starting point is red and goal point is green', canvas_width / 2, 70);
         ctx.textAlign = 'left';
         ctx.fillText('X Coordinate', 50, 40);
         ctx.fillText('Y Coordinate', 200, 40);
@@ -387,7 +479,6 @@ function init() {
 
                     //measure the distance between goal and start. print assembled
                     var distance = Math.sqrt(Math.pow((goal[1] - start[1]), 2) + Math.pow((goal[0] - start[0]), 2));
-                    //var distance = 5+3;
                     if (distance < 10) {
                         ctx.textAlign = 'left';
                         //ctx.fillText(distance.toFixed(2), 50, 100);
@@ -434,6 +525,7 @@ function init() {
                     ctx.lineTo((xcoord + length * Math.cos(lineangle)) + 20 * Math.cos(lineangle + 2.356), (ycoord + length * Math.sin(lineangle)) + 20 * Math.sin(lineangle + 2.356));
                     ctx.lineTo(xcoord + length * Math.cos(lineangle), ycoord + length * Math.sin(lineangle));
                     ctx.lineTo((xcoord + length * Math.cos(lineangle)) + 20 * Math.cos(lineangle - 2.356), (ycoord + length * Math.sin(lineangle)) + 20 * Math.sin(lineangle - 2.356));
+                    ctx.lineWidth = 3;
                     ctx.strokeStyle = 'rgb(0, 220, 0)';
                     ctx.stroke();
 
@@ -488,8 +580,21 @@ function init() {
                     }
 
                     ctx.textAlign = 'center';
-                    ctx.fillText("LSL, RSR, RSL, LSR, LRL, RLR", canvas_width / 2, 130);
-                    ctx.fillText(arc_lsl + " , " + arc_rsr + " , " + arc_rsl + " , " + arc_lsr + " , " + arc_lrl + " , " + arc_rlr, canvas_width / 2, 160);
+                    ctx.fillStyle = 'rgb(220, 0, 220)';;
+                    ctx.fillText("LSL = " + arc_lsl, canvas_width / 2 - 300, 100);
+                    ctx.fillStyle = 'rgb(220, 220, 0)';
+                    ctx.fillText("RSR = " + arc_rsr, canvas_width / 2 - 160, 100);
+                    ctx.fillStyle = 'rgb(0, 220, 220)';
+                    ctx.fillText("RSL = " + arc_rsl, canvas_width / 2 - 20, 100);
+                    ctx.fillStyle = 'rgb(20, 15, 22)';
+                    ctx.fillText("LSR = " + arc_lsr, canvas_width / 2 + 120, 100);
+                    ctx.fillStyle = 'rgb(220, 0, 0)';
+                    ctx.fillText("RLR = " + arc_rlr, canvas_width / 2 + 260, 100);
+                    ctx.fillStyle = 'rgb(0, 220, 0)';
+                    ctx.fillText("LRL = " + arc_lrl, canvas_width / 2 + 400, 100);
+
+
+                    //ctx.fillText(arc_lsl + " , " + arc_rsr + " , " + arc_rsl + " , " + arc_lsr + " , " + arc_lrl + " , " + arc_rlr, canvas_width / 2, 160);
 
                     if (arc_lsl == Math.min(arc_lsl, arc_rsr, arc_rsl, arc_lsr, arc_lrl, arc_rlr)) {
                         //document.write("\nTangent points are " + lsl(csl, cgl, start, goal, r));
@@ -658,6 +763,9 @@ function init() {
                             var e = rlr(csr, cgr, start, goal, r)[3];
                             var f = rlr(csr, cgr, start, goal, r)[4];
                             var g = rlr(csr, cgr, start, goal, r)[5];
+
+
+
 
                             var endAngle = Math.atan2(Number(g) - ((rightcircle(goal, r))[1]), Number(f) - ((rightcircle(goal, r))[0]));
                             var startAngle = Math.atan2(goal[1] - ((rightcircle(goal, r))[1]), goal[0] - ((rightcircle(goal, r))[0]));
