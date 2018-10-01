@@ -91,8 +91,8 @@ function init() {
         bodyDef.position.Set(30, 30);
         bodyDef.userData = 'rod1';
         //bodyDef.angle = 1.67;
-        fixDef.density = 1000.0;
-        fixDef.friction = 1000.0;
+        fixDef.density = 5.0;
+        fixDef.friction = 5.0;
         fixDef.restitution = 0.2;
         var body = world.CreateBody(bodyDef);
         var polys = [
@@ -112,16 +112,16 @@ function init() {
             fixDef.shape = new b2PolygonShape;
             fixDef.shape.SetAsArray(vecs, vecs.length);
             body.CreateFixture(fixDef);
-            body.m_angularDamping = 8000.0;
-            body.m_linearDamping = 8000.0;
+            body.m_angularDamping = 8.0;
+            body.m_linearDamping = 8.0;
         }
 
         //mirrored rod
         bodyDef.type = b2Body.b2_dynamicBody;
         bodyDef.position.Set(20, 25);
         bodyDef.userData = 'rod2';
-        fixDef.density = 1000.0;
-        fixDef.friction = 1000.0;
+        fixDef.density = 5.0;
+        fixDef.friction = 5.0;
         fixDef.restitution = 0.2;
         var body = world.CreateBody(bodyDef);
         var polys = [
@@ -144,14 +144,14 @@ function init() {
             fixDef.shape = new b2PolygonShape;
             fixDef.shape.SetAsArray(vecs, vecs.length);
             body.CreateFixture(fixDef);
-            body.m_angularDamping = 8000.0;
-            body.m_linearDamping = 8000.0;
+            body.m_angularDamping = 8.0;
+            body.m_linearDamping = 8.0;
         }
 
         var fixDef = new b2FixtureDef;
         fixDef.shape = new b2CircleShape(0.5);
-        fixDef.density = 1.0;
-        fixDef.friction = 500.0;
+        fixDef.density = 10.0;
+        fixDef.friction = 5.0;
         fixDef.restitution = 0.001;  //bouncing value
         var m_Robot = new Array();
 
