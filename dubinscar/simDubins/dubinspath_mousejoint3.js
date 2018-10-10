@@ -24,6 +24,17 @@ function init() {
     var mouse_joint = false;
     var mouse_x, mouse_y;
 
+    var ROBOT_INPUT = { //robot commands
+        ROBOT_IDLE: 0x0,
+        ROBOT_LEFT    : 0x1, 
+        ROBOT_RIGHT   : 0x2, 
+        ROBOT_UP     : 0x4, 
+        ROBOT_DOWN     : 0x8,
+        WAIT : 0x40
+    };
+    var m_controlState = ROBOT_INPUT.ROBOT_IDLE;
+    var m_Robot = new Array();
+
     //box2d to canvas scale , therefore 1 metre of box2d = 30px of canvas :)
     var scale = 30;
 
@@ -150,10 +161,10 @@ function init() {
 
         var fixDef = new b2FixtureDef;
         fixDef.shape = new b2CircleShape(0.5);
-        fixDef.density = 10.0;
-        fixDef.friction = 5.0;
-        fixDef.restitution = 0.001;  //bouncing value
-        var m_Robot = new Array();
+        fixDef.density = 1.0;
+        fixDef.friction = 0.0;
+        fixDef.restitution = 0.1;  //bouncing value
+     
 
         //body defs
         var bodyDef = new b2BodyDef;
@@ -172,72 +183,34 @@ function init() {
             bodyDef.position.y = 30 - Math.floor(i / rowLength) * 2 * robotrad;
             m_Robot[i] = world.CreateBody(bodyDef);
             m_Robot[i].CreateFixture(fixDef);
+            m_Robot[i].m_angularDamping = 1;
+            m_Robot[i].m_linearDamping = 1;
 
         }
 
         //Listener and keycode switch for intended velocity change
         window.addEventListener("keydown", onKeyDown, false);
         window.addEventListener("keyup", onKeyUp, false);
+
+//m_Robot[i].SetLinearVelocity( new b2Vec2(0,0) );
+//m_Robot[i].ApplyForce(impulseV,m_Robot[i].GetWorldPoint(new b2Vec2(0,0)));
+
         function onKeyDown(e) {
-            switch (e.keyCode) {
-                case 37:
-                    for (var i = 0; i < numrobots; ++i) {
-                        //m_Robot[i].SetLinearVelocity(new b2Vec2(-1, 0));
-                        var direction = new b2Vec2(-50, 0);
-                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
-                    }
-                    break;
-                case 38:
-                    for (var i = 0; i < numrobots; ++i) {
-                        //m_Robot[i].SetLinearVelocity(new b2Vec2(0, -1));
-                        var direction = new b2Vec2(0, 50);
-                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
-                    }
-                    break;
-                case 39:
-                    for (var i = 0; i < numrobots; ++i) {
-                        //m_Robot[i].SetLinearVelocity(new b2Vec2(1, 0));
-                        var direction = new b2Vec2(50, 0);
-                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
-                    }
-                    break;
-                case 40:
-                    for (var i = 0; i < numrobots; ++i) {
-                        //m_Robot[i].SetLinearVelocity(new b2Vec2(0, 1));
-                        var direction = new b2Vec2(0, -50);
-                        m_Robot[i].ApplyForce(direction, m_Robot[i].GetWorldCenter());
-                    }
-                    break;
+            switch(e.keyCode){ // |= sets
+                case 37: m_controlState |= ROBOT_INPUT.ROBOT_LEFT; break; 
+                case 38: m_controlState |= ROBOT_INPUT.ROBOT_UP; break;
+                case 39: m_controlState |= ROBOT_INPUT.ROBOT_RIGHT; break;
+                case 40: m_controlState |= ROBOT_INPUT.ROBOT_DOWN; break;
             }
         }
-        function onKeyUp(e) {
-            switch (e.keyCode) {
-                case 37:
-                    for (var i = 0; i < numrobots; ++i) {
-                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
-                    }
-                    break;
-                case 38:
-                    for (var i = 0; i < numrobots; ++i) {
-                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
-                    }
-                    break;
-                case 39:
-                    for (var i = 0; i < numrobots; ++i) {
-                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
-                    }
-                    break;
-                case 40://down
-                    for (var i = 0; i < numrobots; ++i) {
-                        m_Robot[i].SetLinearVelocity(new b2Vec2(0.0, 0.0));
-                    }
-                    break;
+       function onKeyUp(e) {
+            switch(e.keyCode){ // &=~ resets
+                case 37: m_controlState &= ~ROBOT_INPUT.ROBOT_LEFT; break;
+                case 38: m_controlState &= ~ROBOT_INPUT.ROBOT_UP; break;
+                case 39: m_controlState &= ~ROBOT_INPUT.ROBOT_RIGHT; break;
+                case 40: m_controlState &= ~ROBOT_INPUT.ROBOT_DOWN; break;
             }
         }
-
-
-
-
         return world;
     }
 
@@ -431,6 +404,43 @@ function init() {
 
         //call this function again after 1/60 seconds or 16.7ms
         setTimeout(step, 1000 / fps);
+
+        // apply forces to the robots
+        var impulse = 200.0;
+        //adds velocity to robots based on array key input
+     var impulseV=new b2Vec2(0,0);
+        if (m_controlState == ROBOT_INPUT.ROBOT_LEFT)
+        {impulseV.x-=impulse;}
+        if (m_controlState == ROBOT_INPUT.ROBOT_UP)
+        {impulseV.y-=impulse;}
+        if (m_controlState == ROBOT_INPUT.ROBOT_RIGHT)
+        {impulseV.x+=impulse;}
+        if (m_controlState == ROBOT_INPUT.ROBOT_DOWN)
+        { impulseV.y += impulse; }
+
+//m_Robot[i].SetLinearVelocity( new b2Vec2(0,0) );
+//m_Robot[i].ApplyForce(impulseV,m_Robot[i].GetWorldPoint(new b2Vec2(0,0)));
+        //allows for multiple key presses 
+        if (m_controlState & ROBOT_INPUT.ROBOT_LEFT)
+        { impulseV.x -= impulse; }
+        if (m_controlState & ROBOT_INPUT.ROBOT_UP)
+        { impulseV.y -= impulse; }
+        if (m_controlState & ROBOT_INPUT.ROBOT_RIGHT)
+        { impulseV.x += impulse; }
+        if (m_controlState & ROBOT_INPUT.ROBOT_DOWN)
+        { impulseV.y += impulse; }
+      //normalize
+        var denom = Math.sqrt(impulseV.x * impulseV.x + impulseV.y * impulseV.y);
+        if (denom > impulse) {
+            impulseV.x = impulse*impulseV.x / denom;
+            impulseV.y = impulse*impulseV.y / denom;
+        }
+
+        for (var i = 0; i < m_Robot.length; i++) {
+            m_Robot[i].SetLinearVelocity( new b2Vec2(0,0) );
+            m_Robot[i].ApplyForce(impulseV,m_Robot[i].GetWorldPoint(new b2Vec2(0,0)));
+        }
+
 
         //redraw the world
         ctx.save();
