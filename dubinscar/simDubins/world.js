@@ -24,7 +24,7 @@ var mouse_pressed = false;
 var mouse_joint = false;
 var mouse_x, mouse_y;
 
-//box2d to canvas scale , therefore 1 metre of box2d = 30px of canvas :)
+//box2d to canvas scale , therefore 1 metre of box2d = 30px of canvas
 var scale = 30;
 
 function createWorld() {
@@ -80,8 +80,11 @@ function createWorld() {
     fixDef.restitution = 0.2;
     var body = world.CreateBody(bodyDef);
     var polys = [
-        [{ x: -0.5, y: -0.01 }, { x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.5, y: 0.01 }],
+        //[{ x: -0.5, y: -0.01 }, { x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.5, y: 0.01 }],
+        [{ x: 0.5, y: -0.6 }, { x: 0.5, y: 0.6 }, { x: -0.45, y: 0 }],
         [{ x: 0.5, y: -4.0 }, { x: 1.5, y: -4.0 }, { x: 1.5, y: 4.0 }, { x: 0.5, y: 4.0 }]
+
+        //[{ x: 1.5, y: 4.0 }, { x: 2.5, y: 4.0 }, { x: 2.5, y: 12.0 }, { x: 1.5, y: 12.0 }, { x: 1.5, y: 8.6 }, { x: 0.5, y: 8.0 }, { x: 1.5, y: 7.4 }]
     ]
 
     for (var j = 0; j < polys.length; j++) {
@@ -99,7 +102,7 @@ function createWorld() {
         body.m_linearDamping = 8000.0;
     }
 
-    //mirrored rod
+    //mirrored rod (has a slot for the notch)
     bodyDef.type = b2Body.b2_dynamicBody;
     bodyDef.position.Set(20, 18);
     bodyDef.userData = 'rod2';
@@ -108,9 +111,12 @@ function createWorld() {
     fixDef.restitution = 0.2;
     var body = world.CreateBody(bodyDef);
     var polys = [
-
         [{ x: 0.5, y: -5.0 }, { x: 2.5, y: -5.0 }, { x: 2.5, y: -1.75 }, { x: 1.5, y: -1.0 }, { x: 0.5, y: -1.0 }],
         [{ x: 0.5, y: -1.0 }, { x: 1.5, y: -1.0 }, { x: 2.5, y: -0.25 }, { x: 2.5, y: 3.0 }, { x: 0.5, y: 3.0 }]
+
+        //[{x:0.5,y:3.0},{x:2.5,y:3.0},{x:2.5,y:-0.25},{x:1.5,y:-1.0},{x:2.5,y:-1.75},{x:2.5,y:-5.0},{x:0.5,y:-5.0},{x:0.5,y:-1.0}]
+
+        //[{ x: 0.5, y: 1.0 }, { x: 2.5, y: 1.0 }, { x: 2.5, y: 4.25 }, { x: 1.5, y: 5.0 }, { x: 2.5, y: 5.75 }, { x: 2.5, y: 9.0 }, { x: 0.5, y: 9.0 }]
     ]
 
     for (var j = 0; j < polys.length; j++) {
