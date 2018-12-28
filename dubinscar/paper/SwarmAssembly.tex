@@ -1,0 +1,233 @@
+%  compress using: gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH      -sOutputFile=foo-ShapingSwarmCompressed.pdf ShapingSwarmFrictionSharedInput.pdf
+% to submit: https://ras.papercept.net/conferences/scripts/start.pl
+%\documentclass[conference]{IEEEtran}
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\IEEEoverridecommandlockouts% This command is only needed if 
+                                                  % you want to use the \thanks command
+%\overrideIEEEmargins                                      % Needed to meet printer requirements.
+\usepackage{times}
+
+
+\makeatletter 
+\let\NAT@parse\undefined
+\makeatother
+
+% numbers option provides compact numerical references in the text. 
+%\usepackage[numbers]{natbib}
+\usepackage{multicol}
+%\usepackage[bookmarks=true]{hyperref}
+
+\usepackage{bbm}
+\usepackage{calc}
+\usepackage{url}
+\usepackage{transparent} 
+\usepackage[bookmarks=true,hidelinks]{hyperref}
+
+\usepackage{graphicx}
+\usepackage[cmex10]{amsmath}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{rotating}
+
+\usepackage{chngcntr}
+\counterwithin{paragraph}{subsection} % makes paragraph depend on subsection
+
+
+%\usepackage{xfrac}
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{colortbl}
+%\usepackage{caption}
+
+%\usepackage{wrapfig}
+\usepackage{overpic}
+%\usepackage{subfigure}
+%\usepackage{textcomp}
+\graphicspath{{./pictures/pdf/},{./pictures/ps/},{./pictures/png/},{./pictures/jpg/}}
+\usepackage{breqn} %for breaking equations automatically
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{todonotes}
+\usepackage{authblk}
+\usepackage[per-mode=symbol, detect-weight=true, binary-units=true]{siunitx}
+\usepackage{rotating}
+\usepackage{tikz}
+\usepgflibrary{arrows}% for more options on arrows
+%\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent \framebox{\begin{minipage}[c]{0.98 \columnwidth} \ttfamily\flushleft \textcolor{red}{#1}\end{minipage}}\vspace{5 mm}\par}
+% uncomment this to hide all red todos
+%\renewcommand{\todo}{}
+
+%% ABBREVIATIONS
+\newcommand{\qstart}{q_{\text{start}}}
+
+
+
+%% MACROS
+
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\normn}[2]{\left\lVert#1\right\rVert_#2}
+\providecommand{\dualnorm}[1]{\norm{#1}_\ast}
+\providecommand{\dualnormn}[2]{\norm{#1}_{#2\ast}}
+\providecommand{\set}[1]{\lbrace\,#1\,\rbrace}
+\providecommand{\cset}[2]{\lbrace\,{#1}\nobreak\mid\nobreak{#2}\,\rbrace}
+\providecommand{\lscal}{<}
+\providecommand{\gscal}{>}
+\providecommand{\lvect}{\prec}
+\providecommand{\gvect}{\succ}
+\providecommand{\leqscal}{\leq}
+\providecommand{\geqscal}{\geq}
+\providecommand{\leqvect}{\preceq}
+\providecommand{\geqvect}{\succeq}
+\providecommand{\onevect}{\mathbf{1}}
+\providecommand{\zerovect}{\mathbf{0}}
+\providecommand{\field}[1]{\mathbb{#1}}
+\providecommand{\C}{\field{C}}
+\providecommand{\R}{\field{R}}
+\newcommand{\Cspace}{\mathcal{Q}}
+\newcommand{\Uspace}{\mathcal{U}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\Hcal}{$\mathcal{H}$}
+\providecommand{\Vcal}{$\mathcal{V}$}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\homog}{homog}
+\DeclareMathOperator{\domain}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\sign}{sgn}
+\providecommand{\polar}{\triangle}
+\providecommand{\ainner}{\underline{a}}
+\providecommand{\aouter}{\overline{a}}
+\providecommand{\binner}{\underline{b}}
+\providecommand{\bouter}{\overline{b}}
+\newcommand{\D}{\nobreakdash-\textsc{d}}
+%\newcommand{\Fspace}{\mathcal{F}}
+\providecommand{\Fspace}{\Cspace_\text{free}}
+\providecommand{\free}{\text{\{}\mathsf{free}\text{\}}}
+\providecommand{\iff}{\Leftrightarrow}
+\providecommand{\subinner}[1]{#1_{\text{inner}}}
+\providecommand{\subouter}[1]{#1_{\text{outer}}}
+\providecommand{\Ppoly}{\mathcal{X}}
+\providecommand{\Pproj}{\mathcal{Y}}
+\providecommand{\Pinner}{\subinner{\Pproj}}
+\providecommand{\Pouter}{\subouter{\Pproj}}
+\DeclareMathOperator{\argmax}{arg\,max}
+\providecommand{\Aineq}{B}
+\providecommand{\Aeq}{A}
+\providecommand{\bineq}{u}
+\providecommand{\beq}{t}
+\DeclareMathOperator{\area}{area}
+\newcommand{\contact}[1]{\Cspace_{#1}}
+\newcommand{\feasible}[1]{\Fspace_{#1}}
+\newcommand{\dd}{\; \mathrm{d}}
+\newcommand{\figwid}{0.22\columnwidth}
+\newcommand{\TRUE}{\textbf{true}}
+\newcommand{\FALSE}{\textbf{false}}
+\newcommand{\xupdownarrow}[1]{%
+{\left\updownarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+%\newcommand{\xleftrightarrow}[1]{%
+%  {\left\leftrightarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+%}
+\DeclareMathOperator{\atan2}{atan2}
+\allowdisplaybreaks
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+
+
+% paper title
+\title{\LARGE \bf 2D Swarm Assembly of Rigid Objects using Uniform Inputs}
+
+% You will get a Paper-ID when submitting a pdf file to the conference system
+\author{Sheryl Manzoor, and Aaron T. Becker% <-this % stops a space
+\thanks{*This work was supported by the National Science Foundation under Grant No.\ \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1553063}{ [IIS-1553063]} and \href{http://nsf.gov/awardsearch/showAward?AWD_ID=1619278}{[IIS-1619278]}.}% <-this % stops a space
+\thanks{Authors are with the Department of Electrical and Computer Engineering,  University of Houston, Houston, TX 77204 USA        {\tt\small  \{smanzoor2, atbecker\}@uh.edu}}%
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+%
+\begin{abstract}
+Imagine hundreds of particles actuated by an external magnetic field to build a component deep inside the human body.
+If these particles could be small enough to pass through tiny blood vessels, they could be delivered almost anywhere in the body.
+Though, the tiny size of these particles would limit the amount of force any one particle could exert, large numbers of particles could exert larger forces.
+These forces could potentially be used to construct objects.  Unfortunately, the small size of the particles limits the capabilities of individual particles.
+This paper considers a subset of this problem.  The particles are actuated in 2D by a uniform global external field (e.g. gravitational or magnetic fields), such that they all move in the same direction.
+This paper provides a controller for multi-part assembly that computes the optimal shortest path for each component for assembly, and steers the swarm to push the component along the path.
+The algorithm is validated through simulation.
+\end{abstract}
+
+\section{Introduction}\label{sec:Intro}
+
+
+\section{Related Work}\label{sec:related}
+% start with related work from Shiva's paper on pushing
+pushing control in 2D has a long history (B. Donald, Kevin Lynch, to Shiva)
+
+uniform controls and why
+
+optimal control: dubins car and extentions
+
+
+\section{Model}\label{sec:model}
+
+
+\section{Methods}\label{sec:methods}
+
+calculate the shortest path
+
+figure of the 6 candidate Dubins paths for the objects,
+
+calculate collisions, iterate path parameters to search for path
+
+figure of the collisions and the updated path
+
+
+controller: 
+
+figure showing the path, the object, the closest point, the mean and variance of the swarm
+
+\section{Simulation Results}\label{sec:simulation}
+
+0.) pushing an object along a trajectory
+FIgure: trace of the push
+Figure: plot of error for several starting locations of the object.
+
+1.) peg-in-hole task (one object is fixed)
+figure: traces from several starting locations
+plot: success rate \& timing as a function of number of robots
+plot: success rate \& timing as a function of object mass
+
+2.) two-part assembly  (two moveable parts)
+figure: traces from several starting locations
+plot: success rate \& timing as a function of number of robots
+plot: success rate \& timing as a function of object mass
+
+
+\section{Conclusion}\label{sec:conclusion}
+
+Extensions to multi-part assembly.
+Extensions to 3D
+Hardware implementations
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,SwarmAssembly}
+
+
+% Uncomment to add appendix:
+%\input{appendix}
+
+\end{document}
