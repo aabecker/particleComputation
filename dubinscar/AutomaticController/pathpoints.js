@@ -1,4 +1,10 @@
-function pathpoints(start,goal,r,a,b,d,e,straight) {
+function pathpoints(start, goal, r, a, b, d, e, straight) {
+    //array for saving the points
+    var path_points = [
+        { x: 'LSL', y: arc_lsl, angle: 0 },
+       // { }
+    ];
+
     //points along the starting arc
     var division_factor = 0.2;
     var leftcircle_x = Number((leftcircle(start, r))[0]);
@@ -38,7 +44,7 @@ function pathpoints(start,goal,r,a,b,d,e,straight) {
     }
 
     //points along the straight segment
-    var ratio = Math.floor(Number(straight) * 5 / r); 
+    var ratio = Math.floor(Number(straight) * 5 / r);
     //var lineangle = -(Math.atan2(Number(d) - Number(a), Number(e) - Number(b)));
     var t = 0;
     while (t <= 1) {
